@@ -47,3 +47,4 @@ public class Movie_Languages {
     public void setLanguageRole(Language_role languageRole) {
         this.languageRole = languageRole;
     }
+}

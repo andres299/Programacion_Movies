@@ -1,9 +1,8 @@
 package com.esliceu.demoMovies.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Language {
@@ -14,6 +13,9 @@ public class Language {
     private String language_code;
 
     private String language_name;
+
+    @OneToMany(mappedBy = "language")
+    private Set<Movie_Languages> movieLanguages;
 
     public int getLanguage_id() {
         return language_id;
@@ -37,5 +39,13 @@ public class Language {
 
     public void setLanguage_name(String language_name) {
         this.language_name = language_name;
+    }
+
+    public Set<Movie_Languages> getMovieLanguages() {
+        return movieLanguages;
+    }
+
+    public void setMovieLanguages(Set<Movie_Languages> movieLanguages) {
+        this.movieLanguages = movieLanguages;
     }
 }

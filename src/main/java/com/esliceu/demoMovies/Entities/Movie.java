@@ -41,6 +41,9 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     private Set<Movie_Keywords> movieKeywords;
 
+    @OneToMany(mappedBy = "movie")
+    private Set<Movie_Languages> movieLanguages;
+
     public int getMovie_id() {
         return movie_id;
     }
@@ -189,5 +192,13 @@ public class Movie {
 
     public void setMovieKeywords(Set<Movie_Keywords> movieKeywords) {
         this.movieKeywords = movieKeywords;
+    }
+
+    public Set<Movie_Languages> getMovieLanguages() {
+        return movieLanguages;
+    }
+
+    public void setMovieLanguages(Set<Movie_Languages> movieLanguages) {
+        this.movieLanguages = movieLanguages;
     }
 }

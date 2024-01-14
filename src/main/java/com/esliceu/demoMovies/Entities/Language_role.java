@@ -1,9 +1,8 @@
 package com.esliceu.demoMovies.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Language_role {
@@ -12,6 +11,9 @@ public class Language_role {
     private int role_id;
 
     private String language_role;
+
+    @OneToMany(mappedBy = "languageRole")
+    private Set<Movie_Languages> movieLanguages;
 
     public int getRole_id() {
         return role_id;
@@ -27,5 +29,13 @@ public class Language_role {
 
     public void setLanguage_role(String language_role) {
         this.language_role = language_role;
+    }
+
+    public Set<Movie_Languages> getMovieLanguages() {
+        return movieLanguages;
+    }
+
+    public void setMovieLanguages(Set<Movie_Languages> movieLanguages) {
+        this.movieLanguages = movieLanguages;
     }
 }
