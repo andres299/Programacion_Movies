@@ -35,6 +35,9 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     private Set<Movie_Crew> movieCrews;
 
+    @OneToMany(mappedBy = "movie")
+    private Set<Movie_Genres> movieGenres;
+
     public int getMovie_id() {
         return movie_id;
     }
@@ -167,5 +170,13 @@ public class Movie {
 
     public void setMovieCrews(Set<Movie_Crew> movieCrews) {
         this.movieCrews = movieCrews;
+    }
+
+    public Set<Movie_Genres> getMovieGenres() {
+        return movieGenres;
+    }
+
+    public void setMovieGenres(Set<Movie_Genres> movieGenres) {
+        this.movieGenres = movieGenres;
     }
 }

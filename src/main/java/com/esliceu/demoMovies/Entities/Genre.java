@@ -1,9 +1,8 @@
 package com.esliceu.demoMovies.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Genre {
@@ -12,6 +11,9 @@ public class Genre {
     private int genre_id;
 
     private String genre_name;
+
+    @OneToMany(mappedBy = "genre")
+    private Set<Movie_Genres> movieGenres;
 
     public int getGenre_id() {
         return genre_id;
@@ -27,5 +29,13 @@ public class Genre {
 
     public void setGenre_name(String genre_name) {
         this.genre_name = genre_name;
+    }
+
+    public Set<Movie_Genres> getMovieGenres() {
+        return movieGenres;
+    }
+
+    public void setMovieGenres(Set<Movie_Genres> movieGenres) {
+        this.movieGenres = movieGenres;
     }
 }
