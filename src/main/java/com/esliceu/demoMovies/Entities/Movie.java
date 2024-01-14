@@ -38,6 +38,9 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     private Set<Movie_Genres> movieGenres;
 
+    @OneToMany(mappedBy = "movie")
+    private Set<Movie_Keywords> movieKeywords;
+
     public int getMovie_id() {
         return movie_id;
     }
@@ -178,5 +181,13 @@ public class Movie {
 
     public void setMovieGenres(Set<Movie_Genres> movieGenres) {
         this.movieGenres = movieGenres;
+    }
+
+    public Set<Movie_Keywords> getMovieKeywords() {
+        return movieKeywords;
+    }
+
+    public void setMovieKeywords(Set<Movie_Keywords> movieKeywords) {
+        this.movieKeywords = movieKeywords;
     }
 }
