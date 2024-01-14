@@ -25,6 +25,8 @@ public class Movie {
     private int vote_count;
     @OneToMany(mappedBy = "movie")
     private List<Movie_Cast> moviecast;
+    @OneToMany(mappedBy = "movie")
+    private List<Production_Country> productionCountries;
 
     public int getMovie_id() {
         return movie_id;
@@ -134,5 +136,13 @@ public class Movie {
 
     public void setMoviecast(List<Movie_Cast> moviecast) {
         this.moviecast = moviecast;
+    }
+
+    public List<Production_Country> getProductionCountries() {
+        return productionCountries;
+    }
+
+    public void setProductionCountries(List<Production_Country> productionCountries) {
+        this.productionCountries = productionCountries;
     }
 }

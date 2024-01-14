@@ -1,9 +1,8 @@
 package com.esliceu.demoMovies.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Country {
@@ -13,6 +12,9 @@ public class Country {
 
     private String countryIsoCode;
     private String countryName;
+
+    @OneToMany(mappedBy = "country")
+    private Set<Production_Country> productionCountries;
 
     public int getCountry_id() {
         return country_id;
@@ -36,5 +38,13 @@ public class Country {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    public Set<Production_Country> getProductionCountries() {
+        return productionCountries;
+    }
+
+    public void setProductionCountries(Set<Production_Country> productionCountries) {
+        this.productionCountries = productionCountries;
     }
 }
