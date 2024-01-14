@@ -1,10 +1,9 @@
 package com.esliceu.demoMovies.Entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Gender {
@@ -13,6 +12,9 @@ public class Gender {
     private int gender_id;
 
     private String gender;
+
+    @OneToMany(mappedBy = "gender")
+    private List<MovieCast> moviecast;
 
     public int getGender_id() {
         return gender_id;
@@ -28,5 +30,13 @@ public class Gender {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public List<MovieCast> getMoviecast() {
+        return moviecast;
+    }
+
+    public void setMoviecast(List<MovieCast> moviecast) {
+        this.moviecast = moviecast;
     }
 }

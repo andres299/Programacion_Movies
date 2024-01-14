@@ -1,17 +1,17 @@
 package com.esliceu.demoMovies.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int person_id;
-
     private String person_name;
+    @OneToMany(mappedBy = "person")
+    private List<MovieCast> moviecast;
 
     public int getPerson_id() {
         return person_id;
@@ -27,5 +27,13 @@ public class Person {
 
     public void setPerson_name(String person_name) {
         this.person_name = person_name;
+    }
+
+    public List<MovieCast> getMoviecast() {
+        return moviecast;
+    }
+
+    public void setMoviecast(List<MovieCast> moviecast) {
+        this.moviecast = moviecast;
     }
 }

@@ -24,6 +24,8 @@ public class Movie {
     private String tagline;
     private BigDecimal vote_average;
     private int vote_count;
+    @OneToMany(mappedBy = "movie")
+    private List<MovieCast> moviecast;
 
     public int getMovie_id() {
         return movie_id;
@@ -127,4 +129,11 @@ public class Movie {
         this.vote_count = vote_count;
     }
 
+    public List<MovieCast> getMoviecast() {
+        return moviecast;
+    }
+
+    public void setMoviecast(List<MovieCast> moviecast) {
+        this.moviecast = moviecast;
+    }
 }
