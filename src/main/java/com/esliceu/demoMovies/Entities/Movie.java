@@ -3,7 +3,6 @@ package com.esliceu.demoMovies.Entities;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -25,7 +24,7 @@ public class Movie {
     private BigDecimal vote_average;
     private int vote_count;
     @OneToMany(mappedBy = "movie")
-    private List<MovieCast> moviecast;
+    private List<Movie_Cast> moviecast;
 
     public int getMovie_id() {
         return movie_id;
@@ -129,11 +128,11 @@ public class Movie {
         this.vote_count = vote_count;
     }
 
-    public List<MovieCast> getMoviecast() {
+    public List<Movie_Cast> getMoviecast() {
         return moviecast;
     }
 
-    public void setMoviecast(List<MovieCast> moviecast) {
+    public void setMoviecast(List<Movie_Cast> moviecast) {
         this.moviecast = moviecast;
     }
 }

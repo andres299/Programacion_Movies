@@ -1,7 +1,6 @@
 package com.esliceu.demoMovies.Entities;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(
@@ -9,23 +8,26 @@ import org.springframework.data.annotation.Id;
         uniqueConstraints =
         @UniqueConstraint(columnNames = {"movie_id", "person_id", "gender_id"})
 )
-public class MovieCast {
+public class Movie_Cast {
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
 
-    private String characterName;
+    private String character_name;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "gender_id")
     private Gender gender;
 
-    private int castOrder;
+    private int cast_order;
 
     public Movie getMovie() {
         return movie;
@@ -43,12 +45,12 @@ public class MovieCast {
         this.person = person;
     }
 
-    public String getCharacterName() {
-        return characterName;
+    public String getCharacter_name() {
+        return character_name;
     }
 
-    public void setCharacterName(String characterName) {
-        this.characterName = characterName;
+    public void setCharacter_name(String character_name) {
+        this.character_name = character_name;
     }
 
     public Gender getGender() {
@@ -59,11 +61,11 @@ public class MovieCast {
         this.gender = gender;
     }
 
-    public int getCastOrder() {
-        return castOrder;
+    public int getCast_order() {
+        return cast_order;
     }
 
-    public void setCastOrder(int castOrder) {
-        this.castOrder = castOrder;
+    public void setCast_order(int cast_order) {
+        this.cast_order = cast_order;
     }
 }

@@ -2,7 +2,7 @@ package com.esliceu.demoMovies.Entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Person {
@@ -11,7 +11,7 @@ public class Person {
     private int person_id;
     private String person_name;
     @OneToMany(mappedBy = "person")
-    private List<MovieCast> moviecast;
+    private Set<Movie_Cast> moviecast;
 
     public int getPerson_id() {
         return person_id;
@@ -29,11 +29,11 @@ public class Person {
         this.person_name = person_name;
     }
 
-    public List<MovieCast> getMoviecast() {
+    public Set<Movie_Cast> getMoviecast() {
         return moviecast;
     }
 
-    public void setMoviecast(List<MovieCast> moviecast) {
+    public void setMoviecast(Set<Movie_Cast> moviecast) {
         this.moviecast = moviecast;
     }
 }
