@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Movie {
@@ -24,9 +25,12 @@ public class Movie {
     private BigDecimal vote_average;
     private int vote_count;
     @OneToMany(mappedBy = "movie")
-    private List<Movie_Cast> moviecast;
+    private Set<Movie_Cast> moviecast;
     @OneToMany(mappedBy = "movie")
-    private List<Production_Country> productionCountries;
+    private Set<Production_Country> productionCountries;
+
+    @OneToMany(mappedBy = "movie")
+    private Set<Movie_Company> movieCompanies;
 
     public int getMovie_id() {
         return movie_id;
@@ -130,19 +134,27 @@ public class Movie {
         this.vote_count = vote_count;
     }
 
-    public List<Movie_Cast> getMoviecast() {
+    public Set<Movie_Cast> getMoviecast() {
         return moviecast;
     }
 
-    public void setMoviecast(List<Movie_Cast> moviecast) {
+    public void setMoviecast(Set<Movie_Cast> moviecast) {
         this.moviecast = moviecast;
     }
 
-    public List<Production_Country> getProductionCountries() {
+    public Set<Production_Country> getProductionCountries() {
         return productionCountries;
     }
 
-    public void setProductionCountries(List<Production_Country> productionCountries) {
+    public void setProductionCountries(Set<Production_Country> productionCountries) {
         this.productionCountries = productionCountries;
+    }
+
+    public Set<Movie_Company> getMovieCompanies() {
+        return movieCompanies;
+    }
+
+    public void setMovieCompanies(Set<Movie_Company> movieCompanies) {
+        this.movieCompanies = movieCompanies;
     }
 }
