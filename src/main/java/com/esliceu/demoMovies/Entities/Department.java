@@ -1,9 +1,8 @@
 package com.esliceu.demoMovies.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Department {
@@ -12,6 +11,9 @@ public class Department {
     private int department_id;
 
     private String department_name;
+
+    @OneToMany(mappedBy = "department")
+    private Set<Movie_Crew> movieCrews;
 
     public int getDepartment_id() {
         return department_id;
@@ -27,5 +29,13 @@ public class Department {
 
     public void setDepartment_name(String department_name) {
         this.department_name = department_name;
+    }
+
+    public Set<Movie_Crew> getMovieCrews() {
+        return movieCrews;
+    }
+
+    public void setMovieCrews(Set<Movie_Crew> movieCrews) {
+        this.movieCrews = movieCrews;
     }
 }
