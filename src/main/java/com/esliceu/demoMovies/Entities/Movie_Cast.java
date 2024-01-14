@@ -10,9 +10,6 @@ import org.springframework.data.annotation.Id;
         @UniqueConstraint(columnNames = {"movie_id", "person_id", "gender_id"})
 )
 public class MovieCast {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
@@ -29,14 +26,6 @@ public class MovieCast {
     private Gender gender;
 
     private int castOrder;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Movie getMovie() {
         return movie;
