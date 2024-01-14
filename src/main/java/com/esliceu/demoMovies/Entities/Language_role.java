@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Language_role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int role_id ;
+    private int role_id;
 
     private String language_role;
 
