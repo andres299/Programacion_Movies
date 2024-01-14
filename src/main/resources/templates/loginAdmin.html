@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login de Usuario</title>
+    <link rel="stylesheet" href="/css/styleForm.css" />
+</head>
+<body>
+<form action="/loginAdmin" method="post">
+    <h1>Login Admin</h1>
+
+    <label for="username">Login:</label>
+    <input type="text" name="username" id="username" required><br>
+    <label for="password">Contraseña:</label>
+    <input type="password" name="password" id="password" required><br>
+
+    <div th:if="${error}">
+        <p class="error" th:text="${error}"></p>
+    </div>
+    <p><input name="Iniciar Sesión" type="submit"></p>
+
+    <p>Cerrar Sesion. <a href="/Logout">Cerrar aquí</a></p>
+</form>
+</body>
+</html>
