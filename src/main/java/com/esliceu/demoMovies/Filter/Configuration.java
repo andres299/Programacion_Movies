@@ -11,6 +11,6 @@ public class Configuration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(sessionInterceptor)
-                .addPathPatterns("/filterMovies");
+                .addPathPatterns("");
     }
 }

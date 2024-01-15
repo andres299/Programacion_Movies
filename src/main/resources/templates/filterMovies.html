@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/DrawTable.css">
 </head>
 <body>
 <h1>Movie Filter</h1>
@@ -31,19 +32,19 @@
     </tr>
     <th:block th:each="movie : ${movies}">
         <tr>
-            <td th:text="${movie.id}"></td>
+            <td th:text="${movie.movie_id}"></td>
             <td th:text="${movie.title}"></td>
             <td th:text="${movie.budget}"></td>
             <td th:text="${movie.homepage}"></td>
-            <td th:text="${movie.overwiew}"></td>
+            <td th:text="${movie.overview}"></td>
             <td th:text="${movie.popularity}"></td>
-            <td th:text="${movie.release_Date}"></td>
+            <td th:text="${movie.release_date}"></td>
             <td th:text="${movie.revenue}"></td>
-            <td th:text="${movie.movie_Status}"></td>
+            <td th:text="${movie.runtime}"></td>
+            <td th:text="${movie.movie_status}"></td>
             <td th:text="${movie.tagline}"></td>
-            <td th:text="${movie.vote_Average}"></td>
-            <td th:text="${movie.budget}"></td>
-            <td th:text="${movie.Vote_Count}"></td>
+            <td th:text="${movie.vote_average}"></td>
+            <td th:text="${movie.Vote_count}"></td>
         </tr>
     </th:block>
 </table>
