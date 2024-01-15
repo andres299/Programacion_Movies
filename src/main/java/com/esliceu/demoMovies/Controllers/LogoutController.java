@@ -17,7 +17,7 @@ public class LogoutController {
             session.invalidate();
         }
         // Redirirgir a login
-        return "redirect:/loginAdmin";
+        return "redirect:/filterMovies";
     }
 }
 

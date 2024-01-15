@@ -49,26 +49,26 @@
         <th>Popularity</th>
         <th>Release_Date</th>
         <th>Revenue</th>
-        <!-- <th>Runtime</th> -->
+        <!-- <th>Runtime</th>
         <th>Movie_Status</th>
-        <th>Tagline</th>
+        <th>Tagline</th> -->
         <th>Vote_Average</th>
         <th>Vote_Count</th>
 
-    </tr>
-    <th:block th:each="movie : ${movies}">
-        <tr>
-            <td th:text="${movie.movie_id}"></td>
-            <td th:text="${movie.title}"></td>
-            <td th:text="${movie.budget}"></td>
-            <!--<td th:text="${movie.homepage}"></td> -->
+   </tr>
+   <th:block th:each="movie : ${movies}">
+       <tr>
+           <td th:text="${movie.movie_id}"></td>
+           <td th:text="${movie.title}"></td>
+           <td th:text="${movie.budget}"></td>
+           <!--<td th:text="${movie.homepage}"></td> -->
             <td th:text="${movie.overview}"></td>
             <td th:text="${movie.popularity}"></td>
             <td th:text="${movie.release_date}"></td>
             <td th:text="${movie.revenue}"></td>
-            <!--<td th:text="${movie.runtime}"></td> -->
+            <!--<td th:text="${movie.runtime}"></td>
             <td th:text="${movie.movie_status}"></td>
-            <td th:text="${movie.tagline}"></td>
+            <td th:text="${movie.tagline}"></td> -->
             <td th:text="${movie.vote_average}"></td>
             <td th:text="${movie.vote_count}"></td>
         </tr>
