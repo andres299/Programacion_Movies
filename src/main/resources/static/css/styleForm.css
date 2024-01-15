@@ -1,12 +1,48 @@
-body{
+body {
     font-family: Arial, sans-serif;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
     background-image: url('/img/fondo.jpg');
+}
+
+.header {
+    background-color: #333;
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-item {
+    margin: 0 10px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item a i {
+    margin-right: 5px;
 }
 
 h1 {
@@ -32,6 +68,7 @@ form {
     box-shadow: 0 0 10px #ccc;
     width: 300px;
     background-color: #fff;
+    margin-top: 60px;
 }
 
 label {
