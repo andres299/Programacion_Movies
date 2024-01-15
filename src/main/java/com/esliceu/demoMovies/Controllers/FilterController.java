@@ -30,6 +30,14 @@ public class FilterController {
     @PostMapping("/filterMovies")
     public String filterMovies(Model model,
                                @RequestParam String filterType, @RequestParam String keyword){
+        List<Movie> filteredMovies = movieService.filterMovies(filterType , keyword);
+        System.out.println(filterType + keyword);
+        if (filteredMovies != null) {
+            model.addAttribute("movies", filteredMovies);
+        } else {
+            System.out.println("Vacio");
+        }
+        model.addAttribute("movies", filteredMovies);
         return "filterMovies";
     }
 
