@@ -9,21 +9,33 @@
 <h1>Movie Filter</h1>
 
 <form action="/filterMovies" method="post">
+    <label for="filterType">Cerca de pel·lícules:</label>
+    <select id="filterType" name="filterType">
+        <option value="actor">Per actor</option>
+        <option value="characters">Per "personatges"</option>
+        <option value="title">Per títol</option>
+        <option value="genre">Per gènere</option>
+        <option value="director">Per director</option>
+    </select>
+
     <label for="keyword">Filtrar por:</label>
     <input type="text" id="keyword" name="keyword">
+
     <button type="submit">Buscar</button>
 </form>
+
 
 <table>
     <tr>
         <th>Movie ID</th>
         <th>Title</th>
         <th>Budget</th>
-        <th>Homepage</th>
+        <!-- <th>Homepage</th> -->
         <th>Overwiew</th>
         <th>Popularity</th>
         <th>Release_Date</th>
         <th>Revenue</th>
+        <!-- <th>Runtime</th> -->
         <th>Movie_Status</th>
         <th>Tagline</th>
         <th>Vote_Average</th>
@@ -35,16 +47,16 @@
             <td th:text="${movie.movie_id}"></td>
             <td th:text="${movie.title}"></td>
             <td th:text="${movie.budget}"></td>
-            <td th:text="${movie.homepage}"></td>
+            <!--<td th:text="${movie.homepage}"></td> -->
             <td th:text="${movie.overview}"></td>
             <td th:text="${movie.popularity}"></td>
             <td th:text="${movie.release_date}"></td>
             <td th:text="${movie.revenue}"></td>
-            <td th:text="${movie.runtime}"></td>
+            <!--<td th:text="${movie.runtime}"></td> -->
             <td th:text="${movie.movie_status}"></td>
             <td th:text="${movie.tagline}"></td>
             <td th:text="${movie.vote_average}"></td>
-            <td th:text="${movie.Vote_count}"></td>
+            <td th:text="${movie.vote_count}"></td>
         </tr>
     </th:block>
 </table>
