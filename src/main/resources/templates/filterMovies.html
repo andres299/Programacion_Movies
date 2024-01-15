@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <title>FilterMovies</title>
     <link rel="stylesheet" href="/css/DrawTable.css">
+    <script src="https://kit.fontawesome.com/2684e8a577.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>Movie Filter</h1>
+<div class="header">
+    <nav>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/filterMovies"><i class="fa-solid fa-filter"></i> Filter Movies</a></li>
+        </ul>
+    </nav>
+
+    <nav>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/loginAdmin"><i class="fa-solid fa-user-tie"></i> Admin</a></li>
+            <li class="nav-item"><a href="/Logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+</div>
 
 <form action="/filterMovies" method="post">
     <label for="filterType">Cerca de pel·lícules:</label>
