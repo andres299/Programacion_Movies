@@ -19,8 +19,9 @@ public class MovieService {
     public List<Movie> filterMovies(String filterType ,String keyword) {
         System.out.println("filterMovies llamado con palabra clave: " + keyword + " y tipo de filtro: " + filterType);
         if ("title".equals(filterType)) {
-            System.out.println("hola puto");
             return movieRepo.findByTitle(keyword);
+        } else if () {
+            
         }
         return Collections.emptyList();
 
