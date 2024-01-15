@@ -28,7 +28,8 @@ public class FilterController {
     }
 
     @PostMapping("/filterMovies")
-    public String filterMovies(Model model){
+    public String filterMovies(Model model,
+                               @RequestParam String filterType, @RequestParam String keyword){
         return "filterMovies";
     }
 
