@@ -21,14 +21,14 @@ public class FilterController {
     MovieService movieService;
 
     @GetMapping("/filterMovies")
-    public String loginAdmin(Model model){
+    public String showrMovies(Model model){
         List<Movie> allMovies = movieService.getAllMovies();
         model.addAttribute("movies", allMovies);
         return "filterMovies";
     }
 
     @PostMapping("/filterMovies")
-    public String newStudent(Model model){
+    public String filterMovies(Model model){
         return "filterMovies";
     }
 
