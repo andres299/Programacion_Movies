@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -20,8 +21,9 @@ public class FilterController {
     @Autowired
     MovieService movieService;
 
+    /*
     @GetMapping("/filterMovies")
-    public String showrMovies(Model model, @RequestParam(defaultValue = "0") int page){
+    public String showMovies(Model model, @RequestParam(defaultValue = "0") int page){
         List<Movie> allMovies = movieService.getAllMovies();
         int pageSize = 10;
         int start = Math.toIntExact(page * pageSize);
@@ -31,6 +33,17 @@ public class FilterController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", (int) Math.ceil((double) allMovies.size() / pageSize));
         return "filterMovies";
+    }
+     */
+    @GetMapping("/filterMovies")
+    public String showMovies(Model model){
+        List<Movie> allMovies = movieService.getFirstMovies();
+        return "filterMovies";
+    }
+    @GetMapping("/moviesByPage")
+    @ResponseBody
+    public List<Movie> showMovies(@RequestParam int page){
+        return movieService.getAllMoviesByPage(page);
     }
 
     @PostMapping("/filterMovies")

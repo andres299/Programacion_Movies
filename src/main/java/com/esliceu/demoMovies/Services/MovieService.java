@@ -16,6 +16,19 @@ public class MovieService {
         return movieRepo.findAll();
     }
 
+    public List<Movie> getFirstMovies() {
+        List<Movie> firstMovies = movieRepo.findAll();
+        return firstMovies.subList(0,10);
+    }
+
+    public List<Movie> getAllMoviesByPage(int page) {
+        List<Movie> allMovies = movieRepo.findAll();
+        int pageSize = 10;
+        int start = Math.toIntExact(page * pageSize);
+        int end = Math.toIntExact(Math.min((page + 1) * pageSize, allMovies.size()));
+
+        return allMovies.subList(start,end);
+    }
     public List<Movie> filterMovies(String filterType ,String keyword) {
         System.out.println("filterMovies llamado con palabra clave: " + keyword + " y tipo de filtro: " + filterType);
         if ("title".equals(filterType)) {
