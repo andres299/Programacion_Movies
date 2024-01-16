@@ -54,9 +54,10 @@
         <th>Movie_Status</th>
         <th>Tagline</th> -->
         <th>Vote_Average</th>
-        <th>Vote_Count</th>
+        <th>Director</th>
 
-   </tr>
+
+    </tr>
    <th:block th:each="movie : ${movies}">
        <tr>
            <td th:text="${movie.movie_id}"></td>
@@ -71,7 +72,11 @@
             <td th:text="${movie.movie_status}"></td>
             <td th:text="${movie.tagline}"></td> -->
             <td th:text="${movie.vote_average}"></td>
-            <td th:text="${movie.vote_count}"></td>
+           <td>
+           <div th:each="crew : ${movie.movieCrews}">
+               <p th:if="${crew.job == 'Director'}" th:text="${crew.person.person_name}"></p>
+           </div>
+           </td>
         </tr>
     </th:block>
 </table>
