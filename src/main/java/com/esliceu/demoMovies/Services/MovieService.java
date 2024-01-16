@@ -19,9 +19,15 @@ public class MovieService {
     public List<Movie> filterMovies(String filterType ,String keyword) {
         System.out.println("filterMovies llamado con palabra clave: " + keyword + " y tipo de filtro: " + filterType);
         if ("title".equals(filterType)) {
-            return movieRepo.findByTitle(keyword);
+            return movieRepo.findByTitleContaining(keyword);
         } else if ("actor".equals(filterType)) {
-            return movieRepo.findByMoviecast_Person_person_name(keyword);
+            return movieRepo.findByMoviecast_Person_person_nameContaining(keyword);
+        } else if ("characters".equals(filterType)){
+            return movieRepo.findByCharacterNameContaining(keyword);
+        } else if ("genre".equals(filterType)) {
+            return movieRepo.findByGenreNameContaining(keyword);
+        } else if ("director".equals(filterType)) {
+            return movieRepo.findByDirectorNameContaining(keyword);
         }
         return Collections.emptyList();
 
