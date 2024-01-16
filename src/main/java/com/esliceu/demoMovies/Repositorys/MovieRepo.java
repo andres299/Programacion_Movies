@@ -10,4 +10,6 @@ public interface MovieRepo extends JpaRepository<Movie, Long> {
    // @Query(value = "SELECT * FROM movie WHERE title = :keyword",
     //nativeQuery = true)
     List<Movie> findByTitle(String keyword);
+
+    List<Movie> findByMoviecast_Person_person_name(String person_name);
 }

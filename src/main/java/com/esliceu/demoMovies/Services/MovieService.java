@@ -20,8 +20,8 @@ public class MovieService {
         System.out.println("filterMovies llamado con palabra clave: " + keyword + " y tipo de filtro: " + filterType);
         if ("title".equals(filterType)) {
             return movieRepo.findByTitle(keyword);
-        } else if () {
-            
+        } else if ("actor".equals(filterType)) {
+            return movieRepo.findByMoviecast_Person_person_name(keyword);
         }
         return Collections.emptyList();
 
