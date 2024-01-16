@@ -21,9 +21,15 @@ public class FilterController {
     MovieService movieService;
 
     @GetMapping("/filterMovies")
-    public String showrMovies(Model model){
+    public String showrMovies(Model model, @RequestParam(defaultValue = "0") int page){
         List<Movie> allMovies = movieService.getAllMovies();
-        model.addAttribute("movies", allMovies);
+        int pageSize = 10;
+        int start = Math.toIntExact(page * pageSize);
+        int end = Math.toIntExact(Math.min((page + 1) * pageSize, allMovies.size()));
+
+        model.addAttribute("movies", allMovies.subList(start, end));
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", (int) Math.ceil((double) allMovies.size() / pageSize));
         return "filterMovies";
     }
 

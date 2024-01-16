@@ -38,7 +38,19 @@
     <button type="submit">Buscar</button>
 </form>
 
-
+<!--
+<div>
+    <a th:href="@{/filterMovies(page=0)}">Primera</a>
+    <a th:href="@{/filterMovies(page=${currentPage - 1})}" th:if="${currentPage > 0}">Anterior</a>
+    <span th:text="${currentPage + 1} + ' / ' + ${totalPages}"></span>
+    <a th:href="@{/filterMovies(page=${currentPage + 1})}" th:if="${currentPage + 1 < totalPages}">Siguiente</a>
+    <a th:href="@{/filterMovies(page=${totalPages - 1})}">Última</a>
+</div>
+-->
+<div th:if="${totalPages > 1}">
+    <button id="prevButton">Anterior</button>
+    <button id="nextButton">Siguiente</button>
+</div>
 <section>
 <table>
     <tr>
@@ -81,5 +93,7 @@
     </th:block>
 </table>
 </section>
+
+
 </body>
 </html>
