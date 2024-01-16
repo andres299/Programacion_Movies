@@ -37,12 +37,12 @@ public class FilterController {
      */
     @GetMapping("/filterMovies")
     public String showMovies(Model model){
-        List<Movie> allMovies = movieService.getFirstMovies();
+        model.addAttribute("allMovies",movieService.getFirstMovies());
         return "filterMovies";
     }
     @GetMapping("/moviesByPage")
     @ResponseBody
-    public List<Movie> showMovies(@RequestParam int page){
+    public List<Movie> showMovies2(@RequestParam int page){
         return movieService.getAllMoviesByPage(page);
     }
 

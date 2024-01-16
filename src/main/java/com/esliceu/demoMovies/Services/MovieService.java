@@ -26,7 +26,6 @@ public class MovieService {
         int pageSize = 10;
         int start = Math.toIntExact(page * pageSize);
         int end = Math.toIntExact(Math.min((page + 1) * pageSize, allMovies.size()));
-
         return allMovies.subList(start,end);
     }
     public List<Movie> filterMovies(String filterType ,String keyword) {
