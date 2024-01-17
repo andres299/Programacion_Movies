@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -26,20 +28,13 @@ public class FilterController {
         return movieService.getAllMovies();
     }
 
-    /*
+
     @PostMapping("/filterMovies")
     public String filterMovies(Model model,
                                @RequestParam String filterType, @RequestParam String keyword){
-        System.out.println(filterType + keyword);
         List<Movie> filteredMovies = movieService.filterMovies(filterType , keyword);
-        if (filteredMovies != null) {
-            model.addAttribute("movies", filteredMovies);
-        } else {
-            System.out.println("Vacio");
-        }
-        model.addAttribute("movies", filteredMovies);
         return "filterMovies";
     }
-     */
+
 
 }

@@ -28,7 +28,7 @@ public class MovieService {
         int end = Math.toIntExact(Math.min((page + 1) * pageSize, allMovies.size()));
         return allMovies.subList(start,end);
     }
-    /*
+
     public List<Movie> filterMovies(String filterType ,String keyword) {
         System.out.println("filterMovies llamado con palabra clave: " + keyword + " y tipo de filtro: " + filterType);
         if ("title".equals(filterType)) {
@@ -44,5 +44,5 @@ public class MovieService {
         }
         return Collections.emptyList();
     }
-     */
+
 }
