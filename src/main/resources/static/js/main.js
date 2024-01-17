@@ -15,8 +15,8 @@ nextButton.addEventListener('click', async () => {
     updateUI();
 });
 
-async function changePage() {
-    fetch(`/allMovies`)
+async function changePage(URL) {
+    fetch(URL)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -24,7 +24,6 @@ async function changePage() {
             return response.json();
         })
         .then(data => {
-            // Páginación en el lado del cliente
             moviesData = data;
             updateUI();
         })
@@ -33,9 +32,35 @@ async function changePage() {
         });
 }
 
+document.getElementById('buscarButton').addEventListener('click', function() {
+       postData(`/filterMovies`);
+});
+
+async function postData(URL) {
+    fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(responseData => {
+        // Maneja la respuesta según tus necesidades
+        console.log(responseData);
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+}
+
+
 // Función para actualizar la interfaz de usuario con los datos recibidos
 function updateUI() {
-    console.log(moviesData);
     moviesTable.innerHTML = "";
 
     const itemsPerPage = 10;
@@ -64,4 +89,4 @@ function updateUI() {
     });
 }
 
-changePage();
+changePage(`/allMovies`);

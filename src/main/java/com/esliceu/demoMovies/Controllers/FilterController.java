@@ -30,10 +30,13 @@ public class FilterController {
 
 
     @PostMapping("/filterMovies")
-    public String filterMovies(Model model,
-                               @RequestParam String filterType, @RequestParam String keyword){
-        List<Movie> filteredMovies = movieService.filterMovies(filterType , keyword);
-        return "filterMovies";
+    @ResponseBody
+    public List<Movie> filterMovies(@RequestParam String filterType, @RequestParam String keyword){
+        List<Movie> movie = movieService.filterMovies(filterType, keyword);
+        for (Movie movie1 : movie){
+            System.out.println(movie1.getTitle());
+        }
+        return movie;
     }
 
 
