@@ -1,6 +1,8 @@
 const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 const moviesTable = document.querySelector("tbody");
+const filterType = document.getElementById('filterType');
+const keyword = document.getElementById('keyword');
 
 let page = 0;
 let moviesData = [];
@@ -32,13 +34,18 @@ async function changePage(URL) {
         });
 }
 
-document.getElementById('buscarButton').addEventListener('click', function() {
-    const filterType = document.getElementById('filterType').value;
-    const keyword = document.getElementById('keyword').value;
-
+keyword.addEventListener('change', () => {
     const requestData = {
-        filterType: filterType,
-        keyword: keyword
+        filterType: filterType.value,
+        keyword: keyword.value
+    };
+    postData(`/filterMovies`, requestData);
+})
+document.getElementById('buscarButton').addEventListener('click', function() {
+    page = 0;
+    const requestData = {
+        filterType: filterType.value,
+        keyword: keyword.value
     };
 
     postData(`/filterMovies`, requestData);
