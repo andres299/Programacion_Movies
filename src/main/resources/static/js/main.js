@@ -33,15 +33,26 @@ async function changePage(URL) {
 }
 
 document.getElementById('buscarButton').addEventListener('click', function() {
-       postData(`/filterMovies`);
+    const filterType = document.getElementById('filterType').value;
+    const keyword = document.getElementById('keyword').value;
+
+    const requestData = {
+        filterType: filterType,
+        keyword: keyword
+    };
+
+    postData(`/filterMovies`, requestData);
 });
 
-async function postData(URL) {
+async function postData(URL, data) {
+    const formData = new FormData();
+    for (const key in data) {
+        formData.append(key, data[key]);
+    }
+
     fetch(URL, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        body: formData,
     })
     .then(response => {
         if (!response.ok) {
@@ -50,8 +61,8 @@ async function postData(URL) {
         return response.json();
     })
     .then(responseData => {
-        // Maneja la respuesta según tus necesidades
-        console.log(responseData);
+        moviesData = responseData;
+        updateUI();
     })
     .catch(error => {
         console.error('Error fetching data:', error);
@@ -59,9 +70,22 @@ async function postData(URL) {
 }
 
 
+
+// Función para actualizar la interfaz de usuario con los datos recibidos
 // Función para actualizar la interfaz de usuario con los datos recibidos
 function updateUI() {
     moviesTable.innerHTML = "";
+
+    if (moviesData.length === 0) {
+        // Si el array está vacío, mostrar un mensaje
+        const noResultsRow = document.createElement("tr");
+        const noResultsCell = document.createElement("td");
+        noResultsCell.colSpan = 8; // Colspan para ocupar todas las columnas
+        noResultsCell.textContent = "No se encontraron resultados.";
+        noResultsRow.appendChild(noResultsCell);
+        moviesTable.appendChild(noResultsRow);
+        return;
+    }
 
     const itemsPerPage = 10;
     const startIndex = page * itemsPerPage;
@@ -80,10 +104,6 @@ function updateUI() {
             cell.textContent = movie[column];
             row.appendChild(cell);
         });
-
-        const directorCell = document.createElement("td");
-
-        row.appendChild(directorCell);
 
         moviesTable.appendChild(row);
     });
