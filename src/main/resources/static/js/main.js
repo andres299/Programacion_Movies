@@ -1,42 +1,50 @@
 const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
-const moviesTable = document.querySelector("#table");
+const moviesTable = document.querySelector("tbody");
 
 let page = 0;
+let moviesData = [];
 
 prevButton.addEventListener('click', async () => {
     if (page > 0) page--;
-    await changePage();
+    updateUI();
 });
 
 nextButton.addEventListener('click', async () => {
     page++;
-    await changePage();
+    updateUI();
 });
 
 async function changePage() {
-    fetch(`/moviesByPage?page=${page}`)
-    .then(response => {
-        if (!response.ok) console.log("Error");
-        else return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        //updateUI(data);
-    })
-    .catch(error => {
-        console.error("Error fetching data:", error);
-    });
+    fetch(`/allMovies`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Páginación en el lado del cliente
+            moviesData = data;
+            updateUI();
+        })
+        .catch(error => {
+            console.error('Error fetching movies:', error);
+        });
 }
 
 // Función para actualizar la interfaz de usuario con los datos recibidos
-function updateUI(data) {
-console.log(data);
+function updateUI() {
+    console.log(moviesData);
     moviesTable.innerHTML = "";
 
-    data.forEach(movie => {
+    const itemsPerPage = 10;
+    const startIndex = page * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentMovies = moviesData.slice(startIndex, endIndex);
+
+    currentMovies.forEach(movie => {
         const row = document.createElement("tr");
-        console.log(movie)
         const columns = [
             "movie_id", "title", "budget", "overview",
             "popularity", "release_date", "revenue", "vote_average"
@@ -49,12 +57,11 @@ console.log(data);
         });
 
         const directorCell = document.createElement("td");
-        const director = movie.movieCrews.find(crew => crew.job === 'Director');
-        if (director) {
-            directorCell.textContent = director.person.person_name;
-        }
+
         row.appendChild(directorCell);
 
         moviesTable.appendChild(row);
     });
 }
+
+changePage();

@@ -11,6 +11,7 @@ public interface MovieRepo extends JpaRepository<Movie, Long> {
     //nativeQuery = true)
     List<Movie> findByTitleContaining(String keyword);
 
+    /*
     @Query(value = "SELECT m.* FROM movie m " +
             "JOIN movie_cast mc ON m.movie_id = mc.movie_id " +
             "JOIN person p ON mc.person_id = p.person_id " +
@@ -20,7 +21,7 @@ public interface MovieRepo extends JpaRepository<Movie, Long> {
             "JOIN movie_cast mc ON m.movie_id = mc.movie_id " +
             "JOIN person p ON mc.person_id = p.person_id " +
             "WHERE p.person_name LIKE %:person_name%", nativeQuery = true)
-     */
+
     List<Movie> findByMoviecast_Person_person_nameContaining(String person_name);
 
     @Query(value = "SELECT m.* FROM movie m " +
@@ -39,4 +40,7 @@ public interface MovieRepo extends JpaRepository<Movie, Long> {
          "JOIN person p ON mc.person_id = p.person_id " +
          "WHERE mc.job = 'Director' AND p.person_name LIKE %:director%", nativeQuery = true)
     List<Movie> findByDirectorNameContaining(String director);
+
+
+     */
 }

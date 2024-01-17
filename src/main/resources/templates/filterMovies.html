@@ -38,62 +38,34 @@
     <button type="submit">Buscar</button>
 </form>
 
-<!--
-<div>
-    <a th:href="@{/filterMovies(page=0)}">Primera</a>
-    <a th:href="@{/filterMovies(page=${currentPage - 1})}" th:if="${currentPage > 0}">Anterior</a>
-    <span th:text="${currentPage + 1} + ' / ' + ${totalPages}"></span>
-    <a th:href="@{/filterMovies(page=${currentPage + 1})}" th:if="${currentPage + 1 < totalPages}">Siguiente</a>
-    <a th:href="@{/filterMovies(page=${totalPages - 1})}">Última</a>
-</div>
--->
+
 <div class="button-section">
     <button type="button" id="prevButton">Anterior</button>
     <button type="button" id="nextButton">Siguiente</button>
 </div>
 
-<section>
-    <table id="table">
-        <tr>
-            <th>Movie ID</th>
-            <th>Title</th>
-            <th>Budget</th>
-            <!-- <th>Homepage</th> -->
-            <th>Overwiew</th>
-            <th>Popularity</th>
-            <th>Release_Date</th>
-            <th>Revenue</th>
-            <!-- <th>Runtime</th>
-            <th>Movie_Status</th>
-            <th>Tagline</th> -->
-            <th>Vote_Average</th>
-            <th>Director</th>
+<table id="table">
+    <thead>
+    <tr>
+        <th>Movie ID</th>
+        <th>Title</th>
+        <th>Budget</th>
+        <!-- <th>Homepage</th> -->
+        <th>Overwiew</th>
+        <th>Popularity</th>
+        <th>Release_Date</th>
+        <th>Revenue</th>
+        <!-- <th>Runtime</th>
+        <th>Movie_Status</th>
+        <th>Tagline</th> -->
+        <th>Vote_Average</th>
+        <th>Director</th>
+    </tr>
+    </thead>
+    <tbody>
 
-
-        </tr>
-        <th:block th:each="movie : ${allMovies}">
-            <tr>
-                <td th:text="${movie.movie_id}"></td>
-                <td th:text="${movie.title}"></td>
-                <td th:text="${movie.budget}"></td>
-                <!--<td th:text="${movie.homepage}"></td> -->
-                <td th:text="${movie.overview}"></td>
-                <td th:text="${movie.popularity}"></td>
-                <td th:text="${movie.release_date}"></td>
-                <td th:text="${movie.revenue}"></td>
-                <!--<td th:text="${movie.runtime}"></td>
-                <td th:text="${movie.movie_status}"></td>
-                <td th:text="${movie.tagline}"></td> -->
-                <td th:text="${movie.vote_average}"></td>
-                <td>
-                    <div th:each="crew : ${movie.movieCrews}">
-                        <p th:if="${crew.job == 'Director'}" th:text="${crew.person.person_name}"></p>
-                    </div>
-                </td>
-            </tr>
-        </th:block>
-    </table>
-</section>
+    </tbody>
+</table>
 <script src="/js/main.js"></script>
 </body>
 </html>

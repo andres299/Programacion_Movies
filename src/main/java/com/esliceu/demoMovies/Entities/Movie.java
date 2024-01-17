@@ -1,9 +1,9 @@
 package com.esliceu.demoMovies.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,36 +11,44 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int movie_id;
-    private String title;
-    private int budget;
-    private String homepage;
-    private String overview;
-    private BigDecimal popularity;
-    private String release_date;
-    private Long revenue;
-    private int runtime;
-    private String movie_status;
-    private String tagline;
-    private BigDecimal vote_average;
-    private int vote_count;
-    @OneToMany(mappedBy = "movie")
-    private Set<Movie_Cast> moviecast;
-    @OneToMany(mappedBy = "movie")
-    private Set<Production_Country> productionCountries;
+    int movie_id;
+    String title;
+    int budget;
+    String homepage;
+    String overview;
+    BigDecimal popularity;
+    String release_date;
+    Long revenue;
+    int runtime;
+    String movie_status;
+    String tagline;
+    double vote_average;
+    int vote_count;
 
+    @OneToMany(mappedBy = "movie")
+    @JsonIgnore
+    private Set<Movie_Cast> moviecast;
+    @JsonIgnore
+    @OneToMany(mappedBy = "movie")
+    Set<Production_Country> productionCountries;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "movie")
     private Set<Movie_Company> movieCompanies;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "movie")
     private Set<Movie_Crew> movieCrews;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "movie")
     private Set<Movie_Genres> movieGenres;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "movie")
     private Set<Movie_Keywords> movieKeywords;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "movie")
     private Set<Movie_Languages> movieLanguages;
 
@@ -52,7 +60,9 @@ public class Movie {
         this.movie_id = movie_id;
     }
 
-    public String getTitle() { return title; }
+    public String getTitle() {
+        return title;
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -130,11 +140,11 @@ public class Movie {
         this.tagline = tagline;
     }
 
-    public BigDecimal getVote_average() {
+    public double getVote_average() {
         return vote_average;
     }
 
-    public void setVote_average(BigDecimal vote_average) {
+    public void setVote_average(double vote_average) {
         this.vote_average = vote_average;
     }
 
