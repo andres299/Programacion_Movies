@@ -69,9 +69,6 @@ async function postData(URL, data) {
     });
 }
 
-
-
-// Función para actualizar la interfaz de usuario con los datos recibidos
 // Función para actualizar la interfaz de usuario con los datos recibidos
 function updateUI() {
     moviesTable.innerHTML = "";
