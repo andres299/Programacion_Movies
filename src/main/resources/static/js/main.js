@@ -40,6 +40,7 @@ keyword.addEventListener('change', () => {
         keyword: keyword.value
     };
     postData(`/filterMovies`, requestData);
+    document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 })
 document.getElementById('buscarButton').addEventListener('click', function() {
     page = 0;
