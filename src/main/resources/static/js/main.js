@@ -38,7 +38,8 @@ async function changePage(URL) {
         });
 }
 
-keyword.addEventListener('change', () => {
+keyword.addEventListener('input', () => {
+    page = 0;
     const requestData = {
         filterType: filterType.value,
         keyword: keyword.value
@@ -46,15 +47,6 @@ keyword.addEventListener('change', () => {
     postData(`/filterMovies`, requestData);
     document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 })
-document.getElementById('buscarButton').addEventListener('click', function() {
-    page = 0;
-    const requestData = {
-        filterType: filterType.value,
-        keyword: keyword.value
-    };
-
-    postData(`/filterMovies`, requestData);
-});
 
 async function postData(URL, data) {
     const formData = new FormData();
@@ -105,7 +97,7 @@ function updateUI() {
     currentMovies.forEach(movie => {
         const row = document.createElement("tr");
         const columns = [
-            "movie_id", "title", "budget", "overview",
+            "title", "budget", "overview",
             "popularity", "release_date", "revenue", "vote_average"
         ];
 

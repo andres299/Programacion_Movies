@@ -7,21 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface MovieRepo extends JpaRepository<Movie, Long> {
-   // @Query(value = "SELECT * FROM movie WHERE title = :keyword",
-    //nativeQuery = true)
-    List<Movie> findByTitleContaining(String keyword);
+    List<Movie> findByTitleStartingWithIgnoreCase(String keyword);
 
-     /*
     @Query(value = "SELECT m.* FROM movie m " +
             "JOIN movie_cast mc ON m.movie_id = mc.movie_id " +
             "JOIN person p ON mc.person_id = p.person_id " +
-            "WHERE p.person_name = :person_name", nativeQuery = true)
-      */
-    @Query(value = "SELECT m.* FROM movie m " +
-            "JOIN movie_cast mc ON m.movie_id = mc.movie_id " +
-            "JOIN person p ON mc.person_id = p.person_id " +
-            "WHERE p.person_name LIKE %:person_name%", nativeQuery = true)
-
+            "WHERE mc.job = 'Director' AND p.person_name LIKE %:person_name%", nativeQuery = true)
     List<Movie> findByMoviecast_Person_person_nameContaining(String person_name);
 
     @Query(value = "SELECT m.* FROM movie m " +
