@@ -70,7 +70,7 @@ function updateUI() {
         // Si el array está vacío, mostrar un mensaje
         const noResultsRow = document.createElement("tr");
         const noResultsCell = document.createElement("td");
-        noResultsCell.colSpan = Object.keys(entityData[0]).length;
+        noResultsCell.colSpan = Object.keys(entityData[0]).length + 2; // Se añaden 2 columnas para los botones
         noResultsCell.textContent = "No se encontraron resultados.";
         noResultsRow.appendChild(noResultsCell);
         entityTable.appendChild(noResultsRow);
@@ -82,7 +82,6 @@ function updateUI() {
     const endIndex = startIndex + itemsPerPage;
     const currentEntities = entityData.slice(startIndex, endIndex);
 
-    // Crear la fila de encabezado
     const headerRow = document.createElement("tr");
 
     for (const key in currentEntities[0]) {
@@ -90,6 +89,11 @@ function updateUI() {
         headerCell.textContent = key;
         headerRow.appendChild(headerCell);
     }
+
+    // Añadir encabezado para la columna de opciones
+    const optionsHeaderCell = document.createElement("th");
+    optionsHeaderCell.textContent = "Opciones";
+    headerRow.appendChild(optionsHeaderCell);
 
     entityTable.appendChild(headerRow);
 
@@ -102,8 +106,31 @@ function updateUI() {
             row.appendChild(cell);
         }
 
+        // Añadir botones de opciones (Editar y Eliminar) a cada fila
+        const optionsCell = document.createElement("td");
+
+        const editButton = document.createElement("button");
+        editButton.textContent = "Editar";
+        editButton.addEventListener("click", () => {
+            // Lógica para editar la entidad
+            console.log("Editar: ", entity);
+        });
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Eliminar";
+        deleteButton.addEventListener("click", () => {
+            // Lógica para eliminar la entidad
+            console.log("Eliminar: ", entity);
+        });
+
+        optionsCell.appendChild(editButton);
+        optionsCell.appendChild(deleteButton);
+
+        row.appendChild(optionsCell);
+
         entityTable.appendChild(row);
     });
 }
+
 
 changePage(`/allCountrys`);
