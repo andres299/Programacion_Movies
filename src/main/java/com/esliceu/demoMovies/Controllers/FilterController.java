@@ -24,10 +24,9 @@ public class FilterController {
     }
     @GetMapping("/allMovies")
     @ResponseBody
-    public List<Movie> showMovies2(){
+    public List<Movie> showMovies(){
         return movieService.getAllMovies();
     }
-
 
     @PostMapping("/filterMovies")
     @ResponseBody

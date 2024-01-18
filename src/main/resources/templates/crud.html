@@ -2,22 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Crud</title>
+    <link rel="stylesheet" href="/css/DrawTable.css">
+    <script src="https://kit.fontawesome.com/2684e8a577.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<form id="dynamicForm" onsubmit="submitForm(event)">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required>
 
-    <!-- Otros campos del formulario según tus necesidades -->
-
-    <select id="accion" onchange="changeFormAction()">
-        <option value="agregar">Agregar</option>
-        <option value="modificar">Modificar</option>
-        <option value="borrar">Borrar</option>
+<div class="header">
+    <nav>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/filterMovies"><i class="fa-solid fa-filter"></i> Filter Movies</a></li>
+            <li class="nav-item"><a href="/crud"><i class="fa-solid fa-list"></i>Crud</a></li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/loginAdmin"><i class="fa-solid fa-user-tie"></i> Admin</a></li>
+            <li class="nav-item"><a href="/Logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+</div>
+<form >
+    <label for="entity">Selecciona la entidad:</label>
+    <select name="entity" id="entity">
+        <option value="country">País</option>
+        <option value="language">Idioma</option>
+        <option value="language_role">Rol de Idioma</option>
+        <option value="genre">Género</option>
+        <option value="keyword">Palabra Clave</option>
+        <option value="production_company">Compañía de Producción</option>
+        <option value="gender">Género</option>
+        <option value="person">Persona</option>
+        <option value="department">Departamento</option>
     </select>
 
-    <button type="submit">Enviar</button>
+    <br>
+
+    <label for="crud_operation">Selecciona la operación CRUD:</label>
+    <select name="crud_operation" id="crud_operation">
+        <option value="create">Crear</option>
+        <option value="read">Leer</option>
+        <option value="update">Actualizar</option>
+        <option value="delete">Eliminar</option>
+    </select>
+
+    <br>
+
+    <br>
+    <input type="submit" value="Enviar">
 </form>
 <script src="/js/curd.js"></script>
 </body>

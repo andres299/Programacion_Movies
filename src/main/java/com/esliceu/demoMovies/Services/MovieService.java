@@ -1,6 +1,8 @@
 package com.esliceu.demoMovies.Services;
 
+import com.esliceu.demoMovies.Entities.Country;
 import com.esliceu.demoMovies.Entities.Movie;
+import com.esliceu.demoMovies.Repositorys.CountryRepo;
 import com.esliceu.demoMovies.Repositorys.MovieRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,9 @@ import java.util.List;
 public class MovieService {
     @Autowired
     MovieRepo movieRepo;
+
+    @Autowired
+    CountryRepo countryRepo;
     public List<Movie> getAllMovies() {
         return movieRepo.findAll();
     }
@@ -45,4 +50,7 @@ public class MovieService {
         return Collections.emptyList();
     }
 
+    public List<Country> getAllCountrys() {
+        return countryRepo.findAll();
+    }
 }
