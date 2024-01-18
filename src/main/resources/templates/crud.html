@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="dynamicForm" onsubmit="submitForm(event)">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <!-- Otros campos del formulario según tus necesidades -->
+
+    <select id="accion" onchange="changeFormAction()">
+        <option value="agregar">Agregar</option>
+        <option value="modificar">Modificar</option>
+        <option value="borrar">Borrar</option>
+    </select>
+
+    <button type="submit">Enviar</button>
+</form>
+<script src="/js/curd.js"></script>
+</body>
+</html>
