@@ -27,7 +27,7 @@
 
     <form onsubmit="return false">
         <label for="entity">Selecciona la entidad:</label>
-        <select name="entity" id="entity">
+        <select name="entity" id="entity" onchange="showFields()">
             <option value="country">País</option>
             <option value="language">Idioma</option>
             <option value="language_role">Rol de Idioma</option>
@@ -40,11 +40,54 @@
         </select>
 
         <br>
-        <label for="param1">Filtrar por:</label>
-        <input type="text" id="param1" name="param1">
+        <div id="countryFields" class="hidden">
+            <label for="countryInput1">country_iso_code(XX):</label>
+            <input type="text" id="countryInput1" name="countryInput">
+            <label for="countryInput2">country_name:</label>
+            <input type="text" id="countryInput2" name="countryInput">
+        </div>
 
-        <label for="param2">Filtrar por:</label>
-        <input type="text" id="param2" name="param3">
+        <div id="languageFields" class="hidden">
+            <label for="languageInput1">language_role:</label>
+            <input type="text" id="languageInput1" name="languageInput">
+        </div>
+
+        <div id="languageroleFields" class="hidden">
+            <label for="languageroleInput1">language_code(XX):</label>
+            <input type="text" id="languageroleInput1" name="languageroleInput">
+            <label for="languageroleInput2">language_name:</label>
+            <input type="text" id="languageroleInput2" name="languageroleInput">
+        </div>
+
+        <div id="genreFields" class="hidden">
+            <label for="genreInput">Genero de :</label>
+            <input type="text" id="genreInput" name="genreInput">
+        </div>
+
+        <div id="keywordFields" class="hidden">
+            <label for="keywordInput">Keyword_Name:</label>
+            <input type="text" id="keywordInput" name="keywordInput">
+        </div>
+
+        <div id="production_companyFields" class="hidden">
+            <label for="production_companyInput">Nombre Compañia:</label>
+            <input type="text" id="production_companyInput" name="production_companyInput">
+        </div>
+
+        <div id="genderFields" class="hidden">
+            <label for="genderInput">Género:</label>
+            <input type="text" id="genderInput" name="genderInput">
+        </div>
+
+        <div id="personFields" class="hidden">
+            <label for="personInput">Nombre Persona:</label>
+            <input type="text" id="personInput" name="personInput">
+        </div>
+
+        <div id="departmentFields" class="hidden">
+            <label for="deparmentInput">Nombre Departamento:</label>
+            <input type="text" id="deparmentInput" name="departmentInput">
+        </div>
 
         <br>
 
