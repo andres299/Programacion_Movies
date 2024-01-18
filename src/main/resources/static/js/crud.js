@@ -2,6 +2,7 @@ const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 const entityTable = document.querySelector("tbody");
 let page = 0;
+let action = "";
 let totalPages = 0;
 let entityData = [];
 
@@ -111,17 +112,19 @@ function updateUI() {
 
         const editButton = document.createElement("button");
         editButton.textContent = "Editar";
+        editButton.classList.add("edit-button");
         editButton.addEventListener("click", () => {
-            // Lógica para editar la entidad
-            console.log("Editar: ", entity);
+            action = "Editar";
+            console.log(action);
         });
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Eliminar";
+        deleteButton.classList.add("delete-button");
         deleteButton.addEventListener("click", () => {
-            // Lógica para eliminar la entidad
-            console.log("Eliminar: ", entity);
-        });
+            action = "Eliminar";
+            console.log(action);
+            });
 
         optionsCell.appendChild(editButton);
         optionsCell.appendChild(deleteButton);
