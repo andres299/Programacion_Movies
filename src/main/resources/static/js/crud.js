@@ -1,14 +1,109 @@
- function changeFormAction() {
-        var accionSelect = document.getElementById("accion");
-        var dynamicForm = document.getElementById("dynamicForm");
+const prevButton = document.getElementById("prevButton");
+const nextButton = document.getElementById("nextButton");
+const entityTable = document.querySelector("tbody");
+let page = 0;
+let totalPages = 0;
+let entityData = [];
 
-        var accionSeleccionada = accionSelect.value;
+prevButton.addEventListener('click', async () => {
+    if (page > 0) page--;
+    updateUI();
+});
 
-        if (accionSeleccionada === "agregar") {
-            dynamicForm.action = "procesar-agregar";
-        } else if (accionSeleccionada === "modificar") {
-            dynamicForm.action = "procesar-modificar";
-        } else if (accionSeleccionada === "borrar") {
-            dynamicForm.action = "procesar-borrar";
+nextButton.addEventListener('click', async () => {
+   if (page < totalPages - 1) {
+          page++;
+          updateUI();
+      }
+});
+
+async function changePage(URL) {
+    fetch(URL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            entityData = data;
+            updateUI();
+            totalPages = Math.ceil(entityData.length / 10);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}
+
+async function postData(URL, data) {
+    const formData = new FormData();
+    for (const key in data) {
+        formData.append(key, data[key]);
+    }
+
+    fetch(URL, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
- }
+        return response.json();
+    })
+    .then(responseData => {
+        moviesData = responseData;
+        updateUI();
+        totalPages = Math.ceil(entityData.length / 10);
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+}
+
+// Función para actualizar la interfaz de usuario con los datos recibidos
+function updateUI() {
+    entityTable.innerHTML = "";
+
+    if (entityData.length === 0) {
+        // Si el array está vacío, mostrar un mensaje
+        const noResultsRow = document.createElement("tr");
+        const noResultsCell = document.createElement("td");
+        noResultsCell.colSpan = Object.keys(entityData[0]).length;
+        noResultsCell.textContent = "No se encontraron resultados.";
+        noResultsRow.appendChild(noResultsCell);
+        entityTable.appendChild(noResultsRow);
+        return;
+    }
+
+    const itemsPerPage = 10;
+    const startIndex = page * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentEntities = entityData.slice(startIndex, endIndex);
+
+    // Crear la fila de encabezado
+    const headerRow = document.createElement("tr");
+
+    for (const key in currentEntities[0]) {
+        const headerCell = document.createElement("th");
+        headerCell.textContent = key;
+        headerRow.appendChild(headerCell);
+    }
+
+    entityTable.appendChild(headerRow);
+
+    currentEntities.forEach(entity => {
+        const row = document.createElement("tr");
+
+        for (const key in entity) {
+            const cell = document.createElement("td");
+            cell.textContent = entity[key];
+            row.appendChild(cell);
+        }
+
+        entityTable.appendChild(row);
+    });
+}
+
+changePage(`/allCountrys`);
