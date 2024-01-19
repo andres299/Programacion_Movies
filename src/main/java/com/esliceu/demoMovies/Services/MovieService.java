@@ -127,7 +127,7 @@ public class MovieService {
         if (operation.equals("insert")){
             switch (entity){
                 case "country":
-                    Country country = new Country(entityId,input1,input2);
+                    Country country = new Country(input1,input2);
                     countryRepo.save(country);
             }
         } else if (operation.equals("delete")) {

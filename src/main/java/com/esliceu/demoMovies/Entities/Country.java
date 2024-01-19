@@ -20,8 +20,7 @@ public class Country {
     public Country() {
     }
 
-    public Country(int country_id, String country_iso_code, String country_name) {
-        this.country_id = country_id;
+    public Country(String country_iso_code, String country_name) {
         this.country_iso_code = country_iso_code;
         this.country_name = country_name;
     }

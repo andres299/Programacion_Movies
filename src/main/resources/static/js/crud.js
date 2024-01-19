@@ -195,7 +195,7 @@ insertButton.addEventListener('click', () => {
         input2: inputs[1] ? inputs[1].value : null,
     };
 
-    postDataEntity('/insertEntities', requestData);
+    postDataEntity('/operationEntities', requestData);
 });
 
 async function postDataEntity(URL, data) {
