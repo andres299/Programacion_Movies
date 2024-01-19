@@ -2,9 +2,11 @@ package com.esliceu.demoMovies.Services;
 
 import com.esliceu.demoMovies.Entities.Country;
 import com.esliceu.demoMovies.Entities.Keyword;
+import com.esliceu.demoMovies.Entities.Language;
 import com.esliceu.demoMovies.Entities.Movie;
 import com.esliceu.demoMovies.Repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -129,6 +131,36 @@ public class MovieService {
                 case "country":
                     Country country = new Country(input1,input2);
                     countryRepo.save(country);
+                    break;
+                case "language":
+                    Language language = new Language(input1,input2);
+                    languageRepo.save(language);
+                    break;
+                case "language_role":
+                    // Agregar lógica para el caso de "language_role"
+                    break;
+                case "genre":
+                    // Agregar lógica para el caso de "genre"
+                    break;
+                case "keyword":
+                    // Agregar lógica para el caso de "keyword"
+                    break;
+
+                case "production_company":
+                    // Agregar lógica para el caso de "production_company"
+                    break;
+                case "gender":
+                    // Agregar lógica para el caso de "gender"
+                    break;
+
+                case "person":
+                    // Agregar lógica para el caso de "person"
+                    break;
+
+                case "department":
+                    // Agregar lógica para el caso de "department"
+                    break;
+                default:
             }
         } else if (operation.equals("delete")) {
 
