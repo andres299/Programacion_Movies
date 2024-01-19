@@ -108,4 +108,32 @@ public class MovieService {
         }
         return listEntiti;
     }
+
+    public boolean inputEntitie(String input1) {
+        if (input1.length() > 0) return true;
+        return false;
+    }
+
+    public void operationEntitie(String operation, String entity, String id, String input1, String input2) {
+        int entityId;
+        // Si la id es null o no es un número válido, obtén la última id de la base de datos
+        try {
+            entityId = (id != null) ? Integer.parseInt(id) : countryRepo.findAll().get(countryRepo.findAll().size()-1).getCountry_id() + 1;
+        } catch (NumberFormatException e) {
+            // Si falla asignamos
+            entityId = 1;
+        }
+        System.out.println(entityId);
+        if (operation.equals("insert")){
+            switch (entity){
+                case "country":
+                    Country country = new Country(entityId,input1,input2);
+                    countryRepo.save(country);
+            }
+        } else if (operation.equals("delete")) {
+
+        } else if (operation.equals("update")){
+
+        }
+    }
 }

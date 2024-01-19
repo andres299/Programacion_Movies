@@ -2,6 +2,7 @@ const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 const entityTable = document.querySelector("tbody");
 const selectElement = document.getElementById("entity");
+const insertButton = document.getElementById("insertButton");
 
 let page = 0;
 let action = "";
@@ -10,8 +11,6 @@ let entityData = [];
 
 selectElement.addEventListener("change", function () {
     page = 0;
-    //hideAllFields();
-    //showFields();
     var selectedValue = selectElement.value;
 
     const requestData = {
@@ -156,9 +155,8 @@ function updateUI() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-      // Al cargar la página, muestra el campo correspondiente al valor predeterminado
-      showFields();
+document.addEventListener("DOMContentLoaded", function () {
+    showFields();
 });
 
 function showFields() {
@@ -179,4 +177,59 @@ function showFields() {
 
 changePage(`/allCountrys`);
 
+let id;
+let operation;
+insertButton.addEventListener('click', () => {
+    const selectedOption = selectElement.value;
+    console.log(selectedOption);
+    // Obtener todos los inputs del formulario actualmente seleccionado
+    const inputs = Array.from(document.getElementById(selectedOption + "Fields").querySelectorAll("input"));
+    //console.log("Inputs:", inputs);
+    operation = 'insert';
+    // Construir el objeto requestData
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        id: null,
+        input1: inputs[0].value,
+        input2: inputs[1] ? inputs[1].value : null,
+    };
 
+    postDataEntity('/insertEntities', requestData);
+});
+
+async function postDataEntity(URL, data) {
+    const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    console.log(response);
+
+    try {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const responseData = await response.json();
+        console.log(responseData);
+
+        // Verificar si responseData es un JSON válido
+        if (typeof responseData === 'object' && responseData !== null) {
+            // Aquí puedes manejar el resultado según tu lógica
+            if (responseData.message.includes("correctamente")) {
+                alert("Se ha realizado correctamente");
+            } else {
+                alert("Error: " + responseData.message);
+            }
+        } else {
+            // Si no es un JSON válido, mostrar el mensaje directamente
+            alert("Respuesta del servidor: " + response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
