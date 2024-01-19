@@ -66,6 +66,7 @@ async function postData(URL, data) {
             return response.json();
         })
         .then(responseData => {
+            console.log(responseData);
             entityData = responseData;
             updateUI();
             totalPages = Math.ceil(entityData.length / 10);

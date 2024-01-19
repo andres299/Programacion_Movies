@@ -103,6 +103,7 @@ public class MovieService {
                 listEntiti = departmentRepo.findAll();
                 break;
             default:
+                listEntiti = countryRepo.findAll();
                 break;
         }
         return listEntiti;
