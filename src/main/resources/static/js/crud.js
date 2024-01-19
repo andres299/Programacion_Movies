@@ -66,7 +66,7 @@ async function postData(URL, data) {
             return response.json();
         })
         .then(responseData => {
-            moviesData = responseData;
+            entityData = responseData;
             updateUI();
             totalPages = Math.ceil(entityData.length / 10);
         })

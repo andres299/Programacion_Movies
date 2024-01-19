@@ -16,6 +16,7 @@ public class Person {
     private Set<Movie_Cast> moviecast;
 
     @OneToMany(mappedBy = "person")
+    @JsonIgnore
     private Set<Movie_Crew> movieCrews;
 
     public int getPerson_id() {
