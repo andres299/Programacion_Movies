@@ -27,14 +27,14 @@
 
     <form onsubmit="return false">
         <label for="entity">Selecciona la entidad:</label>
-        <select name="entity" id="entity">
-            <option value="country">País</option>
+        <select name="entity" id="entity" onchange="showFields()">
+            <option value="country" selected>País</option>
             <option value="language">Idioma</option>
             <option value="language_role">Rol de Idioma</option>
             <option value="genre">Género</option>
             <option value="keyword">Palabra Clave</option>
             <option value="production_company">Compañía de Producción</option>
-            <option value="gender">Género</option>
+            <option value="gender">Génder</option>
             <option value="person">Persona</option>
             <option value="department">Departamento</option>
         </select>
@@ -52,7 +52,7 @@
             <input type="text" id="languageInput1" name="languageInput">
         </div>
 
-        <div id="languageroleFields" class="hidden">
+        <div id="language_roleFields" class="hidden">
             <label for="languageroleInput1">language_code(XX):</label>
             <input type="text" id="languageroleInput1" name="languageroleInput">
             <label for="languageroleInput2">language_name:</label>

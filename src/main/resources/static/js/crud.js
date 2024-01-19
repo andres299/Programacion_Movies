@@ -8,10 +8,12 @@ let action = "";
 let totalPages = 0;
 let entityData = [];
 
-selectElement.addEventListener("change", function() {
+selectElement.addEventListener("change", function () {
     page = 0;
+    //hideAllFields();
+    //showFields();
     var selectedValue = selectElement.value;
-    
+
     const requestData = {
         selectedValue: selectedValue,
     };
@@ -154,43 +156,27 @@ function updateUI() {
     });
 }
 
-changePage(`/allCountrys`);
-/*
-function showFields() {
-    // Obtener el valor seleccionado en el select
-    var selectedEntity = document.getElementById("entity").value;
-    console.log(selectedEntity);
-    // Ocultar todos los campos
-    hideAllFields();
+document.addEventListener("DOMContentLoaded", function() {
+      // Al cargar la página, muestra el campo correspondiente al valor predeterminado
+      showFields();
+});
 
-    // Mostrar los campos correspondientes al valor seleccionado
-    if (selectedEntity === "country") {
-        document.getElementById("countryFields").classList.remove("hidden");
-    } else if (selectedEntity === "language") {
-        document.getElementById("languageFields").classList.remove("hidden");
-    } else if (selectedEntity === "language_role") {
-        document.getElementById("languageroleFields").classList.remove("hidden");
-    } else if (selectedEntity === "genre") {
-        document.getElementById("genreFields").classList.remove("hidden");
-    } else if (selectedEntity === "keyword") {
-        document.getElementById("keywordFields").classList.remove("hidden");
-    } else if (selectedEntity === "production_company") {
-        document.getElementById("production_companyFields").classList.remove("hidden");
-    } else if (selectedEntity === "gender") {
-        document.getElementById("genderFields").classList.remove("hidden");
-    } else if (selectedEntity === "person") {
-        document.getElementById("personFields").classList.remove("hidden");
-    } else if (selectedEntity === "department") {
-        document.getElementById("departmentFields").classList.remove("hidden");
+function showFields() {
+    var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+
+    // Oculta todos los campos
+    var allFields = document.querySelectorAll(".hidden");
+    allFields.forEach(function (field) {
+        field.style.display = "none";
+    });
+
+    // Muestra el campo correspondiente al valor seleccionado
+    var selectedFields = document.getElementById(selectedOption + "Fields");
+    if (selectedFields) {
+        selectedFields.style.display = "block";
     }
 }
 
-function hideAllFields() {
-    var fields = document.querySelectorAll(".hidden");
-        fields.forEach(function (field) {
-            field.classList.add("hidden");
-        });
-}
+changePage(`/allCountrys`);
 
-showFields();
-*/
+

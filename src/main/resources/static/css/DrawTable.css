@@ -129,7 +129,7 @@ button:hover {
 }
 
 .edit-button {
-    margin:10px;
+    margin: 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -142,7 +142,7 @@ button:hover {
     cursor: pointer;
 }
 
-.edit-button:hover{
+.edit-button:hover {
     background-color: #013b04;
 }
 
@@ -159,14 +159,12 @@ button:hover {
     cursor: pointer;
 }
 
-.delete-button:hover{
+.delete-button:hover {
     background-color: #6d0700;
 }
 
-/* Estilos para la columna de opciones */
 .options-column {
     background-color: #f2f2f2;
-    /* Gris claro */
 }
 
 .hidden {
