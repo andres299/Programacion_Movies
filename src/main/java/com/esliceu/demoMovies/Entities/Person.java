@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -11,6 +12,7 @@ public class Person {
     private int person_id;
     private String person_name;
     @OneToMany(mappedBy = "person")
+    @JsonIgnore
     private Set<Movie_Cast> moviecast;
 
     @OneToMany(mappedBy = "person")

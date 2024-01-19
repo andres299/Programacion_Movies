@@ -1,11 +1,22 @@
 const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 const entityTable = document.querySelector("tbody");
+const selectElement = document.getElementById("entity");
 
 let page = 0;
 let action = "";
 let totalPages = 0;
 let entityData = [];
+
+selectElement.addEventListener("change", function() {
+    page = 0;
+    var selectedValue = selectElement.value;
+    
+    const requestData = {
+        selectedValue: selectedValue,
+    };
+    postData(`/infoEntities`, requestData);
+});
 
 prevButton.addEventListener('click', async () => {
     if (page > 0) page--;
@@ -143,7 +154,7 @@ function updateUI() {
 }
 
 changePage(`/allCountrys`);
-
+/*
 function showFields() {
     // Obtener el valor seleccionado en el select
     var selectedEntity = document.getElementById("entity").value;
@@ -181,3 +192,4 @@ function hideAllFields() {
 }
 
 showFields();
+*/

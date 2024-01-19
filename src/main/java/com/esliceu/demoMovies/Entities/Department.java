@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -13,6 +14,7 @@ public class Department {
     private String department_name;
 
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     private Set<Movie_Crew> movieCrews;
 
     public int getDepartment_id() {

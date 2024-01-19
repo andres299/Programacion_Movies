@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class Production_Company {
     private String companyName;
 
     @OneToMany(mappedBy = "company")
+    @JsonIgnore
     private Set<Movie_Company> movieCompanies;
 
     public int getCompany_id() {

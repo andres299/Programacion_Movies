@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -15,6 +16,7 @@ public class Language {
     private String language_name;
 
     @OneToMany(mappedBy = "language")
+    @JsonIgnore
     private Set<Movie_Languages> movieLanguages;
 
     public int getLanguage_id() {

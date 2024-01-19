@@ -28,9 +28,9 @@ public class CrudController {
         return movieService.getAllCountrys();
     }
 
-    @PostMapping("/crud")
+    @PostMapping("/infoEntities")
     @ResponseBody
-    public List<Country> crud(){
-        return null;
+    public List<?> crud(@RequestParam String selectedValue){
+        return movieService.infoEntities(selectedValue);
     }
 }

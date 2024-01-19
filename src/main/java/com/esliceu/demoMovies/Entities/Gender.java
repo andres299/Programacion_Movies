@@ -1,6 +1,7 @@
 package com.esliceu.demoMovies.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -14,6 +15,7 @@ public class Gender {
     private String gender;
 
     @OneToMany(mappedBy = "gender")
+    @JsonIgnore
     private Set<Movie_Cast> moviecast;
 
     public int getGender_id() {

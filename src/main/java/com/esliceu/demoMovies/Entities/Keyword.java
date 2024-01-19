@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class Keyword {
     private String keyword_name;
 
     @OneToMany(mappedBy = "keyword")
+    @JsonIgnore
     private Set<Movie_Keywords> movieKeywords;
 
     public int getKeyword_id() {
