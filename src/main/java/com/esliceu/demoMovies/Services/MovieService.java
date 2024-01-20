@@ -151,25 +151,25 @@ public class MovieService {
                 case "production_company":
                     // Agregar lógica para el caso de "production_company"
                     entityId = productionCompanyRepo.getLastId() + 1;
-                    Production_Company productionCompany = new Production_Company();
+                    Production_Company productionCompany = new Production_Company(entityId,input1);
                     productionCompanyRepo.save(productionCompany);
                     break;
                 case "gender":
                     // Agregar lógica para el caso de "gender"
                     entityId = genderRepo.getLastId() + 1;
-                    Gender gender = new Gender();
+                    Gender gender = new Gender(entityId,input1);
                     genderRepo.save(gender);
                     break;
                 case "person":
                     // Agregar lógica para el caso de "person"
                     entityId = personRepo.getLastId() + 1;
-                    Person person = new Person();
+                    Person person = new Person(entityId,input1);
                     personRepo.save(person);
                     break;
                 case "department":
                     // Agregar lógica para el caso de "department"
                     entityId = departmentRepo.getLastId() + 1;
-                    Department department = new Department();
+                    Department department = new Department(input1);
                     departmentRepo.save(department);
                     break;
                 default:

@@ -19,6 +19,14 @@ public class Production_Company {
     @JsonIgnore
     private Set<Movie_Company> movieCompanies;
 
+    public Production_Company() {
+    }
+
+    public Production_Company(int company_id, String companyName) {
+        this.company_id = company_id;
+        this.companyName = companyName;
+    }
+
     public int getCompany_id() {
         return company_id;
     }

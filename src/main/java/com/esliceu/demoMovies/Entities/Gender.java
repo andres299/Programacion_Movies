@@ -18,6 +18,14 @@ public class Gender {
     @JsonIgnore
     private Set<Movie_Cast> moviecast;
 
+    public Gender() {
+    }
+
+    public Gender(int gender_id, String gender) {
+        this.gender_id = gender_id;
+        this.gender = gender;
+    }
+
     public int getGender_id() {
         return gender_id;
     }

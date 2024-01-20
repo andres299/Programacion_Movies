@@ -17,6 +17,13 @@ public class Department {
     @JsonIgnore
     private Set<Movie_Crew> movieCrews;
 
+    public Department() {
+    }
+
+    public Department(String department_name) {
+        this.department_name = department_name;
+    }
+
     public int getDepartment_id() {
         return department_id;
     }
