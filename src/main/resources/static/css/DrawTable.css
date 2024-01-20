@@ -148,7 +148,7 @@ button:hover {
     background-color: #3b3001;
 }
 
-#edit-button {
+#updateButton {
     background-color: #5e68f8;
     color: white;
     border: none;
@@ -161,11 +161,11 @@ button:hover {
     cursor: pointer;
 }
 
-#edit-button:hover {
+#updateButton:hover {
     background-color: #01053b;
 }
 
-#delete-button {
+#deleteButton {
     background-color: #f44336;
     color: white;
     border: none;
@@ -178,7 +178,7 @@ button:hover {
     cursor: pointer;
 }
 
-#delete-button:hover {
+#deleteButton:hover {
     background-color: #6d0700;
 }
 

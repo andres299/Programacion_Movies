@@ -3,6 +3,7 @@ const nextButton = document.getElementById("nextButton");
 const entityTable = document.querySelector("tbody");
 const selectElement = document.getElementById("entity");
 const insertButton = document.getElementById("insertButton");
+const updateButton = document.getElementById("updateButton");
 
 let page = 0;
 let action = "";
@@ -187,6 +188,25 @@ changePage(`/allCountrys`);
 let id;
 let operation;
 insertButton.addEventListener('click', () => {
+    const selectedOption = selectElement.value;
+    console.log(selectedOption);
+    // Obtener todos los inputs del formulario actualmente seleccionado
+    const inputs = Array.from(document.getElementById(selectedOption + "Fields").querySelectorAll("input"));
+    //console.log("Inputs:", inputs);
+    operation = 'insert';
+    // Construir el objeto requestData
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        id: null,
+        input1: inputs[0].value,
+        input2: inputs[1] ? inputs[1].value : null,
+    };
+
+    postDataEntity('/operationEntities', requestData);
+});
+
+updateButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
     console.log(selectedOption);
     // Obtener todos los inputs del formulario actualmente seleccionado
