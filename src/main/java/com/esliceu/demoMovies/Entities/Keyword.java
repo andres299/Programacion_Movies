@@ -18,6 +18,14 @@ public class Keyword {
     @JsonIgnore
     private Set<Movie_Keywords> movieKeywords;
 
+    public Keyword() {
+    }
+
+    public Keyword(int keyword_id, String keyword_name) {
+        this.keyword_id = keyword_id;
+        this.keyword_name = keyword_name;
+    }
+
     public int getKeyword_id() {
         return keyword_id;
     }

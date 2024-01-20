@@ -17,6 +17,14 @@ public class Genre {
     @JsonIgnore
     private Set<Movie_Genres> movieGenres;
 
+    public Genre() {
+    }
+
+    public Genre(int genre_id, String genre_name) {
+        this.genre_id = genre_id;
+        this.genre_name = genre_name;
+    }
+
     public int getGenre_id() {
         return genre_id;
     }

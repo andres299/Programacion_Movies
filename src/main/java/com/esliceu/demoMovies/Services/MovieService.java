@@ -1,9 +1,6 @@
 package com.esliceu.demoMovies.Services;
 
-import com.esliceu.demoMovies.Entities.Country;
-import com.esliceu.demoMovies.Entities.Keyword;
-import com.esliceu.demoMovies.Entities.Language;
-import com.esliceu.demoMovies.Entities.Movie;
+import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -137,13 +134,19 @@ public class MovieService {
                     languageRepo.save(language);
                     break;
                 case "language_role":
-                    // Agregar lógica para el caso de "language_role"
+                    entityId = language_roleRepo.getLastId() + 1;
+                    Language_role language_role = new Language_role(entityId,input1);
+                    language_roleRepo.save(language_role);
                     break;
                 case "genre":
-                    // Agregar lógica para el caso de "genre"
+                    entityId = genreRepo.getLastId() + 1;
+                    Genre genre = new Genre(entityId,input1);
+                    genreRepo.save(genre);
                     break;
                 case "keyword":
-                    // Agregar lógica para el caso de "keyword"
+                    entityId = keywordRepo.getLastId() + 1;
+                    Keyword keyword = new Keyword(entityId,input1);
+                    keywordRepo.save(keyword);
                     break;
 
                 case "production_company":

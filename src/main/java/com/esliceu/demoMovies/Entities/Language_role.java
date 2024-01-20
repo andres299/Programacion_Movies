@@ -17,6 +17,14 @@ public class Language_role {
     @JsonIgnore
     private Set<Movie_Languages> movieLanguages;
 
+    public Language_role() {
+    }
+
+    public Language_role(int role_id, String language_role) {
+        this.role_id = role_id;
+        this.language_role = language_role;
+    }
+
     public int getRole_id() {
         return role_id;
     }
