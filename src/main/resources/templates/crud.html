@@ -38,64 +38,152 @@
             <option value="person">Persona</option>
             <option value="department">Departamento</option>
         </select>
-
-        <br>
-        <div id="countryFields" class="hidden">
-            <label for="countryInput1">country_iso_code(XX):</label>
-            <input type="text" id="countryInput1" name="countryInput">
-            <label for="countryInput2">country_name:</label>
-            <input type="text" id="countryInput2" name="countryInput">
-        </div>
-
-        <div id="languageFields" class="hidden">
-            <label for="languageInput1">language_code(XX):</label>
-            <input type="text" id="languageInput1" name="languageInput">
-            <label for="languageInput2">language_name:</label>
-            <input type="text" id="languageInput2" name="languageInput">
-        </div>
-
-        <div id="language_roleFields" class="hidden">
-            <label for="languageroleInput">language_role:</label>
-            <input type="text" id="languageroleInput" name="languageroleInput">
-        </div>
-
-        <div id="genreFields" class="hidden">
-            <label for="genreInput">Genero de :</label>
-            <input type="text" id="genreInput" name="genreInput">
-        </div>
-
-        <div id="keywordFields" class="hidden">
-            <label for="keywordInput">Keyword_Name:</label>
-            <input type="text" id="keywordInput" name="keywordInput">
-        </div>
-
-        <div id="production_companyFields" class="hidden">
-            <label for="production_companyInput">Nombre Compañia:</label>
-            <input type="text" id="production_companyInput" name="production_companyInput">
-        </div>
-
-        <div id="genderFields" class="hidden">
-            <label for="genderInput">Género:</label>
-            <input type="text" id="genderInput" name="genderInput">
-        </div>
-
-        <div id="personFields" class="hidden">
-            <label for="personInput">Nombre Persona:</label>
-            <input type="text" id="personInput" name="personInput">
-        </div>
-
-        <div id="departmentFields" class="hidden">
-            <label for="deparmentInput">Nombre Departamento:</label>
-            <input type="text" id="deparmentInput" name="departmentInput">
-        </div>
-
-        <br>
-
-        <br>
-        <button type="button" id="insertButton">Insertar</button>
     </form>
+    <div class="options">
+        <div class="insert-section">
+            <form onsubmit="return false">
+                <div id="countryFields" class="hidden">
+                    <label for="countryInput1">country_iso_code(XX):</label>
+                    <input type="text" id="countryInput1" name="countryInput">
+                    <label for="countryInput2">country_name:</label>
+                    <input type="text" id="countryInput2" name="countryInput">
+                </div>
 
+                <div id="languageFields" class="hidden">
+                    <label for="languageInput1">language_code(XX):</label>
+                    <input type="text" id="languageInput1" name="languageInput">
+                    <label for="languageInput2">language_name:</label>
+                    <input type="text" id="languageInput2" name="languageInput">
+                </div>
 
+                <div id="language_roleFields" class="hidden">
+                    <label for="languageroleInput">language_role:</label>
+                    <input type="text" id="languageroleInput" name="languageroleInput">
+                </div>
+
+                <div id="genreFields" class="hidden">
+                    <label for="genreInput">Genero de :</label>
+                    <input type="text" id="genreInput" name="genreInput">
+                </div>
+
+                <div id="keywordFields" class="hidden">
+                    <label for="keywordInput">Keyword_Name:</label>
+                    <input type="text" id="keywordInput" name="keywordInput">
+                </div>
+
+                <div id="production_companyFields" class="hidden">
+                    <label for="production_companyInput">Nombre Compañia:</label>
+                    <input type="text" id="production_companyInput" name="production_companyInput">
+                </div>
+
+                <div id="genderFields" class="hidden">
+                    <label for="genderInput">Género:</label>
+                    <input type="text" id="genderInput" name="genderInput">
+                </div>
+
+                <div id="personFields" class="hidden">
+                    <label for="personInput">Nombre Persona:</label>
+                    <input type="text" id="personInput" name="personInput">
+                </div>
+
+                <div id="departmentFields" class="hidden">
+                    <label for="deparmentInput">Nombre Departamento:</label>
+                    <input type="text" id="deparmentInput" name="departmentInput">
+                </div>
+
+                <br>
+
+                <br>
+                <button type="button" id="insertButton">Insertar</button>
+            </form>
+
+        </div>
+        <!-- Sección para Actualizar -->
+        <div class="update-section">
+            <form onsubmit="return false">
+                <div id="countryUpdateFields" class="hidden">
+                    <label for="countryUpdateId">ID a actualizar:</label>
+                    <input type="text" id="countryUpdateId" name="countryUpdateId">
+                    <label for="countryUpdateInput1">country_iso_code(XX):</label>
+                    <input type="text" id="countryUpdateInput1" name="countryUpdateInput">
+                    <label for="countryUpdateInput2">country_name:</label>
+                    <input type="text" id="countryUpdateInput2" name="countryUpdateInput">
+                </div>
+
+                <div id="languageUpdateFields" class="hidden">
+                    <label for="languageUpdateId">ID a actualizar:</label>
+                    <input type="text" id="languageUpdateId" name="languageUpdateId">
+                    <label for="languageUpdateInput1">language_code(XX):</label>
+                    <input type="text" id="languageUpdateInput1" name="languageUpdateInput">
+                    <label for="languageUpdateInput2">language_name:</label>
+                    <input type="text" id="languageUpdateInput2" name="languageUpdateInput">
+                </div>
+
+                <div id="language_roleUpdateFields" class="hidden">
+                    <label for="languageroleUpdateId">ID a actualizar:</label>
+                    <input type="text" id="languageroleUpdateId" name="languageroleUpdateId">
+                    <label for="languageroleUpdateInput">language_role:</label>
+                    <input type="text" id="languageroleUpdateInput" name="languageroleUpdateInput">
+                </div>
+
+                <div id="genreUpdateFields" class="hidden">
+                    <label for="genreUpdateId">ID a actualizar:</label>
+                    <input type="text" id="genreUpdateId" name="genreUpdateId">
+                    <label for="genreUpdateInput">Genero de :</label>
+                    <input type="text" id="genreUpdateInput" name="genreUpdateInput">
+                </div>
+
+                <div id="keywordUpdateFields" class="hidden">
+                    <label for="keywordUpdateId">ID a actualizar:</label>
+                    <input type="text" id="keywordUpdateId" name="keywordUpdateId">
+                    <label for="keywordUpdateInput">Keyword_Name:</label>
+                    <input type="text" id="keywordUpdateInput" name="keywordUpdateInput">
+                </div>
+
+                <div id="production_companyUpdateFields" class="hidden">
+                    <label for="production_companyUpdateId">ID a actualizar:</label>
+                    <input type="text" id="production_companyUpdateId" name="production_companyUpdateId">
+                    <label for="production_companyUpdateInput">Nombre Compañia:</label>
+                    <input type="text" id="production_companyUpdateInput" name="production_companyUpdateInput">
+                </div>
+
+                <div id="genderUpdateFields" class="hidden">
+                    <label for="genderUpdateId">ID a actualizar:</label>
+                    <input type="text" id="genderUpdateId" name="genderUpdateId">
+                    <label for="genderUpdateInput">Género:</label>
+                    <input type="text" id="genderUpdateInput" name="genderUpdateInput">
+                </div>
+
+                <div id="personUpdateFields" class="hidden">
+                    <label for="personUpdateId">ID a actualizar:</label>
+                    <input type="text" id="personUpdateId" name="personUpdateId">
+                    <label for="personUpdateInput">Nombre Persona:</label>
+                    <input type="text" id="personUpdateInput" name="personUpdateInput">
+                </div>
+
+                <div id="departmentUpdateFields" class="hidden">
+                    <label for="departmentUpdateId">ID a actualizar:</label>
+                    <input type="text" id="departmentUpdateId" name="departmentUpdateId">
+                    <label for="departmentUpdateInput">Nombre Departamento:</label>
+                    <input type="text" id="departmentUpdateInput" name="departmentUpdateInput">
+                </div>
+
+                <br>
+                <button type="button" id="updateButton">Actualizar</button>
+            </form>
+        </div>
+
+        <!-- Sección para Eliminar -->
+        <div class="delete-section">
+            <form onsubmit="return false">
+                <label for="deleteId">ID a eliminar:</label>
+                <input type="text" id="deleteId" name="deleteId">
+                <label for="deleteId">Buscar:</label>
+                <input type="text" id="deleteSearchId" name="deleteSearchId">
+                <button type="button" id="deleteButton">Eliminar</button>
+            </form>
+        </div>
+    </div>
     <div class="button-section">
         <button type="button" id="prevButton">Anterior</button>
         <button type="button" id="nextButton">Siguiente</button>

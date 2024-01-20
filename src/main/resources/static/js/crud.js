@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function showFields() {
     var selectedOption = selectElement.options[selectElement.selectedIndex].value;
-
+    console.log(selectedOption);
     // Oculta todos los campos
     var allFields = document.querySelectorAll(".hidden");
     allFields.forEach(function (field) {
@@ -170,8 +170,15 @@ function showFields() {
 
     // Muestra el campo correspondiente al valor seleccionado
     var selectedFields = document.getElementById(selectedOption + "Fields");
+    console.log(selectedFields);
     if (selectedFields) {
         selectedFields.style.display = "block";
+    }
+    // Muestra el campo correspondiente al valor seleccionado (para actualización)
+    var selectedUpdateFields = document.getElementById(selectedOption + "UpdateFields");
+    console.log(selectedUpdateFields);
+    if (selectedUpdateFields) {
+        selectedUpdateFields.style.display = "block";
     }
 }
 

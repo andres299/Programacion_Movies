@@ -170,3 +170,14 @@ button:hover {
 .hidden {
     display: none;
 }
+
+.options {
+    display: flex;
+    justify-content: center;
+}
+
+.options > div {
+    display: inline-block;
+    margin-right: 2%; /* Ajusta el margen derecho según tus necesidades */
+    width: 30%;
+}
