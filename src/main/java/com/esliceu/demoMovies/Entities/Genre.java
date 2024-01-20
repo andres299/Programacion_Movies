@@ -8,7 +8,6 @@ import java.util.Set;
 @Entity
 public class Genre {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int genre_id;
 
     private String genre_name;

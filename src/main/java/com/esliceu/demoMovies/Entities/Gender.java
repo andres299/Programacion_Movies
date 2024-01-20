@@ -9,7 +9,6 @@ import java.util.Set;
 @Entity
 public class Gender {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int gender_id;
 
     private String gender;

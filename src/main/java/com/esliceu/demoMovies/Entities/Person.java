@@ -8,7 +8,6 @@ import java.util.Set;
 @Entity
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int person_id;
     private String person_name;
     @OneToMany(mappedBy = "person")

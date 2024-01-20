@@ -10,7 +10,6 @@ import java.util.Set;
 public class Production_Company {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int company_id;
 
     private String companyName;

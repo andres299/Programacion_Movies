@@ -9,7 +9,6 @@ import java.util.Set;
 @Entity
 public class Keyword {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int keyword_id;
 
     private String keyword_name;
