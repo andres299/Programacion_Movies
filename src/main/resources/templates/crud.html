@@ -42,6 +42,7 @@
     <div class="options">
         <div class="insert-section">
             <form onsubmit="return false">
+                <h1>Formulario Insertar</h1>
                 <div id="countryFields" class="hidden">
                     <label for="countryInput1">country_iso_code(XX):</label>
                     <input type="text" id="countryInput1" name="countryInput">
@@ -101,6 +102,7 @@
         <!-- Sección para Actualizar -->
         <div class="update-section">
             <form onsubmit="return false">
+                <h1>Formulario Actualizar</h1>
                 <div id="countryUpdateFields" class="hidden">
                     <label for="countryUpdateId">ID a actualizar:</label>
                     <input type="text" id="countryUpdateId" name="countryUpdateId">
@@ -169,18 +171,19 @@
                 </div>
 
                 <br>
-                <button type="button" id="updateButton">Actualizar</button>
+                <button type="button" id="edit-button">Actualizar</button>
             </form>
         </div>
 
         <!-- Sección para Eliminar -->
         <div class="delete-section">
             <form onsubmit="return false">
+                <h1>Formulario Eliminar</h1>
                 <label for="deleteId">ID a eliminar:</label>
                 <input type="text" id="deleteId" name="deleteId">
                 <label for="deleteId">Buscar:</label>
                 <input type="text" id="deleteSearchId" name="deleteSearchId">
-                <button type="button" id="deleteButton">Eliminar</button>
+                <button type="button" id="delete-button">Eliminar</button>
             </form>
         </div>
     </div>
