@@ -27,6 +27,12 @@ public class Language {
         this.language_name = language_name;
     }
 
+    public Language(int language_id, String language_code, String language_name) {
+        this.language_id = language_id;
+        this.language_code = language_code;
+        this.language_name = language_name;
+    }
+
     public int getLanguage_id() {
         return language_id;
     }

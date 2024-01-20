@@ -25,6 +25,12 @@ public class Country {
         this.country_name = country_name;
     }
 
+    public Country(int country_id, String country_iso_code, String country_name) {
+        this.country_id = country_id;
+        this.country_iso_code = country_iso_code;
+        this.country_name = country_name;
+    }
+
     public int getCountry_id() {
         return country_id;
     }

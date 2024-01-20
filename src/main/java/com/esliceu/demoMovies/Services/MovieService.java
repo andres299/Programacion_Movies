@@ -169,7 +169,58 @@ public class MovieService {
         } else if (operation.equals("delete")) {
 
         } else if (operation.equals("update")){
-
+            switch (entity){
+                case "country":
+                    entityId = Integer.parseInt(id);
+                    Country country = new Country(entityId,input1,input2);
+                    countryRepo.save(country);
+                    break;
+                case "language":
+                    entityId = Integer.parseInt(id);
+                    Language language = new Language(entityId,input1,input2);
+                    languageRepo.save(language);
+                    break;
+                case "language_role":
+                    entityId = Integer.parseInt(id);
+                    Language_role language_role = new Language_role(entityId,input1);
+                    language_roleRepo.save(language_role);
+                    break;
+                case "genre":
+                    entityId = Integer.parseInt(id);
+                    Genre genre = new Genre(entityId,input1);
+                    genreRepo.save(genre);
+                    break;
+                case "keyword":
+                    entityId = Integer.parseInt(id);
+                    Keyword keyword = new Keyword(entityId,input1);
+                    keywordRepo.save(keyword);
+                    break;
+                case "production_company":
+                    // Agregar lógica para el caso de "production_company"
+                    entityId = Integer.parseInt(id);
+                    Production_Company productionCompany = new Production_Company(entityId,input1);
+                    productionCompanyRepo.save(productionCompany);
+                    break;
+                case "gender":
+                    // Agregar lógica para el caso de "gender"
+                    entityId = Integer.parseInt(id);
+                    Gender gender = new Gender(entityId,input1);
+                    genderRepo.save(gender);
+                    break;
+                case "person":
+                    // Agregar lógica para el caso de "person"
+                    entityId = Integer.parseInt(id);
+                    Person person = new Person(entityId,input1);
+                    personRepo.save(person);
+                    break;
+                case "department":
+                    // Agregar lógica para el caso de "department"
+                    entityId = Integer.parseInt(id);
+                    Department department = new Department(entityId,input1);
+                    departmentRepo.save(department);
+                    break;
+                default:
+            }
         }
     }
 }
