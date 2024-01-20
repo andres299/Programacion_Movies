@@ -115,6 +115,7 @@ public class MovieService {
 
     public void operationEntitie(String operation, String entity, String id, String input1, String input2) {
         int entityId;
+        System.out.println(operation +" " + entity +" " + id +" " + input1 +" " + input2);
         if (operation.equals("insert")){
             switch (entity){
                 case "country":

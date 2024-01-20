@@ -210,16 +210,16 @@ updateButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
     console.log(selectedOption);
     // Obtener todos los inputs del formulario actualmente seleccionado
-    const inputs = Array.from(document.getElementById(selectedOption + "Fields").querySelectorAll("input"));
+    const inputs = Array.from(document.getElementById(selectedOption + "UpdateFields").querySelectorAll("input"));
     //console.log("Inputs:", inputs);
-    operation = 'insert';
+    operation = 'update';
     // Construir el objeto requestData
     const requestData = {
         operation: operation,
         entity: selectedOption,
-        id: null,
-        input1: inputs[0].value,
-        input2: inputs[1] ? inputs[1].value : null,
+        id: inputs[0].value,
+        input1: inputs[1].value,
+        input2: inputs[2] ? inputs[2].value : null,
     };
 
     postDataEntity('/operationEntities', requestData);
