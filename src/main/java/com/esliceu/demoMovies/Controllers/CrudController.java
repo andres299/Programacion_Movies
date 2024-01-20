@@ -45,9 +45,7 @@ public class CrudController {
 
     @PostMapping("/infoEntities")
     @ResponseBody
-    public List<?> crud(@RequestParam String selectedValue){
-        return movieService.infoEntities(selectedValue);
-    }
+    public List<?> crud(@RequestParam String selectedValue){ return movieService.infoEntities(selectedValue);}
 
     @PostMapping("/operationEntities")
     public ResponseEntity<String> insertEntities(@RequestBody FetchEntitiDTO fetchEntitiDTO) {
@@ -58,10 +56,12 @@ public class CrudController {
         String input1 = fetchEntitiDTO.getInput1();
         String input2 = fetchEntitiDTO.getInput2();
         System.out.println(operation + entity + id + input1 + input2);
-        if (movieService.inputEntitie(input1)){
+        if (movieService.inputEntitie(input1)) {
             //if (admin != null) {
-                movieService.operationEntitie(operation, entity, id, input1, input2);
-                return ResponseEntity.ok("Se ha realizado correctamente");
+            movieService.operationEntitie(operation, entity, id, input1, input2);
+            return ResponseEntity.ok("Se ha realizado correctamente");
+            //} else{
+
             //}
         } else {
             System.out.println("Hola");
