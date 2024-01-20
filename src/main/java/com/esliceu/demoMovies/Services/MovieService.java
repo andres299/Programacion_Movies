@@ -148,20 +148,29 @@ public class MovieService {
                     Keyword keyword = new Keyword(entityId,input1);
                     keywordRepo.save(keyword);
                     break;
-
                 case "production_company":
                     // Agregar lógica para el caso de "production_company"
+                    entityId = productionCompanyRepo.getLastId() + 1;
+                    Production_Company productionCompany = new Production_Company();
+                    productionCompanyRepo.save(productionCompany);
                     break;
                 case "gender":
                     // Agregar lógica para el caso de "gender"
+                    entityId = genderRepo.getLastId() + 1;
+                    Gender gender = new Gender();
+                    genderRepo.save(gender);
                     break;
-
                 case "person":
                     // Agregar lógica para el caso de "person"
+                    entityId = personRepo.getLastId() + 1;
+                    Person person = new Person();
+                    personRepo.save(person);
                     break;
-
                 case "department":
                     // Agregar lógica para el caso de "department"
+                    entityId = departmentRepo.getLastId() + 1;
+                    Department department = new Department();
+                    departmentRepo.save(department);
                     break;
                 default:
             }
