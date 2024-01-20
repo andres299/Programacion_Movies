@@ -7,4 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface Language_roleRepo extends JpaRepository<Language_role, Long> {
     @Query(value = "SELECT MAX(role_id) FROM language_role", nativeQuery = true)
     int getLastId();
+
+    @Query(value = "INSERT INTO language_role (role_id, language_role) VALUES (?1, ?2)", nativeQuery = true)
+    void saveLanguareRepo(int entityId, String input1);
 }

@@ -115,14 +115,6 @@ public class MovieService {
 
     public void operationEntitie(String operation, String entity, String id, String input1, String input2) {
         int entityId;
-        // Si la id es null o no es un número válido, obtén la última id de la base de datos
-        try {
-            entityId = (id != null) ? Integer.parseInt(id) : countryRepo.findAll().get(countryRepo.findAll().size()-1).getCountry_id() + 1;
-        } catch (NumberFormatException e) {
-            // Si falla asignamos
-            entityId = 1;
-        }
-        System.out.println(entityId);
         if (operation.equals("insert")){
             switch (entity){
                 case "country":
@@ -134,41 +126,41 @@ public class MovieService {
                     languageRepo.save(language);
                     break;
                 case "language_role":
-                    entityId = language_roleRepo.getLastId() + 1;
+                    entityId = (language_roleRepo.getLastId() != 0) ? language_roleRepo.getLastId() + 1 : 1;
+                    System.out.println(entityId + input1);
                     Language_role language_role = new Language_role(entityId,input1);
-                    language_roleRepo.save(language_role);
+                    language_roleRepo.saveLanguareRepo(entityId,input1);
                     break;
                 case "genre":
-                    entityId = genreRepo.getLastId() + 1;
+                    entityId = (genreRepo.getLastId() != 0) ? genreRepo.getLastId() + 1 : 1;
                     Genre genre = new Genre(entityId,input1);
                     genreRepo.save(genre);
                     break;
                 case "keyword":
-                    entityId = keywordRepo.getLastId() + 1;
+                    entityId = (keywordRepo.getLastId() != 0) ? keywordRepo.getLastId() + 1 : 1;
                     Keyword keyword = new Keyword(entityId,input1);
                     keywordRepo.save(keyword);
                     break;
                 case "production_company":
                     // Agregar lógica para el caso de "production_company"
-                    entityId = productionCompanyRepo.getLastId() + 1;
+                    entityId = (productionCompanyRepo.getLastId() != 0) ? productionCompanyRepo.getLastId() + 1 : 1;
                     Production_Company productionCompany = new Production_Company(entityId,input1);
                     productionCompanyRepo.save(productionCompany);
                     break;
                 case "gender":
                     // Agregar lógica para el caso de "gender"
-                    entityId = genderRepo.getLastId() + 1;
+                    entityId = (genderRepo.getLastId() != 0) ? genderRepo.getLastId() + 1 : 1;
                     Gender gender = new Gender(entityId,input1);
                     genderRepo.save(gender);
                     break;
                 case "person":
                     // Agregar lógica para el caso de "person"
-                    entityId = personRepo.getLastId() + 1;
+                    entityId = (personRepo.getLastId() != 0) ? personRepo.getLastId() + 1 : 1;
                     Person person = new Person(entityId,input1);
                     personRepo.save(person);
                     break;
                 case "department":
                     // Agregar lógica para el caso de "department"
-                    entityId = departmentRepo.getLastId() + 1;
                     Department department = new Department(input1);
                     departmentRepo.save(department);
                     break;

@@ -28,10 +28,12 @@ public class CrudController {
 
     @GetMapping("/crud")
     public String showCrud(Model model) {
+        /*
         Administrator admin = (Administrator) session.getAttribute("admin");
         if (admin == null){
             return "redirect:/filterMovies";
         }
+         */
         return "crud";
     }
 
@@ -57,13 +59,13 @@ public class CrudController {
         String input2 = fetchEntitiDTO.getInput2();
         System.out.println(operation + entity + id + input1 + input2);
         if (movieService.inputEntitie(input1)){
-            if (admin != null) {
+            //if (admin != null) {
                 movieService.operationEntitie(operation, entity, id, input1, input2);
                 return ResponseEntity.ok("Se ha realizado correctamente");
-            }
+            //}
         } else {
             return ResponseEntity.badRequest().body("Error: No se ha podido realizar el error");
         }
-        return null;
+        //return null;
     }
 }
