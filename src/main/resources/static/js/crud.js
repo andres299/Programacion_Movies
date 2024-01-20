@@ -207,29 +207,22 @@ async function postDataEntity(URL, data) {
         body: JSON.stringify(data),
     });
 
-    console.log(response);
-
     try {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
 
-        const responseData = await response.json();
-        console.log(responseData);
+        const jsonResponse = await response.json();  // Corregir aquí
+        console.log(jsonResponse);
 
-        // Verificar si responseData es un JSON válido
-        if (typeof responseData === 'object' && responseData !== null) {
-            // Aquí puedes manejar el resultado según tu lógica
-            if (responseData.message.includes("correctamente")) {
-                alert("Se ha realizado correctamente");
-            } else {
-                alert("Error: " + responseData.message);
-            }
+        // Aquí puedes manejar el resultado según tu lógica
+        if (jsonResponse.message.includes("correctamente")) {
+            alert("Se ha realizado correctamente");
         } else {
-            // Si no es un JSON válido, mostrar el mensaje directamente
-            alert("Respuesta del servidor: " + response.statusText);
+            alert("Error: " + jsonResponse.message);
         }
     } catch (error) {
-        console.error('Error fetching data:', error);
+        // Si no es un JSON válido, mostrar el mensaje directamente
+        alert("Respuesta del servidor: " + response.statusText);
     }
 }

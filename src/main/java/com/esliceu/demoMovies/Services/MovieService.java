@@ -129,7 +129,7 @@ public class MovieService {
                     entityId = (language_roleRepo.getLastId() != 0) ? language_roleRepo.getLastId() + 1 : 1;
                     System.out.println(entityId + input1);
                     Language_role language_role = new Language_role(entityId,input1);
-                    language_roleRepo.saveLanguareRepo(entityId,input1);
+                    language_roleRepo.save(language_role);
                     break;
                 case "genre":
                     entityId = (genreRepo.getLastId() != 0) ? genreRepo.getLastId() + 1 : 1;
