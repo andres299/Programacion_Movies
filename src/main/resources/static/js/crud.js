@@ -211,18 +211,10 @@ async function postDataEntity(URL, data) {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-
-        const jsonResponse = await response.json();  // Corregir aquí
-        console.log(jsonResponse);
-
-        // Aquí puedes manejar el resultado según tu lógica
-        if (jsonResponse.message.includes("correctamente")) {
-            alert("Se ha realizado correctamente");
-        } else {
-            alert("Error: " + jsonResponse.message);
-        }
+        const responseData = await response.text();
+        alert(responseData);
     } catch (error) {
-        // Si no es un JSON válido, mostrar el mensaje directamente
-        alert("Respuesta del servidor: " + response.statusText);
+        alert("Error al procesar la solicitud: " + error.message);
     }
 }
+

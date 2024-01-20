@@ -64,7 +64,8 @@ public class CrudController {
                 return ResponseEntity.ok("Se ha realizado correctamente");
             //}
         } else {
-            return ResponseEntity.badRequest().body("Error: No se ha podido realizar el error");
+            System.out.println("Hola");
+            return ResponseEntity.badRequest().body("Error: No se ha podido realizar la operacion");
         }
         //return null;
     }
