@@ -1,7 +1,9 @@
 package com.esliceu.demoMovies.Controllers;
 
+import com.esliceu.demoMovies.Entities.Administrator;
 import com.esliceu.demoMovies.Entities.Movie;
 import com.esliceu.demoMovies.Services.MovieService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +16,16 @@ import java.util.List;
 
 @Controller
 public class FilterController {
+    @Autowired
+    HttpSession session;
 
     @Autowired
     MovieService movieService;
 
     @GetMapping("/filterMovies")
     public String showMovies(Model model){
+        Administrator admin = (Administrator) session.getAttribute("admin");
+        model.addAttribute("isAdminNotNull", admin != null);
         return "filterMovies";
     }
     @GetMapping("/allMovies")

@@ -21,13 +21,10 @@ public class CrudController {
     @Autowired
     MovieService movieService;
     @Autowired
-    AdminService adminService;
-
-    @Autowired
     HttpSession session;
 
     @GetMapping("/crud")
-    public String showCrud(Model model) {
+    public String showCrud() {
         /*
         Administrator admin = (Administrator) session.getAttribute("admin");
         if (admin == null){
