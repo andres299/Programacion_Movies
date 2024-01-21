@@ -44,6 +44,8 @@ public class MovieService {
     Movie_CompanyRepo movieCompanyRepo;
     @Autowired
     Movie_CastRepo movieCastRepo;
+    @Autowired
+    Movie_CrewRepo movieCrewRepo;
 
     public List<Movie> getAllMovies() {
         return movieRepo.findAll();
@@ -206,8 +208,9 @@ public class MovieService {
                         break;
                     case "person":
                         entityId = Integer.parseInt(id);
-                        Person person = new Person(entityId, input1);
-                        personRepo.save(person);
+                        movieCrewRepo.deleteByPersonId(entityId);
+                        movieCastRepo.deleteByPersonId(entityId);
+                        personRepo.deleteById((long) entityId);
                         break;
                     case "department":
                         entityId = Integer.parseInt(id);
