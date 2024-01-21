@@ -192,8 +192,7 @@ public class MovieService {
                         break;
                     case "production_company":
                         entityId = Integer.parseInt(id);
-                        Production_Company productionCompany = new Production_Company(entityId, input1);
-                        productionCompanyRepo.save(productionCompany);
+                        productionCompanyRepo.deleteById((long) entityId);
                         break;
                     case "gender":
                         entityId = Integer.parseInt(id);
