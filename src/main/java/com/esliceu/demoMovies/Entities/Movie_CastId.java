@@ -7,6 +7,8 @@ public class Movie_CastId implements Serializable {
 
     private Person person;
 
+    private Gender gender;
+
     public Movie getMovie() {
         return movie;
     }
@@ -21,5 +23,13 @@ public class Movie_CastId implements Serializable {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }
