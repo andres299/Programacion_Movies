@@ -190,6 +190,22 @@ updateButton.addEventListener('click', () => {
     postDataEntity('/operationEntities', requestData);
 });
 
+updateButton.addEventListener('click', () => {
+    const selectedOption = selectElement.value;
+    console.log(selectedOption);
+    // Obtener todos los inputs del formulario actualmente seleccionado
+    const inputs = document.getElementBYId("deleteId");
+    //console.log("Inputs:", inputs);
+    operation = 'delete';
+    // Construir el objeto requestData
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        id: inputs.value,
+    };
+    postDataEntity('/operationEntities', requestData);
+});
+
 async function postDataEntity(URL, data) {
     const response = await fetch(URL, {
         method: 'POST',

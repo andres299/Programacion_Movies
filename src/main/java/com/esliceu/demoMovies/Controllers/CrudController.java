@@ -53,17 +53,22 @@ public class CrudController {
         String input1 = fetchEntitiDTO.getInput1();
         String input2 = fetchEntitiDTO.getInput2();
         System.out.println(operation + entity + id + input1 + input2);
-        if (movieService.inputEntitie(input1)) {
-            //if (admin != null) {
-            movieService.operationEntitie(operation, entity, id, input1, input2);
-            return ResponseEntity.ok("Se ha realizado correctamente");
-            //} else{
-
-            //}
-        } else {
-            System.out.println("Hola");
-            return ResponseEntity.badRequest().body("Error: No se ha podido realizar la operacion");
+        try {
+            if (movieService.inputEntitie(input1)) {
+                //if (admin != null) {
+                movieService.operationEntitie(operation, entity, id, input1, input2);
+                return ResponseEntity.ok("Se ha realizado correctamente");
+                //} else{
+                // Aquí puedes agregar un manejo específico para la excepción relacionada con el administrador
+                // return ResponseEntity.badRequest().body("Error: El administrador no está autenticado");
+                //}
+            } else {
+                // Aquí puedes agregar un manejo específico para la excepción relacionada con la validación de inputEntitie
+                return ResponseEntity.badRequest().body("Error: Entrada no válida para la entidad");
+            }
+        } catch (UnsupportedOperationException | MovieService.EntityNotFoundException | MovieService.entitiExist e) {
+            // Aquí puedes manejar las excepciones lanzadas por movieService.operationEntitie
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
-        //return null;
     }
 }
