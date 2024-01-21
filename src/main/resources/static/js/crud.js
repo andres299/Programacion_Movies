@@ -190,6 +190,7 @@ updateButton.addEventListener('click', () => {
     postDataEntity('/operationEntities', requestData);
 });
 
+/*
 deleteButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
     console.log(selectedOption);
@@ -207,6 +208,7 @@ deleteButton.addEventListener('click', () => {
     };
     postDataEntity('/operationEntities', requestData);
 });
+*/
 
 async function postDataEntity(URL, data) {
     const response = await fetch(URL, {
@@ -229,3 +231,45 @@ async function postDataEntity(URL, data) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    var deleteButton = document.getElementById('deleteButton');
+    var deleteModal = document.getElementById('deleteModal');
+    var closeModalButton = deleteModal.querySelector('.close');
+    var modalDeleteButton = deleteModal.querySelector('.modal-delete');
+    var modalCancelButton = deleteModal.querySelector('.modal-cancel');
+
+    // Mostrar el modal al hacer clic en el botón Eliminar
+    deleteButton.addEventListener('click', function () {
+        deleteModal.style.display = 'block';
+    });
+
+    // Ocultar el modal al hacer clic en el botón cerrar (X)
+    closeModalButton.addEventListener('click', function () {
+        deleteModal.style.display = 'none';
+    });
+
+    // Imprimir "Hola" en la consola al hacer clic en el botón Sí, eliminar
+    modalDeleteButton.addEventListener('click', function () {
+        const selectedOption = selectElement.value;
+        console.log(selectedOption);
+        // Obtener todos los inputs del formulario actualmente seleccionado
+        const inputs = document.getElementById("deleteId");
+        //console.log("Inputs:", inputs);
+        operation = 'delete';
+        // Construir el objeto requestData
+        const requestData = {
+            operation: operation,
+            entity: selectedOption,
+            id: inputs.value,
+            input1: inputs.value,
+            input2: inputs[2] ? inputs[2].value : null,
+        };
+        postDataEntity('/operationEntities', requestData);
+        deleteModal.style.display = 'none'; // Opcional: ocultar el modal después de imprimir en la consola
+    });
+
+    // Ocultar el modal al hacer clic en el botón No, cancelar
+    modalCancelButton.addEventListener('click', function () {
+        deleteModal.style.display = 'none';
+    });
+});

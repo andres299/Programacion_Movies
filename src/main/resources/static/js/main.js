@@ -31,7 +31,7 @@ async function changePage(URL) {
         .then(data => {
             moviesData = data;
             updateUI();
-            totalPages = Math.ceil(entityData.length / 10);
+            totalPages = Math.ceil(moviesData.length / 10);
         })
         .catch(error => {
             console.error('Error fetching movies:', error);
@@ -45,7 +45,7 @@ keyword.addEventListener('input', () => {
         keyword: keyword.value
     };
     postData(`/filterMovies`, requestData);
-    document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
+    //document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 })
 
 async function postData(URL, data) {
@@ -67,7 +67,7 @@ async function postData(URL, data) {
     .then(responseData => {
         moviesData = responseData;
         updateUI();
-        totalPages = Math.ceil(entityData.length / 10);
+        totalPages = Math.ceil(moviesData.length / 10);
     })
     .catch(error => {
         console.error('Error fetching data:', error);
