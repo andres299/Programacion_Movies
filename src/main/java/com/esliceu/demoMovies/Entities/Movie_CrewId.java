@@ -1,30 +1,11 @@
 package com.esliceu.demoMovies.Entities;
 
-import jakarta.persistence.*;
-@Entity
-@Table(
-        name = "movie_crew",
-        uniqueConstraints =
-        @UniqueConstraint(columnNames = {"movie_id", "person_id ", "department_id"})
-)
-@IdClass(Movie_CrewId.class)
-public class Movie_Crew {
+import java.io.Serializable;
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
+public class Movie_CrewId implements Serializable {
     private Movie movie;
-
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "person_id")
     private Person person;
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "department_id")
     private Department department;
-
-    private String job;
 
     public Movie getMovie() {
         return movie;
@@ -48,9 +29,5 @@ public class Movie_Crew {
 
     public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public String getJob() {
-        return job;
     }
 }
