@@ -36,6 +36,8 @@ public class MovieService {
     Production_CountryRepo productionCountryRepo;
     @Autowired
     Movie_LanguagesRepo movieLanguagesRepo;
+    @Autowired
+    Movie_GenresRepo movieGenresRepo;
 
     public List<Movie> getAllMovies() {
         return movieRepo.findAll();
@@ -178,8 +180,8 @@ public class MovieService {
                         break;
                     case "genre":
                         entityId = Integer.parseInt(id);
-                        Genre genre = new Genre(entityId, input1);
-                        genreRepo.save(genre);
+                        movieGenresRepo.deleteByGenreId(entityId);
+                        genreRepo.deleteById((long) entityId);
                         break;
                     case "keyword":
                         entityId = Integer.parseInt(id);
