@@ -36,4 +36,37 @@ public class Production_Country {
     public void setCountry(Country country) {
         this.country = country;
     }
+    /*
+    @EmbeddedId
+    private ProductionCountryId id;
+
+    @ManyToOne
+    Movie movie;
+
+    @ManyToOne
+    Country country;
+
+    public ProductionCountryId getId() {
+        return id;
+    }
+
+    public void setId(ProductionCountryId id) {
+        this.id = id;
+    }
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+     */
 }

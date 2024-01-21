@@ -222,6 +222,7 @@ async function postDataEntity(URL, data) {
             throw new Error('Network response was not ok');
         }
         const responseData = await response.text();
+        console.log(response);
         alert(responseData);
     } catch (error) {
         alert("Error al procesar la solicitud: " + error.message);
