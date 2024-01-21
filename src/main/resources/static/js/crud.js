@@ -4,7 +4,7 @@ const entityTable = document.querySelector("tbody");
 const selectElement = document.getElementById("entity");
 const insertButton = document.getElementById("insertButton");
 const updateButton = document.getElementById("updateButton");
-const deleteButton = document.getElementBYId("deleteButton");
+const deleteButton = document.getElementById("deleteButton");
 
 let page = 0;
 let action = "";

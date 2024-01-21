@@ -168,8 +168,6 @@ public class MovieService {
                 default:
             }
         } else if (operation.equals("delete")) {
-
-        } else if (operation.equals("update")) {
             if (existEnttiti(entity, id)) {
                 switch (entity) {
                     case "country":
@@ -198,25 +196,21 @@ public class MovieService {
                         keywordRepo.save(keyword);
                         break;
                     case "production_company":
-                        // Agregar lógica para el caso de "production_company"
                         entityId = Integer.parseInt(id);
                         Production_Company productionCompany = new Production_Company(entityId, input1);
                         productionCompanyRepo.save(productionCompany);
                         break;
                     case "gender":
-                        // Agregar lógica para el caso de "gender"
                         entityId = Integer.parseInt(id);
                         Gender gender = new Gender(entityId, input1);
                         genderRepo.save(gender);
                         break;
                     case "person":
-                        // Agregar lógica para el caso de "person"
                         entityId = Integer.parseInt(id);
                         Person person = new Person(entityId, input1);
                         personRepo.save(person);
                         break;
                     case "department":
-                        // Agregar lógica para el caso de "department"
                         entityId = Integer.parseInt(id);
                         Department department = new Department(entityId, input1);
                         departmentRepo.save(department);
@@ -225,6 +219,62 @@ public class MovieService {
                         throw new EntityNotFoundException("Entidad no encontrada: " + entity);
                 }
             } else {
+                throw new entitiExist("Esta entidad no existe: " + entity);
+            }
+        } else if (operation.equals("update")) {
+            if (existEnttiti(entity, id)) {
+                System.out.println("Existe");
+                switch (entity) {
+                    case "country":
+                        entityId = Integer.parseInt(id);
+                        Country country = new Country(entityId, input1, input2);
+                        countryRepo.save(country);
+                        break;
+                    case "language":
+                        entityId = Integer.parseInt(id);
+                        Language language = new Language(entityId, input1, input2);
+                        languageRepo.save(language);
+                        break;
+                    case "language_role":
+                        entityId = Integer.parseInt(id);
+                        Language_role language_role = new Language_role(entityId, input1);
+                        language_roleRepo.save(language_role);
+                        break;
+                    case "genre":
+                        entityId = Integer.parseInt(id);
+                        Genre genre = new Genre(entityId, input1);
+                        genreRepo.save(genre);
+                        break;
+                    case "keyword":
+                        entityId = Integer.parseInt(id);
+                        Keyword keyword = new Keyword(entityId, input1);
+                        keywordRepo.save(keyword);
+                        break;
+                    case "production_company":
+                        entityId = Integer.parseInt(id);
+                        Production_Company productionCompany = new Production_Company(entityId, input1);
+                        productionCompanyRepo.save(productionCompany);
+                        break;
+                    case "gender":
+                        entityId = Integer.parseInt(id);
+                        Gender gender = new Gender(entityId, input1);
+                        genderRepo.save(gender);
+                        break;
+                    case "person":
+                        entityId = Integer.parseInt(id);
+                        Person person = new Person(entityId, input1);
+                        personRepo.save(person);
+                        break;
+                    case "department":
+                        entityId = Integer.parseInt(id);
+                        Department department = new Department(entityId, input1);
+                        departmentRepo.save(department);
+                        break;
+                    default:
+                        throw new EntityNotFoundException("Entidad no encontrada: " + entity);
+                }
+            } else {
+                System.out.println("NO existe");
                 throw new entitiExist("Esta entidad no existe: " + entity);
             }
         } else {
@@ -237,30 +287,21 @@ public class MovieService {
         try {
             entityId = Integer.parseInt(id);
         } catch (NumberFormatException e) {
+            System.out.println("Error al convertir ID a entero: " + e.getMessage());
             return false;
         }
-        switch (entity) {
-            case "country":
-                return countryRepo.ifEntitiExist(entityId);
-            case "language":
-                return languageRepo.ifEntitiExist(entityId);
-            case "language_role":
-                return language_roleRepo.ifEntitiExist(entityId);
-            case "genre":
-                return genreRepo.ifEntitiExist(entityId);
-            case "keyword":
-                return keywordRepo.ifEntitiExist(entityId);
-            case "production_company":
-                return productionCompanyRepo.ifEntitiExist(entityId);
-            case "gender":
-                return genderRepo.ifEntitiExist(entityId);
-            case "person":
-                return personRepo.ifEntitiExist(entityId);
-            case "department":
-                return departmentRepo.ifEntitiExist(entityId);
-            default:
-                return false;
-        }
+        return switch (entity) {
+            case "country" -> countryRepo.ifEntitiExist(entityId);
+            case "language" -> languageRepo.ifEntitiExist(entityId);
+            case "language_role" -> language_roleRepo.ifEntitiExist(entityId);
+            case "genre" -> genreRepo.ifEntitiExist(entityId);
+            case "keyword" -> keywordRepo.ifEntitiExist(entityId);
+            case "production_company" -> productionCompanyRepo.ifEntitiExist(entityId);
+            case "gender" -> genderRepo.ifEntitiExist(entityId);
+            case "person" -> personRepo.ifEntitiExist(entityId);
+            case "department" -> departmentRepo.ifEntitiExist(entityId);
+            default -> false;
+        };
     }
 
     public class EntityNotFoundException extends RuntimeException {

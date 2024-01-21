@@ -8,6 +8,7 @@ public interface GenderRepo extends JpaRepository<Gender, Long> {
     @Query(value = "SELECT MAX(gender_id) FROM gender", nativeQuery = true)
     int getLastId();
 
-    @Query(value = "SELECT COUNT(*) > 0 AS entityExists FROM gender WHERE gender_id = :entityId;", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) > 0 FROM gender WHERE gender_id = ?1", nativeQuery = true)
     boolean ifEntitiExist(int entityId);
+
 }
