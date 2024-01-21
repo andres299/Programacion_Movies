@@ -38,6 +38,8 @@ public class MovieService {
     Movie_LanguagesRepo movieLanguagesRepo;
     @Autowired
     Movie_GenresRepo movieGenresRepo;
+    @Autowired
+    Movie_KeywordsRepo movieKeywordsRepo;
 
     public List<Movie> getAllMovies() {
         return movieRepo.findAll();
@@ -185,8 +187,8 @@ public class MovieService {
                         break;
                     case "keyword":
                         entityId = Integer.parseInt(id);
-                        Keyword keyword = new Keyword(entityId, input1);
-                        keywordRepo.save(keyword);
+                        movieKeywordsRepo.deleteByKeywordId(entityId);
+                        keywordRepo.deleteById((long) entityId);
                         break;
                     case "production_company":
                         entityId = Integer.parseInt(id);
