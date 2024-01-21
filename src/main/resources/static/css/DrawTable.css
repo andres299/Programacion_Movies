@@ -197,6 +197,6 @@ button:hover {
 
 .options > div {
     display: inline-block;
-    margin-right: 2%; /* Ajusta el margen derecho según tus necesidades */
+    margin-right: 2%;
     width: 30%;
 }

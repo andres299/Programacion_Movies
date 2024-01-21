@@ -4,6 +4,7 @@ const entityTable = document.querySelector("tbody");
 const selectElement = document.getElementById("entity");
 const insertButton = document.getElementById("insertButton");
 const updateButton = document.getElementById("updateButton");
+const deleteButton = document.getElementBYId("deleteButton");
 
 let page = 0;
 let action = "";
@@ -106,11 +107,6 @@ function updateUI() {
         headerRow.appendChild(headerCell);
     }
 
-    // Añadir encabezado para la columna de opciones
-    //const optionsHeaderCell = document.createElement("th");
-    //optionsHeaderCell.textContent = "Opciones";
-    //headerRow.appendChild(optionsHeaderCell);
-
     entityTable.appendChild(headerRow);
 
     currentEntities.forEach(entity => {
@@ -121,37 +117,6 @@ function updateUI() {
             cell.textContent = entity[key];
             row.appendChild(cell);
         }
-        /*
-        // Añadir botones de opciones (Editar y Eliminar) a cada fila
-        const optionsCell = document.createElement("td");
-
-        const editButton = document.createElement("button");
-        editButton.textContent = "Editar";
-        editButton.classList.add("edit-button");
-        editButton.addEventListener("click", () => {
-            action = "Editar";
-            console.log(action);
-        });
-
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Eliminar";
-        deleteButton.classList.add("delete-button");
-        deleteButton.addEventListener("click", () => {
-            action = "Eliminar";
-            page = 0;
-            const requestData = {
-                   id: .value,
-                   action: action
-            };
-                postData(`/filterMovies`, requestData);
-            });
-
-        optionsCell.appendChild(editButton);
-        optionsCell.appendChild(deleteButton);
-
-        row.appendChild(optionsCell);
-        */
-
         entityTable.appendChild(row);
     });
 }
