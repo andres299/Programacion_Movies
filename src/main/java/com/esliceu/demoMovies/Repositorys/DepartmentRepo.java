@@ -8,6 +8,6 @@ public interface DepartmentRepo extends JpaRepository<Department, Long> {
     @Query(value = "SELECT MAX(department_id) FROM department", nativeQuery = true)
     int getLastId();
 
-    @Query(value = "SELECT COUNT(*) > 0 AS entityExists FROM department WHERE department_id = :entityId;", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM department WHERE department_id = ?1;", nativeQuery = true)
     long ifEntitiExist(int entityId);
 }

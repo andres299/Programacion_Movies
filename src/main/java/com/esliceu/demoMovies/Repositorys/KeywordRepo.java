@@ -9,6 +9,6 @@ public interface KeywordRepo extends JpaRepository<Keyword, Long> {
     int getLastId();
 
 
-    @Query(value = "SELECT COUNT(*) > 0 AS entityExists FROM keyword WHERE keyword_id = :entityId;", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM keyword WHERE keyword_id = ?1;", nativeQuery = true)
     long ifEntitiExist(int entityId);
 }

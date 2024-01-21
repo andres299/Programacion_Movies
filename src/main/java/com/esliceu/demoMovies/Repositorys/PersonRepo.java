@@ -8,6 +8,6 @@ public interface PersonRepo extends JpaRepository<Person, Long> {
     @Query(value = "SELECT MAX(person_id) FROM person", nativeQuery = true)
     int getLastId();
 
-    @Query(value = "SELECT COUNT(*) > 0 AS entityExists FROM person WHERE person_id = :entityId;", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM person WHERE person_id = ?1;", nativeQuery = true)
     long ifEntitiExist(int entityId);
 }
