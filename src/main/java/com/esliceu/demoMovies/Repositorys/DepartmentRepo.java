@@ -9,5 +9,5 @@ public interface DepartmentRepo extends JpaRepository<Department, Long> {
     int getLastId();
 
     @Query(value = "SELECT COUNT(*) > 0 AS entityExists FROM department WHERE department_id = :entityId;", nativeQuery = true)
-    boolean ifEntitiExist(int entityId);
+    long ifEntitiExist(int entityId);
 }

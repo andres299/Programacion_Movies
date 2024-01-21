@@ -9,5 +9,5 @@ public interface Language_roleRepo extends JpaRepository<Language_role, Long> {
     int getLastId();
 
     @Query(value = "SELECT COUNT(*) > 0 AS entityExists FROM language_role WHERE role_id = :entityId;", nativeQuery = true)
-    boolean ifEntitiExist(int entityId);
+    long ifEntitiExist(int entityId);
 }

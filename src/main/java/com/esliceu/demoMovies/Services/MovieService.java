@@ -284,6 +284,7 @@ public class MovieService {
 
     private boolean existEnttiti(String entity, String id) {
         int entityId;
+        long count;
         try {
             entityId = Integer.parseInt(id);
         } catch (NumberFormatException e) {
@@ -291,15 +292,15 @@ public class MovieService {
             return false;
         }
         return switch (entity) {
-            case "country" -> countryRepo.ifEntitiExist(entityId);
-            case "language" -> languageRepo.ifEntitiExist(entityId);
-            case "language_role" -> language_roleRepo.ifEntitiExist(entityId);
-            case "genre" -> genreRepo.ifEntitiExist(entityId);
-            case "keyword" -> keywordRepo.ifEntitiExist(entityId);
-            case "production_company" -> productionCompanyRepo.ifEntitiExist(entityId);
-            case "gender" -> genderRepo.ifEntitiExist(entityId);
-            case "person" -> personRepo.ifEntitiExist(entityId);
-            case "department" -> departmentRepo.ifEntitiExist(entityId);
+            case "country" -> countryRepo.ifEntitiExist(entityId) > 0;
+            case "language" -> languageRepo.ifEntitiExist(entityId) > 0;
+            case "language_role" -> language_roleRepo.ifEntitiExist(entityId) > 0;
+            case "genre" -> genreRepo.ifEntitiExist(entityId) > 0;
+            case "keyword" -> keywordRepo.ifEntitiExist(entityId) > 0;
+            case "production_company" -> productionCompanyRepo.ifEntitiExist(entityId) > 0;
+            case "gender" -> genderRepo.ifEntitiExist(entityId) > 0;
+            case "person" -> personRepo.ifEntitiExist(entityId) > 0;
+            case "department" -> departmentRepo.ifEntitiExist(entityId) > 0;
             default -> false;
         };
     }
