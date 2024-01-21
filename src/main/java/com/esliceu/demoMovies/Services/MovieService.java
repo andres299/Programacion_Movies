@@ -32,22 +32,11 @@ public class MovieService {
     PersonRepo personRepo;
     @Autowired
     Production_CompanyRepo productionCompanyRepo;
+    @Autowired
+    Production_CountryRepo productionCountryRepo;
 
     public List<Movie> getAllMovies() {
         return movieRepo.findAll();
-    }
-
-    public List<Movie> getFirstMovies() {
-        List<Movie> firstMovies = movieRepo.findAll();
-        return firstMovies.subList(0, 10);
-    }
-
-    public List<Movie> getAllMoviesByPage(int page) {
-        List<Movie> allMovies = movieRepo.findAll();
-        int pageSize = 10;
-        int start = Math.toIntExact(page * pageSize);
-        int end = Math.toIntExact(Math.min((page + 1) * pageSize, allMovies.size()));
-        return allMovies.subList(start, end);
     }
 
     public List<Movie> filterMovies(String filterType, String keyword) {
@@ -71,7 +60,7 @@ public class MovieService {
     }
 
     public List<?> infoEntities(String selectedValue) {
-        List<?> listEntiti = new ArrayList<>();
+        List<?> listEntiti;
 
         switch (selectedValue) {
             case "country":
@@ -172,7 +161,8 @@ public class MovieService {
                 switch (entity) {
                     case "country":
                         entityId = Integer.parseInt(id);
-                        Country country = new Country();
+                        productionCountryRepo.deleteByCountryId(entityId);
+                        countryRepo.deleteById((long) entityId);
                         break;
                     case "language":
                         entityId = Integer.parseInt(id);
