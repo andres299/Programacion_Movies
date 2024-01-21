@@ -34,6 +34,8 @@ public class MovieService {
     Production_CompanyRepo productionCompanyRepo;
     @Autowired
     Production_CountryRepo productionCountryRepo;
+    @Autowired
+    Movie_LanguagesRepo movieLanguagesRepo;
 
     public List<Movie> getAllMovies() {
         return movieRepo.findAll();
@@ -166,8 +168,8 @@ public class MovieService {
                         break;
                     case "language":
                         entityId = Integer.parseInt(id);
-                        Language language = new Language(entityId, input1, input2);
-                        languageRepo.save(language);
+                        movieLanguagesRepo.deleteByLanguageId(entityId);
+                        languageRepo.deleteById((long) entityId);
                         break;
                     case "language_role":
                         entityId = Integer.parseInt(id);

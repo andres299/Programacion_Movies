@@ -14,5 +14,5 @@ public interface Production_CountryRepo extends JpaRepository<Production_Country
     @Modifying
     @Query(value = "DELETE FROM production_country WHERE country_id = :entityId", nativeQuery = true)
     void deleteByCountryId(@Param("entityId") int entityId);
-    
+
 }
