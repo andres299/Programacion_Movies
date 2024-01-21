@@ -202,6 +202,8 @@ deleteButton.addEventListener('click', () => {
         operation: operation,
         entity: selectedOption,
         id: inputs.value,
+        input1: inputs.value,
+        input2: inputs[2] ? inputs[2].value : null,
     };
     postDataEntity('/operationEntities', requestData);
 });

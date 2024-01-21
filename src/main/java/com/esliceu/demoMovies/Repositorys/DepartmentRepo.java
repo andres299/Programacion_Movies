@@ -3,11 +3,10 @@ package com.esliceu.demoMovies.Repositorys;
 import com.esliceu.demoMovies.Entities.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface DepartmentRepo extends JpaRepository<Department, Long> {
-    @Query(value = "SELECT MAX(department_id) FROM department", nativeQuery = true)
-    int getLastId();
+    @Query(value = "SELECT COUNT(*) FROM department WHERE department_id = :entityId", nativeQuery = true)
+    int ifEntitiExist(@Param("entityId") int entityId);
 
-    @Query(value = "SELECT COUNT(*) FROM department WHERE department_id = ?1;", nativeQuery = true)
-    long ifEntitiExist(int entityId);
 }
