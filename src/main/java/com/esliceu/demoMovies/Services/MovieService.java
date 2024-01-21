@@ -32,6 +32,8 @@ public class MovieService {
     PersonRepo personRepo;
     @Autowired
     Production_CompanyRepo productionCompanyRepo;
+    @Autowired
+    Production_CountryRepo productionCountryRepo;
 
     public List<Movie> getAllMovies() {
         return movieRepo.findAll();
@@ -172,8 +174,6 @@ public class MovieService {
                 switch (entity) {
                     case "country":
                         entityId = Integer.parseInt(id);
-                        Country country = new Country(entityId, input1, input2);
-                        countryRepo.save(country);
                         break;
                     case "language":
                         entityId = Integer.parseInt(id);
