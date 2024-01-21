@@ -190,11 +190,11 @@ updateButton.addEventListener('click', () => {
     postDataEntity('/operationEntities', requestData);
 });
 
-updateButton.addEventListener('click', () => {
+deleteButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
     console.log(selectedOption);
     // Obtener todos los inputs del formulario actualmente seleccionado
-    const inputs = document.getElementBYId("deleteId");
+    const inputs = document.getElementById("deleteId");
     //console.log("Inputs:", inputs);
     operation = 'delete';
     // Construir el objeto requestData

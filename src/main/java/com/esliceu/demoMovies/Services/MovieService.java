@@ -168,7 +168,7 @@ public class MovieService {
                 default:
             }
         } else if (operation.equals("delete")) {
-            if (existEnttiti(entity, id)) {
+            if (existEntiti(entity, id)) {
                 switch (entity) {
                     case "country":
                         entityId = Integer.parseInt(id);
@@ -222,7 +222,7 @@ public class MovieService {
                 throw new entitiExist("Esta entidad no existe: " + entity);
             }
         } else if (operation.equals("update")) {
-            if (existEnttiti(entity, id)) {
+            if (existEntiti(entity, id)) {
                 System.out.println("Existe");
                 switch (entity) {
                     case "country":
@@ -282,15 +282,8 @@ public class MovieService {
         }
     }
 
-    private boolean existEnttiti(String entity, String id) {
-        int entityId;
-        long count;
-        try {
-            entityId = Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            System.out.println("Error al convertir ID a entero: " + e.getMessage());
-            return false;
-        }
+    private boolean existEntiti(String entity, String id) {
+        int entityId = Integer.parseInt(id);
         return switch (entity) {
             case "country" -> countryRepo.ifEntitiExist(entityId) > 0;
             case "language" -> languageRepo.ifEntitiExist(entityId) > 0;
@@ -303,7 +296,9 @@ public class MovieService {
             case "department" -> departmentRepo.ifEntitiExist(entityId) > 0;
             default -> false;
         };
+
     }
+
 
     public class EntityNotFoundException extends RuntimeException {
         public EntityNotFoundException(String message) {
