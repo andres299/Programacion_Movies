@@ -214,8 +214,8 @@ public class MovieService {
                         break;
                     case "department":
                         entityId = Integer.parseInt(id);
-                        Department department = new Department(entityId, input1);
-                        departmentRepo.save(department);
+                        movieCrewRepo.deleteByDepartmentId(entityId);
+                        departmentRepo.deleteById((long) entityId);
                         break;
                     default:
                         throw new EntityNotFoundException("Entidad no encontrada: " + entity);
