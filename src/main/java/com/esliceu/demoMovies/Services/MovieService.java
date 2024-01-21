@@ -173,8 +173,8 @@ public class MovieService {
                         break;
                     case "language_role":
                         entityId = Integer.parseInt(id);
-                        Language_role language_role = new Language_role(entityId, input1);
-                        language_roleRepo.save(language_role);
+                        movieLanguagesRepo.deleteByLanguageRoleId(entityId);
+                        language_roleRepo.deleteById((long) entityId);
                         break;
                     case "genre":
                         entityId = Integer.parseInt(id);

@@ -13,4 +13,9 @@ public interface Movie_LanguagesRepo extends JpaRepository<Movie_Languages, Long
     @Modifying
     @Query(value = "DELETE FROM movie_languages WHERE language_id = :entityId", nativeQuery = true)
     void deleteByLanguageId(@Param("entityId") int entityId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM movie_languages WHERE language_role_id = :entityId", nativeQuery = true)
+    void deleteByLanguageRoleId(@Param("entityId")int entityId);
 }
