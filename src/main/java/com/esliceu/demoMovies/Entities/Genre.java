@@ -10,7 +10,8 @@ public class Genre {
     @Id
     private int genre_id;
 
-    private String genre_name;
+    @Column(name = "genre_name")
+    private String genreName;
 
     @OneToMany(mappedBy = "genre")
     @JsonIgnore
@@ -19,9 +20,9 @@ public class Genre {
     public Genre() {
     }
 
-    public Genre(int genre_id, String genre_name) {
+    public Genre(int genre_id, String genreName) {
         this.genre_id = genre_id;
-        this.genre_name = genre_name;
+        this.genreName = genreName;
     }
 
     public int getGenre_id() {
@@ -32,12 +33,12 @@ public class Genre {
         this.genre_id = genre_id;
     }
 
-    public String getGenre_name() {
-        return genre_name;
+    public String getGenreName() {
+        return genreName;
     }
 
-    public void setGenre_name(String genre_name) {
-        this.genre_name = genre_name;
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
     }
 
     public Set<Movie_Genres> getMovieGenres() {

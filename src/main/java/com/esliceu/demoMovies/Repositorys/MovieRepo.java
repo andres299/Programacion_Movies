@@ -9,23 +9,28 @@ import java.util.List;
 public interface MovieRepo extends JpaRepository<Movie, Long> {
     List<Movie> findByTitleStartingWithIgnoreCase(String keyword);
 
+    /*
     @Query(value = "SELECT m.* FROM movie m " +
             "JOIN movie_cast mc ON m.movie_id = mc.movie_id " +
             "JOIN person p ON mc.person_id = p.person_id " +
-            "WHERE p.person_name LIKE %:person_name%", nativeQuery = true)
-    List<Movie> findByMoviecast_Person_person_nameContaining(String person_name);
+            "WHERE p.person_name LIKE %:keyword%", nativeQuery = true)
+     */
+    List<Movie> findMovieByMoviecast_PersonPersonNameContaining(String keyword);
 
+    /*
     @Query(value = "SELECT m.* FROM movie m " +
             "JOIN movie_cast mc ON m.movie_id = mc.movie_id " +
             "WHERE mc.character_name LIKE %:character_name%", nativeQuery = true)
-    List<Movie> findByCharacterNameContaining(String character_name);
+     */
+    List<Movie> findMovieByMovieGenres_GenreGenreNameContaining(String character_name);
 
+    /*
     @Query(value = "SELECT m.* FROM movie m " +
             "JOIN movie_genres mg ON m.movie_id = mg.movie_id " +
             "JOIN genre g ON mg.genre_id = g.genre_id " +
             "WHERE g.genre_name LIKE %:genre%", nativeQuery = true)
-    List<Movie> findByGenreNameContaining( String genre);
-
+     */
+    List<Movie> findMovieByMoviecastCharacterNameContaining(String keyword);
  @Query(value = "SELECT m.* FROM movie m " +
          "JOIN movie_crew mc ON m.movie_id = mc.movie_id " +
          "JOIN person p ON mc.person_id = p.person_id " +

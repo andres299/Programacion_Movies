@@ -56,11 +56,11 @@ public class MovieService {
         if ("title".equals(filterType)) {
             return movieRepo.findByTitleStartingWithIgnoreCase(keyword);
         } else if ("actor".equals(filterType)) {
-            return movieRepo.findByMoviecast_Person_person_nameContaining(keyword);
+            return movieRepo.findMovieByMoviecast_PersonPersonNameContaining(keyword);
         } else if ("characters".equals(filterType)) {
-            return movieRepo.findByCharacterNameContaining(keyword);
+            return movieRepo.findMovieByMoviecastCharacterNameContaining(keyword);
         } else if ("genre".equals(filterType)) {
-            return movieRepo.findByGenreNameContaining(keyword);
+            return movieRepo.findMovieByMovieGenres_GenreGenreNameContaining(keyword);
         } else if ("director".equals(filterType)) {
             return movieRepo.findByDirectorNameContaining(keyword);
         }
@@ -297,6 +297,39 @@ public class MovieService {
 
     }
 
+    public List<?> searchEntities(String entity, String input1) {
+        switch (entity) {
+            case "country":
+                return countryRepo.findByCountryNameStartingWithIgnoreCase(input1);
+            case "language":
+
+                break;
+            case "language_role":
+
+                break;
+            case "genre":
+
+                break;
+            case "keyword":
+
+                break;
+            case "production_company":
+
+                break;
+            case "gender":
+
+                break;
+            case "person":
+
+                break;
+            case "department":
+
+                break;
+            default:
+                throw new EntityNotFoundException("Entidad no encontrada: " + entity);
+        }
+        return null;
+    }
 
     public class EntityNotFoundException extends RuntimeException {
         public EntityNotFoundException(String message) {

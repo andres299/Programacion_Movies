@@ -2,16 +2,17 @@ const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 const entityTable = document.querySelector("tbody");
 const selectElement = document.getElementById("entity");
-const storedEntity = localStorage.getItem("selectedEntity");
 const insertButton = document.getElementById("insertButton");
 const updateButton = document.getElementById("updateButton");
 const deleteButton = document.getElementById("deleteButton");
-//const keyword = document.getElementById('keyword');
+const keyword = document.getElementById('keyword');
 
 let page = 0;
 let action = "";
 let totalPages = 0;
 let entityData = [];
+let id;
+let operation;
 
 selectElement.addEventListener("change", function () {
     page = 0;
@@ -22,13 +23,6 @@ selectElement.addEventListener("change", function () {
     };
     postData(`/infoEntities`, requestData);
 });
-
-if (storedEntity) {
-    selectElement.value = storedEntity;
-}
-
-// Agregar el evento onchange
-selectElement.addEventListener("change", showFields);
 
 // Lugar donde deseas recargar la página
 function reloadPage() {
@@ -79,6 +73,7 @@ async function postData(URL, data) {
         body: formData,
     })
         .then(response => {
+            console.log('HTTP Status Code:', response.status);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -143,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function showFields() {
     var selectedOption = selectElement.options[selectElement.selectedIndex].value;
-    localStorage.setItem("selectedEntity", selectedOption);
+    //localStorage.setItem("selectedEntity", selectedOption);
     console.log(selectedOption);
     // Oculta todos los campos
     var allFields = document.querySelectorAll(".hidden");
@@ -167,8 +162,6 @@ function showFields() {
 
 changePage(`/allCountrys`);
 
-let id;
-let operation;
 insertButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
     console.log(selectedOption);
@@ -204,8 +197,9 @@ updateButton.addEventListener('click', () => {
         input2: inputs[2] ? inputs[2].value : null,
     };
     postDataEntity('/operationEntities', requestData);
+    reloadPage();
 });
-/*
+
 keyword.addEventListener('input', () => {
     page = 0;
     const selectedOption = selectElement.value;
@@ -213,14 +207,13 @@ keyword.addEventListener('input', () => {
     const requestData = {
            operation: operation,
            entity: selectedOption,
-           id: keyword.value,
-           input1: null,
+           id: null,
+           input1: keyword.value,
            input2: null,
     };
-    postData(`/filterMovies`, requestData);
+    searchDataEntity(`/searchEntities`, requestData);
     document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 })
-*/
 
 async function postDataEntity(URL, data) {
     const response = await fetch(URL, {
@@ -240,6 +233,29 @@ async function postDataEntity(URL, data) {
         alert(responseData);
     } catch (error) {
         alert("Error al procesar la solicitud: " + error.message);
+    }
+}
+
+async function searchDataEntity(URL, data) {
+    try {
+        const response = await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const responseData = await response.json();
+        entityData = responseData;
+        updateUI();
+        totalPages = Math.ceil(entityData.length / 10);
+    } catch (error) {
+        console.error('Error fetching data:', error);
     }
 }
 
@@ -277,6 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         postDataEntity('/operationEntities', requestData);
         deleteModal.style.display = 'none'; // Ocultar el modal después de imprimir en la consola
+        reloadPage();
     });
 
     // Ocultar el modal al hacer clic en el botón No, cancelar

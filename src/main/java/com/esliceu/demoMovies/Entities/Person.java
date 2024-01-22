@@ -9,7 +9,8 @@ import java.util.Set;
 public class Person {
     @Id
     private int person_id;
-    private String person_name;
+    @Column(name = "person_name")
+    private String personName;
     @OneToMany(mappedBy = "person")
     @JsonIgnore
     private Set<Movie_Cast> moviecast;
@@ -21,9 +22,9 @@ public class Person {
     public Person() {
     }
 
-    public Person(int person_id, String person_name) {
+    public Person(int person_id, String personName) {
         this.person_id = person_id;
-        this.person_name = person_name;
+        this.personName = personName;
     }
 
     public int getPerson_id() {
@@ -34,12 +35,12 @@ public class Person {
         this.person_id = person_id;
     }
 
-    public String getPerson_name() {
-        return person_name;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setPerson_name(String person_name) {
-        this.person_name = person_name;
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
     public Set<Movie_Cast> getMoviecast() {

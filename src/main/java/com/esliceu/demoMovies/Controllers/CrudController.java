@@ -45,7 +45,7 @@ public class CrudController {
     public List<?> crud(@RequestParam String selectedValue){ return movieService.infoEntities(selectedValue);}
 
     @PostMapping("/operationEntities")
-    public ResponseEntity<String> insertEntities(@RequestBody FetchEntitiDTO fetchEntitiDTO) {
+    public ResponseEntity<String> operationEntities(@RequestBody FetchEntitiDTO fetchEntitiDTO) {
         Administrator admin = (Administrator) session.getAttribute("admin");
         String operation = fetchEntitiDTO.getOperation();
         String entity = fetchEntitiDTO.getEntity();
@@ -70,5 +70,18 @@ public class CrudController {
             // Aquí puedes manejar las excepciones lanzadas por movieService.operationEntitie
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
+    }
+
+    @PostMapping("/searchEntities")
+    @ResponseBody
+    public List<?> searchEntities(@RequestBody FetchEntitiDTO fetchEntitiDTO) {
+        Administrator admin = (Administrator) session.getAttribute("admin");
+        String entity = fetchEntitiDTO.getEntity();
+        String input1 = fetchEntitiDTO.getInput1();
+        System.out.println(entity + input1);
+        //if (admin != null) {
+            return movieService.searchEntities(entity, input1);
+        //}
+        //return ResponseEntity.badRequest().body("Error: Entrada no válida para la entidad");
     }
 }

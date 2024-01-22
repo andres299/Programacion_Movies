@@ -21,7 +21,8 @@ public class Movie_Cast {
     @JoinColumn(name = "person_id")
     private Person person;
 
-    private String character_name;
+    @Column(name="character_name")
+    private String characterName;
 
     @Id
     @ManyToOne
@@ -46,12 +47,12 @@ public class Movie_Cast {
         this.person = person;
     }
 
-    public String getCharacter_name() {
-        return character_name;
+    public String getCharacterName() {
+        return characterName;
     }
 
-    public void setCharacter_name(String character_name) {
-        this.character_name = character_name;
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
 
     public Gender getGender() {

@@ -11,8 +11,8 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int country_id;
     String country_iso_code;
-    String country_name;
-
+    @Column(name = "country_name")
+    String countryName;
     @OneToMany(mappedBy = "country")
     @JsonIgnore
     Set<Production_Country> productionCountries;
@@ -20,15 +20,15 @@ public class Country {
     public Country() {
     }
 
-    public Country(String country_iso_code, String country_name) {
+    public Country(String country_iso_code, String countryName) {
         this.country_iso_code = country_iso_code;
-        this.country_name = country_name;
+        this.countryName = countryName;
     }
 
-    public Country(int country_id, String country_iso_code, String country_name) {
+    public Country(int country_id, String country_iso_code, String countryName) {
         this.country_id = country_id;
         this.country_iso_code = country_iso_code;
-        this.country_name = country_name;
+        this.countryName = countryName;
     }
 
     public int getCountry_id() {
@@ -47,12 +47,12 @@ public class Country {
         this.country_iso_code = country_iso_code;
     }
 
-    public String getCountry_name() {
-        return country_name;
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setCountry_name(String country_name) {
-        this.country_name = country_name;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
     public Set<Production_Country> getProductionCountries() {
