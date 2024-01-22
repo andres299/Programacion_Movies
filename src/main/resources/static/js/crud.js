@@ -190,26 +190,6 @@ updateButton.addEventListener('click', () => {
     postDataEntity('/operationEntities', requestData);
 });
 
-/*
-deleteButton.addEventListener('click', () => {
-    const selectedOption = selectElement.value;
-    console.log(selectedOption);
-    // Obtener todos los inputs del formulario actualmente seleccionado
-    const inputs = document.getElementById("deleteId");
-    //console.log("Inputs:", inputs);
-    operation = 'delete';
-    // Construir el objeto requestData
-    const requestData = {
-        operation: operation,
-        entity: selectedOption,
-        id: inputs.value,
-        input1: inputs.value,
-        input2: inputs[2] ? inputs[2].value : null,
-    };
-    postDataEntity('/operationEntities', requestData);
-});
-*/
-
 async function postDataEntity(URL, data) {
     const response = await fetch(URL, {
         method: 'POST',
@@ -254,7 +234,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(selectedOption);
         // Obtener todos los inputs del formulario actualmente seleccionado
         const inputs = document.getElementById("deleteId");
-        //console.log("Inputs:", inputs);
         operation = 'delete';
         // Construir el objeto requestData
         const requestData = {
@@ -265,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
             input2: inputs[2] ? inputs[2].value : null,
         };
         postDataEntity('/operationEntities', requestData);
-        deleteModal.style.display = 'none'; // Opcional: ocultar el modal después de imprimir en la consola
+        deleteModal.style.display = 'none'; // Ocultar el modal después de imprimir en la consola
     });
 
     // Ocultar el modal al hacer clic en el botón No, cancelar
