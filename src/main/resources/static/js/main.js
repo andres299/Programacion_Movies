@@ -45,7 +45,7 @@ keyword.addEventListener('input', () => {
         keyword: keyword.value
     };
     postData(`/filterMovies`, requestData);
-    //document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
+    document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 })
 
 async function postData(URL, data) {
