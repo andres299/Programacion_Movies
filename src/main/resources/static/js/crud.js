@@ -2,6 +2,7 @@ const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 const entityTable = document.querySelector("tbody");
 const selectElement = document.getElementById("entity");
+const storedEntity = localStorage.getItem("selectedEntity");
 const insertButton = document.getElementById("insertButton");
 const updateButton = document.getElementById("updateButton");
 const deleteButton = document.getElementById("deleteButton");
@@ -21,6 +22,20 @@ selectElement.addEventListener("change", function () {
     };
     postData(`/infoEntities`, requestData);
 });
+
+if (storedEntity) {
+    selectElement.value = storedEntity;
+}
+
+// Agregar el evento onchange
+selectElement.addEventListener("change", showFields);
+
+// Lugar donde deseas recargar la página
+function reloadPage() {
+    location.reload();
+}
+
+//reloadPage();
 
 prevButton.addEventListener('click', async () => {
     if (page > 0) page--;
@@ -128,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function showFields() {
     var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+    localStorage.setItem("selectedEntity", selectedOption);
     console.log(selectedOption);
     // Oculta todos los campos
     var allFields = document.querySelectorAll(".hidden");
