@@ -48,10 +48,18 @@ h1 {
 }
 
 .button-section {
+    display:flex;
     text-align: right;
     margin-right: 15px;
+    margin-left:15px;
 }
-
+.button-section button{
+  margin-left:10px;
+}
+#keyword {
+  margin-left:10px;
+  width: 150px;
+}
 section {
     width: 100%;
     display: flex;
@@ -128,7 +136,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #215224;
 }
 
 #insertButton {
