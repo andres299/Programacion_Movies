@@ -198,7 +198,8 @@ button:hover {
 .options > div {
     display: inline-block;
     margin-right: 2%;
-    width: 30%;
+    margin-left:25px;
+    width: 35%;
 }
 
 /* Estilos para el modal */
