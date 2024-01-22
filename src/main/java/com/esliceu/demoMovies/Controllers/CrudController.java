@@ -76,11 +76,8 @@ public class CrudController {
     @ResponseBody
     public List<?> searchEntities(@RequestBody FetchEntitiDTO fetchEntitiDTO) {
         Administrator admin = (Administrator) session.getAttribute("admin");
-        String entity = fetchEntitiDTO.getEntity();
-        String input1 = fetchEntitiDTO.getInput1();
-        System.out.println(entity + input1);
         //if (admin != null) {
-            return movieService.searchEntities(entity, input1);
+            return movieService.searchEntities(fetchEntitiDTO);
         //}
         //return ResponseEntity.badRequest().body("Error: Entrada no válida para la entidad");
     }

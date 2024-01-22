@@ -10,7 +10,8 @@ public class Language_role {
     @Id
     private int role_id;
 
-    private String language_role;
+    @Column(name = "language_role")
+    private String languageRole;
 
     @OneToMany(mappedBy = "languageRole")
     @JsonIgnore
@@ -19,9 +20,9 @@ public class Language_role {
     public Language_role() {
     }
 
-    public Language_role(int role_id, String language_role) {
+    public Language_role(int role_id, String languageRole) {
         this.role_id = role_id;
-        this.language_role = language_role;
+        this.languageRole = languageRole;
     }
 
     public int getRole_id() {
@@ -32,12 +33,12 @@ public class Language_role {
         this.role_id = role_id;
     }
 
-    public String getLanguage_role() {
-        return language_role;
+    public String getLanguageRole() {
+        return languageRole;
     }
 
-    public void setLanguage_role(String language_role) {
-        this.language_role = language_role;
+    public void setLanguageRole(String languageRole) {
+        this.languageRole = languageRole;
     }
 
     public Set<Movie_Languages> getMovieLanguages() {

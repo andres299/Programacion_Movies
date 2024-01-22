@@ -11,5 +11,5 @@ public interface CountryRepo extends JpaRepository<Country, Long> {
     @Query(value = "SELECT COUNT(*) FROM country WHERE country_id = :entityId", nativeQuery = true)
     int ifEntitiExist(@Param("entityId") int entityId);
 
-    List<Country> findByCountryNameStartingWithIgnoreCase(String input1);
+    List<Country> findByCountryNameStartingWithIgnoreCase(String keyword);
 }

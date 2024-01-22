@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Services;
 
+import com.esliceu.demoMovies.DTO.FetchEntitiDTO;
 import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -298,39 +299,34 @@ public class MovieService {
 
     }
 
-    public List<?> searchEntities(String entity, String input1) {
+    public List<?> searchEntities(FetchEntitiDTO fetchEntitiDTO) {
+        String entity = fetchEntitiDTO.getEntity();
+        String keyword = fetchEntitiDTO.getInput1();
+        System.out.println(entity + keyword);
         switch (entity) {
             case "country":
-                return countryRepo.findByCountryNameStartingWithIgnoreCase(input1);
+                return countryRepo.findByCountryNameStartingWithIgnoreCase(keyword);
             case "language":
-
-                break;
+                return languageRepo.findByLanguageNameStartingWithIgnoreCase(keyword);
             case "language_role":
-
-                break;
+                return language_roleRepo.findByLanguageRoleStartingWithIgnoreCase(keyword);
             case "genre":
 
-                break;
             case "keyword":
 
-                break;
             case "production_company":
 
-                break;
             case "gender":
 
-                break;
             case "person":
 
-                break;
             case "department":
 
-                break;
             default:
                 throw new EntityNotFoundException("Entidad no encontrada: " + entity);
         }
-        return null;
     }
+
 
     public class EntityNotFoundException extends RuntimeException {
         public EntityNotFoundException(String message) {

@@ -11,9 +11,11 @@ public class Language {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int language_id;
 
-    private String language_code;
+    @Column(name = "language_code")
+    private String languageCode;
 
-    private String language_name;
+    @Column(name = "language_name")
+    private String languageName;
 
     @OneToMany(mappedBy = "language")
     @JsonIgnore
@@ -22,15 +24,15 @@ public class Language {
     public Language() {
     }
 
-    public Language(String language_code, String language_name) {
-        this.language_code = language_code;
-        this.language_name = language_name;
+    public Language(String languageCode, String languageName) {
+        this.languageCode = languageCode;
+        this.languageName = languageName;
     }
 
-    public Language(int language_id, String language_code, String language_name) {
+    public Language(int language_id, String languageCode, String languageName) {
         this.language_id = language_id;
-        this.language_code = language_code;
-        this.language_name = language_name;
+        this.languageCode = languageCode;
+        this.languageName = languageName;
     }
 
     public int getLanguage_id() {
@@ -41,20 +43,20 @@ public class Language {
         this.language_id = language_id;
     }
 
-    public String getLanguage_code() {
-        return language_code;
+    public String getLanguageCode() {
+        return languageCode;
     }
 
-    public void setLanguage_code(String language_code) {
-        this.language_code = language_code;
+    public void setLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
     }
 
-    public String getLanguage_name() {
-        return language_name;
+    public String getLanguageName() {
+        return languageName;
     }
 
-    public void setLanguage_name(String language_name) {
-        this.language_name = language_name;
+    public void setLanguageName(String languageName) {
+        this.languageName = languageName;
     }
 
     public Set<Movie_Languages> getMovieLanguages() {
