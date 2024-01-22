@@ -144,25 +144,21 @@ public class MovieService {
                     keywordRepo.save(keyword);
                     break;
                 case "production_company":
-                    // Agregar lógica para el caso de "production_company"
                     entityId = (productionCompanyRepo.getLastId() != 0) ? productionCompanyRepo.getLastId() + 1 : 1;
                     Production_Company productionCompany = new Production_Company(entityId, input1);
                     productionCompanyRepo.save(productionCompany);
                     break;
                 case "gender":
-                    // Agregar lógica para el caso de "gender"
                     entityId = (genderRepo.getLastId() != 0) ? genderRepo.getLastId() + 1 : 1;
                     Gender gender = new Gender(entityId, input1);
                     genderRepo.save(gender);
                     break;
                 case "person":
-                    // Agregar lógica para el caso de "person"
                     entityId = (personRepo.getLastId() != 0) ? personRepo.getLastId() + 1 : 1;
                     Person person = new Person(entityId, input1);
                     personRepo.save(person);
                     break;
                 case "department":
-                    // Agregar lógica para el caso de "department"
                     Department department = new Department(input1);
                     departmentRepo.save(department);
                     break;
@@ -221,7 +217,7 @@ public class MovieService {
                         throw new EntityNotFoundException("Entidad no encontrada: " + entity);
                 }
             } else {
-                throw new entitiExist("Esta entidad no existe: " + entity);
+                throw new entitiExist("Esta id no existe: " + id);
             }
         } else if (operation.equals("update")) {
             if (existEntiti(entity, id)) {
@@ -277,7 +273,7 @@ public class MovieService {
                 }
             } else {
                 System.out.println("NO existe");
-                throw new entitiExist("Esta entidad no existe: " + entity);
+                throw new entitiExist("Esta id no existe: " + id);
             }
         } else {
             throw new UnsupportedOperationException("Operación no soportada: " + operation);

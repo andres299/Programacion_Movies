@@ -5,7 +5,7 @@ const selectElement = document.getElementById("entity");
 const insertButton = document.getElementById("insertButton");
 const updateButton = document.getElementById("updateButton");
 const deleteButton = document.getElementById("deleteButton");
-const keyword = document.getElementById('keyword');
+//const keyword = document.getElementById('keyword');
 
 let page = 0;
 let action = "";
@@ -187,10 +187,9 @@ updateButton.addEventListener('click', () => {
         input1: inputs[1].value,
         input2: inputs[2] ? inputs[2].value : null,
     };
-
     postDataEntity('/operationEntities', requestData);
 });
-
+/*
 keyword.addEventListener('input', () => {
     page = 0;
     const selectedOption = selectElement.value;
@@ -205,6 +204,7 @@ keyword.addEventListener('input', () => {
     postData(`/filterMovies`, requestData);
     document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 })
+*/
 
 async function postDataEntity(URL, data) {
     const response = await fetch(URL, {
