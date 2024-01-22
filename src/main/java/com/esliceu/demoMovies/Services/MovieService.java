@@ -62,7 +62,8 @@ public class MovieService {
         } else if ("genre".equals(filterType)) {
             return movieRepo.findMovieByMovieGenres_GenreGenreNameContaining(keyword);
         } else if ("director".equals(filterType)) {
-            return movieRepo.findByDirectorNameContaining(keyword);
+            String director = "Director";
+            return movieRepo.findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining(director,keyword);
         }
         return Collections.emptyList();
     }
