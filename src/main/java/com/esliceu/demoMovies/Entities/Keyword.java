@@ -11,7 +11,8 @@ public class Keyword {
     @Id
     private int keyword_id;
 
-    private String keyword_name;
+    @Column(name = "keyword_name")
+    private String keywordName;
 
     @OneToMany(mappedBy = "keyword")
     @JsonIgnore
@@ -20,9 +21,9 @@ public class Keyword {
     public Keyword() {
     }
 
-    public Keyword(int keyword_id, String keyword_name) {
+    public Keyword(int keyword_id, String keywordName) {
         this.keyword_id = keyword_id;
-        this.keyword_name = keyword_name;
+        this.keywordName = keywordName;
     }
 
     public int getKeyword_id() {
@@ -33,12 +34,12 @@ public class Keyword {
         this.keyword_id = keyword_id;
     }
 
-    public String getKeyword_name() {
-        return keyword_name;
+    public String getKeywordName() {
+        return keywordName;
     }
 
-    public void setKeyword_name(String keyword_name) {
-        this.keyword_name = keyword_name;
+    public void setKeywordName(String keywordName) {
+        this.keywordName = keywordName;
     }
 
     public Set<Movie_Keywords> getMovieKeywords() {

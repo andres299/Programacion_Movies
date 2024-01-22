@@ -12,6 +12,7 @@ public class Production_Company {
     @Id
     private int company_id;
 
+    @Column(name = "company_name")
     private String companyName;
 
     @OneToMany(mappedBy = "company")

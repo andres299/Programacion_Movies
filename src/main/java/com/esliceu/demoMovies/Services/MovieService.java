@@ -311,11 +311,11 @@ public class MovieService {
             case "language_role":
                 return language_roleRepo.findByLanguageRoleStartingWithIgnoreCase(keyword);
             case "genre":
-
+                return genreRepo.findByGenreNameStartingWithIgnoreCase(keyword);
             case "keyword":
-
+                return keywordRepo.findByKeywordNameStartingWithIgnoreCase(keyword);
             case "production_company":
-
+                return productionCompanyRepo.findByCompanyNameStartingWithIgnoreCase(keyword);
             case "gender":
 
             case "person":
