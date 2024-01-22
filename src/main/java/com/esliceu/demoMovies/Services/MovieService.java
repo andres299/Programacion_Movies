@@ -317,11 +317,11 @@ public class MovieService {
             case "production_company":
                 return productionCompanyRepo.findByCompanyNameStartingWithIgnoreCase(keyword);
             case "gender":
-
+                return genderRepo.findByGenderStartingWithIgnoreCase(keyword);
             case "person":
-
+                return personRepo.findByPersonNameStartingWithIgnoreCase(keyword);
             case "department":
-
+                return departmentRepo.findByDepartmentNameStartingWithIgnoreCase(keyword);
             default:
                 throw new EntityNotFoundException("Entidad no encontrada: " + entity);
         }

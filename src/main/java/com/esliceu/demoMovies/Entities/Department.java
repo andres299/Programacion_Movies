@@ -11,7 +11,8 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int department_id;
 
-    private String department_name;
+    @Column(name = "department_name")
+    private String departmentName;
 
     @OneToMany(mappedBy = "department")
     @JsonIgnore
@@ -20,13 +21,13 @@ public class Department {
     public Department() {
     }
 
-    public Department(String department_name) {
-        this.department_name = department_name;
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
     }
 
-    public Department(int department_id, String department_name) {
+    public Department(int department_id, String departmentName) {
         this.department_id = department_id;
-        this.department_name = department_name;
+        this.departmentName = departmentName;
     }
 
     public int getDepartment_id() {
@@ -37,12 +38,12 @@ public class Department {
         this.department_id = department_id;
     }
 
-    public String getDepartment_name() {
-        return department_name;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setDepartment_name(String department_name) {
-        this.department_name = department_name;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
     public Set<Movie_Crew> getMovieCrews() {

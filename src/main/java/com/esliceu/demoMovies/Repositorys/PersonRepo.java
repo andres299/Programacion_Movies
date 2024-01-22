@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 
+import java.util.List;
+
 public interface PersonRepo extends JpaRepository<Person, Long> {
     @Query(value = "SELECT MAX(person_id) FROM person", nativeQuery = true)
     int getLastId();
@@ -13,4 +15,5 @@ public interface PersonRepo extends JpaRepository<Person, Long> {
     @Query(value = "SELECT COUNT(*) FROM person WHERE person_id = :entityId", nativeQuery = true)
     int ifEntitiExist(@Param("entityId") int entityId);
 
+    List<Person> findByPersonNameStartingWithIgnoreCase(String keyword);
 }
