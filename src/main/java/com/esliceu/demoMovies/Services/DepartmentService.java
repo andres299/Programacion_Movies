@@ -23,4 +23,8 @@ public class DepartmentService {
     public void deleteById(long entityId) {
         departmentRepo.deleteById(entityId);
     }
+
+    public int ifEntitiExist(int entityId) {
+        return departmentRepo.ifEntitiExist(entityId);
+    }
 }

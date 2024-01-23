@@ -23,4 +23,8 @@ public class LanguageService {
     public void deleteById(long entityId) {
         languageRepo.deleteById(entityId);
     }
+
+    public int ifEntitiExist(int entityId) {
+        return languageRepo.ifEntitiExist(entityId);
+    }
 }

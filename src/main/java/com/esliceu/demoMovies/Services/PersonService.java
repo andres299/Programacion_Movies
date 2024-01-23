@@ -27,4 +27,8 @@ public class PersonService {
     public void deleteById(long entityId) {
         personRepo.deleteById(entityId);
     }
+
+    public int ifEntitiExist(int entityId) {
+        return personRepo.ifEntitiExist(entityId);
+    }
 }

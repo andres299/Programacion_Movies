@@ -27,4 +27,8 @@ public class GenderService {
     public void deleteById(long entityId) {
         genderRepo.deleteById(entityId);
     }
+
+    public int ifEntitiExist(int entityId) {
+        return genderRepo.ifEntitiExist(entityId);
+    }
 }

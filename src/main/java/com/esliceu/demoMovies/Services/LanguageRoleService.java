@@ -28,4 +28,8 @@ public class LanguageRoleService {
     public void deleteById(long entityId) {
         language_roleRepo.deleteById(entityId);
     }
+
+    public int ifEntitiExist(int entityId) {
+        return language_roleRepo.ifEntitiExist(entityId);
+    }
 }

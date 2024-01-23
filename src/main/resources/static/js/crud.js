@@ -24,12 +24,6 @@ selectElement.addEventListener("change", function () {
     postData(`/infoEntities`, requestData);
 });
 
-// Lugar donde deseas recargar la página
-function reloadPage() {
-    location.reload();
-}
-
-//reloadPage();
 
 prevButton.addEventListener('click', async () => {
     if (page > 0) page--;
@@ -197,7 +191,6 @@ updateButton.addEventListener('click', () => {
         input2: inputs[2] ? inputs[2].value : null,
     };
     postDataEntity('/operationEntities', requestData);
-    reloadPage();
 });
 
 keyword.addEventListener('input', () => {
@@ -293,7 +286,6 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         postDataEntity('/operationEntities', requestData);
         deleteModal.style.display = 'none'; // Ocultar el modal después de imprimir en la consola
-        reloadPage();
     });
 
     // Ocultar el modal al hacer clic en el botón No, cancelar

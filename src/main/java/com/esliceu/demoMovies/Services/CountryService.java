@@ -23,4 +23,8 @@ public class CountryService {
     public void deleteById(long entityId) {
         countryRepo.deleteById(entityId);
     }
+
+    public int ifEntitiExist(int entityId) {
+        return countryRepo.ifEntitiExist(entityId);
+    }
 }

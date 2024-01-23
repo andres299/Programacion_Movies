@@ -27,4 +27,8 @@ public class KeywordService {
     public void deleteById(long entityId) {
         keywordRepo.deleteById(entityId);
     }
+
+    public int ifEntitiExist(int entityId) {
+        return keywordRepo.ifEntitiExist(entityId);
+    }
 }

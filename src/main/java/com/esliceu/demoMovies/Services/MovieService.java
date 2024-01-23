@@ -173,7 +173,7 @@ public class MovieService {
                 case "genre":
                     entityId = (genreService.getLastId() != 0) ? genreService.getLastId() + 1 : 1;
                     Genre genre = new Genre(entityId, input1);
-                    genreRepo.save(genre);
+                    genreService.save(genre);
                     break;
                 case "keyword":
                     entityId = (keywordService.getLastId() != 0) ? keywordService.getLastId() + 1 : 1;
@@ -263,47 +263,47 @@ public class MovieService {
                     case "country":
                         entityId = Integer.parseInt(id);
                         Country country = new Country(entityId, input1, input2);
-                        countryRepo.save(country);
+                        countryService.save(country);
                         break;
                     case "language":
                         entityId = Integer.parseInt(id);
                         Language language = new Language(entityId, input1, input2);
-                        languageRepo.save(language);
+                        languageService.save(language);
                         break;
                     case "language_role":
                         entityId = Integer.parseInt(id);
                         Language_role language_role = new Language_role(entityId, input1);
-                        language_roleRepo.save(language_role);
+                        languageRoleService.save(language_role);
                         break;
                     case "genre":
                         entityId = Integer.parseInt(id);
                         Genre genre = new Genre(entityId, input1);
-                        genreRepo.save(genre);
+                        genreService.save(genre);
                         break;
                     case "keyword":
                         entityId = Integer.parseInt(id);
                         Keyword keyword = new Keyword(entityId, input1);
-                        keywordRepo.save(keyword);
+                        keywordService.save(keyword);
                         break;
                     case "production_company":
                         entityId = Integer.parseInt(id);
                         Production_Company productionCompany = new Production_Company(entityId, input1);
-                        productionCompanyRepo.save(productionCompany);
+                        productionCompanyService.save(productionCompany);
                         break;
                     case "gender":
                         entityId = Integer.parseInt(id);
                         Gender gender = new Gender(entityId, input1);
-                        genderRepo.save(gender);
+                        genderService.save(gender);
                         break;
                     case "person":
                         entityId = Integer.parseInt(id);
                         Person person = new Person(entityId, input1);
-                        personRepo.save(person);
+                        personService.save(person);
                         break;
                     case "department":
                         entityId = Integer.parseInt(id);
                         Department department = new Department(entityId, input1);
-                        departmentRepo.save(department);
+                        departmentService.save(department);
                         break;
                     default:
                         throw new EntityNotFoundException("Entidad no encontrada: " + entity);
@@ -320,15 +320,15 @@ public class MovieService {
     private boolean existEntiti(String entity, String id) {
         int entityId = Integer.parseInt(id);
         return switch (entity) {
-            case "country" -> countryRepo.ifEntitiExist(entityId) > 0;
-            case "language" -> languageRepo.ifEntitiExist(entityId) > 0;
-            case "language_role" -> language_roleRepo.ifEntitiExist(entityId) > 0;
-            case "genre" -> genreRepo.ifEntitiExist(entityId) > 0;
-            case "keyword" -> keywordRepo.ifEntitiExist(entityId) > 0;
-            case "production_company" -> productionCompanyRepo.ifEntitiExist(entityId) > 0;
-            case "gender" -> genderRepo.ifEntitiExist(entityId) > 0;
-            case "person" -> personRepo.ifEntitiExist(entityId) > 0;
-            case "department" -> departmentRepo.ifEntitiExist(entityId) > 0;
+            case "country" -> countryService.ifEntitiExist(entityId) > 0;
+            case "language" -> languageService.ifEntitiExist(entityId) > 0;
+            case "language_role" -> languageRoleService.ifEntitiExist(entityId) > 0;
+            case "genre" -> genreService.ifEntitiExist(entityId) > 0;
+            case "keyword" -> keywordService.ifEntitiExist(entityId) > 0;
+            case "production_company" -> productionCompanyService.ifEntitiExist(entityId) > 0;
+            case "gender" -> genderService.ifEntitiExist(entityId) > 0;
+            case "person" -> personService.ifEntitiExist(entityId) > 0;
+            case "department" -> departmentService.ifEntitiExist(entityId) > 0;
             default -> false;
         };
 

@@ -27,4 +27,8 @@ public class ProductionCompanyService {
     public void deleteById(long entityId) {
         productionCompanyRepo.deleteById(entityId);
     }
+
+    public int ifEntitiExist(int entityId) {
+        return productionCompanyRepo.ifEntitiExist(entityId);
+    }
 }
