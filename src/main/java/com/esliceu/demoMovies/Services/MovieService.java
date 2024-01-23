@@ -116,8 +116,13 @@ public class MovieService {
         return false;
     }
 
-    public void operationEntitie(String operation, String entity, String id, String input1, String input2) {
+    public void operationEntitie(FetchEntitiDTO fetchEntitiDTO) {
         int entityId;
+        String operation = fetchEntitiDTO.getOperation();
+        String entity = fetchEntitiDTO.getEntity();
+        String id = fetchEntitiDTO.getId();
+        String input1 = fetchEntitiDTO.getInput1();
+        String input2 = fetchEntitiDTO.getInput2();
         System.out.println(operation + " " + entity + " " + id + " " + input1 + " " + input2);
         if (operation.equals("insert")) {
             switch (entity) {

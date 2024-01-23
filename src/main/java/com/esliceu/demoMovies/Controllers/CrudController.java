@@ -47,16 +47,11 @@ public class CrudController {
     @PostMapping("/operationEntities")
     public ResponseEntity<String> operationEntities(@RequestBody FetchEntitiDTO fetchEntitiDTO) {
         Administrator admin = (Administrator) session.getAttribute("admin");
-        String operation = fetchEntitiDTO.getOperation();
-        String entity = fetchEntitiDTO.getEntity();
-        String id = fetchEntitiDTO.getId();
         String input1 = fetchEntitiDTO.getInput1();
-        String input2 = fetchEntitiDTO.getInput2();
-        System.out.println(operation + entity + id + input1 + input2);
         try {
             if (movieService.inputEntitie(input1)) {
                 //if (admin != null) {
-                movieService.operationEntitie(operation, entity, id, input1, input2);
+                movieService.operationEntitie(fetchEntitiDTO);
                 return ResponseEntity.ok("Se ha realizado correctamente");
                 //} else{
                 // Aquí puedes agregar un manejo específico para la excepción relacionada con el administrador
