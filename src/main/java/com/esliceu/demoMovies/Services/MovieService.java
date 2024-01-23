@@ -16,66 +16,34 @@ public class MovieService {
     @Autowired
     MovieRepo movieRepo;
     @Autowired
-    CountryRepo countryRepo;
-    @Autowired
     CountryService countryService;
     @Autowired
-    LanguageRepo languageRepo;
-    @Autowired
     LanguageService languageService;
-    @Autowired
-    DepartmentRepo departmentRepo;
     @Autowired DepartmentService departmentService;
-    @Autowired
-    GenderRepo genderRepo;
     @Autowired
     GenderService genderService;
     @Autowired
-    GenreRepo genreRepo;
-    @Autowired
     GenreService genreService;
-    @Autowired
-    KeywordRepo keywordRepo;
     @Autowired
     KeywordService keywordService;
     @Autowired
-    Language_roleRepo language_roleRepo;
-    @Autowired
     LanguageRoleService languageRoleService;
-    @Autowired
-    PersonRepo personRepo;
     @Autowired
     PersonService personService;
     @Autowired
-    Production_CompanyRepo productionCompanyRepo;
-    @Autowired
     ProductionCompanyService productionCompanyService;
-    @Autowired
-    Production_CountryRepo productionCountryRepo;
     @Autowired
     ProductionCountryService productionCountryService;
     @Autowired
-    Movie_LanguagesRepo movieLanguagesRepo;
-    @Autowired
     Movie_LanguageService movieLanguageService;
-    @Autowired
-    Movie_GenresRepo movieGenresRepo;
     @Autowired
     Movie_GenresService movieGenresService;
     @Autowired
-    Movie_KeywordsRepo movieKeywordsRepo;
-    @Autowired
     Movie_KeywordsService movieKeywordsService;
-    @Autowired
-    Movie_CompanyRepo movieCompanyRepo;
     @Autowired
     Movie_CompanyService movieCompanyService;
     @Autowired
-    Movie_CastRepo movieCastRepo;
-    @Autowired
     Movie_CastService movieCastService;
-    @Autowired
-    Movie_CrewRepo movieCrewRepo;
     @Autowired
     Movie_CrewService movieCrewService;
 
@@ -340,23 +308,23 @@ public class MovieService {
         System.out.println(entity + keyword);
         switch (entity) {
             case "country":
-                return countryRepo.findByCountryNameStartingWithIgnoreCase(keyword);
+                return countryService.findByCountryNameStartingWithIgnoreCase(keyword);
             case "language":
-                return languageRepo.findByLanguageNameStartingWithIgnoreCase(keyword);
+                return languageService.findByLanguageNameStartingWithIgnoreCase(keyword);
             case "language_role":
-                return language_roleRepo.findByLanguageRoleStartingWithIgnoreCase(keyword);
+                return languageRoleService.findByLanguageRoleStartingWithIgnoreCase(keyword);
             case "genre":
-                return genreRepo.findByGenreNameStartingWithIgnoreCase(keyword);
+                return genreService.findByGenreNameStartingWithIgnoreCase(keyword);
             case "keyword":
-                return keywordRepo.findByKeywordNameStartingWithIgnoreCase(keyword);
+                return keywordService.findByKeywordNameStartingWithIgnoreCase(keyword);
             case "production_company":
-                return productionCompanyRepo.findByCompanyNameStartingWithIgnoreCase(keyword);
+                return productionCompanyService.findByCompanyNameStartingWithIgnoreCase(keyword);
             case "gender":
-                return genderRepo.findByGenderStartingWithIgnoreCase(keyword);
+                return genderService.findByGenderStartingWithIgnoreCase(keyword);
             case "person":
-                return personRepo.findByPersonNameStartingWithIgnoreCase(keyword);
+                return personService.findByPersonNameStartingWithIgnoreCase(keyword);
             case "department":
-                return departmentRepo.findByDepartmentNameStartingWithIgnoreCase(keyword);
+                return departmentService.findByDepartmentNameStartingWithIgnoreCase(keyword);
             default:
                 throw new EntityNotFoundException("Entidad no encontrada: " + entity);
         }

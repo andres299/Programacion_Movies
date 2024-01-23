@@ -31,4 +31,8 @@ public class ProductionCompanyService {
     public int ifEntitiExist(int entityId) {
         return productionCompanyRepo.ifEntitiExist(entityId);
     }
+
+    public List<?> findByCompanyNameStartingWithIgnoreCase(String keyword) {
+        return productionCompanyRepo.findByCompanyNameStartingWithIgnoreCase(keyword);
+    }
 }

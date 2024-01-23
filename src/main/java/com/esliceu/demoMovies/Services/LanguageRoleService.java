@@ -32,4 +32,8 @@ public class LanguageRoleService {
     public int ifEntitiExist(int entityId) {
         return language_roleRepo.ifEntitiExist(entityId);
     }
+
+    public List<?> findByLanguageRoleStartingWithIgnoreCase(String keyword) {
+        return language_roleRepo.findByLanguageRoleStartingWithIgnoreCase(keyword);
+    }
 }

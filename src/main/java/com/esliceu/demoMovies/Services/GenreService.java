@@ -31,4 +31,8 @@ public class GenreService {
     public int ifEntitiExist(int entityId) {
         return genreRepo.ifEntitiExist(entityId);
     }
+
+    public List<?> findByGenreNameStartingWithIgnoreCase(String keyword) {
+        return genreRepo.findByGenreNameStartingWithIgnoreCase(keyword);
+    }
 }

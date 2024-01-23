@@ -27,4 +27,8 @@ public class LanguageService {
     public int ifEntitiExist(int entityId) {
         return languageRepo.ifEntitiExist(entityId);
     }
+
+    public List<?> findByLanguageNameStartingWithIgnoreCase(String keyword) {
+        return languageRepo.findByLanguageNameStartingWithIgnoreCase(keyword);
+    }
 }

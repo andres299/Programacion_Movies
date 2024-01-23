@@ -31,4 +31,8 @@ public class PersonService {
     public int ifEntitiExist(int entityId) {
         return personRepo.ifEntitiExist(entityId);
     }
+
+    public List<?> findByPersonNameStartingWithIgnoreCase(String keyword) {
+        return personRepo.findByPersonNameStartingWithIgnoreCase(keyword);
+    }
 }

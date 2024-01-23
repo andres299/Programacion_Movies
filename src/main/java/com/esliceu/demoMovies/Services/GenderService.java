@@ -31,4 +31,8 @@ public class GenderService {
     public int ifEntitiExist(int entityId) {
         return genderRepo.ifEntitiExist(entityId);
     }
+
+    public List<?> findByGenderStartingWithIgnoreCase(String keyword) {
+        return genderRepo.findByGenderStartingWithIgnoreCase(keyword);
+    }
 }

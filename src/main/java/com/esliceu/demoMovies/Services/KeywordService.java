@@ -31,4 +31,8 @@ public class KeywordService {
     public int ifEntitiExist(int entityId) {
         return keywordRepo.ifEntitiExist(entityId);
     }
+
+    public List<?> findByKeywordNameStartingWithIgnoreCase(String keyword) {
+        return keywordRepo.findByKeywordNameStartingWithIgnoreCase(keyword);
+    }
 }

@@ -27,4 +27,8 @@ public class DepartmentService {
     public int ifEntitiExist(int entityId) {
         return departmentRepo.ifEntitiExist(entityId);
     }
+
+    public List<?> findByDepartmentNameStartingWithIgnoreCase(String keyword) {
+        return departmentRepo.findByDepartmentNameStartingWithIgnoreCase(keyword);
+    }
 }

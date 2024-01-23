@@ -27,4 +27,8 @@ public class CountryService {
     public int ifEntitiExist(int entityId) {
         return countryRepo.ifEntitiExist(entityId);
     }
+
+    public List<?> findByCountryNameStartingWithIgnoreCase(String keyword) {
+        return countryRepo.findByCountryNameStartingWithIgnoreCase(keyword);
+    }
 }
