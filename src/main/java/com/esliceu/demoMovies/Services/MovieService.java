@@ -87,7 +87,7 @@ public class MovieService {
     }
 
     public List<Country> getAllCountrys() {
-        return countryRepo.findAll();
+        return (List<Country>) countryService.findAll();
     }
 
     public List<?> infoEntities(String selectedValue) {
