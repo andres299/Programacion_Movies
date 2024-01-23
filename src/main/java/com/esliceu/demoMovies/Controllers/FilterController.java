@@ -5,12 +5,15 @@ import com.esliceu.demoMovies.Entities.Movie;
 import com.esliceu.demoMovies.Services.MovieService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -34,10 +37,12 @@ public class FilterController {
         return movieService.getAllMovies();
     }
 
+
     @PostMapping("/filterMovies")
     @ResponseBody
-    public List<Movie> filterMovies(@RequestParam String filterType, @RequestParam String keyword){
-        return movieService.filterMovies(filterType, keyword);
+    public List<Movie> filterMovies(@RequestParam String filterType, @RequestParam String keyword) {
+        //Pageable pageable = PageRequest.of(0,5);
+        return movieService.filterMovies(filterType,keyword);
     }
 
 

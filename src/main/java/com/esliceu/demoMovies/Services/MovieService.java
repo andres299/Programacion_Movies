@@ -4,10 +4,9 @@ import com.esliceu.demoMovies.DTO.FetchEntitiDTO;
 import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
