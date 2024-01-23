@@ -88,7 +88,8 @@ async function postData(URL, data) {
 function updateUI() {
     entityTable.innerHTML = "";
 
-    if (entityData.length === 0) {
+    if (entityData === null || entityData.length === 0) {
+        console.log("vacio");
         // Si el array está vacío, mostrar un mensaje
         const noResultsRow = document.createElement("tr");
         const noResultsCell = document.createElement("td");
@@ -242,7 +243,6 @@ async function searchDataEntity(URL, data) {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-
         const responseData = await response.json();
         entityData = responseData;
         updateUI();
