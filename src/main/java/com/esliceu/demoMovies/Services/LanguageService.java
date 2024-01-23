@@ -19,4 +19,8 @@ public class LanguageService {
     public void save(Language language) {
         languageRepo.save(language);
     }
+
+    public void deleteById(long entityId) {
+        languageRepo.deleteById(entityId);
+    }
 }

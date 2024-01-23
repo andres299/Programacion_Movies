@@ -23,4 +23,8 @@ public class ProductionCompanyService {
     public void save(Production_Company productionCompany) {
         productionCompanyRepo.save(productionCompany);
     }
+
+    public void deleteById(long entityId) {
+        productionCompanyRepo.deleteById(entityId);
+    }
 }

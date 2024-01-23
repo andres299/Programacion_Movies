@@ -53,17 +53,31 @@ public class MovieService {
     @Autowired
     Production_CountryRepo productionCountryRepo;
     @Autowired
+    ProductionCountryService productionCountryService;
+    @Autowired
     Movie_LanguagesRepo movieLanguagesRepo;
+    @Autowired
+    Movie_LanguageService movieLanguageService;
     @Autowired
     Movie_GenresRepo movieGenresRepo;
     @Autowired
+    Movie_GenresService movieGenresService;
+    @Autowired
     Movie_KeywordsRepo movieKeywordsRepo;
+    @Autowired
+    Movie_KeywordsService movieKeywordsService;
     @Autowired
     Movie_CompanyRepo movieCompanyRepo;
     @Autowired
+    Movie_CompanyService movieCompanyService;
+    @Autowired
     Movie_CastRepo movieCastRepo;
     @Autowired
+    Movie_CastService movieCastService;
+    @Autowired
     Movie_CrewRepo movieCrewRepo;
+    @Autowired
+    Movie_CrewService movieCrewService;
 
     public List<Movie> getAllMovies() {
         return movieRepo.findAll();
@@ -192,49 +206,49 @@ public class MovieService {
                 switch (entity) {
                     case "country":
                         entityId = Integer.parseInt(id);
-                        productionCountryRepo.deleteByCountryId(entityId);
-                        countryRepo.deleteById((long) entityId);
+                        productionCountryService.deleteByCountryId(entityId);
+                        countryService.deleteById((long) entityId);
                         break;
                     case "language":
                         entityId = Integer.parseInt(id);
-                        movieLanguagesRepo.deleteByLanguageId(entityId);
-                        languageRepo.deleteById((long) entityId);
+                        movieLanguageService.deleteByLanguageId(entityId);
+                        languageService.deleteById((long) entityId);
                         break;
                     case "language_role":
                         entityId = Integer.parseInt(id);
-                        movieLanguagesRepo.deleteByLanguageRoleId(entityId);
-                        language_roleRepo.deleteById((long) entityId);
+                        movieLanguageService.deleteByLanguageRoleId(entityId);
+                        languageRoleService.deleteById((long) entityId);
                         break;
                     case "genre":
                         entityId = Integer.parseInt(id);
-                        movieGenresRepo.deleteByGenreId(entityId);
-                        genreRepo.deleteById((long) entityId);
+                        movieGenresService.deleteByGenreId(entityId);
+                        genreService.deleteById((long) entityId);
                         break;
                     case "keyword":
                         entityId = Integer.parseInt(id);
-                        movieKeywordsRepo.deleteByKeywordId(entityId);
-                        keywordRepo.deleteById((long) entityId);
+                        movieKeywordsService.deleteByKeywordId(entityId);
+                        keywordService.deleteById((long) entityId);
                         break;
                     case "production_company":
                         entityId = Integer.parseInt(id);
-                        movieCompanyRepo.deleteByProductionCompany(entityId);
-                        productionCompanyRepo.deleteById((long) entityId);
+                        movieCompanyService.deleteByProductionCompany(entityId);
+                        productionCompanyService.deleteById((long) entityId);
                         break;
                     case "gender":
                         entityId = Integer.parseInt(id);
-                        movieCastRepo.deleteByGenderId(entityId);
-                        genderRepo.deleteById((long) entityId);
+                        movieCastService.deleteByGenderId(entityId);
+                        genderService.deleteById((long) entityId);
                         break;
                     case "person":
                         entityId = Integer.parseInt(id);
-                        movieCrewRepo.deleteByPersonId(entityId);
-                        movieCastRepo.deleteByPersonId(entityId);
-                        personRepo.deleteById((long) entityId);
+                        movieCrewService.deleteByPersonId(entityId);
+                        movieCastService.deleteByPersonId(entityId);
+                        personService.deleteById((long) entityId);
                         break;
                     case "department":
                         entityId = Integer.parseInt(id);
-                        movieCrewRepo.deleteByDepartmentId(entityId);
-                        departmentRepo.deleteById((long) entityId);
+                        movieCrewService.deleteByDepartmentId(entityId);
+                        departmentService.deleteById((long) entityId);
                         break;
                     default:
                         throw new EntityNotFoundException("Entidad no encontrada: " + entity);

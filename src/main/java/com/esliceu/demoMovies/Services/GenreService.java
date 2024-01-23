@@ -18,4 +18,8 @@ public class GenreService {
     public int getLastId() {
         return genreRepo.getLastId();
     }
+
+    public void deleteById(long entityId) {
+        genreRepo.deleteById(entityId);
+    }
 }

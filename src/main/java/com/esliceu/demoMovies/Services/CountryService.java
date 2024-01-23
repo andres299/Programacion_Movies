@@ -20,4 +20,7 @@ public class CountryService {
         countryRepo.save(country);
     }
 
+    public void deleteById(long entityId) {
+        countryRepo.deleteById(entityId);
+    }
 }

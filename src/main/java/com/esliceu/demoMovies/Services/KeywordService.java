@@ -23,4 +23,8 @@ public class KeywordService {
     public void save(Keyword keyword) {
         keywordRepo.save(keyword);
     }
+
+    public void deleteById(long entityId) {
+        keywordRepo.deleteById(entityId);
+    }
 }

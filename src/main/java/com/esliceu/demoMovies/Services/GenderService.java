@@ -23,4 +23,8 @@ public class GenderService {
     public void save(Gender gender) {
         genderRepo.save(gender);
     }
+
+    public void deleteById(long entityId) {
+        genderRepo.deleteById(entityId);
+    }
 }

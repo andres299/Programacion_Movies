@@ -19,4 +19,8 @@ public class DepartmentService {
     public void save(Department department) {
         departmentRepo.save(department);
     }
+
+    public void deleteById(long entityId) {
+        departmentRepo.deleteById(entityId);
+    }
 }

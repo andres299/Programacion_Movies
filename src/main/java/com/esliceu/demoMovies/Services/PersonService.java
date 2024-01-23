@@ -23,4 +23,8 @@ public class PersonService {
     public void save(Person person) {
         personRepo.save(person);
     }
+
+    public void deleteById(long entityId) {
+        personRepo.deleteById(entityId);
+    }
 }

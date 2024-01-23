@@ -24,4 +24,8 @@ public class LanguageRoleService {
     public void save(Language_role languageRole) {
         language_roleRepo.save(languageRole);
     }
+
+    public void deleteById(long entityId) {
+        language_roleRepo.deleteById(entityId);
+    }
 }
