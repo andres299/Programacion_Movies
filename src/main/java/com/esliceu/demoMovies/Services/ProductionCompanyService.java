@@ -1,11 +1,11 @@
 package com.esliceu.demoMovies.Services;
 
-import com.esliceu.demoMovies.Repositorys.LanguageRepo;
+import com.esliceu.demoMovies.Repositorys.Production_CompanyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LanguageService {
+public class ProductionCompanyService {
     @Autowired
-    LanguageRepo languageRepo;
+    Production_CompanyRepo productionCompanyRepo;
 }
