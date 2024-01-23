@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Services;
 
+import com.esliceu.demoMovies.Entities.Keyword;
 import com.esliceu.demoMovies.Repositorys.KeywordRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,5 +14,13 @@ public class KeywordService {
 
     public List<?> findAll() {
         return keywordRepo.findAll();
+    }
+
+    public int getLastId() {
+        return keywordRepo.getLastId();
+    }
+
+    public void save(Keyword keyword) {
+        keywordRepo.save(keyword);
     }
 }

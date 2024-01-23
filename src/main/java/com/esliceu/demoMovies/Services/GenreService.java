@@ -14,4 +14,8 @@ public class GenreService {
     public List<?> findAll() {
         return genreRepo.findAll();
     }
+
+    public int getLastId() {
+        return genreRepo.getLastId();
+    }
 }

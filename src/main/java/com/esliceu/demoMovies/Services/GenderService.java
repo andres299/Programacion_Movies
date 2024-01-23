@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Services;
 
+import com.esliceu.demoMovies.Entities.Gender;
 import com.esliceu.demoMovies.Repositorys.GenderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,5 +14,13 @@ public class GenderService {
 
     public List<?> findAll() {
         return genderRepo.findAll();
+    }
+
+    public int getLastId() {
+        return genderRepo.getLastId();
+    }
+
+    public void save(Gender gender) {
+        genderRepo.save(gender);
     }
 }
