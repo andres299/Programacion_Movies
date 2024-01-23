@@ -18,21 +18,38 @@ public class MovieService {
     @Autowired
     CountryRepo countryRepo;
     @Autowired
+    CountryService countryService;
+    @Autowired
     LanguageRepo languageRepo;
     @Autowired
+    LanguageService languageService;
+    @Autowired
     DepartmentRepo departmentRepo;
+    @Autowired DepartmentService departmentService;
     @Autowired
     GenderRepo genderRepo;
     @Autowired
+    GenderService genderService;
+    @Autowired
     GenreRepo genreRepo;
+    @Autowired
+    GenreService genreService;
     @Autowired
     KeywordRepo keywordRepo;
     @Autowired
+    KeywordService keywordService;
+    @Autowired
     Language_roleRepo language_roleRepo;
+    @Autowired
+    LanguageRoleService languageRoleService;
     @Autowired
     PersonRepo personRepo;
     @Autowired
+    PersonService personService;
+    @Autowired
     Production_CompanyRepo productionCompanyRepo;
+    @Autowired
+    ProductionCompanyService productionCompanyService;
     @Autowired
     Production_CountryRepo productionCountryRepo;
     @Autowired
@@ -78,34 +95,34 @@ public class MovieService {
 
         switch (selectedValue) {
             case "country":
-                listEntiti = countryRepo.findAll();
+                listEntiti = countryService.findAll();
                 break;
             case "language":
-                listEntiti = languageRepo.findAll();
+                listEntiti = languageService.findAll();
                 break;
             case "language_role":
-                listEntiti = language_roleRepo.findAll();
+                listEntiti = languageRoleService.findAll();
                 break;
             case "genre":
-                listEntiti = genreRepo.findAll();
+                listEntiti = genreService.findAll();
                 break;
             case "keyword":
-                listEntiti = keywordRepo.findAll();
+                listEntiti = keywordService.findAll();
                 break;
             case "production_company":
-                listEntiti = productionCompanyRepo.findAll();
+                listEntiti = productionCompanyService.findAll();
                 break;
             case "gender":
-                listEntiti = genderRepo.findAll();
+                listEntiti = genderService.findAll();
                 break;
             case "person":
-                listEntiti = personRepo.findAll();
+                listEntiti = personService.findAll();
                 break;
             case "department":
-                listEntiti = departmentRepo.findAll();
+                listEntiti = departmentService.findAll();
                 break;
             default:
-                listEntiti = countryRepo.findAll();
+                listEntiti = countryService.findAll();
                 break;
         }
         return listEntiti;
@@ -128,7 +145,7 @@ public class MovieService {
             switch (entity) {
                 case "country":
                     Country country = new Country(input1, input2);
-                    countryRepo.save(country);
+                    countryService.save(country);
                     break;
                 case "language":
                     Language language = new Language(input1, input2);
