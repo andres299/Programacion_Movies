@@ -40,14 +40,14 @@ public class FilterController {
     @PostMapping("/filterMovies")
     @ResponseBody
     public List<Movie> filterMovies(@RequestParam String filterType, @RequestParam String keyword) {
-        //Pageable pageable = PageRequest.of(0,5);
         return movieService.filterMovies(filterType,keyword);
     }
 
     @PostMapping("/infoMovies")
-    ResponseEntity<String> infoMovies(@RequestParam int movieId) {
+    @ResponseBody
+    ResponseEntity<String> infoMovies(@RequestBody int movieId) {
         System.out.println(movieId);
-        return null;
+        return ResponseEntity.ok("Información de la película recibida correctamente.");
     }
 
 

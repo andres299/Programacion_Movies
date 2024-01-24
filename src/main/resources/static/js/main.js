@@ -73,6 +73,24 @@ async function postData(URL, data) {
         console.error('Error fetching data:', error);
     });
 }
+
+function infoMoviesData(url, data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(url, requestOptions)
+        .then(response => response.json())
+        .catch(error => {
+            console.error('Error en la solicitud Fetch:', error);
+            throw error; // Puedes manejar el error de alguna otra manera si es necesario
+        });
+}
+
 // Función para actualizar la interfaz de usuario con los datos recibidos
 function updateUI() {
     moviesTable.innerHTML = "";
@@ -133,12 +151,14 @@ function updateUI() {
 
         // Agregar evento al botón "View"
         viewButton.addEventListener("click", function() {
+            const movieIdValue = this.value;
+            const data = {
+                    movieId: parseInt(movieIdValue)
+            };
+            infoMoviesData(`/infoMovies`, data);
             // Mostrar el modal
             const modal = document.getElementById("myModal");
             const movieIdSpan = document.getElementById("movieIdSpan");
-
-            // Configurar el contenido del modal (puedes personalizar esto según tus necesidades)
-            //movieIdSpan.textContent = movie.movieId;
 
             modal.style.display = "flex"; // Cambiar a "flex" en lugar de "block"
 
@@ -159,5 +179,6 @@ function updateUI() {
         moviesTable.appendChild(row);
     });
 }
+
 
 changePage(`/allMovies`);
