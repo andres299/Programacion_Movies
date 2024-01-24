@@ -73,7 +73,6 @@ async function postData(URL, data) {
         console.error('Error fetching data:', error);
     });
 }
-
 // Función para actualizar la interfaz de usuario con los datos recibidos
 function updateUI() {
     moviesTable.innerHTML = "";
@@ -93,7 +92,7 @@ function updateUI() {
     const startIndex = page * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentMovies = moviesData.slice(startIndex, endIndex);
-    console.log(moviesData);
+
     currentMovies.forEach(movie => {
         const row = document.createElement("tr");
         const columns = [
@@ -105,6 +104,21 @@ function updateUI() {
             const cell = document.createElement("td");
             cell.textContent = movie[column];
             row.appendChild(cell);
+        });
+
+        // Crear botón "View" en la columna de "Options"
+        const viewButton = document.createElement("button");
+        viewButton.textContent = "View";
+        viewButton.value = movie.movieId; // Asignar el valor de movieId al botón
+
+        const optionsCell = document.createElement("td");
+        optionsCell.appendChild(viewButton);
+        row.appendChild(optionsCell);
+
+        // Agregar evento al botón "View"
+        viewButton.addEventListener("click", function() {
+            // Lógica para manejar la acción de vista, puedes usar movie.movieId aquí
+            alert("Mostrar detalles de la película con ID: " + movie.movieId);
         });
 
         moviesTable.appendChild(row);
