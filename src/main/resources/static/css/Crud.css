@@ -50,6 +50,7 @@ h1 {
 .button-section {
     display: flex;
     text-align: right;
+    margin-top: 20px;
     margin-left: 15px;
 }
 
@@ -284,4 +285,9 @@ input {
     color: rgb(247, 242, 242);
     text-decoration: none;
     cursor: pointer;
+}
+
+#moviesFields , #moviesUpdateFields{
+    max-height: 300px;
+    overflow-y: scroll;
 }
