@@ -299,6 +299,7 @@ public class MovieService {
             case "gender" -> genderService.ifEntitiExist(entityId) > 0;
             case "person" -> personService.ifEntitiExist(entityId) > 0;
             case "department" -> departmentService.ifEntitiExist(entityId) > 0;
+            case "movies" -> movieRepo.ifEntitiExist(entityId) > 0;
             default -> false;
         };
 
@@ -331,6 +332,15 @@ public class MovieService {
                 return movieRepo.findByTitleSelectInfo(keyword);
             default:
                 throw new EntityNotFoundException("Entidad no encontrada: " + entity);
+        }
+    }
+
+    public void operationMovies(Movie movie) {
+        String entity = "movies";
+        String entityId = String.valueOf(movie.getMovie_id());
+        if ()
+        if (existEntiti(entity,entityId)){
+
         }
     }
 

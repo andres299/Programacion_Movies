@@ -191,18 +191,25 @@ function handleMoviesInsert() {
     const selectedOption = selectElement.value;
     // Obtener todos los inputs del formulario actualmente seleccionado
     const inputs = Array.from(document.getElementById(selectedOption + "Fields").querySelectorAll("input"));
-    //console.log("Inputs:", inputs);
     operation = 'insert';
     // Construir el objeto requestData
     const requestData = {
         operation: operation,
-        entity: selectedOption,
         id: null,
-        input1: inputs[0].value,
-        input2: inputs[1] ? inputs[1].value : null,
+        title: inputs[0] ? inputs[0].value : null,
+        budget: inputs[1] ? inputs[1].value : null,
+        homepage: inputs[2] ? inputs[2].value : null,
+        overview: inputs[3] ? inputs[3].value : null,
+        popularity: inputs[4] ? inputs[4].value : null,
+        release_date: inputs[5] ? inputs[5].value : null,
+        revenue: inputs[6] ? inputs[6].value : null,
+        runtime: inputs[7] ? inputs[7].value : null,
+        movie_status: inputs[8] ? inputs[8].value : null,
+        tagline: inputs[9] ? inputs[9].value : null,
+        vote_average: inputs[10] ? inputs[10].value : null,
+        vote_count: inputs[11] ? inputs[11].value : null,
     };
-
-    postDataEntity('/operationEntities', requestData);
+    postDataEntity('/operationMovies', requestData);
 }
 
 

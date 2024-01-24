@@ -76,8 +76,23 @@ public class CrudController {
     }
 
     @PostMapping("/operationMovies")
-    @ResponseBody
-    public List<Movie> operationMovies(){
-        return null;
+    ResponseEntity<String> operationMovies(@RequestBody Movie movie){
+        Administrator admin = (Administrator) session.getAttribute("admin");
+        String title = movie.getTitle();
+        try {
+            if (movieService.inputEntitie(title)) {
+                //if (admin != null) {
+                movieService.operationMovies(movie);
+                return ResponseEntity.ok("Se ha realizado correctamente");
+                //} else{
+                // Aquí puedes agregar un manejo específico para la excepción relacionada con el administrador
+                // return ResponseEntity.badRequest().body("Error: El administrador no está autenticado");
+                //}
+            } else {
+                return ResponseEntity.badRequest().body("Error: Entrada no válida para la entidad");
+            }
+        } catch (UnsupportedOperationException | MovieService.EntityNotFoundException | MovieService.entitiExist e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+        }
     }
 }
