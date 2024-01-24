@@ -102,6 +102,9 @@ public class MovieService {
             case "department":
                 listEntiti = departmentService.findAll();
                 break;
+            case "movies":
+                listEntiti = movieRepo.findInfoMovies();
+                break;
             default:
                 listEntiti = countryService.findAll();
                 break;

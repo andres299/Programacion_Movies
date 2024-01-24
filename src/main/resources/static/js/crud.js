@@ -84,7 +84,6 @@ async function postData(URL, data) {
         });
 }
 
-// Función para actualizar la interfaz de usuario con los datos recibidos
 function updateUI() {
     entityTable.innerHTML = "";
 
@@ -107,22 +106,28 @@ function updateUI() {
 
     const headerRow = document.createElement("tr");
 
-    for (const key in currentEntities[0]) {
+    // Obtén los nombres de las columnas de la primera fila de resultados
+    const columnNames = Object.keys(currentEntities[0]);
+    console.log(columnNames);
+    // Utiliza los nombres de las columnas para crear los encabezados
+    columnNames.forEach(columnName => {
         const headerCell = document.createElement("th");
-        headerCell.textContent = key;
+        headerCell.textContent = columnName;
         headerRow.appendChild(headerCell);
-    }
+    });
 
     entityTable.appendChild(headerRow);
 
     currentEntities.forEach(entity => {
         const row = document.createElement("tr");
 
-        for (const key in entity) {
+        // Utiliza los nombres de las columnas para obtener los valores correspondientes
+        columnNames.forEach(columnName => {
             const cell = document.createElement("td");
-            cell.textContent = entity[key];
+            cell.textContent = entity[columnName];
             row.appendChild(cell);
-        }
+        });
+
         entityTable.appendChild(row);
     });
 }
