@@ -109,7 +109,23 @@ function updateUI() {
         // Crear botón "View" en la columna de "Options"
         const viewButton = document.createElement("button");
         viewButton.textContent = "View";
-        viewButton.value = movie.movieId; // Asignar el valor de movieId al botón
+        viewButton.value = movie.movieId;
+
+        viewButton.style.backgroundColor = "royalblue";
+
+        // Agregar estilos adicionales para el hover
+        viewButton.style.transition = "background-color 0.3s ease";
+        viewButton.style.cursor = "pointer";
+
+        // Agregar evento de hover
+        viewButton.addEventListener("mouseover", function() {
+            viewButton.style.backgroundColor = "cornflowerblue";
+        });
+
+        // Restaurar el color original al quitar el mouse del botón
+        viewButton.addEventListener("mouseout", function() {
+            viewButton.style.backgroundColor = "royalblue";
+        });
 
         const optionsCell = document.createElement("td");
         optionsCell.appendChild(viewButton);
