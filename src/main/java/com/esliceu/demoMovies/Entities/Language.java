@@ -9,7 +9,8 @@ import java.util.Set;
 public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int language_id;
+    @Column(name = "language_id")
+    private int languageId;
 
     @Column(name = "language_code")
     private String languageCode;
@@ -29,18 +30,18 @@ public class Language {
         this.languageName = languageName;
     }
 
-    public Language(int language_id, String languageCode, String languageName) {
-        this.language_id = language_id;
+    public Language(int languageId, String languageCode, String languageName) {
+        this.languageId = languageId;
         this.languageCode = languageCode;
         this.languageName = languageName;
     }
 
-    public int getLanguage_id() {
-        return language_id;
+    public int getLanguageId() {
+        return languageId;
     }
 
-    public void setLanguage_id(int language_id) {
-        this.language_id = language_id;
+    public void setLanguageId(int languageId) {
+        this.languageId = languageId;
     }
 
     public String getLanguageCode() {

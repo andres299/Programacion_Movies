@@ -8,7 +8,8 @@ import java.util.Set;
 @Entity
 public class Genre {
     @Id
-    private int genre_id;
+    @Column(name = "genre_id")
+    private int genreId;
 
     @Column(name = "genre_name")
     private String genreName;
@@ -20,17 +21,17 @@ public class Genre {
     public Genre() {
     }
 
-    public Genre(int genre_id, String genreName) {
-        this.genre_id = genre_id;
+    public Genre(int genreId, String genreName) {
+        this.genreId = genreId;
         this.genreName = genreName;
     }
 
-    public int getGenre_id() {
-        return genre_id;
+    public int getGenreId() {
+        return genreId;
     }
 
-    public void setGenre_id(int genre_id) {
-        this.genre_id = genre_id;
+    public void setGenreId(int genreId) {
+        this.genreId = genreId;
     }
 
     public String getGenreName() {

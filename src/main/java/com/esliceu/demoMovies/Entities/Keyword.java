@@ -9,7 +9,8 @@ import java.util.Set;
 @Entity
 public class Keyword {
     @Id
-    private int keyword_id;
+    @Column(name = "keyword_id")
+    private int keywordId;
 
     @Column(name = "keyword_name")
     private String keywordName;
@@ -21,17 +22,17 @@ public class Keyword {
     public Keyword() {
     }
 
-    public Keyword(int keyword_id, String keywordName) {
-        this.keyword_id = keyword_id;
+    public Keyword(int keywordId, String keywordName) {
+        this.keywordId = keywordId;
         this.keywordName = keywordName;
     }
 
-    public int getKeyword_id() {
-        return keyword_id;
+    public int getKeywordId() {
+        return keywordId;
     }
 
-    public void setKeyword_id(int keyword_id) {
-        this.keyword_id = keyword_id;
+    public void setKeywordId(int keywordId) {
+        this.keywordId = keywordId;
     }
 
     public String getKeywordName() {

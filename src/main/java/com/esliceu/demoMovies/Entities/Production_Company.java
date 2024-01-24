@@ -10,7 +10,8 @@ import java.util.Set;
 public class Production_Company {
 
     @Id
-    private int company_id;
+    @Column(name = "company_id")
+    private int companyId;
 
     @Column(name = "company_name")
     private String companyName;
@@ -22,17 +23,17 @@ public class Production_Company {
     public Production_Company() {
     }
 
-    public Production_Company(int company_id, String companyName) {
-        this.company_id = company_id;
+    public Production_Company(int companyId, String companyName) {
+        this.companyId = companyId;
         this.companyName = companyName;
     }
 
-    public int getCompany_id() {
-        return company_id;
+    public int getCompanyId() {
+        return companyId;
     }
 
-    public void setCompany_id(int company_id) {
-        this.company_id = company_id;
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 
     public String getCompanyName() {

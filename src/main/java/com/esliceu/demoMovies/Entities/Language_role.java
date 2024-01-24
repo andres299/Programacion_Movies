@@ -8,7 +8,8 @@ import java.util.Set;
 @Entity
 public class Language_role {
     @Id
-    private int role_id;
+    @Column(name = "role_id")
+    private int roleId;
 
     @Column(name = "language_role")
     private String languageRole;
@@ -20,17 +21,17 @@ public class Language_role {
     public Language_role() {
     }
 
-    public Language_role(int role_id, String languageRole) {
-        this.role_id = role_id;
+    public Language_role(int roleId, String languageRole) {
+        this.roleId = roleId;
         this.languageRole = languageRole;
     }
 
-    public int getRole_id() {
-        return role_id;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public String getLanguageRole() {

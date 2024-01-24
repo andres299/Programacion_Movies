@@ -9,8 +9,11 @@ import java.util.Set;
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int country_id;
-    String country_iso_code;
+    @Column(name="country_id")
+    int countryId;
+
+    @Column(name = "country_iso_code")
+    String countryIsoCode;
     @Column(name = "country_name")
     String countryName;
     @OneToMany(mappedBy = "country")
@@ -20,31 +23,31 @@ public class Country {
     public Country() {
     }
 
-    public Country(String country_iso_code, String countryName) {
-        this.country_iso_code = country_iso_code;
+    public Country(String countryIsoCode, String countryName) {
+        this.countryIsoCode = countryIsoCode;
         this.countryName = countryName;
     }
 
-    public Country(int country_id, String country_iso_code, String countryName) {
-        this.country_id = country_id;
-        this.country_iso_code = country_iso_code;
+    public Country(int countryId, String countryIsoCode, String countryName) {
+        this.countryId = countryId;
+        this.countryIsoCode = countryIsoCode;
         this.countryName = countryName;
     }
 
-    public int getCountry_id() {
-        return country_id;
+    public int getCountryId() {
+        return countryId;
     }
 
-    public void setCountry_id(int country_id) {
-        this.country_id = country_id;
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 
-    public String getCountry_iso_code() {
-        return country_iso_code;
+    public String getCountryIsoCode() {
+        return countryIsoCode;
     }
 
-    public void setCountry_iso_code(String country_iso_code) {
-        this.country_iso_code = country_iso_code;
+    public void setCountryIsoCode(String countryIsoCode) {
+        this.countryIsoCode = countryIsoCode;
     }
 
     public String getCountryName() {

@@ -9,7 +9,8 @@ import java.util.Set;
 @Entity
 public class Gender {
     @Id
-    private int gender_id;
+    @Column(name = "gender_id")
+    private int genderId;
 
     private String gender;
 
@@ -20,17 +21,17 @@ public class Gender {
     public Gender() {
     }
 
-    public Gender(int gender_id, String gender) {
-        this.gender_id = gender_id;
+    public Gender(int genderId, String gender) {
+        this.genderId = genderId;
         this.gender = gender;
     }
 
-    public int getGender_id() {
-        return gender_id;
+    public int getGenderId() {
+        return genderId;
     }
 
-    public void setGender_id(int gender_id) {
-        this.gender_id = gender_id;
+    public void setGenderId(int genderId) {
+        this.genderId = genderId;
     }
 
     public String getGender() {

@@ -18,13 +18,17 @@ public class Movie {
     String homepage;
     String overview;
     BigDecimal popularity;
-    String release_date;
+    @Column(name = "release_date")
+    String releaseDate;
     Long revenue;
     int runtime;
-    String movie_status;
+    @Column(name = "movie_status")
+    String movieStatus;
     String tagline;
-    double vote_average;
-    int vote_count;
+    @Column(name = "vote_average")
+    double voteAverage;
+    @Column(name = "vote_count")
+    int voteCount;
 
     @OneToMany(mappedBy = "movie")
     @JsonIgnore
@@ -56,34 +60,35 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String title, int budget, String homepage, String overview, BigDecimal popularity, String release_date, Long revenue, int runtime, String movie_status, String tagline, double vote_average, int vote_count) {
+    public Movie(String title, int budget, String homepage, String overview, BigDecimal popularity, String releaseDate, Long revenue, int runtime, String movieStatus, String tagline, double voteAverage, int voteCount) {
         this.title = title;
         this.budget = budget;
         this.homepage = homepage;
         this.overview = overview;
         this.popularity = popularity;
-        this.release_date = release_date;
+        this.releaseDate = releaseDate;
         this.revenue = revenue;
         this.runtime = runtime;
-        this.movie_status = movie_status;
+        this.movieStatus = movieStatus;
         this.tagline = tagline;
-        this.vote_average = vote_average;
-        this.vote_count = vote_count;
+        this.voteAverage = voteAverage;
+        this.voteCount = voteCount;
     }
-    public Movie(int movieId,String title, int budget, String homepage, String overview, BigDecimal popularity, String release_date, Long revenue, int runtime, String movie_status, String tagline, double vote_average, int vote_count) {
+
+    public Movie(int movieId, String title, int budget, String homepage, String overview, BigDecimal popularity, String releaseDate, Long revenue, int runtime, String movieStatus, String tagline, double voteAverage, int voteCount) {
         this.movieId = movieId;
         this.title = title;
         this.budget = budget;
         this.homepage = homepage;
         this.overview = overview;
         this.popularity = popularity;
-        this.release_date = release_date;
+        this.releaseDate = releaseDate;
         this.revenue = revenue;
         this.runtime = runtime;
-        this.movie_status = movie_status;
+        this.movieStatus = movieStatus;
         this.tagline = tagline;
-        this.vote_average = vote_average;
-        this.vote_count = vote_count;
+        this.voteAverage = voteAverage;
+        this.voteCount = voteCount;
     }
 
     public int getMovieId() {
@@ -134,12 +139,12 @@ public class Movie {
         this.popularity = popularity;
     }
 
-    public String getRelease_date() {
-        return release_date;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public Long getRevenue() {
@@ -158,12 +163,12 @@ public class Movie {
         this.runtime = runtime;
     }
 
-    public String getMovie_status() {
-        return movie_status;
+    public String getMovieStatus() {
+        return movieStatus;
     }
 
-    public void setMovie_status(String movie_status) {
-        this.movie_status = movie_status;
+    public void setMovieStatus(String movieStatus) {
+        this.movieStatus = movieStatus;
     }
 
     public String getTagline() {
@@ -174,20 +179,20 @@ public class Movie {
         this.tagline = tagline;
     }
 
-    public double getVote_average() {
-        return vote_average;
+    public double getVoteAverage() {
+        return voteAverage;
     }
 
-    public void setVote_average(double vote_average) {
-        this.vote_average = vote_average;
+    public void setVoteAverage(double voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
-    public int getVote_count() {
-        return vote_count;
+    public int getVoteCount() {
+        return voteCount;
     }
 
-    public void setVote_count(int vote_count) {
-        this.vote_count = vote_count;
+    public void setVoteCount(int voteCount) {
+        this.voteCount = voteCount;
     }
 
     public Set<Movie_Cast> getMoviecast() {
