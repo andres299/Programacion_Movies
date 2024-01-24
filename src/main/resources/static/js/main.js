@@ -98,7 +98,7 @@ function updateUI() {
         const row = document.createElement("tr");
         const columns = [
             "title", "budget", "overview",
-            "popularity", "release_date", "revenue", "vote_average"
+            "popularity", "releaseDate", "revenue", "voteAverage"
         ];
 
         columns.forEach(column => {
