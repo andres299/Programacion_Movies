@@ -371,8 +371,8 @@ public class MovieService {
                 movieRepo.deleteById((long) movie_id);
             }else {
                 System.out.println("No existe puerco");
+                throw new entitiExist("Esta id no existe: " + entityId);
             }
-            System.out.println("Hola");
         }
     }
 
