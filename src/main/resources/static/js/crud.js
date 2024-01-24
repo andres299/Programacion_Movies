@@ -212,21 +212,21 @@ function handleMoviesInsert() {
 updateButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
     if (selectedOption === "movies") {
-            handleMoviesUpdate();
+        handleMoviesUpdate();
     } else {
-    // Obtener todos los inputs del formulario actualmente seleccionado
-    const inputs = Array.from(document.getElementById(selectedOption + "UpdateFields").querySelectorAll("input"));
-    //console.log("Inputs:", inputs);
-    operation = 'update';
-    // Construir el objeto requestData
-    const requestData = {
-        operation: operation,
-        entity: selectedOption,
-        id: inputs[0].value,
-        input1: inputs[1].value,
-        input2: inputs[2] ? inputs[2].value : null,
-    };
-    postDataEntity('/operationEntities', requestData);
+        // Obtener todos los inputs del formulario actualmente seleccionado
+        const inputs = Array.from(document.getElementById(selectedOption + "UpdateFields").querySelectorAll("input"));
+        //console.log("Inputs:", inputs);
+        operation = 'update';
+        // Construir el objeto requestData
+        const requestData = {
+            operation: operation,
+            entity: selectedOption,
+            id: inputs[0].value,
+            input1: inputs[1].value,
+            input2: inputs[2] ? inputs[2].value : null,
+        };
+        postDataEntity('/operationEntities', requestData);
     }
 });
 
@@ -334,21 +334,21 @@ document.addEventListener('DOMContentLoaded', function () {
     // Imprimir "Hola" en la consola al hacer clic en el botón Sí, eliminar
     modalDeleteButton.addEventListener('click', function () {
         const selectedOption = selectElement.value;
-         if (selectedOption === "movies") {
-                handleMoviesDelete();
-         } else {
-        // Obtener todos los inputs del formulario actualmente seleccionado
-        const inputs = document.getElementById("deleteId");
-        operation = 'delete';
-        // Construir el objeto requestData
-        const requestData = {
-            operation: operation,
-            entity: selectedOption,
-            id: inputs.value,
-            input1: inputs.value,
-            input2: inputs[2] ? inputs[2].value : null,
-        };
-        postDataEntity('/operationEntities', requestData);
+        if (selectedOption === "movies") {
+            handleMoviesDelete();
+        } else {
+            // Obtener todos los inputs del formulario actualmente seleccionado
+            const inputs = document.getElementById("deleteId");
+            operation = 'delete';
+            // Construir el objeto requestData
+            const requestData = {
+                operation: operation,
+                entity: selectedOption,
+                id: inputs.value,
+                input1: inputs.value,
+                input2: inputs[2] ? inputs[2].value : null,
+            };
+            postDataEntity('/operationEntities', requestData);
         }
         deleteModal.style.display = 'none'; // Ocultar el modal después de imprimir en la consola
     });
@@ -375,7 +375,7 @@ function handleMoviesDelete() {
         popularity: null,
         release_date: null,
         revenue: null,
-        runtime:null,
+        runtime: null,
         movie_status: null,
         tagline: null,
         vote_average: null,
