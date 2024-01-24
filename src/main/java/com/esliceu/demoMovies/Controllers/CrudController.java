@@ -1,6 +1,7 @@
 package com.esliceu.demoMovies.Controllers;
 
 import com.esliceu.demoMovies.DTO.FetchEntitiDTO;
+import com.esliceu.demoMovies.DTO.OperationMovies;
 import com.esliceu.demoMovies.Entities.Administrator;
 import com.esliceu.demoMovies.Entities.Country;
 import com.esliceu.demoMovies.Entities.Movie;
@@ -76,19 +77,21 @@ public class CrudController {
     }
 
     @PostMapping("/operationMovies")
-    ResponseEntity<String> operationMovies(@RequestBody Movie movie){
+    ResponseEntity<String> operationMovies(@RequestBody OperationMovies operationMovies){
         Administrator admin = (Administrator) session.getAttribute("admin");
-        String title = movie.getTitle();
+        String title = operationMovies.getTitle();
         try {
             if (movieService.inputEntitie(title)) {
                 //if (admin != null) {
-                movieService.operationMovies(movie);
+                movieService.operationMovies(operationMovies);
+                System.out.println("BIen");
                 return ResponseEntity.ok("Se ha realizado correctamente");
                 //} else{
                 // Aquí puedes agregar un manejo específico para la excepción relacionada con el administrador
                 // return ResponseEntity.badRequest().body("Error: El administrador no está autenticado");
                 //}
             } else {
+                System.out.println("Mal");
                 return ResponseEntity.badRequest().body("Error: Entrada no válida para la entidad");
             }
         } catch (UnsupportedOperationException | MovieService.EntityNotFoundException | MovieService.entitiExist e) {

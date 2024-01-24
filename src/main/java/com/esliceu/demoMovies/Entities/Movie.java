@@ -52,6 +52,39 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     private Set<Movie_Languages> movieLanguages;
 
+    public Movie() {
+    }
+
+    public Movie(String title, int budget, String homepage, String overview, BigDecimal popularity, String release_date, Long revenue, int runtime, String movie_status, String tagline, double vote_average, int vote_count) {
+        this.title = title;
+        this.budget = budget;
+        this.homepage = homepage;
+        this.overview = overview;
+        this.popularity = popularity;
+        this.release_date = release_date;
+        this.revenue = revenue;
+        this.runtime = runtime;
+        this.movie_status = movie_status;
+        this.tagline = tagline;
+        this.vote_average = vote_average;
+        this.vote_count = vote_count;
+    }
+    public Movie(int movie_id, String title, int budget, String homepage, String overview, BigDecimal popularity, String release_date, Long revenue, int runtime, String movie_status, String tagline, double vote_average, int vote_count) {
+        this.movie_id = movie_id;
+        this.title = title;
+        this.budget = budget;
+        this.homepage = homepage;
+        this.overview = overview;
+        this.popularity = popularity;
+        this.release_date = release_date;
+        this.revenue = revenue;
+        this.runtime = runtime;
+        this.movie_status = movie_status;
+        this.tagline = tagline;
+        this.vote_average = vote_average;
+        this.vote_count = vote_count;
+    }
+
     public int getMovie_id() {
         return movie_id;
     }

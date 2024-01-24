@@ -1,10 +1,10 @@
 package com.esliceu.demoMovies.Services;
 
 import com.esliceu.demoMovies.DTO.FetchEntitiDTO;
+import com.esliceu.demoMovies.DTO.OperationMovies;
 import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -335,11 +335,21 @@ public class MovieService {
         }
     }
 
-    public void operationMovies(Movie movie) {
+    public void operationMovies(OperationMovies movie) {
         String entity = "movies";
         String entityId = String.valueOf(movie.getMovie_id());
-        if ()
-        if (existEntiti(entity,entityId)){
+        if (movie.getOperation().equals("insert")){
+            Movie movieInfo = new Movie(movie.getTitle(),movie.getBudget(),movie.getHomepage(),movie.getOverview(),movie.getPopularity(),movie.getRelease_date(),movie.getRevenue(),movie.getRuntime(),movie.getMovie_status(),movie.getTagline(),movie.getVote_average(),movie.getVote_count());
+            movieRepo.save(movieInfo);
+        } else if (movie.getOperation().equals("update")) {
+            if (existEntiti(entity,entityId)){
+                Movie movieInfo = new Movie(movie.getMovie_id(),movie.getTitle(),movie.getBudget(),movie.getHomepage(),movie.getOverview(),movie.getPopularity(),movie.getRelease_date(),movie.getRevenue(),movie.getRuntime(),movie.getMovie_status(),movie.getTagline(),movie.getVote_average(),movie.getVote_count());
+                movieRepo.save(movieInfo);
+            } else {
+                System.out.println("No existe");
+                throw new entitiExist("Esta id no existe: " + entityId);
+            }
+        } else if (movie.getOperation().equals("delete")){
 
         }
     }

@@ -164,8 +164,6 @@ changePage(`/allCountrys`);
 
 insertButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
-    console.log(selectedOption);
-
     if (selectedOption === "movies") {
         handleMoviesInsert();
     } else {
@@ -189,14 +187,14 @@ insertButton.addEventListener('click', () => {
 // Función específica para manejar la inserción de movies
 function handleMoviesInsert() {
     const selectedOption = selectElement.value;
+    operation = 'insert';
     // Obtener todos los inputs del formulario actualmente seleccionado
     const inputs = Array.from(document.getElementById(selectedOption + "Fields").querySelectorAll("input"));
-    operation = 'insert';
     // Construir el objeto requestData
     const requestData = {
         operation: operation,
         id: null,
-        title: inputs[0] ? inputs[0].value : null,
+        title: inputs[0].value,
         budget: inputs[1] ? inputs[1].value : null,
         homepage: inputs[2] ? inputs[2].value : null,
         overview: inputs[3] ? inputs[3].value : null,
@@ -215,7 +213,9 @@ function handleMoviesInsert() {
 
 updateButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
-    console.log(selectedOption);
+    if (selectedOption === "movies") {
+            handleMoviesUpdate();
+    } else {
     // Obtener todos los inputs del formulario actualmente seleccionado
     const inputs = Array.from(document.getElementById(selectedOption + "UpdateFields").querySelectorAll("input"));
     //console.log("Inputs:", inputs);
@@ -229,7 +229,33 @@ updateButton.addEventListener('click', () => {
         input2: inputs[2] ? inputs[2].value : null,
     };
     postDataEntity('/operationEntities', requestData);
+    }
 });
+
+function handleMoviesUpdate() {
+    const selectedOption = selectElement.value;
+    operation = 'update';
+    // Obtener todos los inputs del formulario actualmente seleccionado
+    const inputs = Array.from(document.getElementById(selectedOption + "UpdateFields").querySelectorAll("input"));
+    // Construir el objeto requestData
+    const requestData = {
+        operation: operation,
+        id: inputs[0],
+        title: inputs[1].value,
+        budget: inputs[2] ? inputs[2].value : null,
+        homepage: inputs[3] ? inputs[3].value : null,
+        overview: inputs[4] ? inputs[4].value : null,
+        popularity: inputs[5] ? inputs[5].value : null,
+        release_date: inputs[6] ? inputs[6].value : null,
+        revenue: inputs[7] ? inputs[7].value : null,
+        runtime: inputs[8] ? inputs[8].value : null,
+        movie_status: inputs[9] ? inputs[9].value : null,
+        tagline: inputs[10] ? inputs[10].value : null,
+        vote_average: inputs[11] ? inputs[11].value : null,
+        vote_count: inputs[12] ? inputs[12].value : null,
+    };
+    postDataEntity('/operationMovies', requestData);
+}
 
 keyword.addEventListener('input', () => {
     page = 0;
