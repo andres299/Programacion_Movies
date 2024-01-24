@@ -165,6 +165,30 @@ changePage(`/allCountrys`);
 insertButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
     console.log(selectedOption);
+
+    if (selectedOption === "movies") {
+        handleMoviesInsert();
+    } else {
+        // Obtener todos los inputs del formulario actualmente seleccionado
+        const inputs = Array.from(document.getElementById(selectedOption + "Fields").querySelectorAll("input"));
+        //console.log("Inputs:", inputs);
+        operation = 'insert';
+        // Construir el objeto requestData
+        const requestData = {
+            operation: operation,
+            entity: selectedOption,
+            id: null,
+            input1: inputs[0].value,
+            input2: inputs[1] ? inputs[1].value : null,
+        };
+
+        postDataEntity('/operationEntities', requestData);
+    }
+});
+
+// Función específica para manejar la inserción de movies
+function handleMoviesInsert() {
+    const selectedOption = selectElement.value;
     // Obtener todos los inputs del formulario actualmente seleccionado
     const inputs = Array.from(document.getElementById(selectedOption + "Fields").querySelectorAll("input"));
     //console.log("Inputs:", inputs);
@@ -179,7 +203,8 @@ insertButton.addEventListener('click', () => {
     };
 
     postDataEntity('/operationEntities', requestData);
-});
+}
+
 
 updateButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
@@ -205,14 +230,14 @@ keyword.addEventListener('input', () => {
     operation = 'search';
     console.log(keyword.value);
     const requestData = {
-           operation: operation,
-           entity: selectedOption,
-           id: null,
-           input1: keyword.value,
-           input2: null,
+        operation: operation,
+        entity: selectedOption,
+        id: null,
+        input1: keyword.value,
+        input2: null,
     };
     searchDataEntity(`/searchEntities`, requestData);
-    document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
+    document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
 })
 
 async function postDataEntity(URL, data) {

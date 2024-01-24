@@ -58,11 +58,9 @@ public class CrudController {
                 // return ResponseEntity.badRequest().body("Error: El administrador no está autenticado");
                 //}
             } else {
-                // Aquí puedes agregar un manejo específico para la excepción relacionada con la validación de inputEntitie
                 return ResponseEntity.badRequest().body("Error: Entrada no válida para la entidad");
             }
         } catch (UnsupportedOperationException | MovieService.EntityNotFoundException | MovieService.entitiExist e) {
-            // Aquí puedes manejar las excepciones lanzadas por movieService.operationEntitie
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
@@ -75,5 +73,11 @@ public class CrudController {
             return movieService.searchEntities(fetchEntitiDTO);
         //}
         //return ResponseEntity.badRequest().body("Error: Entrada no válida para la entidad");
+    }
+
+    @PostMapping("/operationMovies")
+    @ResponseBody
+    public List<Movie> operationMovies(){
+        return null;
     }
 }
