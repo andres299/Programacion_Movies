@@ -133,8 +133,26 @@ function updateUI() {
 
         // Agregar evento al botón "View"
         viewButton.addEventListener("click", function() {
-            // Lógica para manejar la acción de vista, puedes usar movie.movieId aquí
-            alert("Mostrar detalles de la película con ID: " + movie.movieId);
+            const modal = document.getElementById("myModal");
+                const movieIdSpan = document.getElementById("movieIdSpan");
+
+                // Configurar el contenido del modal (puedes personalizar esto según tus necesidades)
+                movieIdSpan.textContent = movie.movieId;
+
+                modal.style.display = "block";
+
+                // Agregar evento para cerrar el modal haciendo clic en la 'x'
+                const closeButton = document.getElementsByClassName("close")[0];
+                closeButton.addEventListener("click", function() {
+                    modal.style.display = "none";
+                });
+
+                // Cerrar el modal si se hace clic fuera del contenido del modal
+                window.addEventListener("click", function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                    }
+                });
         });
 
         moviesTable.appendChild(row);
