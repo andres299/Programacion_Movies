@@ -203,6 +203,7 @@ keyword.addEventListener('input', () => {
     page = 0;
     const selectedOption = selectElement.value;
     operation = 'search';
+    console.log(keyword.value);
     const requestData = {
            operation: operation,
            entity: selectedOption,

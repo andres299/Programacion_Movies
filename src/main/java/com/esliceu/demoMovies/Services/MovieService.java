@@ -327,6 +327,8 @@ public class MovieService {
                 return personService.findByPersonNameStartingWithIgnoreCase(keyword);
             case "department":
                 return departmentService.findByDepartmentNameStartingWithIgnoreCase(keyword);
+            case "movies":
+                return movieRepo.findByTitleSelectInfo(keyword);
             default:
                 throw new EntityNotFoundException("Entidad no encontrada: " + entity);
         }

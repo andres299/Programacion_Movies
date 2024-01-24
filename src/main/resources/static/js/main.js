@@ -93,7 +93,7 @@ function updateUI() {
     const startIndex = page * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentMovies = moviesData.slice(startIndex, endIndex);
-
+    console.log(moviesData);
     currentMovies.forEach(movie => {
         const row = document.createElement("tr");
         const columns = [
