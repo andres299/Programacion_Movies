@@ -193,7 +193,7 @@ function handleMoviesInsert() {
     // Construir el objeto requestData
     const requestData = {
         operation: operation,
-        id: null,
+        movie_id: null,
         title: inputs[0].value,
         budget: inputs[1] ? inputs[1].value : null,
         homepage: inputs[2] ? inputs[2].value : null,
@@ -240,7 +240,7 @@ function handleMoviesUpdate() {
     // Construir el objeto requestData
     const requestData = {
         operation: operation,
-        id: inputs[0],
+        movie_id: inputs[0].value,
         title: inputs[1].value,
         budget: inputs[2] ? inputs[2].value : null,
         homepage: inputs[3] ? inputs[3].value : null,

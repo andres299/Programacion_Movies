@@ -80,6 +80,7 @@ public class CrudController {
     ResponseEntity<String> operationMovies(@RequestBody OperationMovies operationMovies){
         Administrator admin = (Administrator) session.getAttribute("admin");
         String title = operationMovies.getTitle();
+        System.out.println(operationMovies.getMovie_id());
         try {
             if (movieService.inputEntitie(title)) {
                 //if (admin != null) {

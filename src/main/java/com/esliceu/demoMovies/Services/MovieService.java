@@ -338,19 +338,21 @@ public class MovieService {
     public void operationMovies(OperationMovies movie) {
         String entity = "movies";
         String entityId = String.valueOf(movie.getMovie_id());
+        System.out.println(entityId);
         if (movie.getOperation().equals("insert")){
             Movie movieInfo = new Movie(movie.getTitle(),movie.getBudget(),movie.getHomepage(),movie.getOverview(),movie.getPopularity(),movie.getRelease_date(),movie.getRevenue(),movie.getRuntime(),movie.getMovie_status(),movie.getTagline(),movie.getVote_average(),movie.getVote_count());
             movieRepo.save(movieInfo);
         } else if (movie.getOperation().equals("update")) {
+            System.out.println(existEntiti(entity,entityId));
             if (existEntiti(entity,entityId)){
                 Movie movieInfo = new Movie(movie.getMovie_id(),movie.getTitle(),movie.getBudget(),movie.getHomepage(),movie.getOverview(),movie.getPopularity(),movie.getRelease_date(),movie.getRevenue(),movie.getRuntime(),movie.getMovie_status(),movie.getTagline(),movie.getVote_average(),movie.getVote_count());
                 movieRepo.save(movieInfo);
             } else {
-                System.out.println("No existe");
+                System.out.println("No existe puerco");
                 throw new entitiExist("Esta id no existe: " + entityId);
             }
         } else if (movie.getOperation().equals("delete")){
-
+            System.out.println("Hola");
         }
     }
 
