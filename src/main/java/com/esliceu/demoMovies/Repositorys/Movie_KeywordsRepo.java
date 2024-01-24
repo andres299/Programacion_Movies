@@ -13,4 +13,9 @@ public interface Movie_KeywordsRepo extends JpaRepository<Movie_Keywords, Long> 
     @Modifying
     @Query(value = "DELETE FROM movie_keywords WHERE keyword_id = :entityId", nativeQuery = true)
     void deleteByKeywordId(@Param("entityId") int entityId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM movie_keywords WHERE movie_id = :movieId", nativeQuery = true)
+    void deleteByMovieId(int movieId);
 }

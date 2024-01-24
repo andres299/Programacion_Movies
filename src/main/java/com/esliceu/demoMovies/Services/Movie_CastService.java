@@ -16,4 +16,6 @@ public class Movie_CastService {
     public void deleteByPersonId(int entityId) {
         movieCastRepo.deleteByPersonId(entityId);
     }
+
+    public void deleteByMovieId(int movieId) { movieCastRepo.deleteByMovieId(movieId); }
 }

@@ -11,7 +11,8 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int movie_id;
+    @Column(name="movie_id")
+    int movieId;
     String title;
     int budget;
     String homepage;
@@ -69,8 +70,8 @@ public class Movie {
         this.vote_average = vote_average;
         this.vote_count = vote_count;
     }
-    public Movie(int movie_id, String title, int budget, String homepage, String overview, BigDecimal popularity, String release_date, Long revenue, int runtime, String movie_status, String tagline, double vote_average, int vote_count) {
-        this.movie_id = movie_id;
+    public Movie(int movieId,String title, int budget, String homepage, String overview, BigDecimal popularity, String release_date, Long revenue, int runtime, String movie_status, String tagline, double vote_average, int vote_count) {
+        this.movieId = movieId;
         this.title = title;
         this.budget = budget;
         this.homepage = homepage;
@@ -85,12 +86,12 @@ public class Movie {
         this.vote_count = vote_count;
     }
 
-    public int getMovie_id() {
-        return movie_id;
+    public int getMovieId() {
+        return movieId;
     }
 
-    public void setMovie_id(int movie_id) {
-        this.movie_id = movie_id;
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
     public String getTitle() {

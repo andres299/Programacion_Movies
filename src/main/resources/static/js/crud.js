@@ -148,13 +148,11 @@ function showFields() {
 
     // Muestra el campo correspondiente al valor seleccionado
     var selectedFields = document.getElementById(selectedOption + "Fields");
-    console.log(selectedFields);
     if (selectedFields) {
         selectedFields.style.display = "block";
     }
     // Muestra el campo correspondiente al valor seleccionado (para actualización)
     var selectedUpdateFields = document.getElementById(selectedOption + "UpdateFields");
-    console.log(selectedUpdateFields);
     if (selectedUpdateFields) {
         selectedUpdateFields.style.display = "block";
     }
@@ -336,7 +334,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Imprimir "Hola" en la consola al hacer clic en el botón Sí, eliminar
     modalDeleteButton.addEventListener('click', function () {
         const selectedOption = selectElement.value;
-        console.log(selectedOption);
+         if (selectedOption === "movies") {
+                handleMoviesDelete();
+         } else {
         // Obtener todos los inputs del formulario actualmente seleccionado
         const inputs = document.getElementById("deleteId");
         operation = 'delete';
@@ -349,6 +349,7 @@ document.addEventListener('DOMContentLoaded', function () {
             input2: inputs[2] ? inputs[2].value : null,
         };
         postDataEntity('/operationEntities', requestData);
+        }
         deleteModal.style.display = 'none'; // Ocultar el modal después de imprimir en la consola
     });
 
@@ -357,3 +358,28 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteModal.style.display = 'none';
     });
 });
+
+function handleMoviesDelete() {
+    const selectedOption = selectElement.value;
+    operation = 'delete';
+    // Obtener todos los inputs del formulario actualmente seleccionado
+    const inputs = document.getElementById("deleteId");
+    // Construir el objeto requestData
+    const requestData = {
+        operation: operation,
+        movie_id: inputs.value,
+        title: inputs.value,
+        budget: null,
+        homepage: null,
+        overview: null,
+        popularity: null,
+        release_date: null,
+        revenue: null,
+        runtime:null,
+        movie_status: null,
+        tagline: null,
+        vote_average: null,
+        vote_count: null,
+    };
+    postDataEntity('/operationMovies', requestData);
+}

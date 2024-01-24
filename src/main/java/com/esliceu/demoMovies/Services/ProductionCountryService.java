@@ -12,4 +12,6 @@ public class ProductionCountryService {
     public void deleteByCountryId(int entityId) {
         productionCountryRepo.deleteByCountryId(entityId);
     }
+
+    public void deleteByMovieId(int movieId) { productionCountryRepo.deleteByMovieId(movieId); }
 }

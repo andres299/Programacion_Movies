@@ -12,4 +12,6 @@ public class Movie_GenresService {
     public void deleteByGenreId(int entityId) {
         movieGenresRepo.deleteByGenreId(entityId);
     }
+
+    public void deleteByMovieId(int movieId) { movieGenresRepo.deleteByMovieId(movieId); }
 }

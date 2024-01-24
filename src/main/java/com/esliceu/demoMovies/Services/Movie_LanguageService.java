@@ -16,4 +16,6 @@ public class Movie_LanguageService {
     public void deleteByLanguageRoleId(int entityId) {
         movieLanguagesRepo.deleteByLanguageRoleId(entityId);
     }
+
+    public void deleteByMovieId(int movieId) { movieLanguagesRepo.deleteByMovieId(movieId); }
 }

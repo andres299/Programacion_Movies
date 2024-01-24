@@ -13,4 +13,6 @@ public class Movie_KeywordsService {
     public void deleteByKeywordId(int entityId) {
         movieKeywordsRepo.deleteByKeywordId(entityId);
     }
+
+    public void deleteByMovieId(int movieId) { movieKeywordsRepo.deleteByMovieId(movieId);}
 }

@@ -14,7 +14,7 @@ public class Movie_CrewService {
         movieCrewRepo.deleteByPersonId(entityId);
     }
 
-    public void deleteByDepartmentId(int entityId) {
-        movieCrewRepo.deleteByDepartmentId(entityId);
-    }
+    public void deleteByDepartmentId(int entityId) { movieCrewRepo.deleteByDepartmentId(entityId); }
+
+    public void deleteByMovieId(int movieId) { movieCrewRepo.deleteByMovieId(movieId); }
 }

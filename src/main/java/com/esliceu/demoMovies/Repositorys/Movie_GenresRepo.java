@@ -12,4 +12,9 @@ public interface Movie_GenresRepo extends JpaRepository<Movie_Languages, Long> {
     @Modifying
     @Query(value = "DELETE FROM movie_genres WHERE genre_id = :entityId", nativeQuery = true)
     void deleteByGenreId(@Param("entityId") int entityId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM movie_genres WHERE movie_id = :movieId", nativeQuery = true)
+    void deleteByMovieId(int movieId);
 }

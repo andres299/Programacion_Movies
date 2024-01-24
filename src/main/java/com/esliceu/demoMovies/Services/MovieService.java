@@ -340,18 +340,38 @@ public class MovieService {
         String entityId = String.valueOf(movie.getMovie_id());
         System.out.println(entityId);
         if (movie.getOperation().equals("insert")){
-            Movie movieInfo = new Movie(movie.getTitle(),movie.getBudget(),movie.getHomepage(),movie.getOverview(),movie.getPopularity(),movie.getRelease_date(),movie.getRevenue(),movie.getRuntime(),movie.getMovie_status(),movie.getTagline(),movie.getVote_average(),movie.getVote_count());
+            Movie movieInfo = new Movie(movie.getTitle(),movie.getBudget(),movie.getHomepage(),
+                    movie.getOverview(),movie.getPopularity(),movie.getRelease_date(),
+                    movie.getRevenue(),movie.getRuntime(),movie.getMovie_status(),
+                    movie.getTagline(),movie.getVote_average(),movie.getVote_count());
             movieRepo.save(movieInfo);
         } else if (movie.getOperation().equals("update")) {
             System.out.println(existEntiti(entity,entityId));
             if (existEntiti(entity,entityId)){
-                Movie movieInfo = new Movie(movie.getMovie_id(),movie.getTitle(),movie.getBudget(),movie.getHomepage(),movie.getOverview(),movie.getPopularity(),movie.getRelease_date(),movie.getRevenue(),movie.getRuntime(),movie.getMovie_status(),movie.getTagline(),movie.getVote_average(),movie.getVote_count());
+                Movie movieInfo = new Movie(movie.getMovie_id(),movie.getTitle(),movie.getBudget(),
+                        movie.getHomepage(),movie.getOverview(),movie.getPopularity(),
+                        movie.getRelease_date(),movie.getRevenue(),movie.getRuntime(),
+                        movie.getMovie_status(),movie.getTagline(),movie.getVote_average(),
+                        movie.getVote_count());
                 movieRepo.save(movieInfo);
             } else {
                 System.out.println("No existe puerco");
                 throw new entitiExist("Esta id no existe: " + entityId);
             }
         } else if (movie.getOperation().equals("delete")){
+            if (existEntiti(entity,entityId)){
+                int movie_id = Integer.parseInt(entityId);
+                movieLanguageService.deleteByMovieId(movie_id);
+                movieKeywordsService.deleteByMovieId(movie_id);
+                movieGenresService.deleteByMovieId(movie_id);
+                movieCrewService.deleteByMovieId(movie_id);
+                movieCompanyService.deleteByMovieId(movie_id);
+                movieCastService.deleteByMovieId(movie_id);
+                productionCountryService.deleteByMovieId(movie_id);
+                movieRepo.deleteById((long) movie_id);
+            }else {
+                System.out.println("No existe puerco");
+            }
             System.out.println("Hola");
         }
     }

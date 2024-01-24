@@ -12,4 +12,6 @@ public class Movie_CompanyService {
     public void deleteByProductionCompany(int entityId) {
         movieCompanyRepo.deleteByProductionCompany(entityId);
     }
+
+    public void deleteByMovieId(int movieId) { movieCompanyRepo.deleteByMovieId(movieId); }
 }
