@@ -133,26 +133,27 @@ function updateUI() {
 
         // Agregar evento al botón "View"
         viewButton.addEventListener("click", function() {
+            // Mostrar el modal
             const modal = document.getElementById("myModal");
-                const movieIdSpan = document.getElementById("movieIdSpan");
+            const movieIdSpan = document.getElementById("movieIdSpan");
 
-                // Configurar el contenido del modal (puedes personalizar esto según tus necesidades)
-                movieIdSpan.textContent = movie.movieId;
+            // Configurar el contenido del modal (puedes personalizar esto según tus necesidades)
+            //movieIdSpan.textContent = movie.movieId;
 
-                modal.style.display = "block";
+            modal.style.display = "flex"; // Cambiar a "flex" en lugar de "block"
 
-                // Agregar evento para cerrar el modal haciendo clic en la 'x'
-                const closeButton = document.getElementsByClassName("close")[0];
-                closeButton.addEventListener("click", function() {
-                    modal.style.display = "none";
-                });
+            // Agregar evento para cerrar el modal haciendo clic en la 'x'
+            const closeButton = document.getElementsByClassName("close")[0];
+            closeButton.addEventListener("click", function() {
+                modal.style.display = "none"; // Cambiar a "none" en lugar de "block"
+            });
 
-                // Cerrar el modal si se hace clic fuera del contenido del modal
-                window.addEventListener("click", function(event) {
-                    if (event.target === modal) {
-                        modal.style.display = "none";
-                    }
-                });
+            // Cerrar el modal si se hace clic fuera del contenido del modal
+            window.addEventListener("click", function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "block";
+                }
+            });
         });
 
         moviesTable.appendChild(row);
