@@ -16,8 +16,8 @@ prevButton.addEventListener('click', async () => {
 
 nextButton.addEventListener('click', async () => {
     if (page < totalPages - 1) {
-           page++;
-           updateUI();
+        page++;
+        updateUI();
     }
 });
 
@@ -46,7 +46,7 @@ keyword.addEventListener('input', () => {
         keyword: keyword.value
     };
     postData(`/filterMovies`, requestData);
-    document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
+    document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
 })
 
 async function postData(URL, data) {
@@ -59,20 +59,20 @@ async function postData(URL, data) {
         method: 'POST',
         body: formData,
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(responseData => {
-        moviesData = responseData;
-        updateUI();
-        totalPages = Math.ceil(moviesData.length / 10);
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(responseData => {
+            moviesData = responseData;
+            updateUI();
+            totalPages = Math.ceil(moviesData.length / 10);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
 }
 
 // Función para actualizar la interfaz de usuario con los datos recibidos
@@ -120,12 +120,12 @@ function updateUI() {
         viewButton.style.cursor = "pointer";
 
         // Agregar evento de hover
-        viewButton.addEventListener("mouseover", function() {
+        viewButton.addEventListener("mouseover", function () {
             viewButton.style.backgroundColor = "cornflowerblue";
         });
 
         // Restaurar el color original al quitar el mouse del botón
-        viewButton.addEventListener("mouseout", function() {
+        viewButton.addEventListener("mouseout", function () {
             viewButton.style.backgroundColor = "royalblue";
         });
 
@@ -142,23 +142,23 @@ function updateUI() {
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response.json())
-            .then(result => {
-                infoDataMovies = result;
-                console.log(infoDataMovies);
-                handleInfoDataMovies(infoDataMovies);
-            })
-            .catch(error => {
-                console.error('Error en la solicitud:', error);
-            });
+                .then(response => response.json())
+                .then(result => {
+                    infoDataMovies = result;
+                    console.log(infoDataMovies);
+                    handleInfoDataMovies(infoDataMovies);
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                });
         }
 
         // Agregar evento al botón "View"
-        viewButton.addEventListener("click", function() {
+        viewButton.addEventListener("click", function () {
             const movieIdValue = this.value;
             console.log(movieIdValue);
             const data = {
-                    movieId: parseInt(movieIdValue)
+                movieId: parseInt(movieIdValue)
             };
             infoMoviesData(`/infoMovies`, data);
 
@@ -170,12 +170,12 @@ function updateUI() {
 
             // Agregar evento para cerrar el modal haciendo clic en la 'x'
             const closeButton = document.getElementsByClassName("close")[0];
-            closeButton.addEventListener("click", function() {
+            closeButton.addEventListener("click", function () {
                 modal.style.display = "none";
             });
 
             // Cerrar el modal si se hace clic fuera del contenido del modal
-            window.addEventListener("click", function(event) {
+            window.addEventListener("click", function (event) {
                 if (event.target === modal) {
                     modal.style.display = "block";
                 }
@@ -187,18 +187,41 @@ function updateUI() {
 }
 
 function handleInfoDataMovies(infoDataMovies) {
-infoDataMovies.forEach(movie => {
-        const movieTitleElement = document.getElementById("movieTitle");
-        movieTitleElement.textContent = movie.title;
+    const movieTitleElement = document.getElementById("movieTitle");
+    const actorTableBody = document.getElementById("actorTableBody");
 
-        console.log(`Title: ${movie.title}`);
-        console.log(`Actor Name: ${movie.actorName}`);
-        console.log(`Director Name: ${movie.directorName}`);
-        console.log(`Character Name: ${movie.characterName}`);
-        console.log(`Genre: ${movie.genre}`);
-        console.log("--------------");
+    // Inicializamos el contenido del título de la película
+    movieTitleElement.textContent = "";
+
+    // Limpiamos el cuerpo de la tabla antes de agregar nuevas filas
+    actorTableBody.innerHTML = "";
+
+    // Iteramos a través de las películas en infoDataMovies
+    infoDataMovies.forEach(movie => {
+        // Agregamos el título de la película al elemento correspondiente
+        movieTitleElement.textContent += `${movie.title}\n`;
+
+        // Verificamos si characterName es un array
+        const characterNames = Array.isArray(movie.characterName) ? movie.characterName : [movie.characterName];
+
+        // Verificamos si actorName es una cadena
+        const actorNames = Array.isArray(movie.actorName) ? movie.actorName : [movie.actorNames];
+
+        // Iteramos a través de los actores y personajes en la película
+        for (let i = 0; i < Math.max(characterNames.length, actorNames.length); i++) {
+            // Creamos una nueva fila en la tabla
+            const newRow = actorTableBody.insertRow();
+
+            // Añadimos celdas a la fila para characterName y actorName
+            const characterNameCell = newRow.insertCell(0);
+            const actorNameCell = newRow.insertCell(1);
+
+            // Agregamos los datos a las celdas
+            characterNameCell.textContent = (characterNames[i] || '').trim(); // trim solo si characterName es una cadena
+            actorNameCell.textContent = (actorNames[i] || '').trim(); // trim solo si actorName es una cadena
+        }
     });
-    
 }
+
 
 changePage(`/allMovies`);

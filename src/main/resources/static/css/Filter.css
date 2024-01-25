@@ -169,3 +169,20 @@ button:hover {
   text-decoration: none;
   cursor: pointer;
 }
+
+#movieTitle {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #actorTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #actorTable th, #actorTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
