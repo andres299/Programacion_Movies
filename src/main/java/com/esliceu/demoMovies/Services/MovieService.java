@@ -359,7 +359,6 @@ public class MovieService {
                         movie.getVote_count());
                 movieRepo.save(movieInfo);
             } else {
-                System.out.println("No existe puerco");
                 throw new entitiExist("Esta id no existe: " + entityId);
             }
         } else if (movie.getOperation().equals("delete")){

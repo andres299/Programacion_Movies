@@ -186,31 +186,16 @@ function updateUI() {
     });
 }
 
-function handleInfoDataMovies(infoDataMovies){
-    document.getElementById('titleSpan').innerText = infoDataMovies[0].title;
-   // Comprobación antes de llamar a join
-       if (infoDataMovies[0].actorName) {
-           document.getElementById('actorNamesSpan').innerText = infoDataMovies[0].actorName.join(', ');
-       } else {
-           document.getElementById('actorNamesSpan').innerText = '';
-       }
-
-       if (infoDataMovies[0].characterName) {
-           document.getElementById('characterNamesSpan').innerText = infoDataMovies[0].characterName.join(', ');
-       } else {
-           document.getElementById('characterNamesSpan').innerText = '';
-       }
-
-       if (infoDataMovies[0].directorName) {
-           document.getElementById('directorNamesSpan').innerText = infoDataMovies[0].directorName.join(', ');
-       } else {
-           document.getElementById('directorNamesSpan').innerText = '';
-       }
-
-       if (infoDataMovies[0].genre) {
-           document.getElementById('genreNamesSpan').innerText = infoDataMovies[0].genre.join(', ');
-       } else {
-           document.getElementById('genreNamesSpan').innerText = '';
-       }
+function handleInfoDataMovies(infoDataMovies) {
+infoDataMovies.forEach(movie => {
+        console.log(`Title: ${movie.title}`);
+        console.log(`Actor Name: ${movie.actorName}`);
+        console.log(`Director Name: ${movie.directorName}`);
+        console.log(`Character Name: ${movie.characterName}`);
+        console.log(`Genre: ${movie.genre}`);
+        console.log("--------------");
+    });
+    
 }
+
 changePage(`/allMovies`);
