@@ -385,23 +385,46 @@ public class MovieService {
         int movieId = requestBody.get("movieId");
         Movie movie = movieRepo.findById((long) movieId).orElse(null);
         if (movie == null) {
-            return null;
+            throw new entitiExist("Esta id no existe: " + movieId);
         }
         InfoMovies infoMovies = new InfoMovies();
         infoMovies.setTitle(movie.getTitle());
         //Obtener Actores de la pelicula
         List<Person> actorNames = personService.findPersonByMoviecast_MovieMovieIdEquals(movieId);
-        infoMovies.setActorName(actorNames);
+        List<String> actorNameStrings = actorNames.stream()
+                .map(Person::getPersonName)
+                .collect(Collectors.toList());
 
-        //infoMovies.setDirectorNames(directorNames);
+        infoMovies.setActorName(actorNameStrings);
+
+        //Obtener los directores de la pelicula
+        String director = "Director";
+        List<Person> directorNames = personService.findDistincPersonByMovieCrewsJobAndMovieCrews_MovieMovieIdEquals(director,movieId);
+        List<String> directorNameStrings = directorNames.stream()
+                .map(Person::getPersonName)
+                .collect(Collectors.toList());
+
+        infoMovies.setDireactorName(directorNameStrings);
+
 
         //Obtener los personajes personaje
-        List<Movie_Cast> characterNames = movieCastService.findAll();
+        List<Movie_Cast> characterNames = movieCastService.findCharacterNameByMovieId(movieId);
+        List<String> characterNameStrings = characterNames.stream()
+                .map(Movie_Cast::getCharacterName)
+                .collect(Collectors.toList());
+        /*
         List<Movie_Cast> filteredCharacters = characterNames.stream()
                 .filter(movieCast -> movieCast.getMovie().getMovieId() == movieId)
                 .collect(Collectors.toList());
-        infoMovies.setCharacterName(filteredCharacters);
-        //infoMovies.setGenres(genres);
+        */
+        infoMovies.setCharacterName(characterNameStrings);
+
+        //Obtener los generos de la pelicula
+        List<Genre> genres = genreService.findGenreByMovieGenres_MovieMovieIdEquals(movieId);
+        List<String> genreNames = genres.stream()
+                .map(Genre::getGenreName)
+                .collect(Collectors.toList());
+        infoMovies.setGenre(genreNames);
 
         // Colocar el objeto InfoMovies en una lista
         List<InfoMovies> infoMoviesList = new ArrayList<>();

@@ -47,6 +47,14 @@ public class FilterController {
 
     @PostMapping("/infoMovies")
     public List<InfoMovies> infoMovies(@RequestBody Map<String, Integer> requestBody) {
+        List<InfoMovies> infoMovies = movieService.getInfoMovies(requestBody);;
+        for (InfoMovies infoMovies1 : infoMovies){
+            System.out.println(infoMovies1.getTitle());
+            System.out.println(infoMovies1.getActorName());
+            System.out.println(infoMovies1.getCharacterName());
+            System.out.println(infoMovies1.getDireactorName());
+            System.out.println(infoMovies1.getGenre());
+        }
         return movieService.getInfoMovies(requestBody);
     }
 

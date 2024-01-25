@@ -35,4 +35,8 @@ public class GenreService {
     public List<?> findByGenreNameStartingWithIgnoreCase(String keyword) {
         return genreRepo.findByGenreNameStartingWithIgnoreCase(keyword);
     }
+
+    public List<Genre> findGenreByMovieGenres_MovieMovieIdEquals(int movieId) {
+        return genreRepo.findGenreByMovieGenres_MovieMovieIdEquals(movieId);
+    }
 }

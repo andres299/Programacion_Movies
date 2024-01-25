@@ -15,4 +15,6 @@ public interface GenreRepo extends JpaRepository<Genre, Long> {
     int ifEntitiExist(@Param("entityId") int entityId);
 
     List<Genre> findByGenreNameStartingWithIgnoreCase(String keyword);
+
+    List<Genre> findGenreByMovieGenres_MovieMovieIdEquals(int movieId);
 }

@@ -27,4 +27,6 @@ public interface Movie_CastRepo  extends JpaRepository<Movie_Cast, Long> {
     @Query(value = "DELETE FROM movie_cast WHERE movie_id = :movieId", nativeQuery = true)
     void deleteByMovieId(int movieId);
 
+    @Query(value = "SELECT * FROM movie_cast WHERE movie_id = :movieId",nativeQuery = true)
+    List<Movie_Cast> findCharacterNameByMovieId(int movieId);
 }

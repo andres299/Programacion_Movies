@@ -27,4 +27,8 @@ public class Movie_CastService {
     public List<Movie_Cast> findAll() {
         return movieCastRepo.findAll();
     }
+
+    public List<Movie_Cast> findCharacterNameByMovieId(int movieId) {
+        return movieCastRepo.findCharacterNameByMovieId(movieId);
+    }
 }

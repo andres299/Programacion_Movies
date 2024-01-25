@@ -39,4 +39,8 @@ public class PersonService {
     public List<Person> findPersonByMoviecast_MovieMovieIdEquals(int movieId) {
         return personRepo.findPersonByMoviecast_MovieMovieIdEquals(movieId);
     }
+
+    public List<Person> findDistincPersonByMovieCrewsJobAndMovieCrews_MovieMovieIdEquals(String director, int movieId) {
+        return personRepo.findDistincPersonByMovieCrewsJobAndMovieCrews_MovieMovieIdEquals(director,movieId);
+    }
 }
