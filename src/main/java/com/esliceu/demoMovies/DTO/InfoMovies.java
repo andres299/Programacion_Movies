@@ -1,18 +1,22 @@
 package com.esliceu.demoMovies.DTO;
 
+import com.esliceu.demoMovies.Entities.Genre;
+import com.esliceu.demoMovies.Entities.Movie_Cast;
+import com.esliceu.demoMovies.Entities.Person;
+
 import java.util.List;
 
 public class InfoMovies {
     private String title;
-    private List<String> actorName;
-    private List<String> direactorName;
-    private List<String> characterName;
-    private List<String> genre;
+    private List<Person> actorName;
+    private List<Person> direactorName;
+    private List<Movie_Cast> characterName;
+    private List<Genre> genre;
 
     public InfoMovies() {
     }
 
-    public InfoMovies(String title, List<String> actorName, List<String> direactorName, List<String> characterName, List<String> genre) {
+    public InfoMovies(String title, List<Person> actorName, List<Person> direactorName, List<Movie_Cast> characterName, List<Genre> genre) {
         this.title = title;
         this.actorName = actorName;
         this.direactorName = direactorName;
@@ -28,35 +32,35 @@ public class InfoMovies {
         this.title = title;
     }
 
-    public List<String> getActorName() {
+    public List<Person> getActorName() {
         return actorName;
     }
 
-    public void setActorName(List<String> actorName) {
+    public void setActorName(List<Person> actorName) {
         this.actorName = actorName;
     }
 
-    public List<String> getDireactorName() {
+    public List<Person> getDireactorName() {
         return direactorName;
     }
 
-    public void setDireactorName(List<String> direactorName) {
+    public void setDireactorName(List<Person> direactorName) {
         this.direactorName = direactorName;
     }
 
-    public List<String> getCharacterName() {
+    public List<Movie_Cast> getCharacterName() {
         return characterName;
     }
 
-    public void setCharacterName(List<String> characterName) {
+    public void setCharacterName(List<Movie_Cast> characterName) {
         this.characterName = characterName;
     }
 
-    public List<String> getGenre() {
+    public List<Genre> getGenre() {
         return genre;
     }
 
-    public void setGenre(List<String> genre) {
+    public void setGenre(List<Genre> genre) {
         this.genre = genre;
     }
 }

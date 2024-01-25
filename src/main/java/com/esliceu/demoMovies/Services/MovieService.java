@@ -1,14 +1,19 @@
 package com.esliceu.demoMovies.Services;
 
 import com.esliceu.demoMovies.DTO.FetchEntitiDTO;
+import com.esliceu.demoMovies.DTO.InfoMovies;
 import com.esliceu.demoMovies.DTO.OperationMovies;
 import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieService {
@@ -374,6 +379,35 @@ public class MovieService {
                 throw new entitiExist("Esta id no existe: " + entityId);
             }
         }
+    }
+
+    public List<InfoMovies> getInfoMovies(Map<String, Integer> requestBody) {
+        int movieId = requestBody.get("movieId");
+        Movie movie = movieRepo.findById((long) movieId).orElse(null);
+        if (movie == null) {
+            return null;
+        }
+        InfoMovies infoMovies = new InfoMovies();
+        infoMovies.setTitle(movie.getTitle());
+        //Obtener Actores de la pelicula
+        List<Person> actorNames = personService.findPersonByMoviecast_MovieMovieIdEquals(movieId);
+        infoMovies.setActorName(actorNames);
+
+        //infoMovies.setDirectorNames(directorNames);
+
+        //Obtener los personajes personaje
+        List<Movie_Cast> characterNames = movieCastService.findAll();
+        List<Movie_Cast> filteredCharacters = characterNames.stream()
+                .filter(movieCast -> movieCast.getMovie().getMovieId() == movieId)
+                .collect(Collectors.toList());
+        infoMovies.setCharacterName(filteredCharacters);
+        //infoMovies.setGenres(genres);
+
+        // Colocar el objeto InfoMovies en una lista
+        List<InfoMovies> infoMoviesList = new ArrayList<>();
+        infoMoviesList.add(infoMovies);
+
+        return infoMoviesList;
     }
 
 

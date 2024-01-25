@@ -73,7 +73,7 @@ async function postData(URL, data) {
         console.error('Error fetching data:', error);
     });
 }
-
+/*
 function infoMoviesData(url, data) {
     const requestOptions = {
         method: 'POST',
@@ -90,7 +90,7 @@ function infoMoviesData(url, data) {
             throw error; // Puedes manejar el error de alguna otra manera si es necesario
         });
 }
-
+*/
 // Función para actualizar la interfaz de usuario con los datos recibidos
 function updateUI() {
     moviesTable.innerHTML = "";
@@ -148,14 +148,32 @@ function updateUI() {
         const optionsCell = document.createElement("td");
         optionsCell.appendChild(viewButton);
         row.appendChild(optionsCell);
-
+// Definición de la función infoMoviesData
+        function infoMoviesData(url, data) {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                // Hacer algo con la respuesta del servidor (result)
+            })
+            .catch(error => {
+                console.error('Error en la solicitud:', error);
+            });
+        }
         // Agregar evento al botón "View"
         viewButton.addEventListener("click", function() {
             const movieIdValue = this.value;
+            console.log(movieIdValue);
             const data = {
                     movieId: parseInt(movieIdValue)
             };
             infoMoviesData(`/infoMovies`, data);
+
             // Mostrar el modal
             const modal = document.getElementById("myModal");
             const movieIdSpan = document.getElementById("movieIdSpan");

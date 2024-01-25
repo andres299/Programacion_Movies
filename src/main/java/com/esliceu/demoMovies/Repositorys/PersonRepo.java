@@ -16,4 +16,6 @@ public interface PersonRepo extends JpaRepository<Person, Long> {
     int ifEntitiExist(@Param("entityId") int entityId);
 
     List<Person> findByPersonNameStartingWithIgnoreCase(String keyword);
+
+    List<Person> findPersonByMoviecast_MovieMovieIdEquals(int movieId);
 }

@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Collection;
+import java.util.List;
+
 public interface Movie_CastRepo  extends JpaRepository<Movie_Cast, Long> {
     @Transactional
     @Modifying
@@ -23,4 +26,5 @@ public interface Movie_CastRepo  extends JpaRepository<Movie_Cast, Long> {
     @Modifying
     @Query(value = "DELETE FROM movie_cast WHERE movie_id = :movieId", nativeQuery = true)
     void deleteByMovieId(int movieId);
+
 }

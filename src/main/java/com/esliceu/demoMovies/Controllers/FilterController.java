@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Controllers;
 
+import com.esliceu.demoMovies.DTO.InfoMovies;
 import com.esliceu.demoMovies.DTO.OperationMovies;
 import com.esliceu.demoMovies.Entities.Administrator;
 import com.esliceu.demoMovies.Entities.Movie;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class FilterController {
@@ -44,11 +46,8 @@ public class FilterController {
     }
 
     @PostMapping("/infoMovies")
-    @ResponseBody
-    ResponseEntity<String> infoMovies(@RequestBody int movieId) {
-        System.out.println(movieId);
-        return ResponseEntity.ok("Información de la película recibida correctamente.");
+    public List<InfoMovies> infoMovies(@RequestBody Map<String, Integer> requestBody) {
+        return movieService.getInfoMovies(requestBody);
     }
-
 
 }

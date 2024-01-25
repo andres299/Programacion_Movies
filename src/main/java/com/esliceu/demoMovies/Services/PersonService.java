@@ -35,4 +35,8 @@ public class PersonService {
     public List<?> findByPersonNameStartingWithIgnoreCase(String keyword) {
         return personRepo.findByPersonNameStartingWithIgnoreCase(keyword);
     }
+
+    public List<Person> findPersonByMoviecast_MovieMovieIdEquals(int movieId) {
+        return personRepo.findPersonByMoviecast_MovieMovieIdEquals(movieId);
+    }
 }
