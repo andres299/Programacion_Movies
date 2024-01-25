@@ -188,6 +188,9 @@ function updateUI() {
 
 function handleInfoDataMovies(infoDataMovies) {
 infoDataMovies.forEach(movie => {
+        const movieTitleElement = document.getElementById("movieTitle");
+        movieTitleElement.textContent = movie.title;
+
         console.log(`Title: ${movie.title}`);
         console.log(`Actor Name: ${movie.actorName}`);
         console.log(`Director Name: ${movie.directorName}`);

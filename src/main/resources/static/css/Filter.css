@@ -143,30 +143,17 @@ button:hover {
   display: none;
   justify-content: center;
   align-items: center;
-  overflow: auto; /* Permitir desbordamiento vertical en el modal */
+  overflow: auto;
 }
 
 .modal-content {
+  height: 85vh;
+  width: 85vw;
   background-color: #fefefe;
   padding: 20px;
   border: 1px solid #888;
   width: 80vw;
   overflow-x: auto; /* Permitir desbordamiento horizontal dentro del contenido del modal */
-}
-
-.modal-content table {
-        width: 100%;
-}
-
-.modal-content td {
-       padding: 5px;
-}
-
-.modal-content p span {
-       max-width: 200px; /* ajusta el valor según tus necesidades */
-       white-space: nowrap;
-       overflow: auto;
-       display: inline-block;
 }
 
 .close {
