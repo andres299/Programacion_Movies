@@ -6,7 +6,6 @@ import com.esliceu.demoMovies.DTO.OperationMovies;
 import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -404,7 +403,7 @@ public class MovieService {
                 .map(Person::getPersonName)
                 .collect(Collectors.toList());
 
-        infoMovies.setDireactorName(directorNameStrings);
+        infoMovies.setDirectorName(directorNameStrings);
 
 
         //Obtener los personajes personaje

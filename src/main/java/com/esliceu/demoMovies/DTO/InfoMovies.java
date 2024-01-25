@@ -1,15 +1,11 @@
 package com.esliceu.demoMovies.DTO;
 
-import com.esliceu.demoMovies.Entities.Genre;
-import com.esliceu.demoMovies.Entities.Movie_Cast;
-import com.esliceu.demoMovies.Entities.Person;
-
 import java.util.List;
 
 public class InfoMovies {
     private String title;
     private List<String> actorName;
-    private List<String> direactorName;
+    private List<String> directorName;
     private List<String> characterName;
     private List<String> genre;
 
@@ -19,7 +15,7 @@ public class InfoMovies {
     public InfoMovies(String title, List<String> actorName, List<String> direactorName, List<String> characterName, List<String> genre) {
         this.title = title;
         this.actorName = actorName;
-        this.direactorName = direactorName;
+        this.directorName = direactorName;
         this.characterName = characterName;
         this.genre = genre;
     }
@@ -40,12 +36,12 @@ public class InfoMovies {
         this.actorName = actorName;
     }
 
-    public List<String> getDireactorName() {
-        return direactorName;
+    public List<String> getDirectorName() {
+        return directorName;
     }
 
-    public void setDireactorName(List<String> direactorName) {
-        this.direactorName = direactorName;
+    public void setDirectorName(List<String> directorName) {
+        this.directorName = directorName;
     }
 
     public List<String> getCharacterName() {

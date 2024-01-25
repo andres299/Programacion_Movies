@@ -7,6 +7,7 @@ const keyword = document.getElementById('keyword');
 let page = 0;
 let totalPages = 0;
 let moviesData = [];
+let infoDataMovies = [];
 
 prevButton.addEventListener('click', async () => {
     if (page > 0) page--;
@@ -73,24 +74,7 @@ async function postData(URL, data) {
         console.error('Error fetching data:', error);
     });
 }
-/*
-function infoMoviesData(url, data) {
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    };
 
-    return fetch(url, requestOptions)
-        .then(response => response.json())
-        .catch(error => {
-            console.error('Error en la solicitud Fetch:', error);
-            throw error; // Puedes manejar el error de alguna otra manera si es necesario
-        });
-}
-*/
 // Función para actualizar la interfaz de usuario con los datos recibidos
 function updateUI() {
     moviesTable.innerHTML = "";
@@ -148,7 +132,8 @@ function updateUI() {
         const optionsCell = document.createElement("td");
         optionsCell.appendChild(viewButton);
         row.appendChild(optionsCell);
-// Definición de la función infoMoviesData
+
+        // Definición de la función infoMoviesData
         function infoMoviesData(url, data) {
             fetch(url, {
                 method: 'POST',
@@ -159,12 +144,15 @@ function updateUI() {
             })
             .then(response => response.json())
             .then(result => {
-                // Hacer algo con la respuesta del servidor (result)
+                infoDataMovies = result;
+                console.log(infoDataMovies);
+                handleInfoDataMovies(infoDataMovies);
             })
             .catch(error => {
                 console.error('Error en la solicitud:', error);
             });
         }
+
         // Agregar evento al botón "View"
         viewButton.addEventListener("click", function() {
             const movieIdValue = this.value;
@@ -178,12 +166,12 @@ function updateUI() {
             const modal = document.getElementById("myModal");
             const movieIdSpan = document.getElementById("movieIdSpan");
 
-            modal.style.display = "flex"; // Cambiar a "flex" en lugar de "block"
+            modal.style.display = "flex";
 
             // Agregar evento para cerrar el modal haciendo clic en la 'x'
             const closeButton = document.getElementsByClassName("close")[0];
             closeButton.addEventListener("click", function() {
-                modal.style.display = "none"; // Cambiar a "none" en lugar de "block"
+                modal.style.display = "none";
             });
 
             // Cerrar el modal si se hace clic fuera del contenido del modal
@@ -198,5 +186,31 @@ function updateUI() {
     });
 }
 
+function handleInfoDataMovies(infoDataMovies){
+    document.getElementById('titleSpan').innerText = infoDataMovies[0].title;
+   // Comprobación antes de llamar a join
+       if (infoDataMovies[0].actorName) {
+           document.getElementById('actorNamesSpan').innerText = infoDataMovies[0].actorName.join(', ');
+       } else {
+           document.getElementById('actorNamesSpan').innerText = '';
+       }
 
+       if (infoDataMovies[0].characterName) {
+           document.getElementById('characterNamesSpan').innerText = infoDataMovies[0].characterName.join(', ');
+       } else {
+           document.getElementById('characterNamesSpan').innerText = '';
+       }
+
+       if (infoDataMovies[0].directorName) {
+           document.getElementById('directorNamesSpan').innerText = infoDataMovies[0].directorName.join(', ');
+       } else {
+           document.getElementById('directorNamesSpan').innerText = '';
+       }
+
+       if (infoDataMovies[0].genre) {
+           document.getElementById('genreNamesSpan').innerText = infoDataMovies[0].genre.join(', ');
+       } else {
+           document.getElementById('genreNamesSpan').innerText = '';
+       }
+}
 changePage(`/allMovies`);
