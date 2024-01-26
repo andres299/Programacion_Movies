@@ -14,7 +14,11 @@ public class Movie_GenresService {
     Movie_GenresRepo movieGenresRepo;
 
 
-    public void deleteByMovieId(int movieId) { movieGenresRepo.deleteByMovieId(movieId); }
+    public void deleteByMovieId(int movieId) {
+        List<Movie_Genres> allGenres = movieGenresRepo.findAllByMovie_MovieId(movieId);
+        movieGenresRepo.deleteAll(allGenres);
+        //movieGenresRepo.deleteByMovieId(movieId);
+    }
 
     public void deleteByGenreId(int entityId) {
         List<Movie_Genres> allGenres = movieGenresRepo.findAllByGenre_GenreId(entityId);

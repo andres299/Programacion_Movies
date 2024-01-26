@@ -25,5 +25,6 @@ public class Movie_LanguageService {
     public void deleteByMovieId(int movieId) {
         List<Movie_Languages> allMovieLanguages= movieLanguagesRepo.findAllByMovie_MovieId(movieId);
         movieLanguagesRepo.deleteAll(allMovieLanguages);
+        //movieLanguagesRepo.deleteByMovieId(movieId);
     }
 }

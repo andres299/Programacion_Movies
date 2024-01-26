@@ -18,5 +18,9 @@ public class Movie_KeywordsService {
         movieKeywordsRepo.deleteAll(allKeywords);
     }
 
-    public void deleteByMovieId(int movieId) { movieKeywordsRepo.deleteByMovieId(movieId);}
+    public void deleteByMovieId(int movieId) {
+        List<Movie_Keywords> allKeywords = movieKeywordsRepo.findAllByMovie_MovieId(movieId);
+        movieKeywordsRepo.deleteAll(allKeywords);
+        movieKeywordsRepo.deleteByMovieId(movieId);
+    }
 }

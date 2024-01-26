@@ -19,5 +19,9 @@ public class Movie_CompanyService {
         movieCompanyRepo.deleteByCompanyId(entityId);
     }
 
-    public void deleteByMovieId(int movieId) { movieCompanyRepo.deleteByMovieId(movieId); }
+    public void deleteByMovieId(int movieId) {
+        List<Movie_Company> allMovieCompany = movieCompanyRepo.findAllByProductionMovie_MovieId(movieId);
+        movieCompanyRepo.deleteAll(allMovieCompany);
+        //movieCompanyRepo.deleteByMovieId(movieId);
+    }
 }
