@@ -78,10 +78,6 @@ public class MovieService {
         return Collections.emptyList();
     }
 
-    public List<Country> getAllCountrys() {
-        return (List<Country>) countryService.findAll();
-    }
-
     public List<?> infoEntities(String selectedValue) {
         List<?> listEntiti;
 

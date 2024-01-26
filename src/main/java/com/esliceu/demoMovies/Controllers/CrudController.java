@@ -6,6 +6,7 @@ import com.esliceu.demoMovies.Entities.Administrator;
 import com.esliceu.demoMovies.Entities.Country;
 import com.esliceu.demoMovies.Entities.Movie;
 import com.esliceu.demoMovies.Services.AdminService;
+import com.esliceu.demoMovies.Services.CountryService;
 import com.esliceu.demoMovies.Services.MovieService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -22,24 +23,25 @@ public class CrudController {
     @Autowired
     MovieService movieService;
     @Autowired
+    CountryService countryService;
+    @Autowired
     HttpSession session;
 
     @GetMapping("/crud")
-    public String showCrud() {
-        /*
+    public String showCrud(Model model, @RequestParam(defaultValue = "0") int page) {
         Administrator admin = (Administrator) session.getAttribute("admin");
-        if (admin == null){
-            return "redirect:/filterMovies";
-        }
-         */
+        //if (admin == null){
+          //  return "redirect:/filterMovies";
+        //
+        model.addAttribute("listCountries", countryService.getAllCountrys(page));
         return "crud";
     }
 
-    @GetMapping("/allCountrys")
-    @ResponseBody
-    public List<Country> showCountrys(){
-        return movieService.getAllCountrys();
-    }
+    //@GetMapping("/allCountrys")
+    //@ResponseBody
+    //public List<Country> showCountrys(){
+        //return movieService.getAllCountrys();
+    //}
 
     @PostMapping("/infoEntities")
     @ResponseBody
