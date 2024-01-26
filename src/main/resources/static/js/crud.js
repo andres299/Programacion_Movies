@@ -1,6 +1,6 @@
 const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
-const entityTable = document.querySelector("tbody");
+const entityTable = document.querySelector("table");
 const selectElement = document.getElementById("entity");
 const insertButton = document.getElementById("insertButton");
 const updateButton = document.getElementById("updateButton");
@@ -237,6 +237,7 @@ keyword.addEventListener('input', () => {
         id: null,
         input1: keyword.value,
         input2: null,
+        page: page
     };
     searchDataEntity(`/searchEntities`, requestData);
     document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));

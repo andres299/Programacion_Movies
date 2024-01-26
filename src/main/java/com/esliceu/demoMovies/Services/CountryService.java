@@ -29,8 +29,8 @@ public class CountryService {
     public int countCountriesByCountryId(int entityId) {
         return countryRepo.countCountriesByCountryId(entityId);
     }
-    public List<?> findByCountryNameStartingWithIgnoreCase(String keyword) {
-        return countryRepo.findByCountryNameStartingWithIgnoreCase(keyword);
+    public List<?> findByCountryNameStartingWithIgnoreCase(String keyword, Pageable pageable) {
+        return countryRepo.findByCountryNameStartingWithIgnoreCase(keyword,pageable);
     }
 
     public List<Country> getAllCountrys(int page) {

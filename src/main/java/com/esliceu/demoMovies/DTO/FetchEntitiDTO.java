@@ -9,6 +9,8 @@ public class FetchEntitiDTO {
     private String input1;
     private String input2;
 
+    private int page;
+
     public FetchEntitiDTO() {
     }
 
@@ -58,5 +60,13 @@ public class FetchEntitiDTO {
 
     public void setInput2(String input2) {
         this.input2 = input2;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
     }
 }

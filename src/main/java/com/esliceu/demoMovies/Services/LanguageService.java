@@ -29,7 +29,7 @@ public class LanguageService {
         return languageRepo.countLanguagesByLanguageId(entityId);
     }
 
-    public List<?> findByLanguageNameStartingWithIgnoreCase(String keyword) {
-        return languageRepo.findByLanguageNameStartingWithIgnoreCase(keyword);
+    public List<?> findByLanguageNameStartingWithIgnoreCase(String keyword, Pageable pageable) {
+        return languageRepo.findByLanguageNameStartingWithIgnoreCase(keyword,pageable);
     }
 }

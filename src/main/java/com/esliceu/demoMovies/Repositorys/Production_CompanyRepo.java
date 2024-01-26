@@ -1,9 +1,8 @@
 package com.esliceu.demoMovies.Repositorys;
 
 import com.esliceu.demoMovies.Entities.Production_Company;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -12,5 +11,5 @@ public interface Production_CompanyRepo extends JpaRepository<Production_Company
 
     int countProductionCompaniesByCompanyId(int entityId);
 
-    List<Production_Company> findByCompanyNameStartingWithIgnoreCase(String keyword);
+    List<Production_Company> findByCompanyNameStartingWithIgnoreCase(String keyword, Pageable pageable);
 }

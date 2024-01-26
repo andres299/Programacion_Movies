@@ -32,7 +32,7 @@ public class ProductionCompanyService {
         return productionCompanyRepo.countProductionCompaniesByCompanyId(entityId);
     }
 
-    public List<?> findByCompanyNameStartingWithIgnoreCase(String keyword) {
-        return productionCompanyRepo.findByCompanyNameStartingWithIgnoreCase(keyword);
+    public List<?> findByCompanyNameStartingWithIgnoreCase(String keyword, Pageable pageable) {
+        return productionCompanyRepo.findByCompanyNameStartingWithIgnoreCase(keyword,pageable);
     }
 }

@@ -22,8 +22,6 @@ public interface MovieRepo extends JpaRepository<Movie, Long> {
 
     Page<Movie> findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining(String director, String keyword, Pageable pageable);
 
-    @Query(value = "SELECT movie_id, title, overview, popularity, release_date, revenue FROM movie WHERE title LIKE %:keyword%", nativeQuery = true)
-    List<Map<String, Object>> findByTitleSelectInfo(@Param("keyword") String keyword);
-
     int countMoviesByMovieId(int entityId);
+
 }

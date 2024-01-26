@@ -31,8 +31,8 @@ public class GenreService {
     public int countGenresByGenreId(int entityId) {
         return genreRepo.countGenresByGenreId(entityId);
     }
-    public List<?> findByGenreNameStartingWithIgnoreCase(String keyword) {
-        return genreRepo.findByGenreNameStartingWithIgnoreCase(keyword);
+    public List<?> findByGenreNameStartingWithIgnoreCase(String keyword, Pageable pageable) {
+        return genreRepo.findByGenreNameStartingWithIgnoreCase(keyword,pageable);
     }
 
     public List<Genre> findGenreByMovieGenres_MovieMovieIdEquals(int movieId) {

@@ -34,7 +34,7 @@ public class LanguageRoleService {
         return language_roleRepo.countLanguageRolesByRoleId(entityId);
     }
 
-    public List<?> findByLanguageRoleStartingWithIgnoreCase(String keyword) {
-        return language_roleRepo.findByLanguageRoleStartingWithIgnoreCase(keyword);
+    public List<?> findByLanguageRoleStartingWithIgnoreCase(String keyword, Pageable pageable) {
+        return language_roleRepo.findByLanguageRoleStartingWithIgnoreCase(keyword,pageable);
     }
 }

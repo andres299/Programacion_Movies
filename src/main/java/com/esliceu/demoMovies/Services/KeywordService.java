@@ -31,7 +31,7 @@ public class KeywordService {
     public int countKeywordsByKeywordId(int entityId) {
         return keywordRepo.countKeywordsByKeywordId(entityId);
     }
-    public List<?> findByKeywordNameStartingWithIgnoreCase(String keyword) {
-        return keywordRepo.findByKeywordNameStartingWithIgnoreCase(keyword);
+    public List<?> findByKeywordNameStartingWithIgnoreCase(String keyword, Pageable pageable) {
+        return keywordRepo.findByKeywordNameStartingWithIgnoreCase(keyword,pageable);
     }
 }

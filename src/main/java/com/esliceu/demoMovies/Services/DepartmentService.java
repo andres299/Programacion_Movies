@@ -29,7 +29,7 @@ public class DepartmentService {
         return departmentRepo.countDepartmentsByDepartmentId(entityId);
     }
 
-    public List<?> findByDepartmentNameStartingWithIgnoreCase(String keyword) {
-        return departmentRepo.findByDepartmentNameStartingWithIgnoreCase(keyword);
+    public List<?> findByDepartmentNameStartingWithIgnoreCase(String keyword, Pageable pageable) {
+        return departmentRepo.findByDepartmentNameStartingWithIgnoreCase(keyword,pageable);
     }
 }

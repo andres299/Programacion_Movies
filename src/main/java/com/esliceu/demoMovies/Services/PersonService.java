@@ -33,8 +33,8 @@ public class PersonService {
         return personRepo.countPersonsByPersonId(entityId);
     }
 
-    public List<?> findByPersonNameStartingWithIgnoreCase(String keyword) {
-        return personRepo.findByPersonNameStartingWithIgnoreCase(keyword);
+    public List<?> findByPersonNameStartingWithIgnoreCase(String keyword, Pageable pageable) {
+        return personRepo.findByPersonNameStartingWithIgnoreCase(keyword,pageable);
     }
 
     public List<Person> findPersonByMoviecast_MovieMovieIdEquals(int movieId) {

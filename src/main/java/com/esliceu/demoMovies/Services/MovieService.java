@@ -111,7 +111,7 @@ public class MovieService {
                 listEntiti = departmentService.findAll(pageable);
                 break;
             case "movies":
-                List<Movie>  infoMovie = movieRepo.findAll(pageable).getContent();
+                List<Movie> infoMovie = movieRepo.findAll(pageable).getContent();
                 List<MovieDTO> movieDTOList = infoMovie.stream()
                         .map(movie -> new MovieDTO(
                                 movie.getMovieId(),
@@ -331,30 +331,46 @@ public class MovieService {
     }
 
     public List<?> searchEntities(FetchEntitiDTO fetchEntitiDTO) {
+        Pageable pageable = PageRequest.of(fetchEntitiDTO.getPage(), 10);
         String entity = fetchEntitiDTO.getEntity();
         String keyword = fetchEntitiDTO.getInput1();
+        System.out.println(fetchEntitiDTO.getPage());
         System.out.println(entity + keyword);
         switch (entity) {
             case "country":
-                return countryService.findByCountryNameStartingWithIgnoreCase(keyword);
+                return countryService.findByCountryNameStartingWithIgnoreCase(keyword,pageable);
             case "language":
-                return languageService.findByLanguageNameStartingWithIgnoreCase(keyword);
+                return languageService.findByLanguageNameStartingWithIgnoreCase(keyword,pageable);
             case "language_role":
-                return languageRoleService.findByLanguageRoleStartingWithIgnoreCase(keyword);
+                return languageRoleService.findByLanguageRoleStartingWithIgnoreCase(keyword,pageable);
             case "genre":
-                return genreService.findByGenreNameStartingWithIgnoreCase(keyword);
+                return genreService.findByGenreNameStartingWithIgnoreCase(keyword,pageable);
             case "keyword":
-                return keywordService.findByKeywordNameStartingWithIgnoreCase(keyword);
+                return keywordService.findByKeywordNameStartingWithIgnoreCase(keyword,pageable);
             case "production_company":
-                return productionCompanyService.findByCompanyNameStartingWithIgnoreCase(keyword);
+                return productionCompanyService.findByCompanyNameStartingWithIgnoreCase(keyword,pageable);
             case "gender":
-                return genderService.findByGenderStartingWithIgnoreCase(keyword);
+                return genderService.findByGenderStartingWithIgnoreCase(keyword,pageable);
             case "person":
-                return personService.findByPersonNameStartingWithIgnoreCase(keyword);
+                return personService.findByPersonNameStartingWithIgnoreCase(keyword,pageable);
             case "department":
-                return departmentService.findByDepartmentNameStartingWithIgnoreCase(keyword);
+                return departmentService.findByDepartmentNameStartingWithIgnoreCase(keyword,pageable);
             case "movies":
-                return movieRepo.findByTitleSelectInfo(keyword);
+                List<Movie> movies = movieRepo.findByTitleStartingWithIgnoreCase(keyword,pageable).getContent();
+                List<MovieDTO> movieDTOList = movies.stream()
+                        .map(movie -> {
+                            Movie movieEntity = (Movie) movie;
+                            return new MovieDTO(
+                                    movieEntity.getMovieId(),
+                                    movieEntity.getTitle(),
+                                    movieEntity.getOverview(),
+                                    movieEntity.getPopularity(),
+                                    movieEntity.getReleaseDate(),
+                                    movieEntity.getRevenue()
+                            );
+                        })
+                        .collect(Collectors.toList());
+                return movieDTOList;
             default:
                 throw new EntityNotFoundException("Entidad no encontrada: " + entity);
         }

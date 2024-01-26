@@ -32,7 +32,7 @@ public class GenderService {
         return genderRepo.countGendersByGenderId(entityId);
     }
 
-    public List<?> findByGenderStartingWithIgnoreCase(String keyword) {
-        return genderRepo.findByGenderStartingWithIgnoreCase(keyword);
+    public List<?> findByGenderStartingWithIgnoreCase(String keyword, Pageable pageable) {
+        return genderRepo.findByGenderStartingWithIgnoreCase(keyword,pageable);
     }
 }
