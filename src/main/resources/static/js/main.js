@@ -6,7 +6,6 @@ const keyword = document.getElementById('keyword');
 const viewButtons = document.querySelectorAll('.view-button');
 
 let page = 0;
-let totalPages = 0;
 let moviesData = [];
 let infoDataMovies = [];
 
@@ -21,10 +20,7 @@ console.log("hola prev");
 });
 
 nextButton.addEventListener('click', async () => {
-console.log("hola next");
-    if (page < totalPages - 1) {
-        page++;
-    }
+    page++;
     console.log(page);
     const requestData = {
          page: page
@@ -33,7 +29,7 @@ console.log("hola next");
     updateUI();
 });
 
-keyword.addEventListener('input', () => {
+keyword.addEventListener('input', () => { //Kayword vacio llamo a getAllMovies al mismo
     page = 0;
     const requestData = {
         filterType: filterType.value,
