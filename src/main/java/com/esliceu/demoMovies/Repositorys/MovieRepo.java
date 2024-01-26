@@ -26,6 +26,5 @@ public interface MovieRepo extends JpaRepository<Movie, Long> {
     @Query(value = "SELECT movie_id, title, overview, popularity, release_date, revenue FROM movie WHERE title LIKE %:keyword%", nativeQuery = true)
     List<Map<String, Object>> findByTitleSelectInfo(@Param("keyword") String keyword);
 
-    @Query(value = "SELECT COUNT(*) FROM movie WHERE movie_id = :entityId", nativeQuery = true)
-    int ifEntitiExist(@Param("entityId") int entityId);
+    int countMoviesByMovieId(int entityId);
 }

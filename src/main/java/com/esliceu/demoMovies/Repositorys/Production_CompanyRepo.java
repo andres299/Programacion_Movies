@@ -10,8 +10,7 @@ import java.util.List;
 public interface Production_CompanyRepo extends JpaRepository<Production_Company, Long> {
     Production_Company findFirstByOrderByCompanyIdDesc();
 
-    @Query(value = "SELECT COUNT(*) FROM production_company WHERE company_id = :entityId", nativeQuery = true)
-    int ifEntitiExist(@Param("entityId") int entityId);
+    int countProductionCompaniesByCompanyId(int entityId);
 
     List<Production_Company> findByCompanyNameStartingWithIgnoreCase(String keyword);
 }

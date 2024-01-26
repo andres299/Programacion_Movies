@@ -9,7 +9,8 @@ import java.util.Set;
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int department_id;
+    @Column(name = "department_id")
+    private int departmentId;
 
     @Column(name = "department_name")
     private String departmentName;
@@ -25,17 +26,17 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public Department(int department_id, String departmentName) {
-        this.department_id = department_id;
+    public Department(int departmentId, String departmentName) {
+        this.departmentId = departmentId;
         this.departmentName = departmentName;
     }
 
-    public int getDepartment_id() {
-        return department_id;
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getDepartmentName() {

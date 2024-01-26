@@ -27,8 +27,8 @@ public class ProductionCompanyService {
         productionCompanyRepo.deleteById(entityId);
     }
 
-    public int ifEntitiExist(int entityId) {
-        return productionCompanyRepo.ifEntitiExist(entityId);
+    public int countProductionCompaniesByCompanyId(int entityId) {
+        return productionCompanyRepo.countProductionCompaniesByCompanyId(entityId);
     }
 
     public List<?> findByCompanyNameStartingWithIgnoreCase(String keyword) {

@@ -10,8 +10,7 @@ import java.util.List;
 public interface PersonRepo extends JpaRepository<Person, Long> {
     Person findFirstByOrderByPersonIdDesc();
 
-    @Query(value = "SELECT COUNT(*) FROM person WHERE person_id = :entityId", nativeQuery = true)
-    int ifEntitiExist(@Param("entityId") int entityId);
+    int countPersonsByPersonId(int entityId);
 
     List<Person> findByPersonNameStartingWithIgnoreCase(String keyword);
 

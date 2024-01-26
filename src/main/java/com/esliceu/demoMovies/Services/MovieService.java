@@ -305,11 +305,11 @@ public class MovieService {
             case "language_role" -> languageRoleService.countLanguageRolesByRoleId(entityId) > 0;
             case "genre" -> genreService.countGenresByGenreId(entityId) > 0;
             case "keyword" -> keywordService.countKeywordsByKeywordId(entityId) > 0;
-            case "production_company" -> productionCompanyService.ifEntitiExist(entityId) > 0;
-            case "gender" -> genderService.ifEntitiExist(entityId) > 0;
-            case "person" -> personService.ifEntitiExist(entityId) > 0;
-            case "department" -> departmentService.ifEntitiExist(entityId) > 0;
-            case "movies" -> movieRepo.ifEntitiExist(entityId) > 0;
+            case "production_company" -> productionCompanyService.countProductionCompaniesByCompanyId(entityId) > 0;
+            case "gender" -> genderService.countGendersByGenderId(entityId) > 0;
+            case "person" -> personService.countPersonsByPersonId(entityId) > 0;
+            case "department" -> departmentService.countDepartmentsByDepartmentId(entityId) > 0;
+            case "movies" -> movieRepo.countMoviesByMovieId(entityId) > 0;
             default -> false;
         };
 

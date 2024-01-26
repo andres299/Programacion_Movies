@@ -28,8 +28,8 @@ public class PersonService {
         personRepo.deleteById(entityId);
     }
 
-    public int ifEntitiExist(int entityId) {
-        return personRepo.ifEntitiExist(entityId);
+    public int countPersonsByPersonId(int entityId) {
+        return personRepo.countPersonsByPersonId(entityId);
     }
 
     public List<?> findByPersonNameStartingWithIgnoreCase(String keyword) {
@@ -43,4 +43,5 @@ public class PersonService {
     public List<Person> findDistincPersonByMovieCrewsJobAndMovieCrews_MovieMovieIdEquals(String director, int movieId) {
         return personRepo.findDistincPersonByMovieCrewsJobAndMovieCrews_MovieMovieIdEquals(director,movieId);
     }
+
 }

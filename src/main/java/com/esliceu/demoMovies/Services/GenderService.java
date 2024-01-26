@@ -27,8 +27,8 @@ public class GenderService {
         genderRepo.deleteById(entityId);
     }
 
-    public int ifEntitiExist(int entityId) {
-        return genderRepo.ifEntitiExist(entityId);
+    public int countGendersByGenderId(int entityId) {
+        return genderRepo.countGendersByGenderId(entityId);
     }
 
     public List<?> findByGenderStartingWithIgnoreCase(String keyword) {

@@ -24,8 +24,8 @@ public class DepartmentService {
         departmentRepo.deleteById(entityId);
     }
 
-    public int ifEntitiExist(int entityId) {
-        return departmentRepo.ifEntitiExist(entityId);
+    public int countDepartmentsByDepartmentId(int entityId) {
+        return departmentRepo.countDepartmentsByDepartmentId(entityId);
     }
 
     public List<?> findByDepartmentNameStartingWithIgnoreCase(String keyword) {

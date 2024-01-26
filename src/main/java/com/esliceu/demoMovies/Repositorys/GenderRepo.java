@@ -10,8 +10,7 @@ import java.util.List;
 public interface GenderRepo extends JpaRepository<Gender, Long> {
     Gender findFirstByOrderByGenderIdDesc();
 
-    @Query(value = "SELECT COUNT(*) FROM gender WHERE gender_id = :entityId", nativeQuery = true)
-    int ifEntitiExist(@Param("entityId") int entityId);
+    int countGendersByGenderId(int entityId);
 
     List<Gender> findByGenderStartingWithIgnoreCase(String keyword);
 }
