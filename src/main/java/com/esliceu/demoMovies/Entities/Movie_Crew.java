@@ -24,6 +24,7 @@ public class Movie_Crew {
     @JoinColumn(name = "department_id")
     private Department department;
 
+    @Id
     private String job;
 
     public Movie getMovie() {

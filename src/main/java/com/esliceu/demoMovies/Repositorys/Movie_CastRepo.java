@@ -13,18 +13,12 @@ import java.util.List;
 
 public interface Movie_CastRepo  extends JpaRepository<Movie_Cast, Long> {
 
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM movie_cast WHERE person_id = :entityId", nativeQuery = true)
-    void deleteByPersonId(@Param("entityId") int entityId);
-
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM movie_cast WHERE movie_id = :movieId", nativeQuery = true)
-    void deleteByMovieId(int movieId);
-
     @Query(value = "SELECT * FROM movie_cast WHERE movie_id = :movieId",nativeQuery = true)
     List<Movie_Cast> findCharacterNameByMovieId(int movieId);
 
-    List<Movie_Cast> findAllGender_GenderId(int entityId);
+    List<Movie_Cast> findAllByGender_GenderId(int entityId);
+
+    List<Movie_Cast> findAllByPerson_PersonId(int entityId);
+
+    List<Movie_Cast> findAllByMovie_MovieId(int movieId);
 }

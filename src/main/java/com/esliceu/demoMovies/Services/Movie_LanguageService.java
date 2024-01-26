@@ -18,8 +18,12 @@ public class Movie_LanguageService {
     }
 
     public void deleteByLanguageRoleId(int entityId) {
-        movieLanguagesRepo.deleteByLanguageRoleId(entityId);
+        List<Movie_Languages> allMovieLanguages= movieLanguagesRepo.findAllByLanguageRole_RoleId(entityId);
+        movieLanguagesRepo.deleteAll(allMovieLanguages);
     }
 
-    public void deleteByMovieId(int movieId) { movieLanguagesRepo.deleteByMovieId(movieId); }
+    public void deleteByMovieId(int movieId) {
+        List<Movie_Languages> allMovieLanguages= movieLanguagesRepo.findAllByMovie_MovieId(movieId);
+        movieLanguagesRepo.deleteAll(allMovieLanguages);
+    }
 }

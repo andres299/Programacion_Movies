@@ -12,15 +12,9 @@ import java.util.List;
 
 public interface Movie_CrewRepo extends JpaRepository<Movie_Crew, Long> {
 
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM movie_crew WHERE department_id = :entityId", nativeQuery = true)
-    void deleteByDepartmentId(@Param("entityId") int entityId);
-
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM movie_crew WHERE movie_id = :movieId", nativeQuery = true)
-    void deleteByMovieId(int movieId);
-
     List<Movie_Crew> findAllByDepartment_DepartmentId(int entityId);
+
+    List<Movie_Crew> findAllByPerson_PersonId(int entityId);
+
+    List<Movie_Crew> findAllByMovie_MovieId(int movieId);
 }

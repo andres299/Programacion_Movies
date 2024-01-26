@@ -7,6 +7,8 @@ public class Movie_CrewId implements Serializable {
     private Person person;
     private Department department;
 
+    private String job;
+
     public Movie getMovie() {
         return movie;
     }
@@ -29,5 +31,13 @@ public class Movie_CrewId implements Serializable {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 }

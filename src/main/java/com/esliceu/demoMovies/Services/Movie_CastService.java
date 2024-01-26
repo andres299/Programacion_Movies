@@ -15,15 +15,18 @@ public class Movie_CastService {
     Movie_CastRepo movieCastRepo;
 
     public void deleteByGenderId(int entityId) {
-        List<Movie_Cast> allMovieCast = movieCastRepo.findAllGender_GenderId(entityId);
+        List<Movie_Cast> allMovieCast = movieCastRepo.findAllByGender_GenderId(entityId);
         movieCastRepo.deleteAll(allMovieCast);
     }
 
     public void deleteByPersonId(int entityId) {
-        movieCastRepo.deleteByPersonId(entityId);
+        List<Movie_Cast> allMovieCast = movieCastRepo.findAllByPerson_PersonId(entityId);
+        movieCastRepo.deleteAll(allMovieCast);
     }
 
-    public void deleteByMovieId(int movieId) { movieCastRepo.deleteByMovieId(movieId); }
+    public void deleteByMovieId(int movieId) {
+        List<Movie_Cast> allMovieCast = movieCastRepo.findAllByMovie_MovieId(movieId);
+        movieCastRepo.deleteAll(allMovieCast);    }
 
     public List<Movie_Cast> findAll() {
         return movieCastRepo.findAll();

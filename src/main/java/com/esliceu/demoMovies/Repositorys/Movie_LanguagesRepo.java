@@ -12,16 +12,9 @@ import java.util.List;
 
 public interface Movie_LanguagesRepo extends JpaRepository<Movie_Languages, Long> {
 
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM movie_languages WHERE language_role_id = :entityId", nativeQuery = true)
-    void deleteByLanguageRoleId(@Param("entityId")int entityId);
-
-
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM movie_languages WHERE movie_id = :movieId", nativeQuery = true)
-    void deleteByMovieId(@Param("movieId") int movieId);
-
     List<Movie_Languages> findAllByLanguage_LanguageId(int entityId);
+
+    List<Movie_Languages> findAllByLanguageRole_RoleId(int entityId);
+
+    List<Movie_Languages> findAllByMovie_MovieId(int movieId);
 }

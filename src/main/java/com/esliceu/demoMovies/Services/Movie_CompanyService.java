@@ -12,10 +12,12 @@ public class Movie_CompanyService {
     @Autowired
     Movie_CompanyRepo movieCompanyRepo;
 
+    /*
     public void deleteByProductionCompany(int entityId) {
-        List<Movie_Company> allMovieCompany = movieCompanyRepo.findAllProductionComany_CompanyId(entityId);
+        List<Movie_Company> allMovieCompany = movieCompanyRepo.findAllByProductionCompany_CompanyId(entityId);
         movieCompanyRepo.deleteAll(allMovieCompany);
     }
+     */
 
     public void deleteByMovieId(int movieId) { movieCompanyRepo.deleteByMovieId(movieId); }
 }
