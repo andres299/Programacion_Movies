@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -275,10 +275,18 @@
     <section>
         <table id="table">
             <thead>
-
+                <tr>
+                    <th>countryId</th>                 
+                    <th>countryIsoCode</th>                 
+                    <th>countryName</th>                 
+                </tr>
             </thead>
             <tbody>
-
+                <tr th:each="country : ${listCountries}">
+                    <td th:text="${movie.title}">Title</td>
+                    <td th:text="${movie.budget}">Budget</td>
+                    <td th:text="${movie.overview}">Overview</td>
+                </tr>
             </tbody>
         </table>
     </section>

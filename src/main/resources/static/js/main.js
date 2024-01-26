@@ -28,27 +28,23 @@ prevButton.addEventListener('click', async () => {
 });
 
 nextButton.addEventListener('click', async () => {
-    if (moviesData.length >= 10) {
-        page++;
-        console.log(page);
+    page++;
+    console.log(page);
 
-        if (keyword.value.trim() === '') {
-            const requestData = {
-                page: page
-            };
-            await postData(`/changePageMovies`, requestData);
-        } else {
-            const requestData = {
-                filterType: filterType.value,
-                keyword: keyword.value,
-                page: page
-            };
-            postData(`/filterMovies`, requestData);
-        }
-        updateUI();
+    if (keyword.value.trim() === '') {
+        const requestData = {
+            page: page
+        };
+        await postData(`/changePageMovies`, requestData);
     } else {
-        console.log("No se puede avanzar a la siguiente página, ya que no hay suficientes elementos.");
+        const requestData = {
+            filterType: filterType.value,
+            keyword: keyword.value,
+            page: page
+        };
+        postData(`/filterMovies`, requestData);
     }
+    updateUI();
 });
 
 keyword.addEventListener('input', () => {
