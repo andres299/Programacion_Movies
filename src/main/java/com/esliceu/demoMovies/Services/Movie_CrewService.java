@@ -28,5 +28,6 @@ public class Movie_CrewService {
     public void deleteByMovieId(int movieId) {
         List<Movie_Crew> allMovieCrew = movieCrewRepo.findAllByMovie_MovieId(movieId);
         movieCrewRepo.deleteAll(allMovieCrew);
+        //movieCrewRepo.deleteByMovieId(movieId);
     }
 }

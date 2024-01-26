@@ -23,6 +23,9 @@ public interface Movie_CrewRepo extends JpaRepository<Movie_Crew, Long> {
     void deleteByDepartmentId(int entityId);
     //List<Movie_Crew> findAllByDepartment_DepartmentId(int entityId);
 
+    //@Transactional
+    //@Modifying
+    //@Query(value = "DELETE FROM movie_crew WHERE movie_id = :entityId", nativeQuery = true)
+    //void deleteByMovieId(int movieId);
     List<Movie_Crew> findAllByMovie_MovieId(int movieId);
-
 }

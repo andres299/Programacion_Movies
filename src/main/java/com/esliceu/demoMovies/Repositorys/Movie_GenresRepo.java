@@ -15,8 +15,7 @@ public interface Movie_GenresRepo extends JpaRepository<Movie_Genres, Long> {
     //@Modifying
     //@Query(value = "DELETE FROM movie_genres WHERE movie_id = :movieId", nativeQuery = true)
     //void deleteByMovieId(int movieId);
+    List<Movie_Genres> findAllByMovie_MovieId(int movieId);
 
     List<Movie_Genres> findAllByGenre_GenreId(int entityId);
-
-    List<Movie_Genres> findAllByMovie_MovieId(int movieId);
 }

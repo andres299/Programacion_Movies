@@ -29,7 +29,7 @@ public class Movie_CastService {
     public void deleteByMovieId(int movieId) {
         List<Movie_Cast> allMovieCast = movieCastRepo.findAllByMovie_MovieId(movieId);
         movieCastRepo.deleteAll(allMovieCast);
-        movieCastRepo.deleteByMovieId(movieId);
+        //movieCastRepo.deleteByMovieId(movieId);
     }
 
     public List<Movie_Cast> findAll() {
