@@ -27,12 +27,56 @@ selectElement.addEventListener("change", function () {
 
 prevButton.addEventListener('click', async () => {
     if (page > 0) page--;
+    if (keyword.value.trim() === '') {
+        var selectedValue = selectElement.value;
+
+        const requestData = {
+            selectedValue: selectedValue,
+            page: page
+        };
+        postData(`/infoEntities`, requestData);
+    } else {
+        const selectedOption = selectElement.value;
+        operation = 'search';
+        console.log(keyword.value);
+        const requestData = {
+            operation: operation,
+            entity: selectedOption,
+            id: null,
+            input1: keyword.value,
+            input2: null,
+            page: page
+        };
+        searchDataEntity(`/searchEntities`, requestData);
+    }
     updateUI();
 });
 
 nextButton.addEventListener('click', async () => {
-        page++;
-        updateUI();
+    page++;
+    if (keyword.value.trim() === '') {
+        var selectedValue = selectElement.value;
+
+        const requestData = {
+            selectedValue: selectedValue,
+            page: page
+        };
+        postData(`/infoEntities`, requestData);
+    } else {
+        const selectedOption = selectElement.value;
+        operation = 'search';
+        console.log(keyword.value);
+        const requestData = {
+            operation: operation,
+            entity: selectedOption,
+            id: null,
+            input1: keyword.value,
+            input2: null,
+            page: page
+        };
+        searchDataEntity(`/searchEntities`, requestData);
+    }
+    updateUI();
 });
 
 async function postData(URL, data) {
@@ -70,7 +114,7 @@ function updateUI() {
         // Si el array está vacío, mostrar un mensaje
         const noResultsRow = document.createElement("tr");
         const noResultsCell = document.createElement("td");
-        noResultsCell.colSpan = Object.keys(entityData[0]).length + 2;
+        noResultsCell.colSpan = entityData.lenght;
         noResultsCell.textContent = "No se encontraron resultados.";
         noResultsRow.appendChild(noResultsCell);
         entityTable.appendChild(noResultsRow);
