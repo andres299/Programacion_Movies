@@ -19,7 +19,7 @@ public interface Movie_CrewRepo extends JpaRepository<Movie_Crew, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM movie_crew WHERE person_id = :entityId", nativeQuery = true)
+    @Query(value = "DELETE FROM movie_crew WHERE department_id = :entityId", nativeQuery = true)
     void deleteByDepartmentId(int entityId);
     //List<Movie_Crew> findAllByDepartment_DepartmentId(int entityId);
 
