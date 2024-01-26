@@ -1,7 +1,8 @@
 package com.esliceu.demoMovies.Repositorys;
 
-import com.esliceu.demoMovies.Entities.Keyword;
 import com.esliceu.demoMovies.Entities.Movie;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,15 +12,15 @@ import java.util.Map;
 
 public interface MovieRepo extends JpaRepository<Movie, Long> {
 
-    List<Movie> findByTitleStartingWithIgnoreCase(String keyword);
+    Page<Movie> findByTitleStartingWithIgnoreCase(String keyword, Pageable pageable);
 
-    List<Movie> findMovieByMoviecast_PersonPersonNameContaining(String keyword);
+    Page<Movie> findMovieByMoviecast_PersonPersonNameContaining(String keyword, Pageable pageable);
 
-    List<Movie> findMovieByMovieGenres_GenreGenreNameContaining(String character_name);
+    Page<Movie> findMovieByMovieGenres_GenreGenreNameContaining(String character_name, Pageable pageable);
 
-    List<Movie> findMovieByMoviecastCharacterNameContaining(String keyword);
+    Page<Movie> findMovieByMoviecastCharacterNameContaining(String keyword, Pageable pageable);
 
-    List<Movie> findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining(String director,String keyword);
+    Page<Movie> findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining(String director, String keyword, Pageable pageable);
 
     @Query(value = "SELECT movie_id ,title, overview,popularity,release_date,revenue FROM movie", nativeQuery = true)
     List<Map<String, Object>> findInfoMovies();

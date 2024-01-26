@@ -33,17 +33,18 @@ public class FilterController {
         model.addAttribute("listOfMovies",movieService.getMovieList(page));
         return "filterMovies";
     }
-    //@GetMapping("/allMovies")
-    //@ResponseBody
-    //public List<Movie> showMovies(){
-      //  return movieService.getAllMovies();
-    //}
-
+    @PostMapping("/changePageMovies")
+    @ResponseBody
+    public List<Movie> changePageMovies(@RequestParam int page) {
+        System.out.println(page);
+        return movieService.getMovieList(page);
+    }
 
     @PostMapping("/filterMovies")
     @ResponseBody
-    public List<Movie> filterMovies(@RequestParam String filterType, @RequestParam String keyword) {
-        return movieService.filterMovies(filterType,keyword);
+    public List<Movie> filterMovies(@RequestParam String filterType, @RequestParam String keyword, @RequestParam int page) {
+        System.out.println(page);
+        return movieService.filterMovies(filterType,keyword,page);
     }
 
     @PostMapping("/infoMovies")

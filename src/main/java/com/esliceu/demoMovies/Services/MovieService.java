@@ -60,19 +60,20 @@ public class MovieService {
         return movieRepo.findAll(pageable).getContent();
     }
 
-    public List<Movie> filterMovies(String filterType, String keyword) {
+    public List<Movie> filterMovies(String filterType, String keyword, int page) {
+        Pageable pageable = PageRequest.of(page,10);
         System.out.println("filterMovies llamado con palabra clave: " + keyword + " y tipo de filtro: " + filterType);
         if ("title".equals(filterType)) {
-            return movieRepo.findByTitleStartingWithIgnoreCase(keyword);
+            return movieRepo.findByTitleStartingWithIgnoreCase(keyword,pageable).getContent();
         } else if ("actor".equals(filterType)) {
-            return movieRepo.findMovieByMoviecast_PersonPersonNameContaining(keyword);
+            return movieRepo.findMovieByMoviecast_PersonPersonNameContaining(keyword,pageable).getContent();
         } else if ("characters".equals(filterType)) {
-            return movieRepo.findMovieByMoviecastCharacterNameContaining(keyword);
+            return movieRepo.findMovieByMoviecastCharacterNameContaining(keyword,pageable).getContent();
         } else if ("genre".equals(filterType)) {
-            return movieRepo.findMovieByMovieGenres_GenreGenreNameContaining(keyword);
+            return movieRepo.findMovieByMovieGenres_GenreGenreNameContaining(keyword,pageable).getContent();
         } else if ("director".equals(filterType)) {
             String director = "Director";
-            return movieRepo.findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining(director,keyword);
+            return movieRepo.findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining(director,keyword,pageable).getContent();
         }
         return Collections.emptyList();
     }
