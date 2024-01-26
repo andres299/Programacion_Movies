@@ -47,6 +47,16 @@ public class CrudController {
     @ResponseBody
     public List<?> crud(@RequestParam String selectedValue){ return movieService.infoEntities(selectedValue);}
 
+    @PostMapping("/searchEntities")
+    @ResponseBody
+    public List<?> searchEntities(@RequestBody FetchEntitiDTO fetchEntitiDTO) {
+        Administrator admin = (Administrator) session.getAttribute("admin");
+        //if (admin != null) {
+        return movieService.searchEntities(fetchEntitiDTO);
+        //}
+        //return ResponseEntity.badRequest().body("Error: Entrada no válida para la entidad");
+    }
+
     @PostMapping("/operationEntities")
     public ResponseEntity<String> operationEntities(@RequestBody FetchEntitiDTO fetchEntitiDTO) {
         Administrator admin = (Administrator) session.getAttribute("admin");
@@ -66,16 +76,6 @@ public class CrudController {
         } catch (UnsupportedOperationException | MovieService.EntityNotFoundException | MovieService.entitiExist e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
-    }
-
-    @PostMapping("/searchEntities")
-    @ResponseBody
-    public List<?> searchEntities(@RequestBody FetchEntitiDTO fetchEntitiDTO) {
-        Administrator admin = (Administrator) session.getAttribute("admin");
-        //if (admin != null) {
-            return movieService.searchEntities(fetchEntitiDTO);
-        //}
-        //return ResponseEntity.badRequest().body("Error: Entrada no válida para la entidad");
     }
 
     @PostMapping("/operationMovies")

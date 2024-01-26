@@ -9,7 +9,6 @@ const keyword = document.getElementById('keyword');
 
 let page = 0;
 let action = "";
-let totalPages = 0;
 let entityData = [];
 let id;
 let operation;
@@ -31,30 +30,10 @@ prevButton.addEventListener('click', async () => {
 });
 
 nextButton.addEventListener('click', async () => {
-    if (page < totalPages - 1) {
         page++;
         updateUI();
     }
 });
-
-async function changePage(URL) {
-    fetch(URL)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            entityData = data;
-            updateUI();
-            totalPages = Math.ceil(entityData.length / 10);
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-}
 
 async function postData(URL, data) {
     const formData = new FormData();
@@ -77,7 +56,6 @@ async function postData(URL, data) {
             console.log(responseData);
             entityData = responseData;
             updateUI();
-            totalPages = Math.ceil(entityData.length / 10);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -99,15 +77,10 @@ function updateUI() {
         return;
     }
 
-    const itemsPerPage = 10;
-    const startIndex = page * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const currentEntities = entityData.slice(startIndex, endIndex);
-
     const headerRow = document.createElement("tr");
 
     // Obtén los nombres de las columnas de la primera fila de resultados
-    const columnNames = Object.keys(currentEntities[0]);
+    const columnNames = Object.keys(entityData[0]);
     console.log(columnNames);
     // Utiliza los nombres de las columnas para crear los encabezados
     columnNames.forEach(columnName => {
@@ -118,7 +91,7 @@ function updateUI() {
 
     entityTable.appendChild(headerRow);
 
-    currentEntities.forEach(entity => {
+    entityData.forEach(entity => {
         const row = document.createElement("tr");
 
         // Utiliza los nombres de las columnas para obtener los valores correspondientes
@@ -157,8 +130,6 @@ function showFields() {
         selectedUpdateFields.style.display = "block";
     }
 }
-
-changePage(`/allCountrys`);
 
 insertButton.addEventListener('click', () => {
     const selectedOption = selectElement.value;
