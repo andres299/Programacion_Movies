@@ -14,13 +14,15 @@ public class Movie_CrewService {
     Movie_CrewRepo movieCrewRepo;
 
     public void deleteByDepartmentId(int entityId) {
-        List<Movie_Crew> allMovieCrew = movieCrewRepo.findAllByDepartment_DepartmentId(entityId);
-        movieCrewRepo.deleteAll(allMovieCrew);
+        //List<Movie_Crew> allMovieCrew = movieCrewRepo.findAllByDepartment_DepartmentId(entityId);
+        //movieCrewRepo.deleteAll(allMovieCrew);
+        movieCrewRepo.deleteByDepartmentId(entityId);
     }
 
     public void deleteByPersonId(int entityId) {
-        List<Movie_Crew> allMovieCrew = movieCrewRepo.findAllByPerson_PersonId(entityId);
-        movieCrewRepo.deleteAll(allMovieCrew);
+        //List<Movie_Crew> allMovieCrew = movieCrewRepo.findAllByPerson_PersonId(entityId);
+        //movieCrewRepo.deleteAll(allMovieCrew);
+        movieCrewRepo.deleteByPersonId(entityId);
     }
 
     public void deleteByMovieId(int movieId) {
