@@ -17,27 +17,23 @@ public class LanguageRoleService {
         return language_roleRepo.findAll();
     }
 
-    //public int getLastId() {
-        //return language_roleRepo.getLastId();
-    //}
-
     public void save(Language_role languageRole) {
         language_roleRepo.save(languageRole);
+    }
+
+    public Language_role findFirstByOrderByRoleIdDesc() {
+        return language_roleRepo.findFirstByOrderByRoleIdDesc();
     }
 
     public void deleteById(long entityId) {
         language_roleRepo.deleteById(entityId);
     }
 
-    public int ifEntitiExist(int entityId) {
-        return language_roleRepo.ifEntitiExist(entityId);
+    public int countLanguageRolesByRoleId(int entityId) {
+        return language_roleRepo.countLanguageRolesByRoleId(entityId);
     }
 
     public List<?> findByLanguageRoleStartingWithIgnoreCase(String keyword) {
         return language_roleRepo.findByLanguageRoleStartingWithIgnoreCase(keyword);
-    }
-
-    public Language_role findFirstByOrderByRoleIdDesc() {
-        return language_roleRepo.findFirstByOrderByRoleIdDesc();
     }
 }

@@ -27,10 +27,9 @@ public class GenreService {
         genreRepo.save(genre);
     }
 
-    public int ifEntitiExist(int entityId) {
-        return genreRepo.ifEntitiExist(entityId);
+    public int countGenresByGenreId(int entityId) {
+        return genreRepo.countGenresByGenreId(entityId);
     }
-
     public List<?> findByGenreNameStartingWithIgnoreCase(String keyword) {
         return genreRepo.findByGenreNameStartingWithIgnoreCase(keyword);
     }

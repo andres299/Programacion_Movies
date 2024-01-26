@@ -24,8 +24,8 @@ public class LanguageService {
         languageRepo.deleteById(entityId);
     }
 
-    public int ifEntitiExist(int entityId) {
-        return languageRepo.ifEntitiExist(entityId);
+    public int countLanguagesByLanguageId(int entityId) {
+        return languageRepo.countLanguagesByLanguageId(entityId);
     }
 
     public List<?> findByLanguageNameStartingWithIgnoreCase(String keyword) {

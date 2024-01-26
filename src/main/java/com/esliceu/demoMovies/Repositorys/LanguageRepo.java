@@ -8,8 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface LanguageRepo extends JpaRepository<Language, Long> {
-    @Query(value = "SELECT COUNT(*) FROM language WHERE language_id = :entityId", nativeQuery = true)
-    int ifEntitiExist(@Param("entityId") int entityId);
+    int countLanguagesByLanguageId(int entityId);
 
     List<Language> findByLanguageNameStartingWithIgnoreCase(String keyword);
 }

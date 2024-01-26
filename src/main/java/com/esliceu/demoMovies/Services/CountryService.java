@@ -24,8 +24,9 @@ public class CountryService {
         countryRepo.deleteById(entityId);
     }
 
-    public int ifEntitiExist(int entityId) { return countryRepo.ifEntitiExist(entityId); }
-
+    public int countCountriesByCountryId(int entityId) {
+        return countryRepo.countCountriesByCountryId(entityId);
+    }
     public List<?> findByCountryNameStartingWithIgnoreCase(String keyword) {
         return countryRepo.findByCountryNameStartingWithIgnoreCase(keyword);
     }

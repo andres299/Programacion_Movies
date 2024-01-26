@@ -27,12 +27,10 @@ public class KeywordService {
         keywordRepo.deleteById(entityId);
     }
 
-    public int ifEntitiExist(int entityId) {
-        return keywordRepo.ifEntitiExist(entityId);
+    public int countKeywordsByKeywordId(int entityId) {
+        return keywordRepo.countKeywordsByKeywordId(entityId);
     }
-
     public List<?> findByKeywordNameStartingWithIgnoreCase(String keyword) {
         return keywordRepo.findByKeywordNameStartingWithIgnoreCase(keyword);
     }
-
 }

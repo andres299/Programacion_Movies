@@ -8,8 +8,7 @@ import java.util.List;
 
 
 public interface CountryRepo extends JpaRepository<Country, Long> {
-    @Query(value = "SELECT COUNT(*) FROM country WHERE country_id = :entityId", nativeQuery = true)
-    int ifEntitiExist(@Param("entityId") int entityId);
+    int countCountriesByCountryId(int entityId);
 
     List<Country> findByCountryNameStartingWithIgnoreCase(String keyword);
 }

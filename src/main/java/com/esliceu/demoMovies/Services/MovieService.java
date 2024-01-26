@@ -171,7 +171,7 @@ public class MovieService {
                     break;
                 case "person":
                     Person personId = personService.findFirstByOrderByPersonIdDesc();
-                    entityId = (personService.getLastId() != 0) ? personService.getLastId() + 1 : 1;
+                    entityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
                     Person person = new Person(entityId, input1);
                     personService.save(person);
                     break;
@@ -300,11 +300,11 @@ public class MovieService {
     private boolean existEntiti(String entity, String id) {
         int entityId = Integer.parseInt(id);
         return switch (entity) {
-            case "country" -> countryService.ifEntitiExist(entityId) > 0;
-            case "language" -> languageService.ifEntitiExist(entityId) > 0;
-            case "language_role" -> languageRoleService.ifEntitiExist(entityId) > 0;
-            case "genre" -> genreService.ifEntitiExist(entityId) > 0;
-            case "keyword" -> keywordService.ifEntitiExist(entityId) > 0;
+            case "country" -> countryService.countCountriesByCountryId(entityId) > 0;
+            case "language" -> languageService.countLanguagesByLanguageId(entityId) > 0;
+            case "language_role" -> languageRoleService.countLanguageRolesByRoleId(entityId) > 0;
+            case "genre" -> genreService.countGenresByGenreId(entityId) > 0;
+            case "keyword" -> keywordService.countKeywordsByKeywordId(entityId) > 0;
             case "production_company" -> productionCompanyService.ifEntitiExist(entityId) > 0;
             case "gender" -> genderService.ifEntitiExist(entityId) > 0;
             case "person" -> personService.ifEntitiExist(entityId) > 0;
@@ -356,7 +356,6 @@ public class MovieService {
                     movie.getTagline(),movie.getVote_average(),movie.getVote_count());
             movieRepo.save(movieInfo);
         } else if (movie.getOperation().equals("update")) {
-            System.out.println(existEntiti(entity,entityId));
             if (existEntiti(entity,entityId)){
                 Movie movieInfo = new Movie(movie.getMovie_id(),movie.getTitle(),movie.getBudget(),
                         movie.getHomepage(),movie.getOverview(),movie.getPopularity(),
@@ -416,11 +415,6 @@ public class MovieService {
         List<String> characterNameStrings = characterNames.stream()
                 .map(Movie_Cast::getCharacterName)
                 .collect(Collectors.toList());
-        /*
-        List<Movie_Cast> filteredCharacters = characterNames.stream()
-                .filter(movieCast -> movieCast.getMovie().getMovieId() == movieId)
-                .collect(Collectors.toList());
-        */
         infoMovies.setCharacterName(characterNameStrings);
 
         //Obtener los generos de la pelicula

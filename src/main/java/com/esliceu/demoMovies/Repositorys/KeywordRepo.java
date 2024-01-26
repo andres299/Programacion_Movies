@@ -11,8 +11,7 @@ public interface KeywordRepo extends JpaRepository<Keyword, Long> {
 
     Keyword findFirstByOrderByKeywordIdDesc();
 
-    @Query(value = "SELECT COUNT(*) FROM keyword WHERE keyword_id = :entityId", nativeQuery = true)
-    int ifEntitiExist(@Param("entityId") int entityId);
+    int countKeywordsByKeywordId(int entityId);
 
     List<Keyword> findByKeywordNameStartingWithIgnoreCase(String keyword);
 }

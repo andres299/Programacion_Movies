@@ -11,11 +11,9 @@ public interface GenreRepo extends JpaRepository<Genre, Long> {
 
     Genre findFirstByOrderByGenreIdDesc();
 
-    @Query(value = "SELECT COUNT(*) FROM genre WHERE genre_id = :entityId", nativeQuery = true)
-    int ifEntitiExist(@Param("entityId") int entityId);
+    int countGenresByGenreId(int entityId);
 
     List<Genre> findByGenreNameStartingWithIgnoreCase(String keyword);
 
     List<Genre> findGenreByMovieGenres_MovieMovieIdEquals(int movieId);
-
 }
