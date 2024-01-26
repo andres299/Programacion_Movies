@@ -3,7 +3,7 @@ const nextButton = document.getElementById("nextButton");
 const moviesTable = document.querySelector("tbody");
 const filterType = document.getElementById('filterType');
 const keyword = document.getElementById('keyword');
-
+const viewButtons = document.querySelectorAll('.view-button');
 let page = 0;
 let totalPages = 0;
 let moviesData = [];
@@ -112,6 +112,7 @@ function updateUI() {
 
         // Crear botón "View" en la columna de "Options"
         const viewButton = document.createElement("button");
+        viewButton.classList.add("view-button");
         viewButton.textContent = "View";
         viewButton.value = movie.movieId;
 
@@ -134,26 +135,6 @@ function updateUI() {
         const optionsCell = document.createElement("td");
         optionsCell.appendChild(viewButton);
         row.appendChild(optionsCell);
-
-        // Definición de la función infoMoviesData
-        function infoMoviesData(url, data) {
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => response.json())
-                .then(result => {
-                    infoDataMovies = result;
-                    console.log(infoDataMovies);
-                    handleInfoDataMovies(infoDataMovies);
-                })
-                .catch(error => {
-                    console.error('Error en la solicitud:', error);
-                });
-        }
 
         // Agregar evento al botón "View"
         viewButton.addEventListener("click", function () {
@@ -186,6 +167,56 @@ function updateUI() {
 
         moviesTable.appendChild(row);
     });
+}
+
+viewButtons.forEach(viewButton => {
+    viewButton.addEventListener("click", function () {
+        const movieIdValue = this.value;
+        console.log(movieIdValue);
+        const data = {
+            movieId: parseInt(movieIdValue)
+        };
+        infoMoviesData(`/infoMovies`, data);
+    
+        // Mostrar el modal
+        const modal = document.getElementById("myModal");
+        const movieIdSpan = document.getElementById("movieIdSpan");
+    
+        modal.style.display = "flex";
+    
+        // Agregar evento para cerrar el modal haciendo clic en la 'x'
+        const closeButton = document.getElementsByClassName("close")[0];
+        closeButton.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+    
+        // Cerrar el modal si se hace clic fuera del contenido del modal
+        window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                modal.style.display = "block";
+            }
+        });
+    });
+})
+
+// Definición de la función infoMoviesData
+function infoMoviesData(url, data) {
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(result => {
+            infoDataMovies = result;
+            console.log(infoDataMovies);
+            handleInfoDataMovies(infoDataMovies);
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+        });
 }
 
 function handleInfoDataMovies(infoDataMovies) {
