@@ -56,7 +56,18 @@
     </tr>
     </thead>
     <tbody>
-
+    <tr th:each="movie : ${listOfMovies}">
+        <td th:text="${movie.title}">Title</td>
+        <td th:text="${movie.budget}">Budget</td>
+        <td th:text="${movie.overview}">Overview</td>
+        <td th:text="${movie.popularity}">Popularity</td>
+        <td th:text="${movie.releaseDate}">Release Date</td>
+        <td th:text="${movie.revenue}">Revenue</td>
+        <td th:text="${movie.voteAverage}">Vote Average</td>
+        <td>
+            <button class="view-button" th:value="${movie.movieId}">View</button>
+        </td>
+    </tr>
     </tbody>
 </table>
 </section>

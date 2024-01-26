@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface MovieRepo extends JpaRepository<Movie, Long> {
+
     List<Movie> findByTitleStartingWithIgnoreCase(String keyword);
 
     List<Movie> findMovieByMoviecast_PersonPersonNameContaining(String keyword);

@@ -6,6 +6,8 @@ import com.esliceu.demoMovies.DTO.OperationMovies;
 import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,8 +52,12 @@ public class MovieService {
     @Autowired
     Movie_CrewService movieCrewService;
 
-    public List<Movie> getAllMovies() {
-        return movieRepo.findAll();
+    //public List<Movie> getAllMovies() {
+      //  return movieRepo.findAll();
+    //}
+    public List<Movie> getMovieList(int page) {
+        Pageable pageable = PageRequest.of(page,10);
+        return movieRepo.findAll(pageable).getContent();
     }
 
     public List<Movie> filterMovies(String filterType, String keyword) {
@@ -430,7 +436,6 @@ public class MovieService {
 
         return infoMoviesList;
     }
-
 
     public class EntityNotFoundException extends RuntimeException {
         public EntityNotFoundException(String message) {

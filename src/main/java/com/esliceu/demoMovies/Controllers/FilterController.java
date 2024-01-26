@@ -27,16 +27,17 @@ public class FilterController {
     MovieService movieService;
 
     @GetMapping("/filterMovies")
-    public String showMovies(Model model){
+    public String showMovies(Model model, @RequestParam(defaultValue = "0") int page){
         Administrator admin = (Administrator) session.getAttribute("admin");
         model.addAttribute("isAdminNotNull", admin != null);
+        model.addAttribute("listOfMovies",movieService.getMovieList(page));
         return "filterMovies";
     }
-    @GetMapping("/allMovies")
-    @ResponseBody
-    public List<Movie> showMovies(){
-        return movieService.getAllMovies();
-    }
+    //@GetMapping("/allMovies")
+    //@ResponseBody
+    //public List<Movie> showMovies(){
+      //  return movieService.getAllMovies();
+    //}
 
 
     @PostMapping("/filterMovies")

@@ -21,6 +21,7 @@ nextButton.addEventListener('click', async () => {
     }
 });
 
+/*
 async function changePage(URL) {
     fetch(URL)
         .then(response => {
@@ -38,6 +39,7 @@ async function changePage(URL) {
             console.error('Error fetching movies:', error);
         });
 }
+*/
 
 keyword.addEventListener('input', () => {
     page = 0;
@@ -217,11 +219,10 @@ function handleInfoDataMovies(infoDataMovies) {
             const actorNameCell = newRow.insertCell(1);
 
             // Agregamos los datos a las celdas
-            characterNameCell.textContent = (characterNames[i] || '').trim(); // trim solo si characterName es una cadena
-            actorNameCell.textContent = (actorNames[i] || '').trim(); // trim solo si actorName es una cadena
+            characterNameCell.textContent = (characterNames[i] || '').trim();
+            actorNameCell.textContent = (actorNames[i] || '').trim();
         }
     });
 }
 
-
-changePage(`/allMovies`);
+//changePage(`/allMovies`);
