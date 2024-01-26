@@ -164,11 +164,13 @@ public class MovieService {
                     productionCompanyService.save(productionCompany);
                     break;
                 case "gender":
-                    entityId = (genderService.getLastId() != 0) ? genderService.getLastId() + 1 : 1;
+                    Gender genderId = genderService.findFirstByOrderByGenderIdDesc();
+                    entityId = (genderId.getGenderId() != 0) ? genderId.getGenderId() + 1 : 1;
                     Gender gender = new Gender(entityId, input1);
                     genderService.save(gender);
                     break;
                 case "person":
+                    Person personId = personService.findFirstByOrderByPersonIdDesc();
                     entityId = (personService.getLastId() != 0) ? personService.getLastId() + 1 : 1;
                     Person person = new Person(entityId, input1);
                     personService.save(person);

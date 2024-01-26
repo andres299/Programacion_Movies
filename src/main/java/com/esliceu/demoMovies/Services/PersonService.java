@@ -16,8 +16,8 @@ public class PersonService {
         return personRepo.findAll();
     }
 
-    public int getLastId() {
-        return personRepo.getLastId();
+    public Person findFirstByOrderByPersonIdDesc() {
+        return personRepo.findFirstByOrderByPersonIdDesc();
     }
 
     public void save(Person person) {

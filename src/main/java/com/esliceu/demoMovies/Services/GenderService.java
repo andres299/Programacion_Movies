@@ -16,10 +16,9 @@ public class GenderService {
         return genderRepo.findAll();
     }
 
-    public int getLastId() {
-        return genderRepo.getLastId();
+    public Gender findFirstByOrderByGenderIdDesc() {
+        return genderRepo.findFirstByOrderByGenderIdDesc();
     }
-
     public void save(Gender gender) {
         genderRepo.save(gender);
     }
