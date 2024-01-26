@@ -10,26 +10,48 @@ let moviesData = [];
 let infoDataMovies = [];
 
 prevButton.addEventListener('click', async () => {
-console.log("hola prev");
     if (page > 0) page--;
-    const requestData = {
-        page: page
-    };
-    await postData(`/changePageMovies`, requestData);
+    if (keyword.value.trim() === '') {
+        const requestData = {
+            page: page
+        };
+        await postData(`/changePageMovies`, requestData);
+    } else {
+        const requestData = {
+            filterType: filterType.value,
+            keyword: keyword.value,
+            page: page
+        };
+        postData(`/filterMovies`, requestData);
+    }
     updateUI();
 });
 
 nextButton.addEventListener('click', async () => {
-    page++;
-    console.log(page);
-    const requestData = {
-         page: page
-    };
-    await postData(`/changePageMovies`, requestData);
-    updateUI();
+    if (moviesData.length >= 10) {
+        page++;
+        console.log(page);
+
+        if (keyword.value.trim() === '') {
+            const requestData = {
+                page: page
+            };
+            await postData(`/changePageMovies`, requestData);
+        } else {
+            const requestData = {
+                filterType: filterType.value,
+                keyword: keyword.value,
+                page: page
+            };
+            postData(`/filterMovies`, requestData);
+        }
+        updateUI();
+    } else {
+        console.log("No se puede avanzar a la siguiente página, ya que no hay suficientes elementos.");
+    }
 });
 
-keyword.addEventListener('input', () => { //Kayword vacio llamo a getAllMovies al mismo
+keyword.addEventListener('input', () => {
     page = 0;
     const requestData = {
         filterType: filterType.value,
@@ -223,4 +245,3 @@ function handleInfoDataMovies(infoDataMovies) {
     });
 }
 
-//changePage(`/allMovies`);
