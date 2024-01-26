@@ -20,8 +20,8 @@ public class Movie_CompanyService {
     }
 
     public void deleteByMovieId(int movieId) {
-        List<Movie_Company> allMovieCompany = movieCompanyRepo.findAllByProductionMovie_MovieId(movieId);
-        movieCompanyRepo.deleteAll(allMovieCompany);
-        //movieCompanyRepo.deleteByMovieId(movieId);
+        //List<Movie_Company> allMovieCompany = movieCompanyRepo.findAllByProductionMovie_MovieId(movieId);
+        //movieCompanyRepo.deleteAll(allMovieCompany);
+        movieCompanyRepo.deleteByMovieId(movieId);
     }
 }

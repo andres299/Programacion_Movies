@@ -225,9 +225,9 @@ public class MovieService {
                         keywordService.deleteById((long) entityId);
                         break;
                     case "production_company":
-                        entityId = Integer.parseInt(id);
-                        movieCompanyService.deleteByProductionCompany(entityId);
-                        productionCompanyService.deleteById((long) entityId);
+                        //entityId = Integer.parseInt(id);
+                        //movieCompanyService.deleteByProductionCompany(entityId);
+                        //productionCompanyService.deleteById((long) entityId);
                         break;
                     case "gender": //Poner consulta Query
                         entityId = Integer.parseInt(id);
