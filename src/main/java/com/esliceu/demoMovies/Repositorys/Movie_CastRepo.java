@@ -12,10 +12,6 @@ import java.util.Collection;
 import java.util.List;
 
 public interface Movie_CastRepo  extends JpaRepository<Movie_Cast, Long> {
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM movie_cast WHERE gender_id = :entityId", nativeQuery = true)
-    void deleteByGenderId(@Param("entityId") int entityId);
 
     @Transactional
     @Modifying
@@ -29,4 +25,6 @@ public interface Movie_CastRepo  extends JpaRepository<Movie_Cast, Long> {
 
     @Query(value = "SELECT * FROM movie_cast WHERE movie_id = :movieId",nativeQuery = true)
     List<Movie_Cast> findCharacterNameByMovieId(int movieId);
+
+    List<Movie_Cast> findAllGender_GenderId(int entityId);
 }

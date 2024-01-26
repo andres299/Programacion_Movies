@@ -1,9 +1,12 @@
 package com.esliceu.demoMovies.Services;
 
 
+import com.esliceu.demoMovies.Entities.Movie_Keywords;
 import com.esliceu.demoMovies.Repositorys.Movie_KeywordsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class Movie_KeywordsService {
@@ -11,7 +14,8 @@ public class Movie_KeywordsService {
     Movie_KeywordsRepo movieKeywordsRepo;
 
     public void deleteByKeywordId(int entityId) {
-        movieKeywordsRepo.deleteByKeywordId(entityId);
+        List<Movie_Keywords> allKeywords = movieKeywordsRepo.findAllByKeyword_KeywordId(entityId);
+        movieKeywordsRepo.deleteAll(allKeywords);
     }
 
     public void deleteByMovieId(int movieId) { movieKeywordsRepo.deleteByMovieId(movieId);}

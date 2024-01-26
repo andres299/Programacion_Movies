@@ -8,14 +8,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface Movie_KeywordsRepo extends JpaRepository<Movie_Keywords, Long> {
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM movie_keywords WHERE keyword_id = :entityId", nativeQuery = true)
-    void deleteByKeywordId(@Param("entityId") int entityId);
 
     @Transactional
     @Modifying
     @Query(value = "DELETE FROM movie_keywords WHERE movie_id = :movieId", nativeQuery = true)
     void deleteByMovieId(int movieId);
+
+    List<Movie_Keywords> findAllByKeyword_KeywordId(int entityId);
 }

@@ -8,11 +8,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface Movie_CrewRepo extends JpaRepository<Movie_Crew, Long> {
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM movie_crew WHERE person_id = :entityId", nativeQuery = true)
-    void deleteByPersonId(@Param("entityId") int entityId);
 
     @Transactional
     @Modifying
@@ -24,4 +22,5 @@ public interface Movie_CrewRepo extends JpaRepository<Movie_Crew, Long> {
     @Query(value = "DELETE FROM movie_crew WHERE movie_id = :movieId", nativeQuery = true)
     void deleteByMovieId(int movieId);
 
+    List<Movie_Crew> findAllByDepartment_DepartmentId(int entityId);
 }

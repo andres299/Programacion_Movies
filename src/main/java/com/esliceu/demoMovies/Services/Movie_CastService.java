@@ -15,7 +15,8 @@ public class Movie_CastService {
     Movie_CastRepo movieCastRepo;
 
     public void deleteByGenderId(int entityId) {
-        movieCastRepo.deleteByGenderId(entityId);
+        List<Movie_Cast> allMovieCast = movieCastRepo.findAllGender_GenderId(entityId);
+        movieCastRepo.deleteAll(allMovieCast);
     }
 
     public void deleteByPersonId(int entityId) {
