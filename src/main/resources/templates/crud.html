@@ -283,9 +283,9 @@
             </thead>
             <tbody>
                 <tr th:each="country : ${listCountries}">
-                    <td th:text="${movie.title}">Title</td>
-                    <td th:text="${movie.budget}">Budget</td>
-                    <td th:text="${movie.overview}">Overview</td>
+                    <td th:text="${country.countryId}">CountryId</td>
+                    <td th:text="${country.countryIsoCode}">countryIsoCode</td>
+                    <td th:text="${country.countryName}">countryName</td>
                 </tr>
             </tbody>
         </table>

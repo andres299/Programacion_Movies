@@ -3,6 +3,7 @@ package com.esliceu.demoMovies.Services;
 import com.esliceu.demoMovies.Entities.Person;
 import com.esliceu.demoMovies.Repositorys.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +13,8 @@ public class PersonService {
     @Autowired
     PersonRepo personRepo;
 
-    public List<?> findAll() {
-        return personRepo.findAll();
+    public List<?> findAll(Pageable pageable) {
+        return personRepo.findAll(pageable).getContent();
     }
 
     public Person findFirstByOrderByPersonIdDesc() {

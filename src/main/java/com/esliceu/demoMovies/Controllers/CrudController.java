@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,6 +34,10 @@ public class CrudController {
         //if (admin == null){
           //  return "redirect:/filterMovies";
         //
+        List<Country> country = countryService.getAllCountrys(page);
+        for (Country country1: country){
+            System.out.println(country1.getCountryName());
+        }
         model.addAttribute("listCountries", countryService.getAllCountrys(page));
         return "crud";
     }
@@ -45,7 +50,9 @@ public class CrudController {
 
     @PostMapping("/infoEntities")
     @ResponseBody
-    public List<?> crud(@RequestParam String selectedValue){ return movieService.infoEntities(selectedValue);}
+    public List<?> crud(@RequestParam String selectedValue,@RequestParam int page){
+        System.out.println(page);
+        return movieService.infoEntities(selectedValue,page);}
 
     @PostMapping("/searchEntities")
     @ResponseBody

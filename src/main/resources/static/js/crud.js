@@ -19,6 +19,7 @@ selectElement.addEventListener("change", function () {
 
     const requestData = {
         selectedValue: selectedValue,
+        page: page
     };
     postData(`/infoEntities`, requestData);
 });
@@ -32,7 +33,6 @@ prevButton.addEventListener('click', async () => {
 nextButton.addEventListener('click', async () => {
         page++;
         updateUI();
-    }
 });
 
 async function postData(URL, data) {

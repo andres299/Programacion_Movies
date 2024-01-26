@@ -3,6 +3,7 @@ package com.esliceu.demoMovies.Services;
 import com.esliceu.demoMovies.Entities.Genre;
 import com.esliceu.demoMovies.Repositorys.GenreRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +13,8 @@ public class GenreService {
     @Autowired
     GenreRepo genreRepo;
 
-    public List<?> findAll() {
-        return genreRepo.findAll();
+    public List<?> findAll(Pageable pageable) {
+        return genreRepo.findAll(pageable).getContent();
     }
 
     public Genre findFirstByOrderByGenreIdDesc() {

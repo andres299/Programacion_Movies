@@ -3,6 +3,7 @@ package com.esliceu.demoMovies.Services;
 import com.esliceu.demoMovies.Entities.Production_Company;
 import com.esliceu.demoMovies.Repositorys.Production_CompanyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +13,8 @@ public class ProductionCompanyService {
     @Autowired
     Production_CompanyRepo productionCompanyRepo;
 
-    public List<?> findAll() {
-        return productionCompanyRepo.findAll();
+    public List<?> findAll(Pageable pageable) {
+        return productionCompanyRepo.findAll(pageable).getContent();
     }
 
     public Production_Company findFirstByOrderByCompanyIdDesc() {

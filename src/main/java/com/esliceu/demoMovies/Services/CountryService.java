@@ -14,8 +14,8 @@ public class CountryService {
     @Autowired
     CountryRepo countryRepo;
 
-    public List<?> findAll() {
-        return countryRepo.findAll();
+    public List<?> findAll(Pageable pageable) {
+        return countryRepo.findAll(pageable).getContent();
     }
 
     public void save(Country country) {

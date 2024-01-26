@@ -4,6 +4,7 @@ package com.esliceu.demoMovies.Services;
 import com.esliceu.demoMovies.Entities.Language_role;
 import com.esliceu.demoMovies.Repositorys.Language_roleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class LanguageRoleService {
     @Autowired
     Language_roleRepo language_roleRepo;
 
-    public List<?> findAll() {
-        return language_roleRepo.findAll();
+    public List<?> findAll(Pageable pageable) {
+        return language_roleRepo.findAll(pageable).getContent();
     }
 
     public void save(Language_role languageRole) {

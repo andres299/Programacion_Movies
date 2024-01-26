@@ -2,6 +2,7 @@ package com.esliceu.demoMovies.Services;
 
 import com.esliceu.demoMovies.DTO.FetchEntitiDTO;
 import com.esliceu.demoMovies.DTO.InfoMovies;
+import com.esliceu.demoMovies.DTO.MovieDTO;
 import com.esliceu.demoMovies.DTO.OperationMovies;
 import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.*;
@@ -78,42 +79,53 @@ public class MovieService {
         return Collections.emptyList();
     }
 
-    public List<?> infoEntities(String selectedValue) {
+    public List<?> infoEntities(String selectedValue, int page) {
         List<?> listEntiti;
-
+        Pageable pageable = PageRequest.of(page,10);
         switch (selectedValue) {
             case "country":
-                listEntiti = countryService.findAll();
+                listEntiti = countryService.findAll(pageable);
                 break;
             case "language":
-                listEntiti = languageService.findAll();
+                listEntiti = languageService.findAll(pageable);
                 break;
             case "language_role":
-                listEntiti = languageRoleService.findAll();
+                listEntiti = languageRoleService.findAll(pageable);
                 break;
             case "genre":
-                listEntiti = genreService.findAll();
+                listEntiti = genreService.findAll(pageable);
                 break;
             case "keyword":
-                listEntiti = keywordService.findAll();
+                listEntiti = keywordService.findAll(pageable);
                 break;
             case "production_company":
-                listEntiti = productionCompanyService.findAll();
+                listEntiti = productionCompanyService.findAll(pageable);
                 break;
             case "gender":
-                listEntiti = genderService.findAll();
+                listEntiti = genderService.findAll(pageable);
                 break;
             case "person":
-                listEntiti = personService.findAll();
+                listEntiti = personService.findAll(pageable);
                 break;
             case "department":
-                listEntiti = departmentService.findAll();
+                listEntiti = departmentService.findAll(pageable);
                 break;
             case "movies":
-                listEntiti = movieRepo.findInfoMovies();
+                List<Movie>  infoMovie = movieRepo.findAll(pageable).getContent();
+                List<MovieDTO> movieDTOList = infoMovie.stream()
+                        .map(movie -> new MovieDTO(
+                                movie.getMovieId(),
+                                movie.getTitle(),
+                                movie.getOverview(),
+                                movie.getPopularity(),
+                                movie.getReleaseDate(),
+                                movie.getRevenue()
+                        ))
+                        .collect(Collectors.toList());
+                listEntiti = movieDTOList;
                 break;
             default:
-                listEntiti = countryService.findAll();
+                listEntiti = countryService.findAll(pageable);
                 break;
         }
         return listEntiti;
