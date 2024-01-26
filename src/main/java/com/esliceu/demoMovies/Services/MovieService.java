@@ -225,25 +225,22 @@ public class MovieService {
                         keywordService.deleteById((long) entityId);
                         break;
                     case "production_company":
-                        /*
                         entityId = Integer.parseInt(id);
                         movieCompanyService.deleteByProductionCompany(entityId);
                         productionCompanyService.deleteById((long) entityId);
                         break;
-
-                         */
-                    case "gender":
+                    case "gender": //Poner consulta Query
                         entityId = Integer.parseInt(id);
                         movieCastService.deleteByGenderId(entityId);
                         genderService.deleteById((long) entityId);
                         break;
-                    case "person":
+                    case "person": //Poner consulta query
                         entityId = Integer.parseInt(id);
                         movieCrewService.deleteByPersonId(entityId);
                         movieCastService.deleteByPersonId(entityId);
                         personService.deleteById((long) entityId);
                         break;
-                    case "department":
+                    case "department": //Poner consulta query
                         entityId = Integer.parseInt(id);
                         movieCrewService.deleteByDepartmentId(entityId);
                         departmentService.deleteById((long) entityId);
