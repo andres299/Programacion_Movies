@@ -9,6 +9,8 @@ public class Movie_CastId implements Serializable {
 
     private Gender gender;
 
+    private String characterName;
+
     public Movie getMovie() {
         return movie;
     }
@@ -31,5 +33,13 @@ public class Movie_CastId implements Serializable {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getCharacterName() {
+        return characterName;
+    }
+
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
 }

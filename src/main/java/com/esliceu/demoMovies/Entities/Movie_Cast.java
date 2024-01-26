@@ -21,6 +21,7 @@ public class Movie_Cast {
     @JoinColumn(name = "person_id")
     private Person person;
 
+    @Id
     @Column(name="character_name")
     private String characterName;
 
