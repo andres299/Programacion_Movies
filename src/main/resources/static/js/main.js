@@ -59,7 +59,6 @@ async function postData(URL, data) {
         .then(responseData => {
             moviesData = responseData;
             updateUI();
-            totalPages = Math.ceil(moviesData.length / 10);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
