@@ -140,22 +140,26 @@ public class MovieService {
                     languageService.save(language);
                     break;
                 case "language_role":
-                    entityId = (languageRoleService.getLastId() != 0) ? languageRoleService.getLastId() + 1 : 1;
+                    Language_role language_roleId = languageRoleService.findFirstByOrderByRoleIdDesc();
+                    entityId = (language_roleId.getRoleId() != 0) ? language_roleId.getRoleId() + 1 : 1;
                     Language_role language_role = new Language_role(entityId, input1);
                     languageRoleService.save(language_role);
                     break;
                 case "genre":
-                    entityId = (genreService.getLastId() != 0) ? genreService.getLastId() + 1 : 1;
+                    Genre genreId = genreService.findFirstByOrderByGenreIdDesc();
+                    entityId = (genreId.getGenreId() != 0) ? genreId.getGenreId() + 1 : 1;
                     Genre genre = new Genre(entityId, input1);
                     genreService.save(genre);
                     break;
                 case "keyword":
-                    entityId = (keywordService.getLastId() != 0) ? keywordService.getLastId() + 1 : 1;
+                    Keyword keywordId = keywordService.findFirstByOrderByKeywordIdDesc();
+                    entityId = (keywordId.getKeywordId() != 0) ? keywordId.getKeywordId() + 1 : 1;
                     Keyword keyword = new Keyword(entityId, input1);
                     keywordService.save(keyword);
                     break;
                 case "production_company":
-                    entityId = (productionCompanyService.getLastId() != 0) ? productionCompanyService.getLastId() + 1 : 1;
+                    Production_Company productionCompanyId = productionCompanyService.findFirstByOrderByCompanyIdDesc();
+                    entityId = (productionCompanyId.getCompanyId() != 0) ? productionCompanyId.getCompanyId() + 1 : 1;
                     Production_Company productionCompany = new Production_Company(entityId, input1);
                     productionCompanyService.save(productionCompany);
                     break;

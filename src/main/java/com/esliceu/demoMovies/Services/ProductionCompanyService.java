@@ -16,10 +16,9 @@ public class ProductionCompanyService {
         return productionCompanyRepo.findAll();
     }
 
-    public int getLastId() {
-        return productionCompanyRepo.getLastId();
+    public Production_Company findFirstByOrderByCompanyIdDesc() {
+        return productionCompanyRepo.findFirstByOrderByCompanyIdDesc();
     }
-
     public void save(Production_Company productionCompany) {
         productionCompanyRepo.save(productionCompany);
     }

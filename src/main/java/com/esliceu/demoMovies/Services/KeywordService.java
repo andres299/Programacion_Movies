@@ -16,10 +16,9 @@ public class KeywordService {
         return keywordRepo.findAll();
     }
 
-    public int getLastId() {
-        return keywordRepo.getLastId();
+    public Keyword findFirstByOrderByKeywordIdDesc() {
+        return keywordRepo.findFirstByOrderByKeywordIdDesc();
     }
-
     public void save(Keyword keyword) {
         keywordRepo.save(keyword);
     }
@@ -35,4 +34,5 @@ public class KeywordService {
     public List<?> findByKeywordNameStartingWithIgnoreCase(String keyword) {
         return keywordRepo.findByKeywordNameStartingWithIgnoreCase(keyword);
     }
+
 }

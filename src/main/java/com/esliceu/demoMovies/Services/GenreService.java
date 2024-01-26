@@ -16,10 +16,9 @@ public class GenreService {
         return genreRepo.findAll();
     }
 
-    public int getLastId() {
-        return genreRepo.getLastId();
+    public Genre findFirstByOrderByGenreIdDesc() {
+        return genreRepo.findFirstByOrderByGenreIdDesc();
     }
-
     public void deleteById(long entityId) {
         genreRepo.deleteById(entityId);
     }

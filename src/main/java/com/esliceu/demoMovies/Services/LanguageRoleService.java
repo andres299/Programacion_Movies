@@ -17,9 +17,9 @@ public class LanguageRoleService {
         return language_roleRepo.findAll();
     }
 
-    public int getLastId() {
-        return language_roleRepo.getLastId();
-    }
+    //public int getLastId() {
+        //return language_roleRepo.getLastId();
+    //}
 
     public void save(Language_role languageRole) {
         language_roleRepo.save(languageRole);
@@ -35,5 +35,9 @@ public class LanguageRoleService {
 
     public List<?> findByLanguageRoleStartingWithIgnoreCase(String keyword) {
         return language_roleRepo.findByLanguageRoleStartingWithIgnoreCase(keyword);
+    }
+
+    public Language_role findFirstByOrderByRoleIdDesc() {
+        return language_roleRepo.findFirstByOrderByRoleIdDesc();
     }
 }
