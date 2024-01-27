@@ -433,7 +433,6 @@ actorUpdateButton.addEventListener('click', function () {
     var selectedValueUpdate = UpdateActor.value;
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
-    console.log(selectedValueUpdate);
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const requestData = {
         operation: operation,
@@ -457,6 +456,56 @@ actorDeleteButton.addEventListener('click', function () {
         input1: null,
         input2: null,
         selected: selectedValueDelete
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
+// Event listener al botón de insertar Director
+document.getElementById('DirectorInsertButton').addEventListener('click', function () {
+    selectedOption = 'Director';
+    operation = 'insert';
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    const inputs = Array.from(formContainer.querySelectorAll('input'));
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        input1: inputs[0].value,
+        input2: null,
+        selected: null
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
+// Event listener al botón de actualizar Director
+document.getElementById('DirectorUpdateButton').addEventListener('click', function () {
+    selectedOption = 'Director';
+    operation = 'update';
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    const inputs = Array.from(formContainer.querySelectorAll('input'));
+    const select = document.getElementById('directorSelect');
+    const selectedValue = select.value;
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        input1: inputs[0].value,
+        input2: null,
+        selected: selectedValue
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
+// Agregar event listener al botón de eliminar Director
+document.getElementById('DirectorDeleteButton').addEventListener('click', function () {
+    selectedOption = 'Director';
+    operation = 'delete';
+    const select = document.getElementById('directorSelectDelete');
+    const selectedValue = select.value;
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        input1: null,
+        input2: null,
+        selected: selectedValue
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });

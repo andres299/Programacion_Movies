@@ -122,101 +122,101 @@
                 <button onclick="showContent('director')">Director</button>
                 <button onclick="showContent('genre')">Genre</button>
             </div>
-            <div id="actorContent" class="forms-container">
-                <form onsubmit="return false">
-                    <h1>Formulario Insertar</h1>
-                    <div id="insertActorFields">
-                        <label for="actorCharacterInput">Name Actor:</label>
-                        <input type="text" id="actorCharacterInput" name="actorCharacterInput">
-                        <label for="actorCharacterInput2">Name Character:</label>
-                        <input type="text" id="actorCharacterInput2" name="actorCharacterInput2">
-                    </div>
-                    <button type="button" class="insertButton" id="actorInsertButton">Insertar</button>
-                </form>
-                <form onsubmit="return false">
-                    <h1>Formulario Update</h1>
-                    <div id="updateActorFields">
-                        <label for="actorCharacterUpdateInput">Name Actor:</label>
-                        <select id="actorSelect"></select>
-                        <label for="actorCharacterUpdateInput">New Name Actor:</label>
-                        <input type="text" id="actorCharacterUpdateInput" name="actorCharacterUpdateInput">
-                        <label for="actorCharacterUpdateInput2">New Name Character:</label>
-                        <input type="text" id="actorCharacterUpdateInput2" name="actorCharacterUpdateInput2">
-                    </div>
-                    <button type="button" class="updateButton" id="actorUpdateButton">Actualizar</button>
-                </form>
-                <form onsubmit="return false">
-                    <h1>Formulario Update</h1>
-                    <div id="DeleteActorFields">
-                        <label for="actorCharacterInput">Name Actor:</label>
-                        <select id="actorSelectDelete"></select>
-                    </div>
-                    <button type="button" class="deleteButton" id="actorDeleteButton">Eliminar</button>
-                </form>
-            </div>
+            <div class="optionsMovies">
+                <div id="actorContent">
+                    <form onsubmit="return false">
+                        <h1>Formulario Insertar</h1>
+                        <div id="insertActorFields">
+                            <label for="actorCharacterInput">Name Actor:</label>
+                            <input type="text" id="actorCharacterInput" name="actorCharacterInput">
+                            <label for="actorCharacterInput2">Name Character:</label>
+                            <input type="text" id="actorCharacterInput2" name="actorCharacterInput2">
+                        </div>
+                        <button type="button" class="insertButton" id="actorInsertButton">Insertar</button>
+                    </form>
+                    <form onsubmit="return false">
+                        <h1>Formulario Update</h1>
+                        <div id="updateActorFields">
+                            <label for="actorCharacterUpdateInput">Name Actor:</label>
+                            <select id="actorSelect"></select>
+                            <label for="actorCharacterUpdateInput">New Name Actor:</label>
+                            <input type="text" id="actorCharacterUpdateInput" name="actorCharacterUpdateInput">
+                            <label for="actorCharacterUpdateInput2">New Name Character:</label>
+                            <input type="text" id="actorCharacterUpdateInput2" name="actorCharacterUpdateInput2">
+                        </div>
+                        <button type="button" class="updateButton" id="actorUpdateButton">Actualizar</button>
+                    </form>
+                    <form onsubmit="return false">
+                        <h1>Formulario Update</h1>
+                        <div id="DeleteActorFields">
+                            <label for="actorCharacterInput">Name Actor:</label>
+                            <select id="actorSelectDelete"></select>
+                        </div>
+                        <button type="button" class="deleteButton" id="actorDeleteButton">Eliminar</button>
+                    </form>
+                </div>
 
 
-            <div id="directorContent" class="forms-container">
-                <form onsubmit="return false">
-                    <h1>Formulario Insertar</h1>
-                    <div id="insertDirector">
-                        <label for="DirectorInput">Name Actor:</label>
-                        <input type="text" id="DirectorInput" name="DirectorInput">
-                    </div>
-                    <button type="button" class="insertButton" id="DirectorInsertButton">Insertar</button>
-                </form>
-                <form onsubmit="return false">
-                    <h1>Formulario Update</h1>
-                    <div id="updateDirector">
-                        <label for="DirectorUpdateInput">Name Actor:</label>
-                        <select id="directorSelect"></select>
-                        <label for="DirectorUpdateInput">New Name Actor:</label>
-                        <input type="text" id="DirectorUpdateInput" name="DirectorUpdateInput">
-                        <label for="DirectorUpdateInput2">New Name Character:</label>
-                        <input type="text" id="DirectorUpdateInput2" name="DirectorUpdateInput2">
-                    </div>
-                    <button type="button" class="updateButton" id="DirectorUpdateButton">Actualizar</button>
-                </form>
-                <form onsubmit="return false">
-                    <h1>Formulario Update</h1>
-                    <div id="DeleteDirector">
-                        <label for="DirectorUpdateInput">Name Actor:</label>
-                        <select id="directorSelectDelete"></select>
-                    </div>
-                    <button type="button" class="deleteButton" id="DirectorDeleteButton">Eliminar</button>
-                </form>
-            </div>
+                <div id="directorContent">
+                    <form onsubmit="return false">
+                        <h1>Formulario Insertar</h1>
+                        <div id="insertDirectorFields">
+                            <label for="DirectorInput">Name Director:</label>
+                            <input type="text" id="DirectorInput" name="DirectorInput">
+                        </div>
+                        <button type="button" class="insertButton" id="DirectorInsertButton">Insertar</button>
+                    </form>
+                    <form onsubmit="return false">
+                        <h1>Formulario Update</h1>
+                        <div id="updateDirectorFields">
+                            <label for="DirectorUpdateInput">Name Director:</label>
+                            <select id="directorSelect"></select>
+                            <label for="DirectorUpdateInput">New Name Director:</label>
+                            <input type="text" id="DirectorUpdateInput" name="DirectorUpdateInput">
+                        </div>
+                        <button type="button" class="updateButton" id="DirectorUpdateButton">Actualizar</button>
+                    </form>
+                    <form onsubmit="return false">
+                        <h1>Formulario Update</h1>
+                        <div id="deleteDirectorFields">
+                            <label for="DirectorUpdateInput">Name Actor:</label>
+                            <select id="directorSelectDelete"></select>
+                        </div>
+                        <button type="button" class="deleteButton" id="DirectorDeleteButton">Eliminar</button>
+                    </form>
+                </div>
 
 
-            <div id="genreContent">
-                <form onsubmit="return false">
-                    <h1>Formulario Insertar</h1>
-                    <div id="insertGenre">
-                        <label for="GenreInput">Name Actor:</label>
-                        <input type="text" id="GenreInput" name="GenreInput">
-                    </div>
-                    <button type="button" class="insertButton" id="GenreInsertButton">Insertar</button>
-                </form>
-                <form onsubmit="return false">
-                    <h1>Formulario Update</h1>
-                    <div id="updateGenre">
-                        <label for="GenreUpdateInput">Name Actor:</label>
-                        <select id="genreSelect"></select>
-                        <label for="GenreUpdateInput">New Name Actor:</label>
-                        <input type="text" id="GenreUpdateInput" name="GenreUpdateInput">
-                        <label for="GenrerUpdateInput2">New Name Character:</label>
-                        <input type="text" id="GenrerUpdateInput2" name="GenrerUpdateInput2">
-                    </div>
-                    <button type="button" class="updateButton" id="GenreUpdateButton">Actualizar</button>
-                </form>
-                <form onsubmit="return false">
-                    <h1>Formulario Update</h1>
-                    <div id="DeleteGenre">
-                        <label for="GenreUpdateInput">Name Actor:</label>
-                        <select id="genreSelectDelete"></select>
-                    </div>
-                    <button type="button" class="deleteButton" id="GenreDeleteButton">Eliminar</button>
-                </form>
+                <div id="genreContent">
+                    <form onsubmit="return false">
+                        <h1>Formulario Insertar</h1>
+                        <div id="insertGenre">
+                            <label for="GenreInput">Name Actor:</label>
+                            <input type="text" id="GenreInput" name="GenreInput">
+                        </div>
+                        <button type="button" class="insertButton" id="GenreInsertButton">Insertar</button>
+                    </form>
+                    <form onsubmit="return false">
+                        <h1>Formulario Update</h1>
+                        <div id="updateGenre">
+                            <label for="GenreUpdateInput">Name Actor:</label>
+                            <select id="genreSelect"></select>
+                            <label for="GenreUpdateInput">New Name Actor:</label>
+                            <input type="text" id="GenreUpdateInput" name="GenreUpdateInput">
+                            <label for="GenrerUpdateInput2">New Name Character:</label>
+                            <input type="text" id="GenrerUpdateInput2" name="GenrerUpdateInput2">
+                        </div>
+                        <button type="button" class="updateButton" id="GenreUpdateButton">Actualizar</button>
+                    </form>
+                    <form onsubmit="return false">
+                        <h1>Formulario Update</h1>
+                        <div id="DeleteGenre">
+                            <label for="GenreUpdateInput">Name Actor:</label>
+                            <select id="genreSelectDelete"></select>
+                        </div>
+                        <button type="button" class="deleteButton" id="GenreDeleteButton">Eliminar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

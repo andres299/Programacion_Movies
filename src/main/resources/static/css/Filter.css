@@ -291,3 +291,8 @@ button:hover {
     display: flex;
     justify-content: center;
 }
+
+.optionsMovies {
+    display: flex;
+    justify-content: center;
+}
