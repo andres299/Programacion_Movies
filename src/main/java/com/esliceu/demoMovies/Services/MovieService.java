@@ -499,7 +499,10 @@ public class MovieService {
                 //Despues obtengo la ultima persona registrada
                 person = personService.findByPersonId(LastentityId);
 
+                // Obtengo la pelicula a la que le quiero insertar un director
+                Movie movie = movieRepo.findById((long) movieId).orElse(null);
 
+                movieCrewService.save(movie,person,department);
 
             } else if (operation.equals("delete")){
 
