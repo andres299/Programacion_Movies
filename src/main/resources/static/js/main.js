@@ -345,13 +345,13 @@ function showContent(contentType) {
     // Mostrar el contenido correspondiente
     switch (contentType) {
         case 'actor':
-            document.getElementById('actorContent').style.display = 'block';
+            document.getElementById('actorContent').style.display = 'flex';
             break;
         case 'director':
-            document.getElementById('directorContent').style.display = 'block';
+            document.getElementById('directorContent').style.display = 'flex';
             break;
         case 'genre':
-            document.getElementById('genreContent').style.display = 'block';
+            document.getElementById('genreContent').style.display = 'flex';
             break;
         default:
             break;
@@ -364,7 +364,6 @@ var DeleteActor = document.getElementById('actorSelectDelete');
 var genderSelect = document.getElementById('genderSelect');
 var genderSelect2 = document.getElementById('genderSelect2');
 var genderSelect3 = document.getElementById('genderSelect3');
-var genderSelect4 = document.getElementById('genderSelect4');
 
 // Obtener el valor seleccionado
 let operation;
@@ -394,7 +393,6 @@ actorDeleteButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'delete';
     var selectedValueDelete = DeleteActor.value;
-    console.log(selectedValueDelete);
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const requestData = {

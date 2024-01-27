@@ -513,6 +513,18 @@ public class MovieService {
             }
         } else {
             if (operation.equals("insert")) {
+                //Creo un genero nuevo
+                Genre genreId = genreService.findFirstByOrderByGenreIdDesc();
+                LastentityId = (genreId.getGenreId() != 0) ? genreId.getGenreId() + 1 : 1;
+                Genre newGenre = new Genre(LastentityId, input1);
+                genreService.save(newGenre);
+
+                //Despues obtengo el ultimo genero registrada
+                newGenre = genreService.findFirstByOrderByGenreIdDesc();
+
+                // Obtengo la pelicula a la que le quiero insertar un genero
+                Movie movie = movieRepo.findById((long) movieId).orElse(null);
+                movieGenresService.save(movie,newGenre);
 
             } else if (operation.equals("delete")) {
 

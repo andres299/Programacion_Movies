@@ -20,6 +20,14 @@ public class Movie_Genres {
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
+    public Movie_Genres() {
+    }
+
+    public Movie_Genres(Movie movie, Genre genre) {
+        this.movie = movie;
+        this.genre = genre;
+    }
+
     public Movie getMovie() {
         return movie;
     }
