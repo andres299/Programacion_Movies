@@ -154,9 +154,11 @@ button:hover {
     border: 1px solid #888;
     width: 80vw;
     overflow-x: auto;
-    /* Permitir desbordamiento horizontal dentro del contenido del modal */
 }
 
+.modal-content p{
+    text-align: center;
+}
 .close {
     color: #aaa;
     float: right;
@@ -171,10 +173,19 @@ button:hover {
     cursor: pointer;
 }
 
+#modal-options {
+    z-index: 2; /* Asegúrate de que este valor sea mayor que el z-index del primer modal */
+}
+
 #movieTitle {
     text-align: center;
     font-size: 20px;
     margin-bottom: 10px;
+}
+
+.table-container {
+    display: flex;
+    margin-right: 10px;
 }
 
 #actorTable {
@@ -198,4 +209,85 @@ button:hover {
 /* Agregar estilos para el hover del botón "View" */
 .view-button:hover {
     background-color: cornflowerblue;
+}
+
+.options{
+    background-color: #30b4e9;
+    margin-left: 11px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #333;
+    border-radius: 1px;
+    cursor: pointer;
+}
+
+.options:hover{
+    background-color: #3a1be9;
+}
+
+#directorContent,
+#genreContent {
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+.insertButton {
+    background-color: #8d7509;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+.insertButton:hover {
+    background-color: #3b3001;
+}
+
+.updateButton {
+    background-color: #5e68f8;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+.updateButton:hover {
+    background-color: #01053b;
+}
+
+.deleteButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: #6d0700;
+}
+
+.content {
+    display: none;
+}
+
+.forms-container {
+    display: flex;
+    justify-content: center;
 }

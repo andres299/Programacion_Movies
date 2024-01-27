@@ -7,7 +7,7 @@ const viewButtons = document.querySelectorAll('.view-button');
 
 let page = 0;
 let moviesData = [];
-let infoDataMovies = [];
+var infoDataMovies = [];
 
 prevButton.addEventListener('click', async () => {
     if (page > 0) page--;
@@ -156,7 +156,7 @@ function updateUI() {
 
 viewButtons.forEach(viewButton => {
     viewButton.addEventListener("click", function () {
-        const movieIdValue = this.value;
+        var movieIdValue = this.value;
         console.log(movieIdValue);
         const data = {
             movieId: parseInt(movieIdValue)
@@ -207,6 +207,8 @@ function infoMoviesData(url, data) {
 function handleInfoDataMovies(infoDataMovies) {
     const movieTitleElement = document.getElementById("movieTitle");
     const actorTableBody = document.getElementById("actorTableBody");
+    const genreTableBody = document.getElementById("genreTableBody");
+    const directorTableBody = document.getElementById("directorTableBody");
 
     // Inicializamos el contenido del título de la película
     movieTitleElement.textContent = "";
@@ -216,7 +218,7 @@ function handleInfoDataMovies(infoDataMovies) {
 
     // Iteramos a través de las películas en infoDataMovies
     infoDataMovies.forEach(movie => {
-        // Agregamos el título de la película al elemento correspondiente
+        // Agregamos el título de la película
         movieTitleElement.textContent += `${movie.title}\n`;
 
         // Verificamos si characterName es un array
@@ -225,6 +227,21 @@ function handleInfoDataMovies(infoDataMovies) {
         // Verificamos si actorName es una cadena
         const actorNames = Array.isArray(movie.actorName) ? movie.actorName : [movie.actorNames];
 
+        // Llenamos la tabla de género
+        const genres = Array.isArray(movie.genre) ? movie.genre : [movie.genre];
+
+        genres.forEach(genre => {
+            const genreRow = genreTableBody.insertRow();
+            const genreCell = genreRow.insertCell(0);
+            genreCell.textContent = genre;
+        });
+
+        // Llenamos la tabla de directores
+        movie.directorName.forEach(director => {
+            const directorRow = directorTableBody.insertRow();
+            const directorCell = directorRow.insertCell(0);
+            directorCell.textContent = director;
+        });
         // Iteramos a través de los actores y personajes en la película
         for (let i = 0; i < Math.max(characterNames.length, actorNames.length); i++) {
             // Creamos una nueva fila en la tabla
@@ -241,3 +258,175 @@ function handleInfoDataMovies(infoDataMovies) {
     });
 }
 
+// Obtener elementos del DOM
+var modal = document.getElementById('modal-options');
+var btn = document.getElementById('options');
+var closeBtn = document.getElementsByClassName('close')[0];
+
+// Funciones para mostrar y ocultar el modal
+function openModal() {
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+
+btn.onclick = function () {
+    openModal();
+    fillActorSelect();
+    fillDirectorSelect();
+    fillGenreSelect();
+};
+
+closeBtn.onclick = closeModal;
+
+// Función para llenar el select con opciones de actorName
+function fillActorSelect() {
+    // Obtener el select y el div contenedor
+    var actorSelect = document.getElementById('actorSelect');
+    var actorSelectDelete = document.getElementById('actorSelectDelete');
+    // Limpiar opciones actuales
+    actorSelect.innerHTML = '';
+    actorSelectDelete.innerHTML = '';
+
+    // Llenar el select con las opciones de actorName
+    infoDataMovies.forEach(movie => {
+        const actorNames = Array.isArray(movie.actorName) ? movie.actorName : [movie.actorNames];
+
+        actorNames.forEach(actor => {
+            var option = document.createElement('option');
+            option.value = actor;
+            option.text = actor;
+            actorSelect.add(option);
+        });
+    });
+
+    infoDataMovies.forEach(movie => {
+        const actorNames = Array.isArray(movie.actorName) ? movie.actorName : [movie.actorNames];
+
+        actorNames.forEach(actor => {
+            var option = document.createElement('option');
+            option.value = actor;
+            option.text = actor;
+            actorSelectDelete.add(option);
+        });
+    });
+}
+
+function fillDirectorSelect() {
+    // Obtener el select y el div contenedor
+    var directorSelect = document.getElementById('directorSelect');
+    var directorSelectDelete = document.getElementById('directorSelectDelete');
+    // Limpiar opciones actuales
+    directorSelect.innerHTML = '';
+    directorSelectDelete.innerHTML = '';
+
+    // Llenar el select con las opciones de directorName
+    infoDataMovies.forEach(movie => {
+        const directorNames = Array.isArray(movie.directorName) ? movie.directorName : [movie.directorName];
+
+        directorNames.forEach(director => {
+            var option = document.createElement('option');
+            option.value = director;
+            option.text = director;
+            directorSelect.add(option);
+        });
+    });
+
+    infoDataMovies.forEach(movie => {
+        const directorNames = Array.isArray(movie.directorName) ? movie.directorName : [movie.directorName];
+
+        directorNames.forEach(director => {
+            var option = document.createElement('option');
+            option.value = director;
+            option.text = director;
+            directorSelectDelete.add(option);
+        });
+    });
+}
+
+function fillGenreSelect() {
+    // Obtener el select y el div contenedor
+    var genreSelect = document.getElementById('genreSelect');
+    var genreSelectDelete = document.getElementById('genreSelectDelete');
+    // Limpiar opciones actuales
+    genreSelect.innerHTML = '';
+
+    // Llenar el select con las opciones de directorName
+    infoDataMovies.forEach(movie => {
+        const directorNames = Array.isArray(movie.directorName) ? movie.directorName : [movie.directorName];
+
+        directorNames.forEach(director => {
+            var option = document.createElement('option');
+            option.value = director;
+            option.text = director;
+            directorSelect.add(option);
+        });
+    });
+
+    infoDataMovies.forEach(movie => {
+        const directorNames = Array.isArray(movie.directorName) ? movie.directorName : [movie.directorName];
+
+        directorNames.forEach(director => {
+            var option = document.createElement('option');
+            option.value = director;
+            option.text = director;
+            directorSelectDelete.add(option);
+        });
+    });
+}
+
+function fillGenreSelect() {
+    // Obtener el select y el div contenedor
+    var genreSelect = document.getElementById('genreSelect');
+    var genreSelectDelete = document.getElementById('genreSelectDelete');
+    // Limpiar opciones actuales
+    genreSelect.innerHTML = '';
+    genreSelectDelete.innerHTML = '';
+
+    // Llenar el select con las opciones de género
+    infoDataMovies.forEach(movie => {
+        const genres = Array.isArray(movie.genre) ? movie.genre : [movie.genre];
+
+        genres.forEach(genre => {
+            var option = document.createElement('option');
+            option.value = genre;
+            option.text = genre;
+            genreSelect.add(option);
+        });
+    });
+
+    infoDataMovies.forEach(movie => {
+        const genres = Array.isArray(movie.genre) ? movie.genre : [movie.genre];
+
+        genres.forEach(genre => {
+            var option = document.createElement('option');
+            option.value = genre;
+            option.text = genre;
+            genreSelectDelete.add(option);
+        });
+    });
+}
+
+function showContent(contentType) {
+    // Ocultar todos los contenidos
+    document.getElementById('actorContent').style.display = 'none';
+    document.getElementById('directorContent').style.display = 'none';
+    document.getElementById('genreContent').style.display = 'none';
+
+    // Mostrar el contenido correspondiente
+    switch (contentType) {
+        case 'actor':
+            document.getElementById('actorContent').style.display = 'block';
+            break;
+        case 'director':
+            document.getElementById('directorContent').style.display = 'block';
+            break;
+        case 'genre':
+            document.getElementById('genreContent').style.display = 'block';
+            break;
+        default:
+            break;
+    }
+}
