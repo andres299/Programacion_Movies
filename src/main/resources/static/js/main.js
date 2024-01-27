@@ -427,6 +427,27 @@ document.getElementById('DirectorInsertButton').addEventListener('click', functi
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
 
+// Event listener al botón de insertar Director
+document.getElementById('DirectorDeleteButton').addEventListener('click', function () {
+    selectedOption = 'Director';
+    operation = 'delete';
+    var selectedGenderValue3 = genderSelect3.value;
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    const inputs = Array.from(formContainer.querySelectorAll('input'));
+    const SelectDelete = document.getElementById("directorSelectDelete");
+    const directorSelectDelete = SelectDelete.value;
+    const requestData = {
+        movieId: movieId,
+        operation: operation,
+        entity: selectedOption,
+        input1: null,
+        input2: null,
+        selected: directorSelectDelete,
+        gender: selectedGenderValue3
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
 // Event listener al botón de insertar Genre
 document.getElementById('GenreInsertButton').addEventListener('click', function () {
     selectedOption = 'Genre';

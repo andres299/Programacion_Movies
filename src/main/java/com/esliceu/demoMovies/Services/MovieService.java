@@ -478,7 +478,6 @@ public class MovieService {
                 // Insertar en Movie_Cast esta persona con su personaje
                 movieCastService.save(movie, person, input2, genreEntiti);
             } else if (operation.equals("delete")){
-                System.out.println("delete");
                 Person person = personService.findByPersonName(select);
                 movieCrewService.deleteByPersonId(person.getPersonId());
                 movieCastService.deleteByPersonId(person.getPersonId());
@@ -505,7 +504,9 @@ public class MovieService {
                 movieCrewService.save(movie,person,department);
 
             } else if (operation.equals("delete")){
-
+                Person person = personService.findByPersonName(select);
+                movieCrewService.deleteByPersonId(person.getPersonId());
+                personService.deleteById((long) person.getPersonId());
             } else{
                 throw new UnsupportedOperationException("Operación no soportada: " + operation);
 
