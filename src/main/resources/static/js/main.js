@@ -510,6 +510,56 @@ document.getElementById('DirectorDeleteButton').addEventListener('click', functi
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
 
+// Event listener al botón de insertar Genre
+document.getElementById('GenreInsertButton').addEventListener('click', function () {
+    selectedOption = 'Genre';
+    operation = 'insert';
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    const inputs = Array.from(formContainer.querySelectorAll('input'));
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        input1: inputs[0].value,
+        input2: null,
+        selected: null
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
+// Event listener al botón de actualizar Genre
+document.getElementById('GenreUpdateButton').addEventListener('click', function () {
+    selectedOption = 'Genre';
+    operation = 'update';
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    const inputs = Array.from(formContainer.querySelectorAll('input'));
+    const select = document.getElementById('genreSelect');
+    const selectedValue = select.value;
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        input1: inputs[0].value,
+        input2: null,
+        selected: selectedValue
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
+// Agregar event listener al botón de eliminar Genre
+document.getElementById('GenreDeleteButton').addEventListener('click', function () {
+    selectedOption = 'Genre';
+    operation = 'delete';
+    const select = document.getElementById('genreSelectDelete');
+    const selectedValue = select.value;
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        input1: null,
+        input2: null,
+        selected: selectedValue
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
 async function postDataInfoMovies(URL, data) {
     const response = await fetch(URL, {
         method: 'POST',
