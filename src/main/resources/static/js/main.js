@@ -345,13 +345,13 @@ function showContent(contentType) {
     // Mostrar el contenido correspondiente
     switch (contentType) {
         case 'actor':
-            document.getElementById('actorContent').style.display = 'block';
+            document.getElementById('actorContent').style.display = 'flex';
             break;
         case 'director':
-            document.getElementById('directorContent').style.display = 'block';
+            document.getElementById('directorContent').style.display = 'flex';
             break;
         case 'genre':
-            document.getElementById('genreContent').style.display = 'block';
+            document.getElementById('genreContent').style.display = 'flex';
             break;
         default:
             break;
