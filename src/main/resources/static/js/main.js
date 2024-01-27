@@ -405,6 +405,11 @@ var actorUpdateButton = document.getElementById('actorUpdateButton');
 var actorDeleteButton = document.getElementById('actorDeleteButton');
 var UpdateActor = document.getElementById('actorSelect');
 var DeleteActor = document.getElementById('DeleteActorFields');
+var genderSelect = document.getElementById('genderSelect');
+var genderSelect2 = document.getElementById('genderSelect2');
+var genderSelect3 = document.getElementById('genderSelect3');
+var genderSelect4 = document.getElementById('genderSelect4');
+
 // Obtener el valor seleccionado
 let operation;
 let selectedOption;
@@ -413,6 +418,7 @@ let selectedOption;
 actorInsertButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'insert';
+    var selectedGenderValue = genderSelect.value;
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
@@ -422,7 +428,8 @@ actorInsertButton.addEventListener('click', function () {
         entity: selectedOption,
         input1: inputs[0] ? inputs[0].value : null,
         input2: inputs[1] ? inputs[1].value : null,
-        selected: null
+        selected: null,
+        gender: selectedGenderValue
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
@@ -431,6 +438,7 @@ actorUpdateButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'update';
     var selectedValueUpdate = UpdateActor.value;
+    var selectedGenderValue2 = genderSelect2.value;
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
@@ -440,7 +448,8 @@ actorUpdateButton.addEventListener('click', function () {
         entity: selectedOption,
         input1: inputs[0] ? inputs[0].value : null,
         input2: inputs[1] ? inputs[1].value : null,
-        selected: selectedValueUpdate
+        selected: selectedValueUpdate,
+        gender: selectedGenderValue2
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
@@ -466,6 +475,7 @@ actorDeleteButton.addEventListener('click', function () {
 document.getElementById('DirectorInsertButton').addEventListener('click', function () {
     selectedOption = 'Director';
     operation = 'insert';
+    var selectedGenderValue3 = genderSelect3.value;
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const requestData = {
@@ -474,7 +484,8 @@ document.getElementById('DirectorInsertButton').addEventListener('click', functi
         entity: selectedOption,
         input1: inputs[0].value,
         input2: null,
-        selected: null
+        selected: null,
+        gender: selectedGenderValue3
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
@@ -483,6 +494,7 @@ document.getElementById('DirectorInsertButton').addEventListener('click', functi
 document.getElementById('DirectorUpdateButton').addEventListener('click', function () {
     selectedOption = 'Director';
     operation = 'update';
+    var selectedGenderValue4 = genderSelect4.value;
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const select = document.getElementById('directorSelect');
@@ -493,7 +505,8 @@ document.getElementById('DirectorUpdateButton').addEventListener('click', functi
         entity: selectedOption,
         input1: inputs[0].value,
         input2: null,
-        selected: selectedValue
+        selected: selectedValue,
+        gender: selectedGenderValue4
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });

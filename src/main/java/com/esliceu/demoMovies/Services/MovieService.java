@@ -457,28 +457,26 @@ public class MovieService {
         String select = fetchInfoMoviesDTO.getSelected();
         String input1 = fetchInfoMoviesDTO.getInput1();
         String input2 = fetchInfoMoviesDTO.getInput2();
+        int genre = fetchInfoMoviesDTO.getGender();
         int LastentityId;
         if (entity.equals("Actor")) {
             if (operation.equals("insert")){
+                //Creo una persona y la guardo en la Base de datos
                 Person personId = personService.findFirstByOrderByPersonIdDesc();
-                Person person;
+                LastentityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
+                Person person = new Person(LastentityId, input1);
+                personService.save(person);
+                //Despues obtengo la ultima persona registrada
+                person = personService.findByPersonId(LastentityId);
 
-                if (personId != null) {
-                    // Si existe una instancia, utilizo la existente
-                    person = personId;
-                } else {
-                    // Si no existe, creo una nueva instancia
-                    LastentityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
-                    person = new Person(LastentityId, input1);
-                    personService.save(person);
-                }
-                System.out.println(person.getPersonId());
+                //Obtengo el genero seleccionado
+                Gender genreEntiti = genderService.findByGenderId(genre);
+
+                // Obtengo la pelicula a la que le quiero insertar un perosnaje
+                Movie movie = movieRepo.findById((long) movieId).orElse(null);
 
                 // Insertar en Movie_Cast esta persona con su personaje
-                Movie movie = movieRepo.findById((long) movieId).orElse(null);
-                System.out.println(movie.getMovieId());
-
-                movieCastService.save(movie, person, input2);
+                movieCastService.save(movie, person, input2, genreEntiti);
             }else if (operation.equals("update'")){
 
             } else {

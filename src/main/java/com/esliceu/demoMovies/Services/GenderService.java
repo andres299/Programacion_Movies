@@ -35,4 +35,8 @@ public class GenderService {
     public List<?> findByGenderStartingWithIgnoreCase(String keyword, Pageable pageable) {
         return genderRepo.findByGenderStartingWithIgnoreCase(keyword,pageable);
     }
+
+    public Gender findByGenderId(int genre) {
+        return genderRepo.findByGenderId(genre);
+    }
 }

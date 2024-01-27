@@ -45,4 +45,7 @@ public class PersonService {
         return personRepo.findDistincPersonByMovieCrewsJobAndMovieCrews_MovieMovieIdEquals(director,movieId);
     }
 
+    public Person findByPersonId(int lastentityId) {
+        return personRepo.findById(Long.valueOf(lastentityId)).orElseThrow();
+    }
 }

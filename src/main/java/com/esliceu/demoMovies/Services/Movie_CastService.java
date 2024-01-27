@@ -1,13 +1,10 @@
 package com.esliceu.demoMovies.Services;
 
-import com.esliceu.demoMovies.Entities.Movie;
-import com.esliceu.demoMovies.Entities.Movie_Cast;
-import com.esliceu.demoMovies.Entities.Person;
+import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.Movie_CastRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -42,8 +39,8 @@ public class Movie_CastService {
     }
 
 
-    public void save(Movie movie, Person person, String input2) {
-        Movie_Cast movieCast = new Movie_Cast(movie,person,input2);
+    public void save(Movie movie, Person person, String input2, Gender genreEntiti) {
+        Movie_Cast movieCast = new Movie_Cast(movie,person,input2,genreEntiti);
         movieCastRepo.save(movieCast);
     }
 }

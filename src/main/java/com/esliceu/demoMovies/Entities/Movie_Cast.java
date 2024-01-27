@@ -35,10 +35,11 @@ public class Movie_Cast {
     public Movie_Cast() {
     }
 
-    public Movie_Cast(Movie movie, Person person, String characterName) {
+    public Movie_Cast(Movie movie, Person person, String characterName, Gender gender) {
         this.movie = movie;
         this.person = person;
         this.characterName = characterName;
+        this.gender = gender;
     }
 
     public Movie getMovie() {

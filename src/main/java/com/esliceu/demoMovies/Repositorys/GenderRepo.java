@@ -12,4 +12,6 @@ public interface GenderRepo extends JpaRepository<Gender, Long> {
     int countGendersByGenderId(int entityId);
 
     List<Gender> findByGenderStartingWithIgnoreCase(String keyword, Pageable pageable);
+
+    Gender findByGenderId(int genre);
 }
