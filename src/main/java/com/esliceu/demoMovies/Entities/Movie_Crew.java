@@ -27,6 +27,16 @@ public class Movie_Crew {
     @Id
     private String job;
 
+    public Movie_Crew() {
+    }
+
+    public Movie_Crew(Movie movie, Person person, Department department, String job) {
+        this.movie = movie;
+        this.person = person;
+        this.department = department;
+        this.job = job;
+    }
+
     public Movie getMovie() {
         return movie;
     }

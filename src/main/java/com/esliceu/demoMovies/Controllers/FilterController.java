@@ -55,7 +55,6 @@ public class FilterController {
     @PostMapping("/operationInfoMovies")
     ResponseEntity<String> operationInfoMovies(@RequestBody FetchInfoMoviesDTO fetchInfoMoviesDTO){
         Administrator admin = (Administrator) session.getAttribute("admin");
-        System.out.println(fetchInfoMoviesDTO.getSelected());
         //if (admin == null){
         //  return "redirect:/filterMovies";
         //

@@ -478,6 +478,7 @@ public class MovieService {
                 // Insertar en Movie_Cast esta persona con su personaje
                 movieCastService.save(movie, person, input2, genreEntiti);
             } else if (operation.equals("delete")){
+                System.out.println("delete");
                 Person person = personService.findByPersonName(select);
                 movieCrewService.deleteByPersonId(person.getPersonId());
                 movieCastService.deleteByPersonId(person.getPersonId());
@@ -487,6 +488,18 @@ public class MovieService {
             }
         } else if (entity.equals("Director")) {
             if (operation.equals("insert")){
+                int departmentId = 2;
+                Department department = departmentService.findById(departmentId);
+
+                //Creo una persona y la guardo en la Base de datos
+                Person personId = personService.findFirstByOrderByPersonIdDesc();
+                LastentityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
+                Person person = new Person(LastentityId, input1);
+                personService.save(person);
+                //Despues obtengo la ultima persona registrada
+                person = personService.findByPersonId(LastentityId);
+
+
 
             } else if (operation.equals("delete")){
 
@@ -495,16 +508,17 @@ public class MovieService {
 
             }
         } else {
-            if (operation.equals("insert")){
+            if (operation.equals("insert")) {
 
-            } else if (operation.equals("delete")){
+            } else if (operation.equals("delete")) {
 
-            }else {
+            } else {
                 throw new EntityNotFoundException("Operación no soportada: " + operation);
 
             }
+
         }
-        throw new EntityNotFoundException("Entidad no encontrada: " + entity);
+        return true;
     }
 
 

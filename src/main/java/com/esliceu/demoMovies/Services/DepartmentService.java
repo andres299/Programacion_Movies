@@ -32,4 +32,8 @@ public class DepartmentService {
     public List<?> findByDepartmentNameStartingWithIgnoreCase(String keyword, Pageable pageable) {
         return departmentRepo.findByDepartmentNameStartingWithIgnoreCase(keyword,pageable);
     }
+
+    public Department findById(int departmentId) {
+        return departmentRepo.findById(Long.valueOf(departmentId)).orElseThrow();
+    }
 }

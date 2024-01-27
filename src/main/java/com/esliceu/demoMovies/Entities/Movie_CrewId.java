@@ -6,7 +6,6 @@ public class Movie_CrewId implements Serializable {
     private Movie movie;
     private Person person;
     private Department department;
-
     private String job;
 
     public Movie getMovie() {
