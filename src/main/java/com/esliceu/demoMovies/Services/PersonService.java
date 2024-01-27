@@ -52,11 +52,6 @@ public class PersonService {
     public Person findByPersonName(String select) {
         System.out.println(select);
         Person person = personRepo.findByPersonNameContaining(select);
-        if (person != null) {
-            System.out.println(person.getPersonId());
-        } else {
-            System.out.println("No se encontró ninguna persona con el nombre: " + select);
-        }
         return person;
     }
 }
