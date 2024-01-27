@@ -1,6 +1,8 @@
 package com.esliceu.demoMovies.DTO;
 
 public class FetchInfoMoviesDTO {
+
+    private int movieId;
     private String operation;
     private String entity;
     private String input1;
@@ -10,12 +12,21 @@ public class FetchInfoMoviesDTO {
     public FetchInfoMoviesDTO() {
     }
 
-    public FetchInfoMoviesDTO(String operation, String entity, String input1, String input2, String selected) {
+    public FetchInfoMoviesDTO(int movieId, String operation, String entity, String input1, String input2, String selected) {
+        this.movieId = movieId;
         this.operation = operation;
         this.entity = entity;
         this.input1 = input1;
         this.input2 = input2;
         this.selected = selected;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
     public String getOperation() {

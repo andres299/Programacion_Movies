@@ -55,15 +55,19 @@ public class FilterController {
     @PostMapping("/operationInfoMovies")
     ResponseEntity<String> operationInfoMovies(@RequestBody FetchInfoMoviesDTO fetchInfoMoviesDTO){
         Administrator admin = (Administrator) session.getAttribute("admin");
-        System.out.println(fetchInfoMoviesDTO.getEntity());
-        System.out.println(fetchInfoMoviesDTO.getOperation());
-        System.out.println(fetchInfoMoviesDTO.getSelected());
-        System.out.println(fetchInfoMoviesDTO.getInput1());
-        System.out.println(fetchInfoMoviesDTO.getInput2());
         //if (admin == null){
         //  return "redirect:/filterMovies";
         //
-        return null;
+        // Llamar al servicio para realizar la operación
+        boolean operationResult = movieService.operationInfoMovies(fetchInfoMoviesDTO);
+
+        if (operationResult) {
+            // Si la operación fue exitosa
+            return ResponseEntity.ok("Se ha realizado correctamente");
+        } else {
+            // Si la operación falló devuelve error
+            return ResponseEntity.badRequest().body("Error: Entrada no válida para la entidad");
+        }
     }
 
 }

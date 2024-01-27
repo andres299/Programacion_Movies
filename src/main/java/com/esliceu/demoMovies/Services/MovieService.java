@@ -1,9 +1,6 @@
 package com.esliceu.demoMovies.Services;
 
-import com.esliceu.demoMovies.DTO.FetchEntitiDTO;
-import com.esliceu.demoMovies.DTO.InfoMovies;
-import com.esliceu.demoMovies.DTO.MovieDTO;
-import com.esliceu.demoMovies.DTO.OperationMovies;
+import com.esliceu.demoMovies.DTO.*;
 import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +49,7 @@ public class MovieService {
     Movie_CastService movieCastService;
     @Autowired
     Movie_CrewService movieCrewService;
-
-    //public List<Movie> getAllMovies() {
-      //  return movieRepo.findAll();
-    //}
+    
     public List<Movie> getMovieList(int page) {
         Pageable pageable = PageRequest.of(page,10);
         return movieRepo.findAll(pageable).getContent();
@@ -334,8 +328,6 @@ public class MovieService {
         Pageable pageable = PageRequest.of(fetchEntitiDTO.getPage(), 10);
         String entity = fetchEntitiDTO.getEntity();
         String keyword = fetchEntitiDTO.getInput1();
-        System.out.println(fetchEntitiDTO.getPage());
-        System.out.println(entity + keyword);
         switch (entity) {
             case "country":
                 return countryService.findByCountryNameStartingWithIgnoreCase(keyword,pageable);
@@ -436,8 +428,7 @@ public class MovieService {
                 .collect(Collectors.toList());
 
         infoMovies.setDirectorName(directorNameStrings);
-
-
+        
         //Obtener los personajes personaje
         List<Movie_Cast> characterNames = movieCastService.findCharacterNameByMovieId(movieId);
         List<String> characterNameStrings = characterNames.stream()
@@ -458,6 +449,48 @@ public class MovieService {
 
         return infoMoviesList;
     }
+
+    public boolean operationInfoMovies(FetchInfoMoviesDTO fetchInfoMoviesDTO) {
+        String entity = fetchInfoMoviesDTO.getEntity();
+        String operation = fetchInfoMoviesDTO.getOperation();
+        String select = fetchInfoMoviesDTO.getSelected();
+        String input1 = fetchInfoMoviesDTO.getInput1();
+        String input2 = fetchInfoMoviesDTO.getInput2();
+        int entityId;
+        if (entity.equals("Actor")) {
+            if (operation.equals("insert")){
+                //Creo una persona primero
+                Person personId = personService.findFirstByOrderByPersonIdDesc();
+                entityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
+                Person person = new Person(entityId, input1);
+                personService.save(person);
+                //Insertar en Movie_Cast esta perona con su personaje
+
+            }else if (operation.equals("update'")){
+
+            } else {
+
+            }
+        } else if (entity.equals("Director")) {
+            if (operation.equals("insert")){
+
+            }else if (operation.equals("update'")){
+
+            } else {
+
+            }
+        } else {
+            if (operation.equals("insert")){
+
+            }else if (operation.equals("update'")){
+
+            } else {
+
+            }
+        }
+        return false;
+    }
+
 
     public class EntityNotFoundException extends RuntimeException {
         public EntityNotFoundException(String message) {

@@ -153,11 +153,11 @@ function updateUI() {
         moviesTable.appendChild(row);
     });
 }
-
+var movieId;
 viewButtons.forEach(viewButton => {
     viewButton.addEventListener("click", function () {
         var movieIdValue = this.value;
-        console.log(movieIdValue);
+        movieId = movieIdValue;
         const data = {
             movieId: parseInt(movieIdValue)
         };
@@ -405,7 +405,6 @@ var actorUpdateButton = document.getElementById('actorUpdateButton');
 var actorDeleteButton = document.getElementById('actorDeleteButton');
 var UpdateActor = document.getElementById('actorSelect');
 var DeleteActor = document.getElementById('DeleteActorFields');
-
 // Obtener el valor seleccionado
 let operation;
 let selectedOption;
@@ -418,6 +417,7 @@ actorInsertButton.addEventListener('click', function () {
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const requestData = {
+        movieId: movieId,
         operation: operation,
         entity: selectedOption,
         input1: inputs[0] ? inputs[0].value : null,
@@ -435,6 +435,7 @@ actorUpdateButton.addEventListener('click', function () {
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const requestData = {
+        movieId: movieId,
         operation: operation,
         entity: selectedOption,
         input1: inputs[0] ? inputs[0].value : null,
@@ -451,6 +452,7 @@ actorDeleteButton.addEventListener('click', function () {
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const requestData = {
+        movieId: movieId,
         operation: operation,
         entity: selectedOption,
         input1: null,
@@ -467,6 +469,7 @@ document.getElementById('DirectorInsertButton').addEventListener('click', functi
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const requestData = {
+        movieId: movieId,
         operation: operation,
         entity: selectedOption,
         input1: inputs[0].value,
@@ -485,6 +488,7 @@ document.getElementById('DirectorUpdateButton').addEventListener('click', functi
     const select = document.getElementById('directorSelect');
     const selectedValue = select.value;
     const requestData = {
+        movieId: movieId,
         operation: operation,
         entity: selectedOption,
         input1: inputs[0].value,
@@ -501,6 +505,7 @@ document.getElementById('DirectorDeleteButton').addEventListener('click', functi
     const select = document.getElementById('directorSelectDelete');
     const selectedValue = select.value;
     const requestData = {
+        movieId: movieId,
         operation: operation,
         entity: selectedOption,
         input1: null,
@@ -517,6 +522,7 @@ document.getElementById('GenreInsertButton').addEventListener('click', function 
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const requestData = {
+        movieId: movieId,
         operation: operation,
         entity: selectedOption,
         input1: inputs[0].value,
@@ -535,6 +541,7 @@ document.getElementById('GenreUpdateButton').addEventListener('click', function 
     const select = document.getElementById('genreSelect');
     const selectedValue = select.value;
     const requestData = {
+        movieId: movieId,
         operation: operation,
         entity: selectedOption,
         input1: inputs[0].value,
@@ -551,6 +558,7 @@ document.getElementById('GenreDeleteButton').addEventListener('click', function 
     const select = document.getElementById('genreSelectDelete');
     const selectedValue = select.value;
     const requestData = {
+        movieId: movieId,
         operation: operation,
         entity: selectedOption,
         input1: null,
