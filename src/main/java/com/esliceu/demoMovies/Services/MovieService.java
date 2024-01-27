@@ -398,7 +398,6 @@ public class MovieService {
                 productionCountryService.deleteByMovieId(movie_id);
                 movieRepo.deleteById((long) movie_id);
             }else {
-                System.out.println("No existe puerco");
                 throw new entitiExist("Esta id no existe: " + entityId);
             }
         }
@@ -527,7 +526,9 @@ public class MovieService {
                 movieGenresService.save(movie,newGenre);
 
             } else if (operation.equals("delete")) {
-
+                LastentityId = movieId;
+                movieGenresService.deleteByGenreId(LastentityId);
+                genreService.deleteById((long) LastentityId);
             } else {
                 throw new EntityNotFoundException("Operación no soportada: " + operation);
 
@@ -537,13 +538,14 @@ public class MovieService {
         return true;
     }
 
-
+    //Manejo las diferentes excepciones que puedan salir, si la entidad no es entontada
+    //, si es country ,genre ...
     public class EntityNotFoundException extends RuntimeException {
         public EntityNotFoundException(String message) {
             super(message);
         }
     }
-
+    //Si no existe la id que estoy buscando
     public class entitiExist extends RuntimeException {
         public entitiExist(String message) {
             super(message);
