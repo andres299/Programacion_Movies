@@ -284,23 +284,9 @@ closeBtn.onclick = closeModal;
 // Función para llenar el select con opciones de actorName
 function fillActorSelect() {
     // Obtener el select y el div contenedor
-    var actorSelect = document.getElementById('actorSelect');
     var actorSelectDelete = document.getElementById('actorSelectDelete');
     // Limpiar opciones actuales
-    actorSelect.innerHTML = '';
     actorSelectDelete.innerHTML = '';
-
-    // Llenar el select con las opciones de actorName
-    infoDataMovies.forEach(movie => {
-        const actorNames = Array.isArray(movie.actorName) ? movie.actorName : [movie.actorNames];
-
-        actorNames.forEach(actor => {
-            var option = document.createElement('option');
-            option.value = actor;
-            option.text = actor;
-            actorSelect.add(option);
-        });
-    });
 
     infoDataMovies.forEach(movie => {
         const actorNames = Array.isArray(movie.actorName) ? movie.actorName : [movie.actorNames];
@@ -316,23 +302,9 @@ function fillActorSelect() {
 
 function fillDirectorSelect() {
     // Obtener el select y el div contenedor
-    var directorSelect = document.getElementById('directorSelect');
     var directorSelectDelete = document.getElementById('directorSelectDelete');
     // Limpiar opciones actuales
-    directorSelect.innerHTML = '';
     directorSelectDelete.innerHTML = '';
-
-    // Llenar el select con las opciones de directorName
-    infoDataMovies.forEach(movie => {
-        const directorNames = Array.isArray(movie.directorName) ? movie.directorName : [movie.directorName];
-
-        directorNames.forEach(director => {
-            var option = document.createElement('option');
-            option.value = director;
-            option.text = director;
-            directorSelect.add(option);
-        });
-    });
 
     infoDataMovies.forEach(movie => {
         const directorNames = Array.isArray(movie.directorName) ? movie.directorName : [movie.directorName];
@@ -348,23 +320,9 @@ function fillDirectorSelect() {
 
 function fillGenreSelect() {
     // Obtener el select y el div contenedor
-    var genreSelect = document.getElementById('genreSelect');
     var genreSelectDelete = document.getElementById('genreSelectDelete');
     // Limpiar opciones actuales
-    genreSelect.innerHTML = '';
     genreSelectDelete.innerHTML = '';
-
-    // Llenar el select con las opciones de género
-    infoDataMovies.forEach(movie => {
-        const genres = Array.isArray(movie.genre) ? movie.genre : [movie.genre];
-
-        genres.forEach(genre => {
-            var option = document.createElement('option');
-            option.value = genre;
-            option.text = genre;
-            genreSelect.add(option);
-        });
-    });
 
     infoDataMovies.forEach(movie => {
         const genres = Array.isArray(movie.genre) ? movie.genre : [movie.genre];
@@ -401,11 +359,8 @@ function showContent(contentType) {
 }
 
 var actorInsertButton = document.getElementById('actorInsertButton');
-var actorUpdateButton = document.getElementById('actorUpdateButton');
 var actorDeleteButton = document.getElementById('actorDeleteButton');
-var UpdateActor = document.getElementById('actorSelect');
 var DeleteActor = document.getElementById('actorSelectDelete');
-console.log(DeleteActor);
 var genderSelect = document.getElementById('genderSelect');
 var genderSelect2 = document.getElementById('genderSelect2');
 var genderSelect3 = document.getElementById('genderSelect3');
@@ -431,26 +386,6 @@ actorInsertButton.addEventListener('click', function () {
         input2: inputs[1] ? inputs[1].value : null,
         selected: null,
         gender: selectedGenderValue
-    };
-    postDataInfoMovies('/operationInfoMovies', requestData);
-});
-
-actorUpdateButton.addEventListener('click', function () {
-    selectedOption = 'Actor';
-    operation = 'update';
-    var selectedValueUpdate = UpdateActor.value;
-    var selectedGenderValue2 = genderSelect2.value;
-    // Obtener el contenedor del formulario
-    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
-    const inputs = Array.from(formContainer.querySelectorAll('input'));
-    const requestData = {
-        movieId: movieId,
-        operation: operation,
-        entity: selectedOption,
-        input1: inputs[0] ? inputs[0].value : null,
-        input2: inputs[1] ? inputs[1].value : null,
-        selected: selectedValueUpdate,
-        gender: selectedGenderValue2
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
@@ -492,44 +427,6 @@ document.getElementById('DirectorInsertButton').addEventListener('click', functi
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
 
-// Event listener al botón de actualizar Director
-document.getElementById('DirectorUpdateButton').addEventListener('click', function () {
-    selectedOption = 'Director';
-    operation = 'update';
-    var selectedGenderValue4 = genderSelect4.value;
-    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
-    const inputs = Array.from(formContainer.querySelectorAll('input'));
-    const select = document.getElementById('directorSelectDelete');
-    const selectedValue = select.value;
-    const requestData = {
-        movieId: movieId,
-        operation: operation,
-        entity: selectedOption,
-        input1: inputs[0].value,
-        input2: null,
-        selected: selectedValue,
-        gender: selectedGenderValue4
-    };
-    postDataInfoMovies('/operationInfoMovies', requestData);
-});
-
-// Agregar event listener al botón de eliminar Director
-document.getElementById('DirectorDeleteButton').addEventListener('click', function () {
-    selectedOption = 'Director';
-    operation = 'delete';
-    const select = document.getElementById('directorSelectDelete');
-    const selectedValue = select.value;
-    const requestData = {
-        movieId: movieId,
-        operation: operation,
-        entity: selectedOption,
-        input1: null,
-        input2: null,
-        selected: selectedValue
-    };
-    postDataInfoMovies('/operationInfoMovies', requestData);
-});
-
 // Event listener al botón de insertar Genre
 document.getElementById('GenreInsertButton').addEventListener('click', function () {
     selectedOption = 'Genre';
@@ -543,25 +440,6 @@ document.getElementById('GenreInsertButton').addEventListener('click', function 
         input1: inputs[0].value,
         input2: null,
         selected: null
-    };
-    postDataInfoMovies('/operationInfoMovies', requestData);
-});
-
-// Event listener al botón de actualizar Genre
-document.getElementById('GenreUpdateButton').addEventListener('click', function () {
-    selectedOption = 'Genre';
-    operation = 'update';
-    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
-    const inputs = Array.from(formContainer.querySelectorAll('input'));
-    const select = document.getElementById('genreSelect');
-    const selectedValue = select.value;
-    const requestData = {
-        movieId: movieId,
-        operation: operation,
-        entity: selectedOption,
-        input1: inputs[0].value,
-        input2: null,
-        selected: selectedValue
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
