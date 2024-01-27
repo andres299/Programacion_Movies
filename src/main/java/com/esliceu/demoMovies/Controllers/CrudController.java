@@ -42,12 +42,6 @@ public class CrudController {
         return "crud";
     }
 
-    //@GetMapping("/allCountrys")
-    //@ResponseBody
-    //public List<Country> showCountrys(){
-        //return movieService.getAllCountrys();
-    //}
-
     @PostMapping("/infoEntities")
     @ResponseBody
     public List<?> crud(@RequestParam String selectedValue,@RequestParam int page){

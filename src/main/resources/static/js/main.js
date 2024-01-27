@@ -352,37 +352,6 @@ function fillGenreSelect() {
     var genreSelectDelete = document.getElementById('genreSelectDelete');
     // Limpiar opciones actuales
     genreSelect.innerHTML = '';
-
-    // Llenar el select con las opciones de directorName
-    infoDataMovies.forEach(movie => {
-        const directorNames = Array.isArray(movie.directorName) ? movie.directorName : [movie.directorName];
-
-        directorNames.forEach(director => {
-            var option = document.createElement('option');
-            option.value = director;
-            option.text = director;
-            directorSelect.add(option);
-        });
-    });
-
-    infoDataMovies.forEach(movie => {
-        const directorNames = Array.isArray(movie.directorName) ? movie.directorName : [movie.directorName];
-
-        directorNames.forEach(director => {
-            var option = document.createElement('option');
-            option.value = director;
-            option.text = director;
-            directorSelectDelete.add(option);
-        });
-    });
-}
-
-function fillGenreSelect() {
-    // Obtener el select y el div contenedor
-    var genreSelect = document.getElementById('genreSelect');
-    var genreSelectDelete = document.getElementById('genreSelectDelete');
-    // Limpiar opciones actuales
-    genreSelect.innerHTML = '';
     genreSelectDelete.innerHTML = '';
 
     // Llenar el select con las opciones de género
@@ -428,5 +397,88 @@ function showContent(contentType) {
             break;
         default:
             break;
+    }
+}
+
+var actorInsertButton = document.getElementById('actorInsertButton');
+var actorUpdateButton = document.getElementById('actorUpdateButton');
+var actorDeleteButton = document.getElementById('actorDeleteButton');
+var UpdateActor = document.getElementById('actorSelect');
+var DeleteActor = document.getElementById('DeleteActorFields');
+
+// Obtener el valor seleccionado
+let operation;
+let selectedOption;
+var selectedValueUpdate = UpdateActor.value;
+var selectedValueDelete = DeleteActor.value;
+console.log(selectedValueUpdate);
+console.log(selectedValueDelete);
+// Añadir event listeners
+actorInsertButton.addEventListener('click', function () {
+    selectedOption = 'Actor';
+    operation = 'insert';
+    // Obtener el contenedor del formulario
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    const inputs = Array.from(formContainer.querySelectorAll('input'));
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        input1: inputs[0] ? inputs[0].value : null,
+        input2: inputs[1] ? inputs[1].value : null,
+        selected: null
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
+actorUpdateButton.addEventListener('click', function () {
+    selectedOption = 'Actor';
+    operation = 'update';
+    // Obtener el contenedor del formulario
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    console.log(selectedValueUpdate);
+    const inputs = Array.from(formContainer.querySelectorAll('input'));
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        input1: inputs[0] ? inputs[0].value : null,
+        input2: inputs[1] ? inputs[1].value : null,
+        selected: selectedValueUpdate
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
+actorDeleteButton.addEventListener('click', function () {
+    selectedOption = 'Actor';
+    operation = 'delete';
+    // Obtener el contenedor del formulario
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    const requestData = {
+        operation: operation,
+        entity: selectedOption,
+        input1: null,
+        input2: null,
+        selected: selectedValueDelete
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
+async function postDataInfoMovies(URL, data) {
+    const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    try {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const responseData = await response.text();
+        console.log(response);
+        alert(responseData);
+    } catch (error) {
+        alert("Error al procesar la solicitud: " + error.message);
     }
 }

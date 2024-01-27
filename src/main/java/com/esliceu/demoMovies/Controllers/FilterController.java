@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Controllers;
 
+import com.esliceu.demoMovies.DTO.FetchInfoMoviesDTO;
 import com.esliceu.demoMovies.DTO.InfoMovies;
 import com.esliceu.demoMovies.DTO.OperationMovies;
 import com.esliceu.demoMovies.Entities.Administrator;
@@ -49,6 +50,20 @@ public class FilterController {
     @ResponseBody
     public List<InfoMovies> infoMovies(@RequestBody Map<String, Integer> requestBody) {
         return movieService.getInfoMovies(requestBody);
+    }
+
+    @PostMapping("/operationInfoMovies")
+    ResponseEntity<String> operationInfoMovies(@RequestBody FetchInfoMoviesDTO fetchInfoMoviesDTO){
+        Administrator admin = (Administrator) session.getAttribute("admin");
+        System.out.println(fetchInfoMoviesDTO.getEntity());
+        System.out.println(fetchInfoMoviesDTO.getOperation());
+        System.out.println(fetchInfoMoviesDTO.getSelected());
+        System.out.println(fetchInfoMoviesDTO.getInput1());
+        System.out.println(fetchInfoMoviesDTO.getInput2());
+        //if (admin == null){
+        //  return "redirect:/filterMovies";
+        //
+        return null;
     }
 
 }
