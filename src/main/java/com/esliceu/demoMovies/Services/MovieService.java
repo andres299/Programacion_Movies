@@ -358,17 +358,14 @@ public class MovieService {
             case "movies":
                 List<Movie> movies = movieRepo.findByTitleStartingWithIgnoreCase(keyword,pageable).getContent();
                 List<MovieDTO> movieDTOList = movies.stream()
-                        .map(movie -> {
-                            Movie movieEntity = (Movie) movie;
-                            return new MovieDTO(
-                                    movieEntity.getMovieId(),
-                                    movieEntity.getTitle(),
-                                    movieEntity.getOverview(),
-                                    movieEntity.getPopularity(),
-                                    movieEntity.getReleaseDate(),
-                                    movieEntity.getRevenue()
-                            );
-                        })
+                        .map(movie -> new MovieDTO(
+                                movie.getMovieId(),
+                                movie.getTitle(),
+                                movie.getOverview(),
+                                movie.getPopularity(),
+                                movie.getReleaseDate(),
+                                movie.getRevenue()
+                        ))
                         .collect(Collectors.toList());
                 return movieDTOList;
             default:
