@@ -2,6 +2,7 @@ package com.esliceu.demoMovies.Services;
 
 import com.esliceu.demoMovies.Entities.Movie;
 import com.esliceu.demoMovies.Entities.Movie_Cast;
+import com.esliceu.demoMovies.Entities.Person;
 import com.esliceu.demoMovies.Repositorys.Movie_CastRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,5 +39,11 @@ public class Movie_CastService {
 
     public List<Movie_Cast> findCharacterNameByMovieId(int movieId) {
         return movieCastRepo.findCharacterNameByMovieId(movieId);
+    }
+
+
+    public void save(Movie movie, Person person, String input2) {
+        Movie_Cast movieCast = new Movie_Cast(movie,person,input2);
+        movieCastRepo.save(movieCast);
     }
 }

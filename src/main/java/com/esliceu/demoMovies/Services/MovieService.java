@@ -451,21 +451,34 @@ public class MovieService {
     }
 
     public boolean operationInfoMovies(FetchInfoMoviesDTO fetchInfoMoviesDTO) {
+        int movieId = fetchInfoMoviesDTO.getMovieId();
         String entity = fetchInfoMoviesDTO.getEntity();
         String operation = fetchInfoMoviesDTO.getOperation();
         String select = fetchInfoMoviesDTO.getSelected();
         String input1 = fetchInfoMoviesDTO.getInput1();
         String input2 = fetchInfoMoviesDTO.getInput2();
-        int entityId;
+        int LastentityId;
         if (entity.equals("Actor")) {
             if (operation.equals("insert")){
-                //Creo una persona primero
                 Person personId = personService.findFirstByOrderByPersonIdDesc();
-                entityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
-                Person person = new Person(entityId, input1);
-                personService.save(person);
-                //Insertar en Movie_Cast esta perona con su personaje
+                Person person;
 
+                if (personId != null) {
+                    // Si existe una instancia, utilizo la existente
+                    person = personId;
+                } else {
+                    // Si no existe, creo una nueva instancia
+                    LastentityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
+                    person = new Person(LastentityId, input1);
+                    personService.save(person);
+                }
+                System.out.println(person.getPersonId());
+
+                // Insertar en Movie_Cast esta persona con su personaje
+                Movie movie = movieRepo.findById((long) movieId).orElse(null);
+                System.out.println(movie.getMovieId());
+
+                movieCastService.save(movie, person, input2);
             }else if (operation.equals("update'")){
 
             } else {

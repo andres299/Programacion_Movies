@@ -9,16 +9,26 @@ public class FetchInfoMoviesDTO {
     private String input2;
     private String selected;
 
+    private String Gender;
     public FetchInfoMoviesDTO() {
     }
 
-    public FetchInfoMoviesDTO(int movieId, String operation, String entity, String input1, String input2, String selected) {
+    public FetchInfoMoviesDTO(int movieId, String operation, String entity, String input1, String input2, String selected, String gender) {
         this.movieId = movieId;
         this.operation = operation;
         this.entity = entity;
         this.input1 = input1;
         this.input2 = input2;
         this.selected = selected;
+        Gender = gender;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String gender) {
+        Gender = gender;
     }
 
     public int getMovieId() {

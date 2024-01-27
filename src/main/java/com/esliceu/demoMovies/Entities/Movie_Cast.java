@@ -32,6 +32,15 @@ public class Movie_Cast {
 
     private int cast_order;
 
+    public Movie_Cast() {
+    }
+
+    public Movie_Cast(Movie movie, Person person, String characterName) {
+        this.movie = movie;
+        this.person = person;
+        this.characterName = characterName;
+    }
+
     public Movie getMovie() {
         return movie;
     }
