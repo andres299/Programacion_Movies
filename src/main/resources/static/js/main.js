@@ -409,10 +409,7 @@ var DeleteActor = document.getElementById('DeleteActorFields');
 // Obtener el valor seleccionado
 let operation;
 let selectedOption;
-var selectedValueUpdate = UpdateActor.value;
-var selectedValueDelete = DeleteActor.value;
-console.log(selectedValueUpdate);
-console.log(selectedValueDelete);
+
 // Añadir event listeners
 actorInsertButton.addEventListener('click', function () {
     selectedOption = 'Actor';
@@ -433,6 +430,7 @@ actorInsertButton.addEventListener('click', function () {
 actorUpdateButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'update';
+    var selectedValueUpdate = UpdateActor.value;
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     console.log(selectedValueUpdate);
@@ -450,6 +448,7 @@ actorUpdateButton.addEventListener('click', function () {
 actorDeleteButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'delete';
+    var selectedValueDelete = DeleteActor.value;
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const requestData = {
