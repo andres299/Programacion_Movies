@@ -55,13 +55,12 @@ public class FilterController {
     @PostMapping("/operationInfoMovies")
     ResponseEntity<String> operationInfoMovies(@RequestBody FetchInfoMoviesDTO fetchInfoMoviesDTO){
         Administrator admin = (Administrator) session.getAttribute("admin");
-        System.out.println(fetchInfoMoviesDTO.getGender());
+        System.out.println(fetchInfoMoviesDTO.getSelected());
         //if (admin == null){
         //  return "redirect:/filterMovies";
         //
         // Llamar al servicio para realizar la operación
         boolean operationResult = movieService.operationInfoMovies(fetchInfoMoviesDTO);
-
         if (operationResult) {
             // Si la operación fue exitosa
             return ResponseEntity.ok("Se ha realizado correctamente");

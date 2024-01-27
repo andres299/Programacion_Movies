@@ -477,29 +477,34 @@ public class MovieService {
 
                 // Insertar en Movie_Cast esta persona con su personaje
                 movieCastService.save(movie, person, input2, genreEntiti);
-            }else if (operation.equals("update'")){
-
-            } else {
-
+            } else if (operation.equals("delete")){
+                Person person = personService.findByPersonName(select);
+                movieCrewService.deleteByPersonId(person.getPersonId());
+                movieCastService.deleteByPersonId(person.getPersonId());
+                personService.deleteById((long) person.getPersonId());
+            }else {
+                throw new UnsupportedOperationException("Operación no soportada: " + operation);
             }
         } else if (entity.equals("Director")) {
             if (operation.equals("insert")){
 
-            }else if (operation.equals("update'")){
+            } else if (operation.equals("delete")){
 
-            } else {
+            } else{
+                throw new UnsupportedOperationException("Operación no soportada: " + operation);
 
             }
         } else {
             if (operation.equals("insert")){
 
-            }else if (operation.equals("update'")){
+            } else if (operation.equals("delete")){
 
-            } else {
+            }else {
+                throw new EntityNotFoundException("Operación no soportada: " + operation);
 
             }
         }
-        return false;
+        throw new EntityNotFoundException("Entidad no encontrada: " + entity);
     }
 
 

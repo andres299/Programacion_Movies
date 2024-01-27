@@ -404,7 +404,8 @@ var actorInsertButton = document.getElementById('actorInsertButton');
 var actorUpdateButton = document.getElementById('actorUpdateButton');
 var actorDeleteButton = document.getElementById('actorDeleteButton');
 var UpdateActor = document.getElementById('actorSelect');
-var DeleteActor = document.getElementById('DeleteActorFields');
+var DeleteActor = document.getElementById('actorSelectDelete');
+console.log(DeleteActor);
 var genderSelect = document.getElementById('genderSelect');
 var genderSelect2 = document.getElementById('genderSelect2');
 var genderSelect3 = document.getElementById('genderSelect3');
@@ -458,6 +459,7 @@ actorDeleteButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'delete';
     var selectedValueDelete = DeleteActor.value;
+    console.log(selectedValueDelete);
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const requestData = {
@@ -497,7 +499,7 @@ document.getElementById('DirectorUpdateButton').addEventListener('click', functi
     var selectedGenderValue4 = genderSelect4.value;
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
-    const select = document.getElementById('directorSelect');
+    const select = document.getElementById('directorSelectDelete');
     const selectedValue = select.value;
     const requestData = {
         movieId: movieId,
