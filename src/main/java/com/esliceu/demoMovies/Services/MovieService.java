@@ -565,8 +565,12 @@ public class MovieService {
             if (operation.equals("insert")){
                 //Creo una persona y la guardo en la Base de datos
                 Person personId = personService.findFirstByOrderByPersonIdDesc();
-                LastentityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
-                Person person = new Person(LastentityId, input1);
+                if (personId != null) {
+                    LastentityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
+                } else {
+                    // Manejar el caso cuando personId es null, asignar un valor predeterminado a entityId
+                    LastentityId = 1;
+                }                Person person = new Person(LastentityId, input1);
                 personService.save(person);
                 //Despues obtengo la ultima persona registrada
                 person = personService.findByPersonId(LastentityId);
@@ -598,8 +602,12 @@ public class MovieService {
 
                 //Creo una persona y la guardo en la Base de datos
                 Person personId = personService.findFirstByOrderByPersonIdDesc();
-                LastentityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
-                Person person = new Person(LastentityId, input1);
+                if (personId != null) {
+                    LastentityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
+                } else {
+                    // Manejar el caso cuando personId es null, asignar un valor predeterminado a entityId
+                    LastentityId = 1;
+                }                 Person person = new Person(LastentityId, input1);
                 personService.save(person);
                 //Despues obtengo la ultima persona registrada
                 person = personService.findByPersonId(LastentityId);
@@ -623,7 +631,12 @@ public class MovieService {
             if (operation.equals("insert")) {
                 //Creo un genero nuevo
                 Genre genreId = genreService.findFirstByOrderByGenreIdDesc();
-                LastentityId = (genreId.getGenreId() != 0) ? genreId.getGenreId() + 1 : 1;
+                if (genreId != null) {
+                    LastentityId = (genreId.getGenreId() != 0) ? genreId.getGenreId() + 1 : 1;
+                } else {
+                        // Manejar el caso cuando genderId es null, asignar un valor predeterminado a entityId
+                    LastentityId = 1;
+                }
                 Genre newGenre = new Genre(LastentityId, input1);
                 genreService.save(newGenre);
 
