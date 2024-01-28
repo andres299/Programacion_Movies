@@ -15,10 +15,8 @@ import java.util.List;
 public class LoginAdminController {
     @Autowired
     HttpSession session;
-
     @Autowired
     AdminService adminService;
-
     @GetMapping("/loginAdmin")
     public String loginAdmin(){
         return "loginAdmin";
