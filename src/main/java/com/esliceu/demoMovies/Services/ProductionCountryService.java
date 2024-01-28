@@ -22,6 +22,5 @@ public class ProductionCountryService {
         List<Production_Country> allProductionCountry =
                 productionCountryRepo.findAllByMovie_MovieId(movieId);
         productionCountryRepo.deleteAll(allProductionCountry);
-        //productionCountryRepo.deleteByMovieId(movieId);
     }
 }
