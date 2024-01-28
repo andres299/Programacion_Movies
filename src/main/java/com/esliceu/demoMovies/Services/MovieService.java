@@ -408,6 +408,7 @@ public class MovieService {
             throw new entitiExist("Esta id no existe: " + movieId);
         }
         InfoMovies infoMovies = new InfoMovies();
+        infoMovies.setMovieId(movieId);
         infoMovies.setTitle(movie.getTitle());
 
         //Obtener Actores de la pelicula
@@ -454,6 +455,7 @@ public class MovieService {
         String input1 = fetchInfoMoviesDTO.getInput1();
         String input2 = fetchInfoMoviesDTO.getInput2();
         int genre = fetchInfoMoviesDTO.getGender();
+        System.out.println(movieId + entity + operation + select + input1 + input2 + genre);
         int LastentityId;
         if (entity.equals("Actor")) {
             if (operation.equals("insert")){

@@ -3,6 +3,8 @@ package com.esliceu.demoMovies.DTO;
 import java.util.List;
 
 public class InfoMovies {
+
+    private int movieId;
     private String title;
     private List<String> actorName;
     private List<String> directorName;
@@ -12,12 +14,21 @@ public class InfoMovies {
     public InfoMovies() {
     }
 
-    public InfoMovies(String title, List<String> actorName, List<String> direactorName, List<String> characterName, List<String> genre) {
+    public InfoMovies(int movieId, String title, List<String> actorName, List<String> directorName, List<String> characterName, List<String> genre) {
+        this.movieId = movieId;
         this.title = title;
         this.actorName = actorName;
-        this.directorName = direactorName;
+        this.directorName = directorName;
         this.characterName = characterName;
         this.genre = genre;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
     public String getTitle() {

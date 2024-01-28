@@ -124,7 +124,6 @@ function updateUI() {
         // Agregar evento al botón "View"
         viewButton.addEventListener("click", function () {
             const movieIdValue = this.value;
-            console.log(movieIdValue);
             const data = {
                 movieId: parseInt(movieIdValue)
             };
@@ -153,11 +152,10 @@ function updateUI() {
         moviesTable.appendChild(row);
     });
 }
-var movieId;
+
 viewButtons.forEach(viewButton => {
     viewButton.addEventListener("click", function () {
         var movieIdValue = this.value;
-        movieId = movieIdValue;
         const data = {
             movieId: parseInt(movieIdValue)
         };
@@ -204,17 +202,23 @@ function infoMoviesData(url, data) {
         });
 }
 
+var movieId;
+
 function handleInfoDataMovies(infoDataMovies) {
     const movieTitleElement = document.getElementById("movieTitle");
     const actorTableBody = document.getElementById("actorTableBody");
     const genreTableBody = document.getElementById("genreTableBody");
     const directorTableBody = document.getElementById("directorTableBody");
-
+    movieId = infoDataMovies[0].movieId;
+    console.log(infoDataMovies);
+    console.log(infoDataMovies[0].movieId);
     // Inicializamos el contenido del título de la película
     movieTitleElement.textContent = "";
 
     // Limpiamos el cuerpo de la tabla antes de agregar nuevas filas
     actorTableBody.innerHTML = "";
+    genreTableBody.innerHTML = "";
+    directorTableBody.innerHTML = "";
 
     // Iteramos a través de las películas en infoDataMovies
     infoDataMovies.forEach(movie => {
@@ -368,7 +372,7 @@ var genderSelect3 = document.getElementById('genderSelect3');
 // Obtener el valor seleccionado
 let operation;
 let selectedOption;
-
+console.log(movieId);
 // Añadir event listeners
 actorInsertButton.addEventListener('click', function () {
     selectedOption = 'Actor';
@@ -377,6 +381,7 @@ actorInsertButton.addEventListener('click', function () {
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
+    console.log(movieId);
     const requestData = {
         movieId: movieId,
         operation: operation,
@@ -393,6 +398,7 @@ actorDeleteButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'delete';
     var selectedValueDelete = DeleteActor.value;
+    console.log("movie" + movieId);
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const requestData = {
