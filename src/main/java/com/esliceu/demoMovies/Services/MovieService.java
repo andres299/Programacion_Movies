@@ -57,7 +57,6 @@ public class MovieService {
 
     public List<Movie> filterMovies(String filterType, String keyword, int page) {
         Pageable pageable = PageRequest.of(page,10);
-        System.out.println("filterMovies llamado con palabra clave: " + keyword + " y tipo de filtro: " + filterType);
         if ("title".equals(filterType)) {
             return movieRepo.findByTitleStartingWithIgnoreCase(keyword,pageable).getContent();
         } else if ("actor".equals(filterType)) {
@@ -368,7 +367,6 @@ public class MovieService {
     public void operationMovies(OperationMovies movie) {
         String entity = "movies";
         String entityId = String.valueOf(movie.getMovie_id());
-        System.out.println(entityId);
         if (movie.getOperation().equals("insert")){
             Movie movieInfo = new Movie(movie.getTitle(),movie.getBudget(),movie.getHomepage(),
                     movie.getOverview(),movie.getPopularity(),movie.getRelease_date(),
@@ -411,12 +409,12 @@ public class MovieService {
         }
         InfoMovies infoMovies = new InfoMovies();
         infoMovies.setTitle(movie.getTitle());
+
         //Obtener Actores de la pelicula
         List<Person> actorNames = personService.findPersonByMoviecast_MovieMovieIdEquals(movieId);
         List<String> actorNameStrings = actorNames.stream()
                 .map(Person::getPersonName)
                 .collect(Collectors.toList());
-
         infoMovies.setActorName(actorNameStrings);
 
         //Obtener los directores de la pelicula
@@ -425,7 +423,6 @@ public class MovieService {
         List<String> directorNameStrings = directorNames.stream()
                 .map(Person::getPersonName)
                 .collect(Collectors.toList());
-
         infoMovies.setDirectorName(directorNameStrings);
         
         //Obtener los personajes personaje
