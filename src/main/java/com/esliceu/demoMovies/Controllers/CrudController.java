@@ -35,9 +35,6 @@ public class CrudController {
           //  return "redirect:/filterMovies";
         //
         List<Country> country = countryService.getAllCountrys(page);
-        for (Country country1: country){
-            System.out.println(country1.getCountryName());
-        }
         model.addAttribute("listCountries", countryService.getAllCountrys(page));
         return "crud";
     }
@@ -45,7 +42,6 @@ public class CrudController {
     @PostMapping("/infoEntities")
     @ResponseBody
     public List<?> crud(@RequestParam String selectedValue,@RequestParam int page){
-        System.out.println(page);
         return movieService.infoEntities(selectedValue,page);}
 
     @PostMapping("/searchEntities")
