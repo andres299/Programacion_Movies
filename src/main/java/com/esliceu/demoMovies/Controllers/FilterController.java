@@ -29,32 +29,38 @@ public class FilterController {
 
     @GetMapping("/filterMovies")
     public String showMovies(Model model, @RequestParam(defaultValue = "0") int page){
+        //Obtenemos la sesion actual si la hay.
         Administrator admin = (Administrator) session.getAttribute("admin");
+        // Agregamos un atributo al modelo para verificar si el administrador está autenticado.
         model.addAttribute("isAdminNotNull", admin != null);
+        //Agregamos la lista de películas al modelo utilizando el servicio movieService.
         model.addAttribute("listOfMovies",movieService.getMovieList(page));
         return "filterMovies";
     }
     @PostMapping("/changePageMovies")
     @ResponseBody
     public List<Movie> changePageMovies(@RequestParam int page) {
+        // Devuelve la lista de películas correspondiente a la página proporcionada.
         return movieService.getMovieList(page);
     }
 
     @PostMapping("/filterMovies")
     @ResponseBody
     public List<Movie> filterMovies(@RequestParam String filterType, @RequestParam String keyword, @RequestParam int page) {
+        // Retorna la lista de películas filtrada según los parámetros proporcionados.
         return movieService.filterMovies(filterType,keyword,page);
     }
-
     @PostMapping("/infoMovies")
     @ResponseBody
     public List<InfoMovies> infoMovies(@RequestBody Map<String, Integer> requestBody) {
+        // Retorna una lista de información de películas: actores, personajes, directores ,genero.
         return movieService.getInfoMovies(requestBody);
     }
-
     @PostMapping("/operationInfoMovies")
     ResponseEntity<String> operationInfoMovies(@RequestBody FetchInfoMoviesDTO fetchInfoMoviesDTO){
+        // Obtiene el administrador de la sesión actual.
         Administrator admin = (Administrator) session.getAttribute("admin");
+        // Verifica si el administrador está autenticado.
         if (admin == null) {
             return ResponseEntity.badRequest().body("Error: El administrador no está autenticado");
         }
