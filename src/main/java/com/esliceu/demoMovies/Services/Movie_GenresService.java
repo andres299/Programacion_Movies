@@ -1,5 +1,8 @@
 package com.esliceu.demoMovies.Services;
 
+import com.esliceu.demoMovies.Entities.Genre;
+import com.esliceu.demoMovies.Entities.Movie;
+import com.esliceu.demoMovies.Entities.Movie_Crew;
 import com.esliceu.demoMovies.Entities.Movie_Genres;
 import com.esliceu.demoMovies.Repositorys.Movie_GenresRepo;
 import com.esliceu.demoMovies.Repositorys.Movie_LanguagesRepo;
@@ -23,5 +26,10 @@ public class Movie_GenresService {
     public void deleteByGenreId(int entityId) {
         List<Movie_Genres> allGenres = movieGenresRepo.findAllByGenre_GenreId(entityId);
         movieGenresRepo.deleteAll(allGenres);
+    }
+
+    public void save(Movie movie, Genre newGenre) {
+        Movie_Genres movieGenres = new Movie_Genres(movie,newGenre);
+        movieGenresRepo.save(movieGenres);
     }
 }

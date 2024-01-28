@@ -124,7 +124,6 @@ function updateUI() {
         // Agregar evento al botón "View"
         viewButton.addEventListener("click", function () {
             const movieIdValue = this.value;
-            console.log(movieIdValue);
             const data = {
                 movieId: parseInt(movieIdValue)
             };
@@ -153,11 +152,10 @@ function updateUI() {
         moviesTable.appendChild(row);
     });
 }
-var movieId;
+
 viewButtons.forEach(viewButton => {
     viewButton.addEventListener("click", function () {
         var movieIdValue = this.value;
-        movieId = movieIdValue;
         const data = {
             movieId: parseInt(movieIdValue)
         };
@@ -204,17 +202,23 @@ function infoMoviesData(url, data) {
         });
 }
 
+var movieId;
+
 function handleInfoDataMovies(infoDataMovies) {
     const movieTitleElement = document.getElementById("movieTitle");
     const actorTableBody = document.getElementById("actorTableBody");
     const genreTableBody = document.getElementById("genreTableBody");
     const directorTableBody = document.getElementById("directorTableBody");
-
+    movieId = infoDataMovies[0].movieId;
+    console.log(infoDataMovies);
+    console.log(infoDataMovies[0].movieId);
     // Inicializamos el contenido del título de la película
     movieTitleElement.textContent = "";
 
     // Limpiamos el cuerpo de la tabla antes de agregar nuevas filas
     actorTableBody.innerHTML = "";
+    genreTableBody.innerHTML = "";
+    directorTableBody.innerHTML = "";
 
     // Iteramos a través de las películas en infoDataMovies
     infoDataMovies.forEach(movie => {
@@ -364,12 +368,11 @@ var DeleteActor = document.getElementById('actorSelectDelete');
 var genderSelect = document.getElementById('genderSelect');
 var genderSelect2 = document.getElementById('genderSelect2');
 var genderSelect3 = document.getElementById('genderSelect3');
-var genderSelect4 = document.getElementById('genderSelect4');
 
 // Obtener el valor seleccionado
 let operation;
 let selectedOption;
-
+console.log(movieId);
 // Añadir event listeners
 actorInsertButton.addEventListener('click', function () {
     selectedOption = 'Actor';
@@ -378,6 +381,7 @@ actorInsertButton.addEventListener('click', function () {
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
+    console.log(movieId);
     const requestData = {
         movieId: movieId,
         operation: operation,
@@ -394,7 +398,7 @@ actorDeleteButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'delete';
     var selectedValueDelete = DeleteActor.value;
-    console.log(selectedValueDelete);
+    console.log("movie" + movieId);
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const requestData = {
@@ -422,6 +426,27 @@ document.getElementById('DirectorInsertButton').addEventListener('click', functi
         input1: inputs[0].value,
         input2: null,
         selected: null,
+        gender: selectedGenderValue3
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
+// Event listener al botón de insertar Director
+document.getElementById('DirectorDeleteButton').addEventListener('click', function () {
+    selectedOption = 'Director';
+    operation = 'delete';
+    var selectedGenderValue3 = genderSelect3.value;
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    const inputs = Array.from(formContainer.querySelectorAll('input'));
+    const SelectDelete = document.getElementById("directorSelectDelete");
+    const directorSelectDelete = SelectDelete.value;
+    const requestData = {
+        movieId: movieId,
+        operation: operation,
+        entity: selectedOption,
+        input1: null,
+        input2: null,
+        selected: directorSelectDelete,
         gender: selectedGenderValue3
     };
     postDataInfoMovies('/operationInfoMovies', requestData);

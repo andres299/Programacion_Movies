@@ -57,7 +57,6 @@ public class MovieService {
 
     public List<Movie> filterMovies(String filterType, String keyword, int page) {
         Pageable pageable = PageRequest.of(page,10);
-        System.out.println("filterMovies llamado con palabra clave: " + keyword + " y tipo de filtro: " + filterType);
         if ("title".equals(filterType)) {
             return movieRepo.findByTitleStartingWithIgnoreCase(keyword,pageable).getContent();
         } else if ("actor".equals(filterType)) {
@@ -368,7 +367,6 @@ public class MovieService {
     public void operationMovies(OperationMovies movie) {
         String entity = "movies";
         String entityId = String.valueOf(movie.getMovie_id());
-        System.out.println(entityId);
         if (movie.getOperation().equals("insert")){
             Movie movieInfo = new Movie(movie.getTitle(),movie.getBudget(),movie.getHomepage(),
                     movie.getOverview(),movie.getPopularity(),movie.getRelease_date(),
@@ -398,7 +396,6 @@ public class MovieService {
                 productionCountryService.deleteByMovieId(movie_id);
                 movieRepo.deleteById((long) movie_id);
             }else {
-                System.out.println("No existe puerco");
                 throw new entitiExist("Esta id no existe: " + entityId);
             }
         }
@@ -411,13 +408,14 @@ public class MovieService {
             throw new entitiExist("Esta id no existe: " + movieId);
         }
         InfoMovies infoMovies = new InfoMovies();
+        infoMovies.setMovieId(movieId);
         infoMovies.setTitle(movie.getTitle());
+
         //Obtener Actores de la pelicula
         List<Person> actorNames = personService.findPersonByMoviecast_MovieMovieIdEquals(movieId);
         List<String> actorNameStrings = actorNames.stream()
                 .map(Person::getPersonName)
                 .collect(Collectors.toList());
-
         infoMovies.setActorName(actorNameStrings);
 
         //Obtener los directores de la pelicula
@@ -426,7 +424,6 @@ public class MovieService {
         List<String> directorNameStrings = directorNames.stream()
                 .map(Person::getPersonName)
                 .collect(Collectors.toList());
-
         infoMovies.setDirectorName(directorNameStrings);
         
         //Obtener los personajes personaje
@@ -458,6 +455,7 @@ public class MovieService {
         String input1 = fetchInfoMoviesDTO.getInput1();
         String input2 = fetchInfoMoviesDTO.getInput2();
         int genre = fetchInfoMoviesDTO.getGender();
+        System.out.println(movieId + entity + operation + select + input1 + input2 + genre);
         int LastentityId;
         if (entity.equals("Actor")) {
             if (operation.equals("insert")){
@@ -478,7 +476,6 @@ public class MovieService {
                 // Insertar en Movie_Cast esta persona con su personaje
                 movieCastService.save(movie, person, input2, genreEntiti);
             } else if (operation.equals("delete")){
-                System.out.println("delete");
                 Person person = personService.findByPersonName(select);
                 movieCrewService.deleteByPersonId(person.getPersonId());
                 movieCastService.deleteByPersonId(person.getPersonId());
@@ -505,16 +502,32 @@ public class MovieService {
                 movieCrewService.save(movie,person,department);
 
             } else if (operation.equals("delete")){
-
+                Person person = personService.findByPersonName(select);
+                movieCrewService.deleteByPersonId(person.getPersonId());
+                personService.deleteById((long) person.getPersonId());
             } else{
                 throw new UnsupportedOperationException("Operación no soportada: " + operation);
 
             }
         } else {
             if (operation.equals("insert")) {
+                //Creo un genero nuevo
+                Genre genreId = genreService.findFirstByOrderByGenreIdDesc();
+                LastentityId = (genreId.getGenreId() != 0) ? genreId.getGenreId() + 1 : 1;
+                Genre newGenre = new Genre(LastentityId, input1);
+                genreService.save(newGenre);
+
+                //Despues obtengo el ultimo genero registrada
+                newGenre = genreService.findFirstByOrderByGenreIdDesc();
+
+                // Obtengo la pelicula a la que le quiero insertar un genero
+                Movie movie = movieRepo.findById((long) movieId).orElse(null);
+                movieGenresService.save(movie,newGenre);
 
             } else if (operation.equals("delete")) {
-
+                LastentityId = movieId;
+                movieGenresService.deleteByGenreId(LastentityId);
+                genreService.deleteById((long) LastentityId);
             } else {
                 throw new EntityNotFoundException("Operación no soportada: " + operation);
 
@@ -524,13 +537,14 @@ public class MovieService {
         return true;
     }
 
-
+    //Manejo las diferentes excepciones que puedan salir, si la entidad no es entontada
+    //, si es country ,genre ...
     public class EntityNotFoundException extends RuntimeException {
         public EntityNotFoundException(String message) {
             super(message);
         }
     }
-
+    //Si no existe la id que estoy buscando
     public class entitiExist extends RuntimeException {
         public entitiExist(String message) {
             super(message);

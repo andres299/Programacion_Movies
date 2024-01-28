@@ -80,7 +80,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <p>Titulo de la pelicula : <span id="movieTitle">Movie Title</span> </p>
-            <button id="options" class="options">Mas opciones</button>
+            <button th:if="${isAdminNotNull}" id="options" class="options">Mas opciones</button>
             <div class="table-container">
                 <table id="actorTable">
                     <thead>
@@ -182,11 +182,6 @@
                         <div id="insertGenreFields">
                             <label for="GenreInput">Name Genre:</label>
                             <input type="text" id="GenreInput" name="GenreInput">
-                            <select id="genderSelect4">
-                                <option value="0">Unspecified</option>
-                                <option value="1">Female</option>
-                                <option value="2">Male</option>
-                            </select>
                         </div>
                         <button type="button" class="insertButton" id="GenreInsertButton">Insertar</button>
                     </form>

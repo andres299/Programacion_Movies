@@ -55,9 +55,9 @@ public class FilterController {
     @PostMapping("/operationInfoMovies")
     ResponseEntity<String> operationInfoMovies(@RequestBody FetchInfoMoviesDTO fetchInfoMoviesDTO){
         Administrator admin = (Administrator) session.getAttribute("admin");
-        //if (admin == null){
-        //  return "redirect:/filterMovies";
-        //
+        if (admin == null) {
+            return ResponseEntity.badRequest().body("Error: El administrador no está autenticado");
+        }
         // Llamar al servicio para realizar la operación
         boolean operationResult = movieService.operationInfoMovies(fetchInfoMoviesDTO);
         if (operationResult) {
