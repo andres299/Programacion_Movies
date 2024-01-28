@@ -11,12 +11,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface Movie_KeywordsRepo extends JpaRepository<Movie_Keywords, Long> {
-
-    //@Transactional
-    //@Modifying
-    //@Query(value = "DELETE FROM movie_keywords WHERE movie_id = :movieId", nativeQuery = true)
-    //void deleteByMovieId(int movieId);
+    // Obtiene una lista de Movie_Keywords por ID de palabra clave.
     List<Movie_Keywords> findAllByKeyword_KeywordId(int entityId);
-
+    // Obtiene una lista de Movie_Keywords por ID de película.
     List<Movie_Keywords> findAllByMovie_MovieId(int movieId);
 }

@@ -12,11 +12,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface Production_CountryRepo extends JpaRepository<Production_Country, Long> {
+    // Obtiene una lista de Production_Country por ID de país.
     List<Production_Country> findAllByCountry_CountryId(int entityId);
 
-    //@Transactional
-    //@Modifying
-    //@Query(value = "DELETE FROM production_country WHERE movie_id = :movieId", nativeQuery = true)
-    //void deleteByMovieId(int movieId);
+    // Obtiene una lista de Production_Country por ID de película.
     List<Production_Country> findAllByMovie_MovieId(int movieId);
 }

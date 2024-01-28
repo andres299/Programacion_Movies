@@ -11,21 +11,18 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface Movie_CrewRepo extends JpaRepository<Movie_Crew, Long> {
+    // Elimina registros de Movie_Crew por ID de persona.
     @Transactional
     @Modifying
     @Query(value = "DELETE FROM movie_crew WHERE person_id = :entityId", nativeQuery = true)
     void deleteByPersonId(int entityId);
-    //List<Movie_Crew> findAllByPerson_PersonId(int entityId);
 
+    // Elimina registros de Movie_Crew por ID de departamento.
     @Transactional
     @Modifying
     @Query(value = "DELETE FROM movie_crew WHERE department_id = :entityId", nativeQuery = true)
     void deleteByDepartmentId(int entityId);
-    //List<Movie_Crew> findAllByDepartment_DepartmentId(int entityId);
 
-    //@Transactional
-    //@Modifying
-    //@Query(value = "DELETE FROM movie_crew WHERE movie_id = :entityId", nativeQuery = true)
-    //void deleteByMovieId(int movieId);
+    // Obtiene una lista de Movie_Crew por ID de película.
     List<Movie_Crew> findAllByMovie_MovieId(int movieId);
 }

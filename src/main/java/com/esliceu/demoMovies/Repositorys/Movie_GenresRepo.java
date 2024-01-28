@@ -11,11 +11,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface Movie_GenresRepo extends JpaRepository<Movie_Genres, Long> {
-    //@Transactional
-    //@Modifying
-    //@Query(value = "DELETE FROM movie_genres WHERE movie_id = :movieId", nativeQuery = true)
-    //void deleteByMovieId(int movieId);
+    // Obtiene una lista de Movie_Genres por ID de película.
     List<Movie_Genres> findAllByMovie_MovieId(int movieId);
-
+    // Obtiene una lista de Movie_Genres por ID de género.
     List<Movie_Genres> findAllByGenre_GenreId(int entityId);
 }

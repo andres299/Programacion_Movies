@@ -11,14 +11,10 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface Movie_LanguagesRepo extends JpaRepository<Movie_Languages, Long> {
-
+    // Obtiene una lista de Movie_Languages por ID de idioma.
     List<Movie_Languages> findAllByLanguage_LanguageId(int entityId);
-
+    // Obtiene una lista de Movie_Languages por ID de rol de idioma.
     List<Movie_Languages> findAllByLanguageRole_RoleId(int entityId);
-
-    //@Transactional
-    //@Modifying
-    //@Query(value = "DELETE FROM movie_keywords WHERE movie_id = :movieId", nativeQuery = true)
-    //void deleteByMovieId(int movieId);
+    // Obtiene una lista de Movie_Languages por ID de película.
     List<Movie_Languages> findAllByMovie_MovieId(int movieId);
 }
