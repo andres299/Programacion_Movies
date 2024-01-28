@@ -16,18 +16,17 @@ public class Movie_GenresService {
     @Autowired
     Movie_GenresRepo movieGenresRepo;
 
-
+    // Elimina registros de Movie_Genres asociados a una película.
     public void deleteByMovieId(int movieId) {
         List<Movie_Genres> allGenres = movieGenresRepo.findAllByMovie_MovieId(movieId);
         movieGenresRepo.deleteAll(allGenres);
-        //movieGenresRepo.deleteByMovieId(movieId);
     }
-
+    // Elimina registros de Movie_Genres asociados a un género.
     public void deleteByGenreId(int entityId) {
         List<Movie_Genres> allGenres = movieGenresRepo.findAllByGenre_GenreId(entityId);
         movieGenresRepo.deleteAll(allGenres);
     }
-
+    // Guarda una nueva relación entre película y género en Movie_Genres.
     public void save(Movie movie, Genre newGenre) {
         Movie_Genres movieGenres = new Movie_Genres(movie,newGenre);
         movieGenresRepo.save(movieGenres);

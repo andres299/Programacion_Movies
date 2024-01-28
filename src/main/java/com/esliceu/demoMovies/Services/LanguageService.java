@@ -13,23 +13,21 @@ public class LanguageService {
     @Autowired
     LanguageRepo languageRepo;
 
-    public List<?> findAll(Pageable pageable) {
-        return languageRepo.findAll(pageable).getContent();
-    }
+    // Obtiene todos los idiomas paginados.
+    public List<?> findAll(Pageable pageable) { return languageRepo.findAll(pageable).getContent(); }
 
-    public void save(Language language) {
-        languageRepo.save(language);
-    }
+    // Guarda un nuevo idioma.
+    public void save(Language language) { languageRepo.save(language); }
 
-    public void deleteById(long entityId) {
-        languageRepo.deleteById(entityId);
-    }
+    // Elimina un idioma por su ID.
+    public void deleteById(long entityId) { languageRepo.deleteById(entityId); }
 
-    public int countLanguagesByLanguageId(int entityId) {
-        return languageRepo.countLanguagesByLanguageId(entityId);
-    }
+    // Cuenta la cantidad de idiomas con un ID específico.
+    public int countLanguagesByLanguageId(int entityId) { return languageRepo.countLanguagesByLanguageId(entityId); }
 
+    // Busca idiomas cuyos nombres comienzan con el keyword proporcionado.
     public List<?> findByLanguageNameStartingWithIgnoreCase(String keyword, Pageable pageable) {
-        return languageRepo.findByLanguageNameStartingWithIgnoreCase(keyword,pageable);
+        return languageRepo.findByLanguageNameStartingWithIgnoreCase(keyword, pageable);
     }
 }
+

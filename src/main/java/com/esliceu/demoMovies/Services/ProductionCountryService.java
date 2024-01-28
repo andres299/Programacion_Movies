@@ -12,12 +12,15 @@ import java.util.List;
 public class ProductionCountryService {
     @Autowired
     Production_CountryRepo productionCountryRepo;
+
+    // Eliminar todas las entradas de Production_Country asociadas con el ID del país proporcionado.
     public void deleteByCountryId(int entityId) {
         List<Production_Country> allProductionCountry =
                 productionCountryRepo.findAllByCountry_CountryId(entityId);
         productionCountryRepo.deleteAll(allProductionCountry);
     }
 
+    // Elimina todas las entradas de Production_Country asociadas con el ID de la película proporcionado.
     public void deleteByMovieId(int movieId) {
         List<Production_Country> allProductionCountry =
                 productionCountryRepo.findAllByMovie_MovieId(movieId);

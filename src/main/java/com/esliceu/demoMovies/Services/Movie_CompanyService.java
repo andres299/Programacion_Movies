@@ -12,16 +12,13 @@ public class Movie_CompanyService {
     @Autowired
     Movie_CompanyRepo movieCompanyRepo;
 
-
+    // Elimina registros de Movie_Company según el ID de la compañía de producción proporcionado.
     public void deleteByProductionCompany(int entityId) {
-        //List<Movie_Company> allMovieCompany = movieCompanyRepo.findAllByProductionCompany_CompanyId(entityId);
-        //movieCompanyRepo.deleteAll(allMovieCompany);
         movieCompanyRepo.deleteByCompanyId(entityId);
     }
 
+    // Elimina todos los registros de Movie_Company asociados a una película específica según su ID.
     public void deleteByMovieId(int movieId) {
-        //List<Movie_Company> allMovieCompany = movieCompanyRepo.findAllByProductionMovie_MovieId(movieId);
-        //movieCompanyRepo.deleteAll(allMovieCompany);
         movieCompanyRepo.deleteByMovieId(movieId);
     }
 }

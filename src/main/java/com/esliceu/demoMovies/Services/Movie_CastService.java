@@ -12,33 +12,28 @@ public class Movie_CastService {
     @Autowired
     Movie_CastRepo movieCastRepo;
 
+    // Elimina registros de Movie_Cast según el ID de género proporcionado.
     public void deleteByGenderId(int entityId) {
-        //List<Movie_Cast> allMovieCast = movieCastRepo.findAllByGender_GenderId(entityId);
-        //movieCastRepo.deleteAll(allMovieCast);
         movieCastRepo.deleteByGenderId(entityId);
     }
-
+    // Elimina registros de Movie_Cast según el ID de persona proporcionado.
     public void deleteByPersonId(int entityId) {
-        //List<Movie_Cast> allMovieCast = movieCastRepo.findAllByPerson_PersonId(entityId);
-        //movieCastRepo.deleteAll(allMovieCast);
         movieCastRepo.deleteByPersonId(entityId);
     }
-
+    // Elimina todos los registros de Movie_Cast asociados a una película específica según su ID.
     public void deleteByMovieId(int movieId) {
         List<Movie_Cast> allMovieCast = movieCastRepo.findAllByMovie_MovieId(movieId);
         movieCastRepo.deleteAll(allMovieCast);
-        //movieCastRepo.deleteByMovieId(movieId);
     }
-
+    // Obtiene todos los registros de Movie_Cast en la base de datos.
     public List<Movie_Cast> findAll() {
         return movieCastRepo.findAll();
     }
-
+    // Obtiene los nombres de los personajes (characterName) en Movie_Cast asociados a una película específica según su ID.
     public List<Movie_Cast> findCharacterNameByMovieId(int movieId) {
         return movieCastRepo.findCharacterNameByMovieId(movieId);
     }
-
-
+    // Guarda un nuevo registro de Movie_Cast en la base de datos.
     public void save(Movie movie, Person person, String input2, Gender genreEntiti) {
         Movie_Cast movieCast = new Movie_Cast(movie,person,input2,genreEntiti);
         movieCastRepo.save(movieCast);
