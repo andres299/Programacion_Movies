@@ -80,7 +80,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <p>Titulo de la pelicula : <span id="movieTitle">Movie Title</span> </p>
-            <button id="options" class="options">Mas opciones</button>
+            <button th:if="${isAdminNotNull}" id="options" class="options">Mas opciones</button>
             <div class="table-container">
                 <table id="actorTable">
                     <thead>
