@@ -161,42 +161,72 @@ public class MovieService {
                 case "language_role":
                     // Obtener el último ID de language_role y crear uno nuevo .
                     Language_role language_roleId = languageRoleService.findFirstByOrderByRoleIdDesc();
-                    entityId = (language_roleId.getRoleId() != 0) ? language_roleId.getRoleId() + 1 : 1;
+                    if (language_roleId != null) {
+                        entityId = (language_roleId.getRoleId() != 0) ? language_roleId.getRoleId() + 1 : 1;
+                    } else {
+                        // Manejar el caso cuando language_roleId es null, por ejemplo, asignar un valor predeterminado a entityId
+                        entityId = 1;
+                    }
                     Language_role language_role = new Language_role(entityId, input1);
                     languageRoleService.save(language_role);
                     break;
                 case "genre":
                     // Obtener el último ID genre de idioma y crear uno nuevo .
                     Genre genreId = genreService.findFirstByOrderByGenreIdDesc();
-                    entityId = (genreId.getGenreId() != 0) ? genreId.getGenreId() + 1 : 1;
+                    if (genreId != null) {
+                        entityId = (genreId.getGenreId() != 0) ? genreId.getGenreId() + 1 : 1;
+                    } else {
+                        // Manejar el caso cuando genreId es null, asignar un valor predeterminado a entityId
+                        entityId = 1;
+                    }
                     Genre genre = new Genre(entityId, input1);
                     genreService.save(genre);
                     break;
                 case "keyword":
                     // Obtener el último ID de keyword y crear uno nuevo .
                     Keyword keywordId = keywordService.findFirstByOrderByKeywordIdDesc();
-                    entityId = (keywordId.getKeywordId() != 0) ? keywordId.getKeywordId() + 1 : 1;
+                    if (keywordId != null) {
+                        entityId = (keywordId.getKeywordId() != 0) ? keywordId.getKeywordId() + 1 : 1;
+                    } else {
+                        // Manejar el caso cuando keywordId es null, asignar un valor predeterminado a entityId
+                        entityId = 1;
+                    }
                     Keyword keyword = new Keyword(entityId, input1);
                     keywordService.save(keyword);
                     break;
                 case "production_company":
                     // Obtener el último ID production_company y crear uno nuevo .
                     Production_Company productionCompanyId = productionCompanyService.findFirstByOrderByCompanyIdDesc();
-                    entityId = (productionCompanyId.getCompanyId() != 0) ? productionCompanyId.getCompanyId() + 1 : 1;
+                    if (productionCompanyId != null) {
+                        entityId = (productionCompanyId.getCompanyId() != 0) ? productionCompanyId.getCompanyId() + 1 : 1;
+                    } else {
+                        // Manejar el caso cuando productionCompanyId es null, asignar un valor predeterminado a entityId
+                        entityId = 1;
+                    }
                     Production_Company productionCompany = new Production_Company(entityId, input1);
                     productionCompanyService.save(productionCompany);
                     break;
                 case "gender":
                     // Obtener el último ID de gender y crear uno nuevo .
                     Gender genderId = genderService.findFirstByOrderByGenderIdDesc();
-                    entityId = (genderId.getGenderId() != 0) ? genderId.getGenderId() + 1 : 1;
+                    if (genderId != null) {
+                        entityId = (genderId.getGenderId() != 0) ? genderId.getGenderId() + 1 : 1;
+                    } else {
+                        // Manejar el caso cuando genderId es null, asignar un valor predeterminado a entityId
+                        entityId = 1;
+                    }
                     Gender gender = new Gender(entityId, input1);
                     genderService.save(gender);
                     break;
                 case "person":
                     // Obtener el último ID de person y crear uno nuevo .
                     Person personId = personService.findFirstByOrderByPersonIdDesc();
-                    entityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
+                    if (personId != null) {
+                        entityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
+                    } else {
+                        // Manejar el caso cuando personId es null, asignar un valor predeterminado a entityId
+                        entityId = 1;
+                    }
                     Person person = new Person(entityId, input1);
                     personService.save(person);
                     break;
