@@ -41,6 +41,7 @@ public class GenreService {
         return genreRepo.findGenreByMovieGenres_MovieMovieIdEquals(movieId);
     }
 
+    // Obtiene el genero por el nombre del genero
     public Genre findByGenreNameEquals(String select) {
         return genreRepo.findByGenreNameEquals(select);
     }
