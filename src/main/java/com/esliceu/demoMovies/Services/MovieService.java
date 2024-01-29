@@ -588,7 +588,7 @@ public class MovieService {
                 Person person = personService.findByPersonName(select);
                 movieCrewService.deleteByPersonId(person.getPersonId());
                 movieCastService.deleteByPersonId(person.getPersonId());
-                personService.deleteById((long) person.getPersonId());
+                //personService.deleteById((long) person.getPersonId());
             }else {
                 throw new UnsupportedOperationException("Operación no soportada: " + operation);
             }
@@ -622,7 +622,7 @@ public class MovieService {
                 //Eliminar Director
                 Person person = personService.findByPersonName(select);
                 movieCrewService.deleteByPersonId(person.getPersonId());
-                personService.deleteById((long) person.getPersonId());
+                //personService.deleteById((long) person.getPersonId());
             } else{
                 throw new UnsupportedOperationException("Operación no soportada: " + operation);
             }
@@ -649,9 +649,11 @@ public class MovieService {
 
             } else if (operation.equals("delete")) {
                 //Eliminar Género
-                LastentityId = movieId;
-                movieGenresService.deleteByGenreId(LastentityId);
-                genreService.deleteById((long) LastentityId);
+                //LastentityId = movieId;
+                //movieGenresService.deleteByGenreId(LastentityId);
+                //genreService.deleteById((long) LastentityId);
+                Genre genre1 = genreService.findByGenreNameEquals(select);
+                movieGenresService.deleteByGenreId(genre1.getGenreId());
             } else {
                 throw new EntityNotFoundException("Operación no soportada: " + operation);
             }

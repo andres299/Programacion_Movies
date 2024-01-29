@@ -40,4 +40,8 @@ public class GenreService {
     public List<Genre> findGenreByMovieGenres_MovieMovieIdEquals(int movieId) {
         return genreRepo.findGenreByMovieGenres_MovieMovieIdEquals(movieId);
     }
+
+    public Genre findByGenreNameEquals(String select) {
+        return genreRepo.findByGenreNameEquals(select);
+    }
 }

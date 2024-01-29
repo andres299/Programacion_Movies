@@ -15,4 +15,6 @@ public interface GenreRepo extends JpaRepository<Genre, Long> {
     List<Genre> findByGenreNameStartingWithIgnoreCase(String keyword, Pageable pageable);
     // Busca géneros asociados a una película específica identificada por su ID.
     List<Genre> findGenreByMovieGenres_MovieMovieIdEquals(int movieId);
+
+    Genre findByGenreNameEquals(String select);
 }
