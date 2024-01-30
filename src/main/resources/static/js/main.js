@@ -213,8 +213,7 @@ function handleInfoDataMovies(infoDataMovies) {
     const genreTableBody = document.getElementById("genreTableBody");
     const directorTableBody = document.getElementById("directorTableBody");
     movieId = infoDataMovies[0].movieId;
-    console.log(infoDataMovies);
-    console.log(infoDataMovies[0].movieId);
+
     // Inicializamos el contenido del título de la película
     movieTitleElement.textContent = "";
 
@@ -249,18 +248,15 @@ function handleInfoDataMovies(infoDataMovies) {
             const directorCell = directorRow.insertCell(0);
             directorCell.textContent = director;
         });
-        // Iteramos a través de los actores y personajes en la película
-        for (let i = 0; i < Math.max(characterNames.length, actorNames.length); i++) {
-            // Creamos una nueva fila en la tabla
-            const newRow = actorTableBody.insertRow();
 
-            // Añadimos celdas a la fila para characterName y actorName
-            const characterNameCell = newRow.insertCell(0);
-            const actorNameCell = newRow.insertCell(1);
+        // Llenamos la tabla de actores con sus personajes
+        for (const [actor, character] of Object.entries(movie.actorCharacterPairs)) {
+            const actorRow = actorTableBody.insertRow();
+            const actorCell = actorRow.insertCell(0);
+            const characterCell = actorRow.insertCell(1);
 
-            // Agregamos los datos a las celdas
-            characterNameCell.textContent = (characterNames[i] || '').trim();
-            actorNameCell.textContent = (actorNames[i] || '').trim();
+            actorCell.textContent = actor.trim();
+            characterCell.textContent = character.trim();
         }
     });
 }
@@ -298,29 +294,26 @@ function fillActorSelect() {
     actorSelectDelete.innerHTML = '';
     actorSelectUpdate.innerHTML = '';
 
+    // Iterar sobre las películas en infoDataMovies
     infoDataMovies.forEach(movie => {
-        const actorNames = Array.isArray(movie.actorName) ? movie.actorName : [movie.actorNames];
-
-        actorNames.forEach(actor => {
-            // Crear opción para actorSelectDelete
-            var optionDelete = document.createElement('option');
-            optionDelete.value = actor;
-            optionDelete.text = actor;
-            actorSelectDelete.add(optionDelete);
-        });
-    });
-
-    infoDataMovies.forEach(movie => {
-            const actorNames = Array.isArray(movie.actorName) ? movie.actorName : [movie.actorNames];
-
-            actorNames.forEach(actor => {
+        // Verificar si la propiedad actorCharacterPairs existe en la película
+        if (movie.hasOwnProperty('actorCharacterPairs')) {
+            // Iterar sobre las entradas del mapa actorCharacterPairs
+            for (const [actor, character] of Object.entries(movie.actorCharacterPairs)) {
                 // Crear opción para actorSelectDelete
+                var optionDelete = document.createElement('option');
+                optionDelete.value = actor;
+                optionDelete.text = actor;
+                actorSelectDelete.add(optionDelete);
+
+                // Crear opción para actorSelectUpdate
                 var optionUpdate = document.createElement('option');
                 optionUpdate.value = actor;
                 optionUpdate.text = actor;
                 actorSelectUpdate.add(optionUpdate);
-            });
-        });
+            }
+        }
+    });
 }
 
 function fillDirectorSelect() {

@@ -8,10 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -511,13 +508,6 @@ public class MovieService {
         infoMovies.setMovieId(movieId);
         infoMovies.setTitle(movie.getTitle());
 
-        //Obtener Actores de la pelicula
-        List<Person> actorNames = personService.findPersonByMoviecast_MovieMovieIdEquals(movieId);
-        List<String> actorNameStrings = actorNames.stream()
-                .map(Person::getPersonName)
-                .collect(Collectors.toList());
-        infoMovies.setActorName(actorNameStrings);
-
         //Obtener los directores de la pelicula
         String director = "Director";
         List<Person> directorNames = personService.findDistincPersonByMovieCrewsJobAndMovieCrews_MovieMovieIdEquals
@@ -526,13 +516,25 @@ public class MovieService {
                 .map(Person::getPersonName)
                 .collect(Collectors.toList());
         infoMovies.setDirectorName(directorNameStrings);
-        
-        //Obtener los personajes personaje
+
+        // Obtener los personajes y actores emparejados
+        Map<String, String> actorCharacterPairs = new HashMap<>();
+
+        // Obtener los personajes personaje
         List<Movie_Cast> characterNames = movieCastService.findCharacterNameByMovieId(movieId);
-        List<String> characterNameStrings = characterNames.stream()
-                .map(Movie_Cast::getCharacterName)
-                .collect(Collectors.toList());
-        infoMovies.setCharacterName(characterNameStrings);
+        for (Movie_Cast movieCast : characterNames) {
+            String characterName = movieCast.getCharacterName();
+
+            // Obtener Actores de la pelicula para el personaje actual
+            List<Person> actorsForCharacter = personService.findPersonByMoviecast_MovieMovieIdAndMoviecast_CharacterName(movieId, characterName);
+
+            // Asignar cada actor con su personaje correspondiente
+            for (Person actor : actorsForCharacter) {
+                actorCharacterPairs.put(actor.getPersonName(), characterName);
+            }
+        }
+        // Imprimir o utilizar el mapa como sea necesario
+        infoMovies.setActorCharacterPairs(actorCharacterPairs);
 
         //Obtener los generos de la pelicula
         List<Genre> genres = genreService.findGenreByMovieGenres_MovieMovieIdEquals(movieId);
@@ -584,26 +586,26 @@ public class MovieService {
                 // Insertar en Movie_Cast esta persona con su personaje
                 //movieCastService.save(movie, person, input2, genreEntiti);
             } else if (operation.equals("delete")){
-                //Eliminar actor
+                //Eliminar actor de la pelicula
                 Person person = personService.findByPersonName(select);
-                movieCrewService.deleteByPersonId(person.getPersonId());
-                movieCastService.deleteByPersonId(person.getPersonId());
-                //personService.deleteById((long) person.getPersonId());
+                Movie movie = movieRepo.findById((long) movieId).orElse(null);
+                movieCastService.deleteByPersonAndMovie(person,movie);
+
             }else if (operation.equals("update")){
+                //Modificar personaje
                 Person person = personService.findByPersonName(select);
                 System.out.println(person.getPersonId() + person.getPersonName());
 
                 //Obtengo el genero seleccionado
-                //Gender gender = genderService.findByGenderId(genre);
-                //System.out.println(genreEntiti.getGenderId() + genreEntiti.getGender());
+                Gender gender = genderService.findByGenderId(genre);
+                System.out.println(gender.getGenderId() + gender.getGender());
 
                 // Obtengo la pelicula a la que le quiero insertar un perosnaje
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
-                //Movie_Cast movieCast = movieCastService.findByPersonAndMovie(person,movie);
-                //Movie_Cast movieCastNew = movieCast;
+                //Borro el registro de la pelicula
                 movieCastService.deleteByPersonAndMovie(person,movie);
-                //movieCastNew.setCharacterName(input1);
-                //movieCastService.save(movieCastNew);
+                //Creo con la misma informacion pero con el nuevo register
+                movieCastService.save(movie,person,input1,gender);
             }else {
                 throw new UnsupportedOperationException("Operación no soportada: " + operation);
             }
@@ -636,8 +638,9 @@ public class MovieService {
             } else if (operation.equals("delete")){
                 //Eliminar Director
                 Person person = personService.findByPersonName(select);
-                movieCrewService.deleteByPersonId(person.getPersonId());
-                //personService.deleteById((long) person.getPersonId());
+                // Obtengo la pelicula a la que le quiero insertar un director
+                Movie movie = movieRepo.findById((long) movieId).orElse(null);
+                movieCrewService.deleteByPersonAndMovie(person,movie);
             } else{
                 throw new UnsupportedOperationException("Operación no soportada: " + operation);
             }
@@ -665,10 +668,10 @@ public class MovieService {
             } else if (operation.equals("delete")) {
                 //Eliminar Género
                 //LastentityId = movieId;
-                //movieGenresService.deleteByGenreId(LastentityId);
-                //genreService.deleteById((long) LastentityId);
-                Genre genre1 = genreService.findByGenreNameEquals(select);
-                movieGenresService.deleteByGenreId(genre1.getGenreId());
+                Genre genreDelte = genreService.findByGenreNameEquals(select);
+                // Obtengo la pelicula a la que le quiero insertar un genero
+                Movie movie = movieRepo.findById((long) movieId).orElse(null);
+                movieGenresService.deleteByGenreAndMovie(genreDelte,movie);
             } else {
                 throw new EntityNotFoundException("Operación no soportada: " + operation);
             }

@@ -1,5 +1,7 @@
 package com.esliceu.demoMovies.Repositorys;
 
+import com.esliceu.demoMovies.Entities.Genre;
+import com.esliceu.demoMovies.Entities.Movie;
 import com.esliceu.demoMovies.Entities.Movie_Genres;
 import com.esliceu.demoMovies.Entities.Movie_Languages;
 import jakarta.transaction.Transactional;
@@ -15,4 +17,6 @@ public interface Movie_GenresRepo extends JpaRepository<Movie_Genres, Long> {
     List<Movie_Genres> findAllByMovie_MovieId(int movieId);
     // Obtiene una lista de Movie_Genres por ID de género.
     List<Movie_Genres> findAllByGenre_GenreId(int entityId);
+    // Borro el genero de la pelicula
+    void deleteByGenreAndMovie(Genre genreDelte, Movie movie);
 }

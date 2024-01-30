@@ -1,7 +1,9 @@
 package com.esliceu.demoMovies.Repositorys;
 
+import com.esliceu.demoMovies.Entities.Movie;
 import com.esliceu.demoMovies.Entities.Movie_Cast;
 import com.esliceu.demoMovies.Entities.Movie_Crew;
+import com.esliceu.demoMovies.Entities.Person;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,4 +27,6 @@ public interface Movie_CrewRepo extends JpaRepository<Movie_Crew, Long> {
 
     // Obtiene una lista de Movie_Crew por ID de película.
     List<Movie_Crew> findAllByMovie_MovieId(int movieId);
+
+    void deleteByPersonAndMovie(Person person, Movie movie);
 }

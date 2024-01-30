@@ -8,6 +8,7 @@ import com.esliceu.demoMovies.Repositorys.Movie_CrewRepo;
 import jakarta.persistence.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -37,5 +38,10 @@ public class Movie_CrewService {
         String job = "Director";
         Movie_Crew movieCrew = new Movie_Crew(movie, person, department, job);
         movieCrewRepo.save(movieCrew);
+    }
+
+    @Transactional
+    public void deleteByPersonAndMovie(Person person, Movie movie) {
+        movieCrewRepo.deleteByPersonAndMovie(person,movie);
     }
 }

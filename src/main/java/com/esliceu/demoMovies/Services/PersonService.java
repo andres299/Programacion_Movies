@@ -55,4 +55,8 @@ public class PersonService {
         Person person = personRepo.findByPersonNameContaining(select);
         return person;
     }
+
+    public List<Person> findPersonByMoviecast_MovieMovieIdAndMoviecast_CharacterName(int movieId, String characterName) {
+        return personRepo.findPersonByMoviecast_MovieMovieIdAndMoviecast_CharacterName(movieId,characterName);
+    }
 }

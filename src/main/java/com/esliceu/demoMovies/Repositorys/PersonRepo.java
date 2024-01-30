@@ -4,6 +4,7 @@ import com.esliceu.demoMovies.Entities.Person;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -21,4 +22,11 @@ public interface PersonRepo extends JpaRepository<Person, Long> {
     // Busca personas por el nombre, admitiendo paginación.
     @Query(value = "Select * FROM person WHERE person_name = :select", nativeQuery = true)
     Person findByPersonNameContaining(String select);
+
+    //@Query("SELECT DISTINCT p FROM person p " +
+      //      "JOIN p.movie_cast mc " +
+        //    "WHERE mc.movie_id = :movieId AND mc.characterName = :characterName")
+    List<Person> findPersonByMoviecast_MovieMovieIdAndMoviecast_CharacterName(
+            @Param("movieId")int movieId,
+            @Param("characterName") String characterName);
 }

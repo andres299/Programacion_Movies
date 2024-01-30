@@ -1,25 +1,24 @@
 package com.esliceu.demoMovies.DTO;
 
 import java.util.List;
+import java.util.Map;
 
 public class InfoMovies {
 
     private int movieId;
     private String title;
-    private List<String> actorName;
     private List<String> directorName;
-    private List<String> characterName;
+    private Map<String, String> actorCharacterPairs;
     private List<String> genre;
 
     public InfoMovies() {
     }
 
-    public InfoMovies(int movieId, String title, List<String> actorName, List<String> directorName, List<String> characterName, List<String> genre) {
+    public InfoMovies(int movieId, String title, List<String> directorName, Map<String, String> actorCharacterPairs, List<String> genre) {
         this.movieId = movieId;
         this.title = title;
-        this.actorName = actorName;
         this.directorName = directorName;
-        this.characterName = characterName;
+        this.actorCharacterPairs = actorCharacterPairs;
         this.genre = genre;
     }
 
@@ -39,14 +38,6 @@ public class InfoMovies {
         this.title = title;
     }
 
-    public List<String> getActorName() {
-        return actorName;
-    }
-
-    public void setActorName(List<String> actorName) {
-        this.actorName = actorName;
-    }
-
     public List<String> getDirectorName() {
         return directorName;
     }
@@ -55,12 +46,12 @@ public class InfoMovies {
         this.directorName = directorName;
     }
 
-    public List<String> getCharacterName() {
-        return characterName;
+    public Map<String, String> getActorCharacterPairs() {
+        return actorCharacterPairs;
     }
 
-    public void setCharacterName(List<String> characterName) {
-        this.characterName = characterName;
+    public void setActorCharacterPairs(Map<String, String> actorCharacterPairs) {
+        this.actorCharacterPairs = actorCharacterPairs;
     }
 
     public List<String> getGenre() {

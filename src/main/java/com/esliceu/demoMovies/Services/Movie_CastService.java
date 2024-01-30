@@ -35,19 +35,22 @@ public class Movie_CastService {
         return movieCastRepo.findCharacterNameByMovieId(movieId);
     }
     // Guarda un nuevo registro de Movie_Cast en la base de datos.
-    //public void save(Movie movie, Person person, String input2, Gender genreEntiti) {
-      //  Movie_Cast movieCast = new Movie_Cast(movie,person,input2,genreEntiti);
-        //movieCastRepo.save(movieCast);
-    //}
+    public void save(Movie movie, Person person, String input2, Gender genreEntiti) {
+        Movie_Cast movieCast = new Movie_Cast(movie,person,input2,genreEntiti);
+        System.out.println(person.getPersonId());
+        System.out.println(person.getPersonName());
+        movieCastRepo.save(movieCast);
+    }
 
     public Movie_Cast findByPersonAndMovie(Person person, Movie movie) {
         return movieCastRepo.findByPersonAndMovie(person,movie);
     }
 
-    public void save(Movie_Cast movieCastNew) {
-        movieCastRepo.save(movieCastNew);
-    }
+    //public void save(Movie_Cast movieCastNew) {
+        //movieCastRepo.save(movieCastNew);
+    //}
 
+    @Transactional
     public void deleteByPersonAndMovie(Person person, Movie movie) {
         movieCastRepo.deleteByPersonAndMovie(person,movie);
     }

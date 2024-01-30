@@ -8,6 +8,7 @@ import com.esliceu.demoMovies.Repositorys.Movie_GenresRepo;
 import com.esliceu.demoMovies.Repositorys.Movie_LanguagesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,5 +31,10 @@ public class Movie_GenresService {
     public void save(Movie movie, Genre newGenre) {
         Movie_Genres movieGenres = new Movie_Genres(movie,newGenre);
         movieGenresRepo.save(movieGenres);
+    }
+    //Borro el gernro de la pelicula
+    @Transactional
+    public void deleteByGenreAndMovie(Genre genreDelte, Movie movie) {
+        movieGenresRepo.deleteByGenreAndMovie(genreDelte,movie);
     }
 }
