@@ -594,14 +594,13 @@ public class MovieService {
             }else if (operation.equals("update")){
                 //Modificar personaje
                 Person person = personService.findByPersonName(select);
-                System.out.println(person.getPersonId() + person.getPersonName());
 
                 //Obtengo el genero seleccionado
                 Gender gender = genderService.findByGenderId(genre);
-                System.out.println(gender.getGenderId() + gender.getGender());
 
                 // Obtengo la pelicula a la que le quiero insertar un perosnaje
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
+                
                 //Borro el registro de la pelicula
                 movieCastService.deleteByPersonAndMovie(person,movie);
                 //Creo con la misma informacion pero con el nuevo register
