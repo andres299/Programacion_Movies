@@ -85,8 +85,8 @@
             <table id="actorTable">
                 <thead>
                 <tr>
-                    <th>Character Name</th>
                     <th>Actor Name</th>
+                    <th>Character Name</th>
                 </tr>
                 </thead>
                 <tbody id="actorTableBody"></tbody>
@@ -143,7 +143,7 @@
                 <form onsubmit="return false">
                     <h1>Formulario Update</h1>
                     <div id="updateActorFields">
-                        <label for="actorSelectUpdate">Name Ctor:</label>
+                        <label for="actorSelectUpdate">Name Actor:</label>
                         <select id="actorSelectUpdate"></select>
                         <label for="actorCharacterUpdateInput">New Character:</label>
                         <input type="text" id="actorCharacterUpdateInput" name="actorCharacterUpdateInput">
@@ -180,6 +180,22 @@
                         </select>
                     </div>
                     <button type="button" class="insertButton" id="DirectorInsertButton">Insertar</button>
+                </form>
+                <form onsubmit="return false">
+                    <h1>Formulario Update</h1>
+                    <div id="updateDirectorFields">
+                        <label for="directorSelectUpdate">Name Director:</label>
+                        <select id="directorSelectUpdate"></select>
+                        <label for="directorCharacterUpdateInput">New Character:</label>
+                        <input type="text" id="directorCharacterUpdateInput" name="directorCharacterUpdateInput">
+                        <label for="genderSelect4">Gender:</label>
+                        <select id="genderSelect4">
+                            <option value="0">Unspecified</option>
+                            <option value="1">Female</option>
+                            <option value="2">Male</option>
+                        </select>
+                    </div>
+                    <button type="button" class="updateButton" id="DirectorUpdateButton">Update</button>
                 </form>
                 <form onsubmit="return false">
                     <h1>Formulario Delete</h1>

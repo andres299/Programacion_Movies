@@ -561,6 +561,8 @@ public class MovieService {
         String input1 = fetchInfoMoviesDTO.getInput1();
         String input2 = fetchInfoMoviesDTO.getInput2();
         int genre = fetchInfoMoviesDTO.getGender();
+        System.out.println(movieId + " " + entity + " " + operation + " " +
+                select + " " + input1 + " " + input2 + " " + genre);
         int LastentityId;
         // Operacion insert y update de Actor
         if (entity.equals("Actor")) {
@@ -600,7 +602,7 @@ public class MovieService {
 
                 // Obtengo la pelicula a la que le quiero insertar un perosnaje
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
-                
+
                 //Borro el registro de la pelicula
                 movieCastService.deleteByPersonAndMovie(person,movie);
                 //Creo con la misma informacion pero con el nuevo register

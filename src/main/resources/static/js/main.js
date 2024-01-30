@@ -319,8 +319,10 @@ function fillActorSelect() {
 function fillDirectorSelect() {
     // Obtener el select y el div contenedor
     var directorSelectDelete = document.getElementById('directorSelectDelete');
+    var directorSelectUpdate = document.getElementById('directorSelectUpdate');
     // Limpiar opciones actuales
     directorSelectDelete.innerHTML = '';
+    directorSelectUpdate.innerHTML = '';
 
     infoDataMovies.forEach(movie => {
         const directorNames = Array.isArray(movie.directorName) ? movie.directorName : [movie.directorName];
@@ -330,6 +332,13 @@ function fillDirectorSelect() {
             option.value = director;
             option.text = director;
             directorSelectDelete.add(option);
+        });
+
+        directorNames.forEach(director => {
+            var option = document.createElement('option');
+            option.value = director;
+            option.text = director;
+            directorSelectUpdate.add(option);
         });
     });
 }
@@ -382,6 +391,7 @@ var UpdateActor = document.getElementById('actorSelectUpdate');
 var genderSelect = document.getElementById('genderSelect');
 var genderSelect2 = document.getElementById('genderSelect2');
 var genderSelect3 = document.getElementById('genderSelect3');
+var genderSelect4 = document.getElementById('genderSelect4');
 
 // Obtener el valor seleccionado
 let operation;
@@ -462,6 +472,27 @@ document.getElementById('DirectorInsertButton').addEventListener('click', functi
         input2: null,
         selected: null,
         gender: selectedGenderValue3
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
+// Event listener al botón de update Director
+document.getElementById('DirectorUpdateButton').addEventListener('click', function () {
+    selectedOption = 'Director';
+    operation = 'update';
+    var selectedGenderValue4 = genderSelect4.value;
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    const inputs = Array.from(formContainer.querySelectorAll('input'));
+    const SelectUpdate = document.getElementById("directorSelectUpdate");
+    const directorSelectUpdate = SelectUpdate.value;
+    const requestData = {
+        movieId: movieId,
+        operation: operation,
+        entity: selectedOption,
+        input1: inputs[0].value,
+        input2: null,
+        selected: directorSelectUpdate,
+        gender: selectedGenderValue4
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
