@@ -641,8 +641,26 @@ public class MovieService {
                 Person person = personService.findByPersonName(select);
                 // Obtengo la pelicula a la que le quiero insertar un director
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
+                //Borro el registro con ese director de la pelicula
                 movieCrewService.deleteByPersonAndMovie(person,movie);
-            } else{
+            } else if(operation.equals("update")){
+                //Modificar personaje
+                Person person = personService.findByPersonName(select);
+                person.setPersonName(input1);
+                //Obtener el departamento
+                int departmentId = 2;
+                Department department = departmentService.findById(departmentId);
+
+                // Obtengo la pelicula a la que le quiero insertar un director
+                Movie movie = movieRepo.findById((long) movieId).orElse(null);
+
+                //Borro el registro con ese director de la pelicula
+                //movieCrewService.deleteByPersonAndMovie(person,movie);
+
+                // Inserto el nuevo director
+                personService.save(person);
+
+            }else{
                 throw new UnsupportedOperationException("Operación no soportada: " + operation);
             }
         } else {
