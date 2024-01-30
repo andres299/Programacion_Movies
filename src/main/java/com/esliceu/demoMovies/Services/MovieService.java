@@ -599,9 +599,11 @@ public class MovieService {
 
                 // Obtengo la pelicula a la que le quiero insertar un perosnaje
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
-                Movie_Cast movieCast = movieCastService.findByPersonAndMovie(person,movie);
-                movieCast.setCharacterName(input1);
-                movieCastService.save(movieCast);
+                //Movie_Cast movieCast = movieCastService.findByPersonAndMovie(person,movie);
+                //Movie_Cast movieCastNew = movieCast;
+                movieCastService.deleteByPersonAndMovie(person,movie);
+                //movieCastNew.setCharacterName(input1);
+                //movieCastService.save(movieCastNew);
             }else {
                 throw new UnsupportedOperationException("Operación no soportada: " + operation);
             }

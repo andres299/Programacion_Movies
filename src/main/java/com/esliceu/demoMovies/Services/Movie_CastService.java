@@ -44,7 +44,11 @@ public class Movie_CastService {
         return movieCastRepo.findByPersonAndMovie(person,movie);
     }
 
-    public void save(Movie_Cast movieCast) {
-        movieCastRepo.save(movieCast);
+    public void save(Movie_Cast movieCastNew) {
+        movieCastRepo.save(movieCastNew);
+    }
+
+    public void deleteByPersonAndMovie(Person person, Movie movie) {
+        movieCastRepo.deleteByPersonAndMovie(person,movie);
     }
 }

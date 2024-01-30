@@ -31,7 +31,7 @@ public interface Movie_CastRepo  extends JpaRepository<Movie_Cast, Long> {
     // Busca todos los registros de Movie_Cast por ID de película.
     List<Movie_Cast> findAllByMovie_MovieId(int movieId);
 
-    //List<Movie_Cast> findByPerson(Person person);
-
     Movie_Cast findByPersonAndMovie(Person person, Movie movie);
+
+    void deleteByPersonAndMovie(Person person, Movie movie);
 }

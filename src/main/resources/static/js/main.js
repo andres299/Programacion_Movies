@@ -121,12 +121,42 @@ function updateUI() {
         optionsCell.appendChild(viewButton);
         row.appendChild(optionsCell);
 
+        // Agregar evento al botón "View"
+        viewButton.addEventListener("click", function () {
+            console.log("hola");
+            const movieIdValue = this.value;
+            const data = {
+                movieId: parseInt(movieIdValue)
+            };
+            infoMoviesData(`/infoMovies`, data);
+
+            // Mostrar el modal
+            const modal = document.getElementById("myModal");
+            const movieIdSpan = document.getElementById("movieIdSpan");
+
+            modal.style.display = "flex";
+
+            // Agregar evento para cerrar el modal haciendo clic en la 'x'
+            const closeButton = document.getElementsByClassName("close")[0];
+            closeButton.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
+
+            // Cerrar el modal si se hace clic fuera del contenido del modal
+            window.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "block";
+                }
+            });
+        });
+
         moviesTable.appendChild(row);
     });
 }
 
 viewButtons.forEach(viewButton => {
     viewButton.addEventListener("click", function () {
+                console.log("hola");
         var movieIdValue = this.value;
         console.log(movieIdValue);
         const data = {
