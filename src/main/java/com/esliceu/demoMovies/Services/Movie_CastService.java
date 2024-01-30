@@ -4,6 +4,7 @@ import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.Movie_CastRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,8 +35,16 @@ public class Movie_CastService {
         return movieCastRepo.findCharacterNameByMovieId(movieId);
     }
     // Guarda un nuevo registro de Movie_Cast en la base de datos.
-    public void save(Movie movie, Person person, String input2, Gender genreEntiti) {
-        Movie_Cast movieCast = new Movie_Cast(movie,person,input2,genreEntiti);
+    //public void save(Movie movie, Person person, String input2, Gender genreEntiti) {
+      //  Movie_Cast movieCast = new Movie_Cast(movie,person,input2,genreEntiti);
+        //movieCastRepo.save(movieCast);
+    //}
+
+    public Movie_Cast findByPersonAndMovie(Person person, Movie movie) {
+        return movieCastRepo.findByPersonAndMovie(person,movie);
+    }
+
+    public void save(Movie_Cast movieCast) {
         movieCastRepo.save(movieCast);
     }
 }

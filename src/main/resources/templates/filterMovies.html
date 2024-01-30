@@ -8,198 +8,213 @@
 </head>
 
 <body>
-    <div class="header">
-        <nav>
-            <ul class="nav-list">
-                <li class="nav-item"><a href="/filterMovies"><i class="fa-solid fa-filter"></i> Filter Movies</a></li>
-                <li th:if="${isAdminNotNull}" class="nav-item"><a href="/crud"><i class="fa-solid fa-list"></i>Crud</a>
-                </li>
-            </ul>
-        </nav>
+<div class="header">
+    <nav>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/filterMovies"><i class="fa-solid fa-filter"></i> Filter Movies</a></li>
+            <li th:if="${isAdminNotNull}" class="nav-item"><a href="/crud"><i class="fa-solid fa-list"></i>Crud</a>
+            </li>
+        </ul>
+    </nav>
 
-        <nav>
-            <ul class="nav-list">
-                <li class="nav-item"><a href="/loginAdmin"><i class="fa-solid fa-user-tie"></i> Admin</a></li>
-                <li class="nav-item"><a href="/Logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <nav>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/loginAdmin"><i class="fa-solid fa-user-tie"></i> Admin</a></li>
+            <li class="nav-item"><a href="/Logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+            </li>
+        </ul>
+    </nav>
+</div>
 
-    <form onsubmit="return false">
-        <label for="filterType">Cerca de pel·lícules:</label>
-        <select id="filterType" name="filterType">
-            <option value="actor">Per actor</option>
-            <option value="characters">Per personatges</option>
-            <option value="title">Per títol</option>
-            <option value="genre">Per gènere</option>
-            <option value="director">Per director</option>
-        </select>
+<form onsubmit="return false">
+    <label for="filterType">Cerca de pel·lícules:</label>
+    <select id="filterType" name="filterType">
+        <option value="actor">Per actor</option>
+        <option value="characters">Per personatges</option>
+        <option value="title">Per títol</option>
+        <option value="genre">Per gènere</option>
+        <option value="director">Per director</option>
+    </select>
 
-        <label for="keyword">Filtrar por:</label>
-        <input type="text" id="keyword" name="keyword">
-    </form>
+    <label for="keyword">Filtrar por:</label>
+    <input type="text" id="keyword" name="keyword">
+</form>
 
 
-    <div class="button-section">
-        <button type="button" id="prevButton">Anterior</button>
-        <button type="button" id="nextButton">Siguiente</button>
-    </div>
-    <section>
-        <table id="table">
-            <thead>
+<div class="button-section">
+    <button type="button" id="prevButton">Anterior</button>
+    <button type="button" id="nextButton">Siguiente</button>
+</div>
+<section>
+    <table id="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Budget</th>
+            <th>Overwiew</th>
+            <th>Popularity</th>
+            <th>Release_Date</th>
+            <th>Revenue</th>
+            <th>Vote_Average</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="movie : ${listOfMovies}">
+            <td th:text="${movie.title}"></td>
+            <td th:text="${movie.budget}"></td>
+            <td th:text="${movie.overview}"></td>
+            <td th:text="${movie.popularity}"></td>
+            <td th:text="${movie.releaseDate}"></td>
+            <td th:text="${movie.revenue}"></td>
+            <td th:text="${movie.voteAverage}"></td>
+            <td>
+                <button class="view-button" th:value="${movie.movieId}">View</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Titulo de la pelicula : <span id="movieTitle">Movie Title</span> </p>
+        <button id="options" class="options">Mas opciones</button>
+        <div class="table-container">
+            <table id="actorTable">
+                <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Budget</th>
-                    <th>Overwiew</th>
-                    <th>Popularity</th>
-                    <th>Release_Date</th>
-                    <th>Revenue</th>
-                    <th>Vote_Average</th>
-                    <th>Options</th>
+                    <th>Character Name</th>
+                    <th>Actor Name</th>
                 </tr>
-            </thead>
-            <tbody>
-                <tr th:each="movie : ${listOfMovies}">
-                    <td th:text="${movie.title}"></td>
-                    <td th:text="${movie.budget}"></td>
-                    <td th:text="${movie.overview}"></td>
-                    <td th:text="${movie.popularity}"></td>
-                    <td th:text="${movie.releaseDate}"></td>
-                    <td th:text="${movie.revenue}"></td>
-                    <td th:text="${movie.voteAverage}"></td>
-                    <td>
-                        <button class="view-button" th:value="${movie.movieId}">View</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Titulo de la pelicula : <span id="movieTitle">Movie Title</span> </p>
-            <button th:if="${isAdminNotNull}" id="options" class="options">Mas opciones</button>
-            <div class="table-container">
-                <table id="actorTable">
+                </thead>
+                <tbody id="actorTableBody"></tbody>
+            </table>
+            <div id="additionalInfo">
+                <table id="genreTable">
                     <thead>
-                        <tr>
-                            <th>Character Name</th>
-                            <th>Actor Name</th>
-                        </tr>
+                    <tr>
+                        <th>Genre</th>
+                    </tr>
                     </thead>
-                    <tbody id="actorTableBody"></tbody>
+                    <tbody id="genreTableBody"></tbody>
                 </table>
-                <div id="additionalInfo">
-                    <table id="genreTable">
-                        <thead>
-                            <tr>
-                                <th>Genre</th>
-                            </tr>
-                        </thead>
-                        <tbody id="genreTableBody"></tbody>
-                    </table>
 
-                    <table id="directorTable">
-                        <thead>
-                            <tr>
-                                <th>Director Name</th>
-                            </tr>
-                        </thead>
-                        <tbody id="directorTableBody"></tbody>
-                    </table>
-                </div>
+                <table id="directorTable">
+                    <thead>
+                    <tr>
+                        <th>Director Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="directorTableBody"></tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="modal-options" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="buttonContainer" style="text-align: center;">
-                <button onclick="showContent('actor')">Actor/CharacterName</button>
-                <button onclick="showContent('director')">Director</button>
-                <button onclick="showContent('genre')">Genre</button>
+<div id="modal-options" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="buttonContainer" style="text-align: center;">
+            <button onclick="showContent('actor')">Actor/CharacterName</button>
+            <button onclick="showContent('director')">Director</button>
+            <button onclick="showContent('genre')">Genre</button>
+        </div>
+        <div class="optionsMovies">
+            <div id="actorContent">
+                <form onsubmit="return false">
+                    <h1>Formulario Insertar</h1>
+                    <div id="insertActorFields">
+                        <label for="actorCharacterInput">Name Actor:</label>
+                        <input type="text" id="actorCharacterInput" name="actorCharacterInput">
+                        <label for="actorCharacterInput2">Name Character:</label>
+                        <input type="text" id="actorCharacterInput2" name="actorCharacterInput2">
+                        <label for="genderSelect">Gender:</label>
+                        <select id="genderSelect">
+                            <option value="0">Unspecified</option>
+                            <option value="1">Female</option>
+                            <option value="2">Male</option>
+                        </select>
+                    </div>
+                    <button type="button" class="insertButton" id="actorInsertButton">Insertar</button>
+                </form>
+                <form onsubmit="return false">
+                    <h1>Formulario Update</h1>
+                    <div id="updateActorFields">
+                        <label for="actorSelectUpdate">Name Ctor:</label>
+                        <select id="actorSelectUpdate"></select>
+                        <label for="actorCharacterUpdateInput">New Character:</label>
+                        <input type="text" id="actorCharacterUpdateInput" name="actorCharacterUpdateInput">
+                        <label for="genderSelect2">Gender:</label>
+                        <select id="genderSelect2">
+                            <option value="0">Unspecified</option>
+                            <option value="1">Female</option>
+                            <option value="2">Male</option>
+                        </select>
+                    </div>
+                    <button type="button" class="updateButton" id="actorUpdateButton">Update</button>
+                </form>
+                <form onsubmit="return false">
+                    <h1>Formulario Delete</h1>
+                    <div id="DeleteActorFields">
+                        <label for="actorCharacterInput">Name Actor:</label>
+                        <select id="actorSelectDelete"></select>
+                    </div>
+                    <button type="button" class="deleteButton" id="actorDeleteButton">Eliminar</button>
+                </form>
             </div>
-            <div class="optionsMovies">
-                <div id="actorContent">
-                    <form onsubmit="return false">
-                        <h1>Formulario Insertar</h1>
-                        <div id="insertActorFields">
-                            <label for="actorCharacterInput">Name Actor:</label>
-                            <input type="text" id="actorCharacterInput" name="actorCharacterInput">
-                            <label for="actorCharacterInput2">Name Character:</label>
-                            <input type="text" id="actorCharacterInput2" name="actorCharacterInput2">
-                            <label for="genderSelect">Gender:</label>
-                            <select id="genderSelect">
-                                <option value="0">Unspecified</option>
-                                <option value="1">Female</option>
-                                <option value="2">Male</option>
-                            </select>
-                        </div>
-                        <button type="button" class="insertButton" id="actorInsertButton">Insertar</button>
-                    </form>
-                    <form onsubmit="return false">
-                        <h1>Formulario Delete</h1>
-                        <div id="DeleteActorFields">
-                            <label for="actorCharacterInput">Name Actor:</label>
-                            <select id="actorSelectDelete"></select>
-                        </div>
-                        <button type="button" class="deleteButton" id="actorDeleteButton">Eliminar</button>
-                    </form>
-                </div>
 
 
-                <div id="directorContent">
-                    <form onsubmit="return false">
-                        <h1>Formulario Insertar</h1>
-                        <div id="insertDirectorFields">
-                            <label for="DirectorInput">Name Director:</label>
-                            <input type="text" id="DirectorInput" name="DirectorInput">
-                            <select id="genderSelect3">
-                                <option value="0">Unspecified</option>
-                                <option value="1">Female</option>
-                                <option value="2">Male</option>
-                            </select>
-                        </div>
-                        <button type="button" class="insertButton" id="DirectorInsertButton">Insertar</button>
-                    </form>
-                    <form onsubmit="return false">
-                        <h1>Formulario Delete</h1>
-                        <div id="deleteDirectorFields">
-                            <label for="DirectorInput">Name Actor:</label>
-                            <select id="directorSelectDelete"></select>
-                        </div>
-                        <button type="button" class="deleteButton" id="DirectorDeleteButton">Eliminar</button>
-                    </form>
-                </div>
+            <div id="directorContent">
+                <form onsubmit="return false">
+                    <h1>Formulario Insertar</h1>
+                    <div id="insertDirectorFields">
+                        <label for="DirectorInput">Name Director:</label>
+                        <input type="text" id="DirectorInput" name="DirectorInput">
+                        <select id="genderSelect3">
+                            <option value="0">Unspecified</option>
+                            <option value="1">Female</option>
+                            <option value="2">Male</option>
+                        </select>
+                    </div>
+                    <button type="button" class="insertButton" id="DirectorInsertButton">Insertar</button>
+                </form>
+                <form onsubmit="return false">
+                    <h1>Formulario Delete</h1>
+                    <div id="deleteDirectorFields">
+                        <label for="DirectorInput">Name Actor:</label>
+                        <select id="directorSelectDelete"></select>
+                    </div>
+                    <button type="button" class="deleteButton" id="DirectorDeleteButton">Eliminar</button>
+                </form>
+            </div>
 
 
-                <div id="genreContent">
-                    <form onsubmit="return false">
-                        <h1>Formulario Insertar</h1>
-                        <div id="insertGenreFields">
-                            <label for="GenreInput">Name Genre:</label>
-                            <input type="text" id="GenreInput" name="GenreInput">
-                        </div>
-                        <button type="button" class="insertButton" id="GenreInsertButton">Insertar</button>
-                    </form>
-                    <form onsubmit="return false">
-                        <h1>Formulario Delete</h1>
-                        <div id="DeleteGenreFields">
-                            <label for="GenreInput">Name Genre:</label>
-                            <select id="genreSelectDelete"></select>
-                        </div>
-                        <button type="button" class="deleteButton" id="GenreDeleteButton">Eliminar</button>
-                    </form>
-                </div>
+            <div id="genreContent">
+                <form onsubmit="return false">
+                    <h1>Formulario Insertar</h1>
+                    <div id="insertGenreFields">
+                        <label for="GenreInput">Name Genre:</label>
+                        <input type="text" id="GenreInput" name="GenreInput">
+                    </div>
+                    <button type="button" class="insertButton" id="GenreInsertButton">Insertar</button>
+                </form>
+                <form onsubmit="return false">
+                    <h1>Formulario Delete</h1>
+                    <div id="DeleteGenreFields">
+                        <label for="GenreInput">Name Genre:</label>
+                        <select id="genreSelectDelete"></select>
+                    </div>
+                    <button type="button" class="deleteButton" id="GenreDeleteButton">Eliminar</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-
-    <script src="/js/main.js"></script>
+<script src="/js/main.js"></script>
 </body>
 
 </html>

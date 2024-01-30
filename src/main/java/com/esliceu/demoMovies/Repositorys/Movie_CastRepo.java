@@ -1,7 +1,9 @@
 package com.esliceu.demoMovies.Repositorys;
 
+import com.esliceu.demoMovies.Entities.Movie;
 import com.esliceu.demoMovies.Entities.Movie_Cast;
 import com.esliceu.demoMovies.Entities.Movie_Company;
+import com.esliceu.demoMovies.Entities.Person;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -28,4 +30,8 @@ public interface Movie_CastRepo  extends JpaRepository<Movie_Cast, Long> {
     void deleteByPersonId(int entityId);
     // Busca todos los registros de Movie_Cast por ID de película.
     List<Movie_Cast> findAllByMovie_MovieId(int movieId);
+
+    //List<Movie_Cast> findByPerson(Person person);
+
+    Movie_Cast findByPersonAndMovie(Person person, Movie movie);
 }

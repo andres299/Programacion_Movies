@@ -582,13 +582,26 @@ public class MovieService {
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
 
                 // Insertar en Movie_Cast esta persona con su personaje
-                movieCastService.save(movie, person, input2, genreEntiti);
+                //movieCastService.save(movie, person, input2, genreEntiti);
             } else if (operation.equals("delete")){
                 //Eliminar actor
                 Person person = personService.findByPersonName(select);
                 movieCrewService.deleteByPersonId(person.getPersonId());
                 movieCastService.deleteByPersonId(person.getPersonId());
                 //personService.deleteById((long) person.getPersonId());
+            }else if (operation.equals("update")){
+                Person person = personService.findByPersonName(select);
+                System.out.println(person.getPersonId() + person.getPersonName());
+
+                //Obtengo el genero seleccionado
+                //Gender gender = genderService.findByGenderId(genre);
+                //System.out.println(genreEntiti.getGenderId() + genreEntiti.getGender());
+
+                // Obtengo la pelicula a la que le quiero insertar un perosnaje
+                Movie movie = movieRepo.findById((long) movieId).orElse(null);
+                Movie_Cast movieCast = movieCastService.findByPersonAndMovie(person,movie);
+                movieCast.setCharacterName(input1);
+                movieCastService.save(movieCast);
             }else {
                 throw new UnsupportedOperationException("Operación no soportada: " + operation);
             }

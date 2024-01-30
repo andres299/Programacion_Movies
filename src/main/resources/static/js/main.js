@@ -121,34 +121,6 @@ function updateUI() {
         optionsCell.appendChild(viewButton);
         row.appendChild(optionsCell);
 
-        // Agregar evento al botón "View"
-        viewButton.addEventListener("click", function () {
-            const movieIdValue = this.value;
-            const data = {
-                movieId: parseInt(movieIdValue)
-            };
-            infoMoviesData(`/infoMovies`, data);
-
-            // Mostrar el modal
-            const modal = document.getElementById("myModal");
-            const movieIdSpan = document.getElementById("movieIdSpan");
-
-            modal.style.display = "flex";
-
-            // Agregar evento para cerrar el modal haciendo clic en la 'x'
-            const closeButton = document.getElementsByClassName("close")[0];
-            closeButton.addEventListener("click", function () {
-                modal.style.display = "none";
-            });
-
-            // Cerrar el modal si se hace clic fuera del contenido del modal
-            window.addEventListener("click", function (event) {
-                if (event.target === modal) {
-                    modal.style.display = "block";
-                }
-            });
-        });
-
         moviesTable.appendChild(row);
     });
 }
@@ -156,6 +128,7 @@ function updateUI() {
 viewButtons.forEach(viewButton => {
     viewButton.addEventListener("click", function () {
         var movieIdValue = this.value;
+        console.log(movieIdValue);
         const data = {
             movieId: parseInt(movieIdValue)
         };
@@ -287,21 +260,37 @@ closeBtn.onclick = closeModal;
 
 // Función para llenar el select con opciones de actorName
 function fillActorSelect() {
-    // Obtener el select y el div contenedor
+    // Obtener los selects y el div contenedor
     var actorSelectDelete = document.getElementById('actorSelectDelete');
+    var actorSelectUpdate = document.getElementById('actorSelectUpdate');
+
     // Limpiar opciones actuales
     actorSelectDelete.innerHTML = '';
+    actorSelectUpdate.innerHTML = '';
 
     infoDataMovies.forEach(movie => {
         const actorNames = Array.isArray(movie.actorName) ? movie.actorName : [movie.actorNames];
 
         actorNames.forEach(actor => {
-            var option = document.createElement('option');
-            option.value = actor;
-            option.text = actor;
-            actorSelectDelete.add(option);
+            // Crear opción para actorSelectDelete
+            var optionDelete = document.createElement('option');
+            optionDelete.value = actor;
+            optionDelete.text = actor;
+            actorSelectDelete.add(optionDelete);
         });
     });
+
+    infoDataMovies.forEach(movie => {
+            const actorNames = Array.isArray(movie.actorName) ? movie.actorName : [movie.actorNames];
+
+            actorNames.forEach(actor => {
+                // Crear opción para actorSelectDelete
+                var optionUpdate = document.createElement('option');
+                optionUpdate.value = actor;
+                optionUpdate.text = actor;
+                actorSelectUpdate.add(optionUpdate);
+            });
+        });
 }
 
 function fillDirectorSelect() {
@@ -363,8 +352,10 @@ function showContent(contentType) {
 }
 
 var actorInsertButton = document.getElementById('actorInsertButton');
+var actorUpdateButton = document.getElementById('actorUpdateButton');
 var actorDeleteButton = document.getElementById('actorDeleteButton');
 var DeleteActor = document.getElementById('actorSelectDelete');
+var UpdateActor = document.getElementById('actorSelectUpdate');
 var genderSelect = document.getElementById('genderSelect');
 var genderSelect2 = document.getElementById('genderSelect2');
 var genderSelect3 = document.getElementById('genderSelect3');
@@ -393,6 +384,27 @@ actorInsertButton.addEventListener('click', function () {
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
+
+actorUpdateButton.addEventListener('click', function () {
+    selectedOption = 'Actor';
+    operation = 'update';
+    var selectedValueUpdate = UpdateActor.value;
+    var selectedGenderValueUpdate = genderSelect2.value;
+    console.log(selectedGenderValueUpdate);
+    const formContainer = document.getElementById(operation + selectedOption + 'Fields');
+    const inputs = Array.from(formContainer.querySelectorAll('input'));
+    const requestData = {
+        movieId: movieId,
+        operation: operation,
+        entity: selectedOption,
+        input1: inputs[0].value,
+        input2: null,
+        selected: selectedValueUpdate,
+        gender: selectedGenderValueUpdate
+    };
+    postDataInfoMovies('/operationInfoMovies', requestData);
+});
+
 
 actorDeleteButton.addEventListener('click', function () {
     selectedOption = 'Actor';
