@@ -575,7 +575,9 @@ public class MovieService {
                 }
                 // Obtengo la pelicula a la que le quiero insertar un perosnaje
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
-
+                if (movie == null){
+                    throw new entitiExist("Movie no encontrada: " + movie.getMovieId());
+                }
                 // Verificar si la persona ya actúa en la película
                 Movie_Cast isActorInMovie = movieCastService.findByPersonAndMovie(person, movie);
                 if (isActorInMovie != null){
@@ -633,21 +635,16 @@ public class MovieService {
                 int departmentId = 2;
                 Department department = departmentService.findById(departmentId);
 
-                //Creo una persona y la guardo en la Base de datos
-                Person personId = personService.findFirstByOrderByPersonIdDesc();
-                if (personId != null) {
-                    LastentityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
-                } else {
-                    // Manejar el caso cuando personId es null, asignar un valor predeterminado a entityId
-                    LastentityId = 1;
-                }                 Person person = new Person(LastentityId, input1);
-                personService.save(person);
-                //Despues obtengo la ultima persona registrada
-                person = personService.findByPersonId(LastentityId);
-
+                //Compruebo que existe
+                Person person = personService.findByPersonName(input1);
+                if (person == null){
+                    throw new entitiExist("Usuario no encontrado: " + person.getPersonName());
+                }
                 // Obtengo la pelicula a la que le quiero insertar un director
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
-
+                if (movie == null){
+                    throw new entitiExist("Movie no encontrada: " + movie.getMovieId());
+                }
                 //Guardo el director en movieCrew
                 movieCrewService.save(movie,person,department);
 

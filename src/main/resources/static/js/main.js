@@ -390,8 +390,8 @@ var DeleteActor = document.getElementById('actorSelectDelete');
 var UpdateActor = document.getElementById('actorSelectUpdate');
 var genderSelect = document.getElementById('genderSelect');
 var genderSelect2 = document.getElementById('genderSelect2');
-var genderSelect3 = document.getElementById('genderSelect3');
-var genderSelect4 = document.getElementById('genderSelect4');
+//var genderSelect3 = document.getElementById('genderSelect3');
+//var genderSelect4 = document.getElementById('genderSelect4');
 
 // Obtener el valor seleccionado
 let operation;
@@ -461,7 +461,7 @@ actorDeleteButton.addEventListener('click', function () {
 document.getElementById('DirectorInsertButton').addEventListener('click', function () {
     selectedOption = 'Director';
     operation = 'insert';
-    var selectedGenderValue3 = genderSelect3.value;
+    //var selectedGenderValue3 = genderSelect3.value;
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const requestData = {
@@ -471,7 +471,7 @@ document.getElementById('DirectorInsertButton').addEventListener('click', functi
         input1: inputs[0].value,
         input2: null,
         selected: null,
-        gender: selectedGenderValue3
+        gender: null
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
@@ -480,7 +480,7 @@ document.getElementById('DirectorInsertButton').addEventListener('click', functi
 document.getElementById('DirectorUpdateButton').addEventListener('click', function () {
     selectedOption = 'Director';
     operation = 'update';
-    var selectedGenderValue4 = genderSelect4.value;
+    //var selectedGenderValue4 = genderSelect4.value;
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const SelectUpdate = document.getElementById("directorSelectUpdate");
@@ -492,7 +492,7 @@ document.getElementById('DirectorUpdateButton').addEventListener('click', functi
         input1: inputs[0].value,
         input2: null,
         selected: directorSelectUpdate,
-        gender: selectedGenderValue4
+        gender: null
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
@@ -501,7 +501,7 @@ document.getElementById('DirectorUpdateButton').addEventListener('click', functi
 document.getElementById('DirectorDeleteButton').addEventListener('click', function () {
     selectedOption = 'Director';
     operation = 'delete';
-    var selectedGenderValue3 = genderSelect3.value;
+    //var selectedGenderValue3 = genderSelect3.value;
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const SelectDelete = document.getElementById("directorSelectDelete");
@@ -513,7 +513,7 @@ document.getElementById('DirectorDeleteButton').addEventListener('click', functi
         input1: null,
         input2: null,
         selected: directorSelectDelete,
-        gender: selectedGenderValue3
+        gender: null
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
