@@ -591,10 +591,8 @@ public class MovieService {
                     // Manejar el caso cuando productionCompanyId es null, asignar un valor predeterminado a entityId
                     cast_Order = 1;
                 }
-                System.out.println("hola" + cast_Order);
-
                 //Insertar en Movie_Cast esta persona con su personaje
-                movieCastService.save(movie, person, input2, genreEntiti);
+                movieCastService.save(movie, person, input2, genreEntiti, cast_Order);
             } else if (operation.equals("delete")){
                 //Eliminar actor de la pelicula
                 Person person = personService.findByPersonName(select);
@@ -613,8 +611,17 @@ public class MovieService {
 
                 //Borro el registro de la pelicula
                 movieCastService.deleteByPersonAndMovie(person,movie);
+
+                Movie_Cast movieCastCastOrder = movieCastService.findFirstByMovie_MovieIdOrderByCastOrderDesc(movieId);
+                if (movieCastCastOrder != null) {
+                    cast_Order = (movieCastCastOrder.getCastOrder() != 0) ? movieCastCastOrder.getCastOrder() + 1 : 1;
+                } else {
+                    // Manejar el caso cuando productionCompanyId es null, asignar un valor predeterminado a entityId
+                    cast_Order = 1;
+                }
+
                 //Creo con la misma informacion pero con el nuevo register
-                movieCastService.save(movie,person,input1,gender);
+                movieCastService.save(movie,person,input1,gender,cast_Order);
             }else {
                 throw new UnsupportedOperationException("Operación no soportada: " + operation);
             }

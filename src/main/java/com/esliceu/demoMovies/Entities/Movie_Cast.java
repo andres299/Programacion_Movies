@@ -44,6 +44,14 @@ public class Movie_Cast {
         this.gender = gender;
     }
 
+    public Movie_Cast(Movie movie, Person person, String characterName, Gender gender, int castOrder) {
+        this.movie = movie;
+        this.person = person;
+        this.characterName = characterName;
+        this.gender = gender;
+        this.castOrder = castOrder;
+    }
+
     public Movie getMovie() {
         return movie;
     }
