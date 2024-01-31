@@ -399,7 +399,6 @@ actorInsertButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'insert';
     var selectedGenderValue = genderSelect.value;
-    // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     console.log(movieId);
@@ -419,7 +418,6 @@ actorUpdateButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'update';
     var selectedValueUpdate = UpdateActor.value;
-    //var selectedGenderValueUpdate = genderSelect2.value;
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const requestData = {
@@ -458,7 +456,6 @@ actorDeleteButton.addEventListener('click', function () {
 document.getElementById('DirectorInsertButton').addEventListener('click', function () {
     selectedOption = 'Director';
     operation = 'insert';
-    //var selectedGenderValue3 = genderSelect3.value;
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const requestData = {
