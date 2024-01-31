@@ -54,4 +54,8 @@ public class Movie_CastService {
     public void deleteByPersonAndMovie(Person person, Movie movie) {
         movieCastRepo.deleteByPersonAndMovie(person,movie);
     }
+
+    //public Movie_Cast findFirstByOrderByCastOrderDesc(Movie movie) {
+        //return movieCastRepo.findFirstByOrderByCastOrderDesc(movie);
+    //}
 }

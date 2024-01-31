@@ -30,7 +30,8 @@ public class Movie_Cast {
     @JoinColumn(name = "gender_id")
     private Gender gender;
 
-    private int cast_order;
+    @JoinColumn(name = "cast_order")
+    private int castOrder;
 
     public Movie_Cast() {
     }
@@ -74,11 +75,11 @@ public class Movie_Cast {
         this.gender = gender;
     }
 
-    public int getCast_order() {
-        return cast_order;
+    public int getCastOrder() {
+        return castOrder;
     }
 
-    public void setCast_order(int cast_order) {
-        this.cast_order = cast_order;
+    public void setCastOrder(int castOrder) {
+        this.castOrder = castOrder;
     }
 }

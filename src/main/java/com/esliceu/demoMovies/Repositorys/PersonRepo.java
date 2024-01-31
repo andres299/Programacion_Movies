@@ -1,8 +1,10 @@
 package com.esliceu.demoMovies.Repositorys;
 
 import com.esliceu.demoMovies.Entities.Person;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -29,4 +31,8 @@ public interface PersonRepo extends JpaRepository<Person, Long> {
     List<Person> findPersonByMoviecast_MovieMovieIdAndMoviecast_CharacterName(
             @Param("movieId")int movieId,
             @Param("characterName") String characterName);
+
+    @Query(value = "SELECT DISTINCT p.person_id, p.person_name " +
+            "FROM person p JOIN movie_cast mc ON p.person_id = mc.person_id WHERE p.person_name LIKE %:keyword%",nativeQuery = true)
+    List<?> searchByActor(@Param("keyword") String keyword , Pageable pageable);
 }

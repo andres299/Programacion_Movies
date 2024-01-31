@@ -572,3 +572,90 @@ async function postDataInfoMovies(URL, data) {
         alert("Error al procesar la solicitud: " + error.message);
     }
 }
+
+const actorCharacterInput = document.getElementById('actorCharacterInput');
+let pageActor;
+let infoActor;
+actorCharacterInput.addEventListener('input', () => {
+    pageActor = 0;
+    const requestData = {
+        keyword: actorCharacterInput.value,
+        page: pageActor
+    };
+    postDataSearchActor(`/filterPerson`, requestData);
+    document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
+})
+
+async function postDataSearchActor(URL, data) {
+    const formData = new FormData();
+    for (const key in data) {
+        formData.append(key, data[key]);
+    }
+
+    fetch(URL, {
+        method: 'POST',
+        body: formData,
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(responseData => {
+            infoActor = responseData;
+            console.log(infoActor);
+            updateUIActor();
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}
+
+function updateUIActor() {
+    const entityTable = document.getElementById('entityTable');
+    entityTable.innerHTML = "";
+
+    if (!infoActor || infoActor.length === 0) {
+        console.log("vacio");
+        // Si el array está vacío, mostrar un mensaje
+        const noResultsRow = document.createElement("tr");
+        const noResultsCell = document.createElement("td");
+        noResultsCell.colSpan = 2; // Ajusta el número de columnas según tus datos
+        noResultsCell.textContent = "No se encontraron resultados.";
+        noResultsRow.appendChild(noResultsCell);
+        entityTable.appendChild(noResultsRow);
+        return;
+    }
+
+    const headerRow = document.createElement("tr");
+
+    // Utiliza los nombres de las columnas para crear los encabezados
+    ['personId', 'personName'].forEach(columnName => {
+        const headerCell = document.createElement("th");
+        headerCell.textContent = columnName;
+        headerRow.appendChild(headerCell);
+    });
+
+    entityTable.appendChild(headerRow);
+
+    infoActor.forEach(entity => {
+        const row = document.createElement("tr");
+
+        // Utiliza los valores directamente
+        // Asumiendo que los valores son [personId, personName]
+        const [personId, personName] = entity;
+
+        const cellId = document.createElement("td");
+        cellId.textContent = personId;
+        row.appendChild(cellId);
+
+        const cellName = document.createElement("td");
+        cellName.textContent = personName;
+        row.appendChild(cellName);
+
+        entityTable.appendChild(row);
+    });
+}
+
+

@@ -59,4 +59,8 @@ public class PersonService {
     public List<Person> findPersonByMoviecast_MovieMovieIdAndMoviecast_CharacterName(int movieId, String characterName) {
         return personRepo.findPersonByMoviecast_MovieMovieIdAndMoviecast_CharacterName(movieId,characterName);
     }
+
+    public List<?> searchByActor(String keyword, Pageable pageable) {
+        return personRepo.searchByActor(keyword,pageable);
+    }
 }

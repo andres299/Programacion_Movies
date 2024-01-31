@@ -50,6 +50,7 @@ public class FilterController {
         // Retorna la lista de películas filtrada según los parámetros proporcionados.
         return movieService.filterMovies(filterType,keyword,page);
     }
+
     @PostMapping("/infoMovies")
     @ResponseBody
     public List<InfoMovies> infoMovies(@RequestBody Map<String, Integer> requestBody) {
@@ -75,4 +76,10 @@ public class FilterController {
         }
     }
 
+    @PostMapping("/filterPerson")
+    @ResponseBody
+    public List<?> filterPerson(@RequestParam String keyword, @RequestParam int page) {
+        // Retorna la lista de películas filtrada según los parámetros proporcionados.
+        return movieService.filterPerson(keyword,page);
+    }
 }

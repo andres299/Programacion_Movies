@@ -564,29 +564,37 @@ public class MovieService {
         System.out.println(movieId + " " + entity + " " + operation + " " +
                 select + " " + input1 + " " + input2 + " " + genre);
         int LastentityId;
+        int cast_Order;
         // Operacion insert y update de Actor
         if (entity.equals("Actor")) {
             if (operation.equals("insert")){
-                //Creo una persona y la guardo en la Base de datos
-                Person personId = personService.findFirstByOrderByPersonIdDesc();
-                if (personId != null) {
-                    LastentityId = (personId.getPersonId() != 0) ? personId.getPersonId() + 1 : 1;
-                } else {
-                    // Manejar el caso cuando personId es null, asignar un valor predeterminado a entityId
-                    LastentityId = 1;
-                }                Person person = new Person(LastentityId, input1);
-                personService.save(person);
-                //Despues obtengo la ultima persona registrada
-                person = personService.findByPersonId(LastentityId);
-
-                //Obtengo el genero seleccionado
-                Gender genreEntiti = genderService.findByGenderId(genre);
-
+                //Obtengo el id  del actor
+                Person person = personService.findByPersonName(input1);
+                if (person == null){
+                    throw new entitiExist("Usuario no encontrado: " + person.getPersonName());
+                }
                 // Obtengo la pelicula a la que le quiero insertar un perosnaje
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
 
-                // Insertar en Movie_Cast esta persona con su personaje
-                //movieCastService.save(movie, person, input2, genreEntiti);
+                // Verificar si la persona ya actúa en la película
+                Movie_Cast isActorInMovie = movieCastService.findByPersonAndMovie(person, movie);
+                if (isActorInMovie != null){
+                    throw new entitiExist("Usuario ya insertado encontrado: " + person.getPersonName());
+                }
+                //Obtengo el genero seleccionado
+                Gender genreEntiti = genderService.findByGenderId(genre);
+
+                /*
+                Movie_Cast movieCastCastOrder = movieCastService.findFirstByOrderByCastOrderDesc(movie);
+                if (movieCastCastOrder != null) {
+                    cast_Order = (movieCastCastOrder.getCastOrder() != 0) ? movieCastCastOrder.getCastOrder() + 1 : 1;
+                } else {
+                    // Manejar el caso cuando productionCompanyId es null, asignar un valor predeterminado a entityId
+                    cast_Order = 1;
+                }
+                 */
+                //Insertar en Movie_Cast esta persona con su personaje
+                movieCastService.save(movie, person, input2, genreEntiti);
             } else if (operation.equals("delete")){
                 //Eliminar actor de la pelicula
                 Person person = personService.findByPersonName(select);
@@ -643,6 +651,7 @@ public class MovieService {
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
                 //Borro el registro con ese director de la pelicula
                 movieCrewService.deleteByPersonAndMovie(person,movie);
+
             } else if(operation.equals("update")){
                 //Modificar personaje
                 Person person = personService.findByPersonName(select);
@@ -686,7 +695,6 @@ public class MovieService {
 
             } else if (operation.equals("delete")) {
                 //Eliminar Género
-                //LastentityId = movieId;
                 Genre genreDelte = genreService.findByGenreNameEquals(select);
                 // Obtengo la pelicula a la que le quiero insertar un genero
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
@@ -696,6 +704,11 @@ public class MovieService {
             }
         }
         return true;
+    }
+
+    public List<?> filterPerson(String keyword, int page) {
+        Pageable pageable = PageRequest.of(page,10);
+        return personService.searchByActor(keyword, pageable);
     }
 
     //Manejo las diferentes excepciones que puedan salir, si la entidad no es entontada
