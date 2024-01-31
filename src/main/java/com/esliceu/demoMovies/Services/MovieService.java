@@ -126,7 +126,7 @@ public class MovieService {
         }
         return listEntiti;
     }
-
+    // Mirar si el input esta vacio
     public boolean inputEntitie(String input1) {
         if (input1.length() > 0) return true;
         return false;
@@ -561,9 +561,6 @@ public class MovieService {
         String input1 = fetchInfoMoviesDTO.getInput1();
         String input2 = fetchInfoMoviesDTO.getInput2();
         int genre = fetchInfoMoviesDTO.getGender();
-        System.out.println(movieId + " " + entity + " " + operation + " " +
-                select + " " + input1 + " " + input2 + " " + genre);
-        int LastentityId;
         int cast_Order;
         // Operacion insert y update de Actor
         if (entity.equals("Actor")) {
@@ -585,7 +582,7 @@ public class MovieService {
                 }
                 //Obtengo el genero seleccionado
                 Gender genreEntiti = genderService.findByGenderId(genre);
-
+                // Obtengo el ultimo cast_Order y le sumo uno
                 Movie_Cast movieCastCastOrder = movieCastService.findFirstByMovie_MovieIdOrderByCastOrderDesc(movieId);
                 if (movieCastCastOrder != null) {
                     cast_Order = (movieCastCastOrder.getCastOrder() != 0) ? movieCastCastOrder.getCastOrder() + 1 : 1;
@@ -614,6 +611,7 @@ public class MovieService {
                 //Borro el registro de la pelicula
                 movieCastService.deleteByPersonAndMovie(person,movie);
 
+                // Obtengo el ultimo cast_Order y le sumo uno
                 Movie_Cast movieCastCastOrder = movieCastService.findFirstByMovie_MovieIdOrderByCastOrderDesc(movieId);
                 if (movieCastCastOrder != null) {
                     cast_Order = (movieCastCastOrder.getCastOrder() != 0) ? movieCastCastOrder.getCastOrder() + 1 : 1;
@@ -632,7 +630,7 @@ public class MovieService {
         else if (entity.equals("Director")) {
             if (operation.equals("insert")){
                 //Obtener el departamento
-                int departmentId = 2;
+                int departmentId = 2; // Director siempre es departamento 2
                 Department department = departmentService.findById(departmentId);
 
                 //Compruebo que existe
@@ -660,17 +658,8 @@ public class MovieService {
                 //Modificar personaje
                 Person person = personService.findByPersonName(select);
                 person.setPersonName(input1);
-                //Obtener el departamento
-                int departmentId = 2;
-                Department department = departmentService.findById(departmentId);
 
-                // Obtengo la pelicula a la que le quiero insertar un director
-                Movie movie = movieRepo.findById((long) movieId).orElse(null);
-
-                //Borro el registro con ese director de la pelicula
-                //movieCrewService.deleteByPersonAndMovie(person,movie);
-
-                // Inserto el nuevo director
+                // Inserto el nuevo nombre del director
                 personService.save(person);
 
             }else{
