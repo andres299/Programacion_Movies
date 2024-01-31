@@ -302,14 +302,14 @@ function fillActorSelect() {
             for (const [actor, character] of Object.entries(movie.actorCharacterPairs)) {
                 // Crear opción para actorSelectDelete
                 var optionDelete = document.createElement('option');
-                optionDelete.value = actor;
+                optionDelete.value = actor ;
                 optionDelete.text = `${actor} (${character})`;
                 actorSelectDelete.add(optionDelete);
 
                 // Crear opción para actorSelectUpdate
                 var optionUpdate = document.createElement('option');
                 optionUpdate.value = actor;
-                optionUpdate.text = actor;
+                optionUpdate.text = `${actor} (${character})`;
                 actorSelectUpdate.add(optionUpdate);
             }
         }
@@ -389,9 +389,6 @@ var actorDeleteButton = document.getElementById('actorDeleteButton');
 var DeleteActor = document.getElementById('actorSelectDelete');
 var UpdateActor = document.getElementById('actorSelectUpdate');
 var genderSelect = document.getElementById('genderSelect');
-//var genderSelect2 = document.getElementById('genderSelect2');
-//var genderSelect3 = document.getElementById('genderSelect3');
-//var genderSelect4 = document.getElementById('genderSelect4');
 
 // Obtener el valor seleccionado
 let operation;

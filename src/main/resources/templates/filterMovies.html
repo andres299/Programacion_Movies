@@ -80,7 +80,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <p>Titulo de la pelicula : <span id="movieTitle">Movie Title</span> </p>
-        <button id="options" class="options">Mas opciones</button>
+        <button th:if="${isAdminNotNull}" id="options" class="options">Mas opciones</button>
         <div class="table-container">
             <table id="actorTable">
                 <thead>
@@ -147,14 +147,6 @@
                         <select id="actorSelectUpdate"></select>
                         <label for="actorCharacterUpdateInput">New Character:</label>
                         <input type="text" id="actorCharacterUpdateInput" name="actorCharacterUpdateInput">
-                        <label for="genderSelect2">Gender:</label>
-                        <!--
-                        <select id="genderSelect2">
-                            <option value="0">Unspecified</option>
-                            <option value="1">Female</option>
-                            <option value="2">Male</option>
-                        </select>
-                        -->
                     </div>
                     <button type="button" class="updateButton" id="actorUpdateButton">Update</button>
                 </form>
@@ -178,13 +170,6 @@
                     <div id="insertDirectorFields">
                         <label for="DirectorInput">Name Director:</label>
                         <input type="text" id="DirectorInput" name="DirectorInput">
-                        <!--
-                        <select id="genderSelect3">
-                            <option value="0">Unspecified</option>
-                            <option value="1">Female</option>
-                            <option value="2">Male</option>
-                        </select>
-                        -->
                     </div>
                     <button type="button" class="insertButton" id="DirectorInsertButton">Insertar</button>
                 </form>
@@ -195,14 +180,6 @@
                         <select id="directorSelectUpdate"></select>
                         <label for="directorCharacterUpdateInput">New Character:</label>
                         <input type="text" id="directorCharacterUpdateInput" name="directorCharacterUpdateInput">
-                        <!--
-                        <label for="genderSelect4">Gender:</label>
-                        <select id="genderSelect4">
-                            <option value="0">Unspecified</option>
-                            <option value="1">Female</option>
-                            <option value="2">Male</option>
-                        </select>
-                        -->
                     </div>
                     <button type="button" class="updateButton" id="DirectorUpdateButton">Update</button>
                 </form>

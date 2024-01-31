@@ -62,9 +62,9 @@ public class FilterController {
         // Obtiene el administrador de la sesión actual.
         Administrator admin = (Administrator) session.getAttribute("admin");
         // Verifica si el administrador está autenticado.
-        //if (admin == null) {
-          //  return ResponseEntity.badRequest().body("Error: El administrador no está autenticado");
-        //}
+        if (admin == null) {
+            return ResponseEntity.badRequest().body("Error: El administrador no está autenticado");
+        }
         // Llamar al servicio para realizar la operación
         boolean operationResult = movieService.operationInfoMovies(fetchInfoMoviesDTO);
         if (operationResult) {
