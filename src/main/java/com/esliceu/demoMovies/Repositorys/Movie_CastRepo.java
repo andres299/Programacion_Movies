@@ -35,5 +35,8 @@ public interface Movie_CastRepo  extends JpaRepository<Movie_Cast, Long> {
 
     void deleteByPersonAndMovie(Person person, Movie movie);
 
-    //Movie_Cast findFirstByOrderByCastOrderDesc(Movie movie);
+    Movie_Cast findFirstByMovie_MovieIdOrderByCastOrderDesc(int movieId);
+
+    //Movie_Cast findFirstByMovieIdOrderByCastOrderDesc(int movieId);
+    
 }

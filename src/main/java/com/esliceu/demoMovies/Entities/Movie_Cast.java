@@ -30,6 +30,7 @@ public class Movie_Cast {
     @JoinColumn(name = "gender_id")
     private Gender gender;
 
+    @Id
     @JoinColumn(name = "cast_order")
     private int castOrder;
 

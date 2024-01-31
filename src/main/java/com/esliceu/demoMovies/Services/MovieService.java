@@ -584,15 +584,15 @@ public class MovieService {
                 //Obtengo el genero seleccionado
                 Gender genreEntiti = genderService.findByGenderId(genre);
 
-                /*
-                Movie_Cast movieCastCastOrder = movieCastService.findFirstByOrderByCastOrderDesc(movie);
+                Movie_Cast movieCastCastOrder = movieCastService.findFirstByMovie_MovieIdOrderByCastOrderDesc(movieId);
                 if (movieCastCastOrder != null) {
                     cast_Order = (movieCastCastOrder.getCastOrder() != 0) ? movieCastCastOrder.getCastOrder() + 1 : 1;
                 } else {
                     // Manejar el caso cuando productionCompanyId es null, asignar un valor predeterminado a entityId
                     cast_Order = 1;
                 }
-                 */
+                System.out.println("hola" + cast_Order);
+
                 //Insertar en Movie_Cast esta persona con su personaje
                 movieCastService.save(movie, person, input2, genreEntiti);
             } else if (operation.equals("delete")){

@@ -11,6 +11,8 @@ public class Movie_CastId implements Serializable {
 
     private String characterName;
 
+    private int castOrder;
+
     public Movie getMovie() {
         return movie;
     }
@@ -41,5 +43,13 @@ public class Movie_CastId implements Serializable {
 
     public void setCharacterName(String characterName) {
         this.characterName = characterName;
+    }
+
+    public int getCastOrder() {
+        return castOrder;
+    }
+
+    public void setCastOrder(int castOrder) {
+        this.castOrder = castOrder;
     }
 }
