@@ -303,7 +303,7 @@ function fillActorSelect() {
                 // Crear opción para actorSelectDelete
                 var optionDelete = document.createElement('option');
                 optionDelete.value = actor;
-                optionDelete.text = actor;
+                optionDelete.text = `${actor} (${character})`;
                 actorSelectDelete.add(optionDelete);
 
                 // Crear opción para actorSelectUpdate
@@ -389,7 +389,7 @@ var actorDeleteButton = document.getElementById('actorDeleteButton');
 var DeleteActor = document.getElementById('actorSelectDelete');
 var UpdateActor = document.getElementById('actorSelectUpdate');
 var genderSelect = document.getElementById('genderSelect');
-var genderSelect2 = document.getElementById('genderSelect2');
+//var genderSelect2 = document.getElementById('genderSelect2');
 //var genderSelect3 = document.getElementById('genderSelect3');
 //var genderSelect4 = document.getElementById('genderSelect4');
 
@@ -422,8 +422,7 @@ actorUpdateButton.addEventListener('click', function () {
     selectedOption = 'Actor';
     operation = 'update';
     var selectedValueUpdate = UpdateActor.value;
-    var selectedGenderValueUpdate = genderSelect2.value;
-    console.log(selectedGenderValueUpdate);
+    //var selectedGenderValueUpdate = genderSelect2.value;
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const inputs = Array.from(formContainer.querySelectorAll('input'));
     const requestData = {
@@ -433,7 +432,7 @@ actorUpdateButton.addEventListener('click', function () {
         input1: inputs[0].value,
         input2: null,
         selected: selectedValueUpdate,
-        gender: selectedGenderValueUpdate
+        gender: null
     };
     postDataInfoMovies('/operationInfoMovies', requestData);
 });
@@ -444,6 +443,7 @@ actorDeleteButton.addEventListener('click', function () {
     operation = 'delete';
     var selectedValueDelete = DeleteActor.value;
     console.log("movie" + movieId);
+    console.log(selectedValueDelete);
     // Obtener el contenedor del formulario
     const formContainer = document.getElementById(operation + selectedOption + 'Fields');
     const requestData = {

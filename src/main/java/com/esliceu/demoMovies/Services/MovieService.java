@@ -680,28 +680,28 @@ public class MovieService {
             // Operacion insert y update de Genero
             if (operation.equals("insert")) {
                 //Creo un genero nuevo
-                Genre genreId = genreService.findFirstByOrderByGenreIdDesc();
-                if (genreId != null) {
-                    LastentityId = (genreId.getGenreId() != 0) ? genreId.getGenreId() + 1 : 1;
-                } else {
-                        // Manejar el caso cuando genderId es null, asignar un valor predeterminado a entityId
-                    LastentityId = 1;
+                Genre genreId = genreService.findByGenreNameEquals(input1);
+                if (genreId == null){
+                    throw new entitiExist("Movie no encontrada: " + genreId.getGenreName());
                 }
-                Genre newGenre = new Genre(LastentityId, input1);
-                genreService.save(newGenre);
-
-                //Despues obtengo el ultimo genero registrada
-                newGenre = genreService.findFirstByOrderByGenreIdDesc();
-
                 // Obtengo la pelicula a la que le quiero insertar un genero
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
-                movieGenresService.save(movie,newGenre);
+                if (movie == null){
+                    throw new entitiExist("Movie no encontrada: " + movie.getMovieId());
+                }
+                movieGenresService.save(movie,genreId);
 
             } else if (operation.equals("delete")) {
                 //Eliminar Género
                 Genre genreDelte = genreService.findByGenreNameEquals(select);
+                if (genreDelte == null){
+                    throw new entitiExist("Movie no encontrada: " + genreDelte.getGenreName());
+                }
                 // Obtengo la pelicula a la que le quiero insertar un genero
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
+                if (movie == null){
+                    throw new entitiExist("Movie no encontrada: " + movie.getMovieId());
+                }
                 movieGenresService.deleteByGenreAndMovie(genreDelte,movie);
             } else {
                 throw new EntityNotFoundException("Operación no soportada: " + operation);

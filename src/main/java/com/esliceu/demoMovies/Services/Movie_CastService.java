@@ -52,4 +52,8 @@ public class Movie_CastService {
     public Movie_Cast findFirstByMovie_MovieIdOrderByCastOrderDesc(int movieId) {
         return movieCastRepo.findFirstByMovie_MovieIdOrderByCastOrderDesc(movieId);
     }
+
+    public void deleteByPersonAndMovieAndCharacterName(Person person, Movie movie, String select) {
+        movieCastRepo.deleteByPersonAndMovieAndCharacterName(person,movie,select);
+    }
 }
