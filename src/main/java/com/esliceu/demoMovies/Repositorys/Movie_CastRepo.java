@@ -28,17 +28,17 @@ public interface Movie_CastRepo  extends JpaRepository<Movie_Cast, Long> {
     @Modifying
     @Query(value = "DELETE FROM movie_cast WHERE person_id = :entityId", nativeQuery = true)
     void deleteByPersonId(int entityId);
+
     // Busca todos los registros de Movie_Cast por ID de película.
     List<Movie_Cast> findAllByMovie_MovieId(int movieId);
 
-    Movie_Cast findByPersonAndMovie(Person person, Movie movie);
 
+    //Elimina el movie_cast por persona y pelicula
     void deleteByPersonAndMovie(Person person, Movie movie);
 
+    // Encuentra el ultimo castOrder de una pelicual espceifica.
     Movie_Cast findFirstByMovie_MovieIdOrderByCastOrderDesc(int movieId);
 
-    void deleteByPersonAndMovieAndCharacterName(Person person, Movie movie, String select);
-
-    //Movie_Cast findFirstByMovieIdOrderByCastOrderDesc(int movieId);
-    
+    // Comprobar si existe el characterName
+    long countMovieCastsByCharacterNameAndMovie_MovieId(String input2, int movieId);
 }

@@ -36,30 +36,21 @@ public class PersonService {
     public List<?> findByPersonNameStartingWithIgnoreCase(String keyword, Pageable pageable) {
         return personRepo.findByPersonNameStartingWithIgnoreCase(keyword,pageable);
     }
-    // Busca personas asociadas a un película específica por su elenco (MovieCast).
-    public List<Person> findPersonByMoviecast_MovieMovieIdEquals(int movieId) {
-        return personRepo.findPersonByMoviecast_MovieMovieIdEquals(movieId);
-    }
     // Busca personas distintas asociadas a una película específica por su equipo de producción (MovieCrews)
     // y trabajo (Director).
     public List<Person> findDistincPersonByMovieCrewsJobAndMovieCrews_MovieMovieIdEquals(String director, int movieId) {
         return personRepo.findDistincPersonByMovieCrewsJobAndMovieCrews_MovieMovieIdEquals(director,movieId);
     }
-    // Busca una persona por su ID.
-    public Person findByPersonId(int lastentityId) {
-        return personRepo.findById(Long.valueOf(lastentityId)).orElseThrow();
-    }
     // Busca una persona por su nombre.
     public Person findByPersonName(String select) {
-        System.out.println(select);
         Person person = personRepo.findByPersonNameContaining(select);
         return person;
     }
-
+    //Busca personas basadas en el ID de una película y el nombre de un personaje
     public List<Person> findPersonByMoviecast_MovieMovieIdAndMoviecast_CharacterName(int movieId, String characterName) {
         return personRepo.findPersonByMoviecast_MovieMovieIdAndMoviecast_CharacterName(movieId,characterName);
     }
-
+    //Busca personas distintas cuyos nombres coinciden con una palabra clave dada
     public List<?> searchByActor(String keyword, Pageable pageable) {
         return personRepo.searchByActor(keyword,pageable);
     }

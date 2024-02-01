@@ -533,7 +533,7 @@ public class MovieService {
                 actorCharacterPairs.put(actor.getPersonName(), characterName);
             }
         }
-        // Imprimir o utilizar el mapa como sea necesario
+        // Lo añadimos
         infoMovies.setActorCharacterPairs(actorCharacterPairs);
 
         //Obtener los generos de la pelicula
@@ -565,20 +565,16 @@ public class MovieService {
         // Operacion insert y update de Actor
         if (entity.equals("Actor")) {
             if (operation.equals("insert")){
-                //Obtengo el id  del actor
+                //Obtengo el id del actor
                 Person person = personService.findByPersonName(input1);
-                if (person == null){
+                long existCharacterName = movieCastService.countMovieCastsByCharacterNameAndMovie_MovieId(input2,movieId);
+                if (person == null || existCharacterName >= 1){
                     throw new entitiExist("Usuario no encontrado: " + person.getPersonName());
                 }
                 // Obtengo la pelicula a la que le quiero insertar un perosnaje
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
                 if (movie == null){
                     throw new entitiExist("Movie no encontrada: " + movie.getMovieId());
-                }
-                // Verificar si la persona ya actúa en la película
-                Movie_Cast isActorInMovie = movieCastService.findByPersonAndMovie(person, movie);
-                if (isActorInMovie != null){
-                    throw new entitiExist("Usuario ya insertado encontrado: " + person.getPersonName());
                 }
                 //Obtengo el genero seleccionado
                 Gender genreEntiti = genderService.findByGenderId(genre);
@@ -597,7 +593,6 @@ public class MovieService {
                 Person person = personService.findByPersonName(select);
                 Movie movie = movieRepo.findById((long) movieId).orElse(null);
                 movieCastService.deleteByPersonAndMovie(person,movie);
-
             }else if (operation.equals("update")){
                 //Modificar personaje
                 Person person = personService.findByPersonName(select);
@@ -668,7 +663,7 @@ public class MovieService {
         } else {
             // Operacion insert y update de Genero
             if (operation.equals("insert")) {
-                //Creo un genero nuevo
+                //Obtengo el genero
                 Genre genreId = genreService.findByGenreNameEquals(input1);
                 if (genreId == null){
                     throw new entitiExist("Movie no encontrada: " + genreId.getGenreName());
@@ -699,6 +694,7 @@ public class MovieService {
         return true;
     }
 
+    // Va devolviendo una lista de 10 actores
     public List<?> filterPerson(String keyword, int page) {
         Pageable pageable = PageRequest.of(page,10);
         return personService.searchByActor(keyword, pageable);

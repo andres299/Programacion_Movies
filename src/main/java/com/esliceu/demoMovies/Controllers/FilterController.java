@@ -5,7 +5,9 @@ import com.esliceu.demoMovies.DTO.InfoMovies;
 import com.esliceu.demoMovies.DTO.OperationMovies;
 import com.esliceu.demoMovies.Entities.Administrator;
 import com.esliceu.demoMovies.Entities.Movie;
+import com.esliceu.demoMovies.Entities.Person;
 import com.esliceu.demoMovies.Services.MovieService;
+import com.esliceu.demoMovies.Services.Movie_CastService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +28,9 @@ public class FilterController {
 
     @Autowired
     MovieService movieService;
+
+    @Autowired
+    Movie_CastService movieCastService;
 
     @GetMapping("/filterMovies")
     public String showMovies(Model model, @RequestParam(defaultValue = "0") int page){
@@ -79,7 +84,7 @@ public class FilterController {
     @PostMapping("/filterPerson")
     @ResponseBody
     public List<?> filterPerson(@RequestParam String keyword, @RequestParam int page) {
-        // Retorna la lista de películas filtrada según los parámetros proporcionados.
+        // Retorna la lista de actores filtrada según los parámetros proporcionados.
         return movieService.filterPerson(keyword,page);
     }
 }

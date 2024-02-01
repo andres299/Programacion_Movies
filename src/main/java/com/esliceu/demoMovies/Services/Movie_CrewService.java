@@ -40,6 +40,7 @@ public class Movie_CrewService {
         movieCrewRepo.save(movieCrew);
     }
 
+    // Borrar por persona y la pelicula
     @Transactional
     public void deleteByPersonAndMovie(Person person, Movie movie) {
         movieCrewRepo.deleteByPersonAndMovie(person,movie);

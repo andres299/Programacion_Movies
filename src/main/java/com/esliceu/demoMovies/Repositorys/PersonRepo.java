@@ -17,21 +17,18 @@ public interface PersonRepo extends JpaRepository<Person, Long> {
     int countPersonsByPersonId(int entityId);
     // Busca personas cuyos nombres comienzan con una palabra clave dada, admitiendo paginación.
     List<Person> findByPersonNameStartingWithIgnoreCase(String keyword, Pageable pageable);
-    // Busca personas por el ID de la película en la que participan, admitiendo paginación.
-    List<Person> findPersonByMoviecast_MovieMovieIdEquals(int movieId);
     // Busca personas distintas por el trabajo en el equipo de la película y el ID de la película, admitiendo paginación.
     List<Person> findDistincPersonByMovieCrewsJobAndMovieCrews_MovieMovieIdEquals(String director,int movieId);
     // Busca personas por el nombre, admitiendo paginación.
     @Query(value = "Select * FROM person WHERE person_name = :select", nativeQuery = true)
     Person findByPersonNameContaining(String select);
 
-    //@Query("SELECT DISTINCT p FROM person p " +
-      //      "JOIN p.movie_cast mc " +
-        //    "WHERE mc.movie_id = :movieId AND mc.characterName = :characterName")
+    // Busca personas basadas en el ID de una película y el nombre de un personaje
     List<Person> findPersonByMoviecast_MovieMovieIdAndMoviecast_CharacterName(
             @Param("movieId")int movieId,
             @Param("characterName") String characterName);
 
+    // Busca personas distintas cuyos nombres coinciden con una palabra clave dada
     @Query(value = "SELECT DISTINCT p.person_id, p.person_name " +
             "FROM person p JOIN movie_cast mc ON p.person_id = mc.person_id WHERE p.person_name LIKE %:keyword%",nativeQuery = true)
     List<?> searchByActor(@Param("keyword") String keyword , Pageable pageable);

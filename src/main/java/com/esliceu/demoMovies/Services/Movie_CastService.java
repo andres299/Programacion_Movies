@@ -1,5 +1,6 @@
 package com.esliceu.demoMovies.Services;
 
+import com.esliceu.demoMovies.DTO.FetchInfoMoviesDTO;
 import com.esliceu.demoMovies.Entities.*;
 import com.esliceu.demoMovies.Repositorys.Movie_CastRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,21 +40,18 @@ public class Movie_CastService {
         Movie_Cast movieCast = new Movie_Cast(movie,person,input2,genreEntiti,cast_Order);
         movieCastRepo.save(movieCast);
     }
-
-    public Movie_Cast findByPersonAndMovie(Person person, Movie movie) {
-        return movieCastRepo.findByPersonAndMovie(person,movie);
-    }
-
+    // Borra el cast de movie por la persona y la pelicula
     @Transactional
     public void deleteByPersonAndMovie(Person person, Movie movie) {
         movieCastRepo.deleteByPersonAndMovie(person,movie);
     }
-
+    // Encuentra el ultimo castOrder de una pelicula especifica
     public Movie_Cast findFirstByMovie_MovieIdOrderByCastOrderDesc(int movieId) {
         return movieCastRepo.findFirstByMovie_MovieIdOrderByCastOrderDesc(movieId);
     }
 
-    public void deleteByPersonAndMovieAndCharacterName(Person person, Movie movie, String select) {
-        movieCastRepo.deleteByPersonAndMovieAndCharacterName(person,movie,select);
+    // Comprobar si el personaje ya existe
+    public long countMovieCastsByCharacterNameAndMovie_MovieId(String input2, int movieId) {
+        return movieCastRepo.countMovieCastsByCharacterNameAndMovie_MovieId(input2,movieId);
     }
 }
